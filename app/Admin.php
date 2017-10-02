@@ -3,16 +3,18 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class Admin extends Authenticatable
 {
+    use EntrustUserTrait;
      /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-     protected $fillable = [
-        'nip', 'password',
+    protected $fillable = [
+        'name', 'nip', 'password',
     ];
 
     /**

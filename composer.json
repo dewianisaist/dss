@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.2.*",
         "spatie/laravel-fractal": "^1.9",
         "dompdf/dompdf": "^0.8.1",
-        "maatwebsite/excel": "^2.1"
+        "maatwebsite/excel": "^2.1",
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

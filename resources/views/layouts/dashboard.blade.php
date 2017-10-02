@@ -58,13 +58,19 @@
                 </ul>
             </nav>
         </div>
+
+        <!-- Main content -->
+        <main class="main">
+            <div class="container mt-2">
+                @yield('content')
+            </div>
+        </main>
     </div>
 
     <footer class="app-footer">
         <span> &copy; 2017 Dewi Anisa Istiqomah</span>
         <span class="float-right">Magister Ilmu Komputer Universitas Gadjah Mada</span>
     </footer>
-    @yield('content')
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
