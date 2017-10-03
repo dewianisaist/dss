@@ -44,7 +44,7 @@ class AdminController extends Controller
      {
          $this->validate($request, [
              'name' => 'required',
-             'nip' => 'required|nip|unique:admins,nip',
+             'nip' => 'required|unique:admins,nip',
              'password' => 'required|same:confirm-password',
              'roles' => 'required'
          ]);
@@ -99,7 +99,7 @@ class AdminController extends Controller
      {
          $this->validate($request, [
              'name' => 'required',
-             'nip' => 'required|nip|unique:admins,nip,'.$id,
+             'nip' => 'required|unique:admins,nip,'.$id,
              'password' => 'same:confirm-password',
              'roles' => 'required'
          ]);
