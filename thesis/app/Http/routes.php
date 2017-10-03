@@ -16,17 +16,24 @@ Route::get('/', function() {
 });
 
 Route::auth();
+  
+Route::get('/home', 'UserController@index');    
 
-Route::group(['middleware' => ['auth']], function() {
-    
-    Route::get('/home', 'UserController@index');    
+Route::get('admin/','AuthAdmin\AuthController@showLoginForm');
+Route::post('admin/', 'AuthAdmin\AuthController@login');
+Route::get('admin/logout','AuthAdmin\AuthController@logout');
 
-    Route::get('/admin','Admin\HomeController@index');
-    Route::get('/admin/login','AuthAdmin\AuthController@showLoginForm');
-    Route::post('/admin/login', 'AuthAdmin\AuthController@login');
-    Route::get('/admin/logout','AuthAdmin\AuthController@logout');
+Route::group(['middleware' => ['admin']], function() {
 
-	Route::resource('admin/users','Admin\AdminController');
+	Route::get('admin/dashboard',['as'=>'admin.dashboard','uses'=>'Admin\HomeController@index']);	
+	
+	Route::get('admin/users',['as'=>'admin.users.index','uses'=>'Admin\AdminController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+	Route::get('admin/users/create',['as'=>'admin.users.create','uses'=>'Admin\AdminController@create','middleware' => ['permission:role-create']]);
+	Route::post('admin/users/create',['as'=>'admin.users.store','uses'=>'Admin\AdminController@store','middleware' => ['permission:role-create']]);
+	Route::get('admin/users/{id}',['as'=>'admin.users.show','uses'=>'Admin\AdminController@show']);
+	Route::get('admin/users/{id}/edit',['as'=>'admin.users.edit','uses'=>'Admin\AdminController@edit','middleware' => ['permission:role-edit']]);
+	Route::patch('admin/users/{id}',['as'=>'admin.users.update','uses'=>'Admin\AdminController@update','middleware' => ['permission:role-edit']]);
+	Route::delete('admin/users/{id}',['as'=>'admin.users.destroy','uses'=>'Admin\AdminController@destroy','middleware' => ['permission:role-delete']]);
 
 	Route::get('admin/roles',['as'=>'admin.roles.index','uses'=>'Admin\RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
 	Route::get('admin/roles/create',['as'=>'admin.roles.create','uses'=>'Admin\RoleController@create','middleware' => ['permission:role-create']]);
