@@ -47,13 +47,16 @@
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="icon-info"></i> Tujuan Sistem</span></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.users.index') }}"><i class="icon-people"></i> Data Admin</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="icon-star"></i> Data Admin</span></a>
+                        <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="icon-star"></i> Data <dfn>Roles</dfn></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.itemCRUD2.index') }}"><i class="fa fa-user"></i> Items</span></a>
+                        <a class="nav-link" href="{{ route('admin.itemCRUD2.index') }}"><i class="fa fa-user"></i> Item</span></a>
                     </li>
                 </ul>
             </nav>

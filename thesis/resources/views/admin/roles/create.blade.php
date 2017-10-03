@@ -4,7 +4,7 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left mb-1">
-	            <h2>Buat Kewenangan Baru</h2>
+	            <h2>Buat <dfn>Role</dfn> Baru</h2>
 	        </div>
 	        <div class="pull-right mb-1">
 	            <a class="btn btn-primary" href="{{ route('admin.roles.index') }}"> Kembali</a>
@@ -43,7 +43,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Kewenangan:</strong>
+                <strong><dfn>Permission</dfn>:</strong>
                 <br/>
                 @foreach($permission as $value)
                 	<label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}

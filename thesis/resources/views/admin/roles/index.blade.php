@@ -4,11 +4,11 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left mb-1">
-	            <h2>Manajemen Kewenangan</h2>
+	            <h2>Manajemen <dfn>Role</dfn></h2>
 	        </div>
 	        <div class="pull-right mb-1">
 	        	@permission('role-create')
-	            <a class="btn btn-success" href="{{ route('admin.roles.create') }}"> Buat Kewenangan Baru</a>
+	            <a class="btn btn-success" href="{{ route('admin.roles.create') }}"> Buat <dfn>Role</dfn> Baru</a>
 	            @endpermission
 	        </div>
 	    </div>
