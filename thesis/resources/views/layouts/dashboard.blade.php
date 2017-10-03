@@ -22,11 +22,11 @@
     <header class="app-header navbar">
         <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
         <a class="navbar-brand" href="#"></a>
-        <ul class="nav navbar-nav hidden-md-down">
+        {{--  <ul class="nav navbar-nav hidden-md-down">
             <li class="nav-item">
                 <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
             </li>
-        </ul>
+        </ul>  --}}
 
         <ul class="nav navbar-nav ml-auto mr-2">
             <li class="nav-item dropdown">
@@ -61,7 +61,7 @@
 
         <!-- Main content -->
         <main class="main">
-            <div class="container mt-2">
+            <div class="container mt-2 mb-2">
                 @yield('content')
             </div>
         </main>

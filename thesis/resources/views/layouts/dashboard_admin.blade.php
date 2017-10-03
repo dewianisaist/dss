@@ -22,11 +22,11 @@
     <header class="app-header navbar">
         <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
         <a class="navbar-brand" href="#"></a>
-        <ul class="nav navbar-nav hidden-md-down">
+        {{--  <ul class="nav navbar-nav hidden-md-down">
             <li class="nav-item">
                 <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
             </li>
-        </ul>
+        </ul>  --}}
 
         <ul class="nav navbar-nav ml-auto mr-2">
             <li class="nav-item dropdown">
@@ -53,7 +53,7 @@
                         <a class="nav-link" href="{{ route('admin.users.index') }}"><i class="icon-people"></i> Data Admin</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="icon-star"></i> Data <dfn>Roles</dfn></span></a>
+                        <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="icon-key"></i> Data <dfn>Roles</dfn></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.itemCRUD2.index') }}"><i class="fa fa-user"></i> Item</span></a>
@@ -65,7 +65,7 @@
 
         <!-- Main content -->
         <main class="main">
-            <div class="container mt-2">
+            <div class="container mt-2 mb-2">
                 @yield('content')
             </div>
         </main>
