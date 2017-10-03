@@ -9,7 +9,7 @@
                     <div class="card-block">
                         <h1>Login</h1>
                         <p class="text-muted">Masuk ke akun Anda</p>
-                        <form role="form" method="POST" action="{{ url('/admin/login') }}">
+                        <form role="form" method="POST" action="{{ url('/admin') }}">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('nip') ? ' has-error' : '' }}">
                                 <div>

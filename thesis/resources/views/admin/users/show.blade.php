@@ -4,7 +4,7 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left mb-1">
-	            <h2> Detail User</h2>
+	            <h2> Detail Akun</h2>
 	        </div>
 	        <div class="pull-right mb-1">
 	            <a class="btn btn-primary" href="{{ route('admin.users.index') }}"> Kembali</a>

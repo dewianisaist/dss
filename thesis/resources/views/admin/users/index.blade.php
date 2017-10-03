@@ -4,12 +4,12 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left mb-1">
-                <h2>Data Admin</h2>
+                <h2>Data Akun Admin</h2>
             </div>
             <div class="pull-right mb-1">
-				@permission('item-create')
+				{{--  @permission('item-create')  --}}
                 <a class="btn btn-success" href="{{ route('admin.users.create') }}"> Buat Akun Baru</a>
-				@endpermission
+				{{--  @endpermission  --}}
 			</div>
         </div>
     </div>
@@ -41,14 +41,14 @@
 		</td>
 		<td>
 			<a class="btn btn-info" href="{{ route('admin.users.show',$user->id) }}">Detail</a>
-			@permission('item-edit')
+			{{--  @permission('item-edit')  --}}
 			<a class="btn btn-primary" href="{{ route('admin.users.edit',$user->id) }}">Edit</a>
-			@endpermission
-			@permission('item-delete')
+			{{--  @endpermission  --}}
+			{{--  @permission('item-delete')  --}}
 			{!! Form::open(['method' => 'DELETE','route' => ['admin.users.destroy', $user->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}
-			@endpermission
+			{{--  @endpermission  --}}
 		</td>
 	</tr>
 	@endforeach

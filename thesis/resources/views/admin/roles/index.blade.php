@@ -7,9 +7,9 @@
 	            <h2>Manajemen <dfn>Role</dfn></h2>
 	        </div>
 	        <div class="pull-right mb-1">
-	        	@permission('role-create')
+	        	{{--  @permission('role-create')  --}}
 	            <a class="btn btn-success" href="{{ route('admin.roles.create') }}"> Buat <dfn>Role</dfn> Baru</a>
-	            @endpermission
+	            {{--  @endpermission  --}}
 	        </div>
 	    </div>
 	</div>
@@ -32,14 +32,14 @@
 		<td>{{ $role->description }}</td>
 		<td>
 			<a class="btn btn-info" href="{{ route('admin.roles.show',$role->id) }}">Detail</a>
-			@permission('role-edit')
+			{{--  @permission('role-edit')  --}}
 			<a class="btn btn-primary" href="{{ route('admin.roles.edit',$role->id) }}">Edit</a>
-			@endpermission
-			@permission('role-delete')
+			{{--  @endpermission  --}}
+			{{--  @permission('role-delete')  --}}
 			{!! Form::open(['method' => 'DELETE','route' => ['admin.roles.destroy', $role->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}
-        	@endpermission
+        	{{--  @endpermission  --}}
 		</td>
 	</tr>
 	@endforeach
