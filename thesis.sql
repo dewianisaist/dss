@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 02, 2017 at 03:29 PM
+-- Generation Time: Oct 03, 2017 at 04:43 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -36,6 +36,14 @@ CREATE TABLE `admins` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `name`, `nip`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 'kepala', '1234567890', '$2y$10$e5agg.0d332X2uj4.XVGNeUG30DJGQe./kx4Sp1D2D5gRgAgwuIGG', NULL, '2017-10-03 06:59:22', '2017-10-03 06:59:22'),
+(4, 'Admin', '12345678', '$2y$10$sZ5kF.oWbzOITnAwJ63w..mr59.VvXbMcG2kKBwQdIDj4G1Hu8/eq', NULL, '2017-10-03 06:59:38', '2017-10-03 06:59:38');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +57,13 @@ CREATE TABLE `items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'coba aja ok', 'coba aja sih ok', '2017-10-03 07:01:01', '2017-10-03 07:01:17');
 
 -- --------------------------------------------------------
 
@@ -134,6 +149,24 @@ CREATE TABLE `permission_role` (
   `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `permission_role`
+--
+
+INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
+(1, 7),
+(2, 7),
+(3, 7),
+(4, 7),
+(5, 7),
+(5, 8),
+(6, 7),
+(6, 8),
+(7, 7),
+(7, 8),
+(8, 7),
+(8, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -149,6 +182,14 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
+(7, 'Admin', 'Admin', 'Admin bertugas memanajemen akun', '2017-10-03 06:46:50', '2017-10-03 06:49:57'),
+(8, 'Kepala', 'Kepala BLK', 'Kepala bertugas', '2017-10-03 06:49:23', '2017-10-03 06:49:23');
+
 -- --------------------------------------------------------
 
 --
@@ -159,6 +200,14 @@ CREATE TABLE `role_user` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `role_user`
+--
+
+INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
+(3, 8),
+(4, 7);
 
 -- --------------------------------------------------------
 
@@ -181,7 +230,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$regXckvVsoZSavlqlTMV9OGkmmcaf1gv1tC.TPuneF9pUXuMTvvPq', 'pLuKomVlQmI2Fpfg3wbyyHDrSWproApB0LuFcI8FEi1kfzMF9OxT5pqaVDx0', '2017-09-24 08:28:14', '2017-10-02 06:25:47'),
+(1, 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$regXckvVsoZSavlqlTMV9OGkmmcaf1gv1tC.TPuneF9pUXuMTvvPq', 'wjgaP06kf89NEdQI4YgH1dFtCcXmHHjKLyNKv8t2uGRdHCQZgHdBOTRXxhqC', '2017-09-24 08:28:14', '2017-10-02 20:35:13'),
 (2, 'ana', 'ana@tes.com', '$2y$10$kE69j3cFXxGBG/o8O8AEVe0MDtZtOfRUbDlU7ivbRa48pmC13PTAG', 'Qu0MzyFze7vM3f6SQyzfptkUOSgn9yAHjmNFiq5yuYsP3QwbP9tGuot846LF', '2017-09-24 21:04:52', '2017-09-24 21:05:03'),
 (3, 'Rere', 'rere@tes.com', '$2y$10$aDJ5zZNNUgvAIjrMfc4zy.jAYe9SLIHoBUEvn8BU34OytNNUW/mWG', 'l21fzy646NyBOHLfqazDqYwcIDYkcxZn5STpxqt42nefjGwA7XfSAQyuTt9n', '2017-09-24 21:23:00', '2017-09-24 21:23:56'),
 (4, 'aninda', 'aninda@tes.com', '$2y$10$c5ft8IW/jujUpC9k4sS5dOD6kIpL1VwFfogs3wTEuw8DowcB8WtsG', 'icd09Na3HMUC8ZmuY5NwPTVG6sQilH34LbuNdLNrStyGYdHcKvAn3dsXfxZq', '2017-10-01 03:35:48', '2017-10-01 03:41:15'),
@@ -254,12 +303,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -269,7 +318,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `users`
 --
