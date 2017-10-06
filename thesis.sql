@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2017 at 04:43 PM
+-- Generation Time: Oct 07, 2017 at 01:02 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -42,7 +42,8 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `nip`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (3, 'kepala', '1234567890', '$2y$10$e5agg.0d332X2uj4.XVGNeUG30DJGQe./kx4Sp1D2D5gRgAgwuIGG', NULL, '2017-10-03 06:59:22', '2017-10-03 06:59:22'),
-(4, 'Admin', '12345678', '$2y$10$sZ5kF.oWbzOITnAwJ63w..mr59.VvXbMcG2kKBwQdIDj4G1Hu8/eq', NULL, '2017-10-03 06:59:38', '2017-10-03 06:59:38');
+(4, 'Admin', '12345678', '$2y$10$zzVupKElNLYO.yLEAoAIKeH2eme0foY6jlC2x4K7R7mpLUX1OmpsG', NULL, '2017-10-03 06:59:38', '2017-10-06 07:53:04'),
+(5, 'Superadmin', '123456', '$2y$10$uHo2Hppz06ToQLrkl7871essA6EzusHn1qNlna36.4nzvFm9VoHkG', NULL, '2017-10-06 15:51:59', '2017-10-06 15:51:59');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2017_09_27_052332_create_admins_table', 3),
 ('2017_10_02_070409_create_admins_table', 4),
 ('2017_10_02_070616_create_items_table', 4),
-('2017_10_02_070749_entrust_setup_tables', 4);
+('2017_10_02_070749_entrust_setup_tables', 4),
+('2017_10_06_225539_entrust_setup_tables', 5);
 
 -- --------------------------------------------------------
 
@@ -129,14 +131,14 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'role-list', 'Display Role Listing', 'See only Listing Of Role', '2017-10-02 00:28:02', '2017-10-02 00:28:02'),
-(2, 'role-create', 'Create Role', 'Create New Role', '2017-10-02 00:28:02', '2017-10-02 00:28:02'),
-(3, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-02 00:28:02', '2017-10-02 00:28:02'),
-(4, 'role-delete', 'Delete Role', 'Delete Role', '2017-10-02 00:28:02', '2017-10-02 00:28:02'),
-(5, 'item-list', 'Display Item Listing', 'See only Listing Of Item', '2017-10-02 00:28:02', '2017-10-02 00:28:02'),
-(6, 'item-create', 'Create Item', 'Create New Item', '2017-10-02 00:28:02', '2017-10-02 00:28:02'),
-(7, 'item-edit', 'Edit Item', 'Edit Item', '2017-10-02 00:28:02', '2017-10-02 00:28:02'),
-(8, 'item-delete', 'Delete Item', 'Delete Item', '2017-10-02 00:28:02', '2017-10-02 00:28:02');
+(1, 'role-list', 'Display Role Listing', 'See only Listing Of Role', '2017-10-06 15:56:20', '2017-10-06 15:56:20'),
+(2, 'role-create', 'Create Role', 'Create New Role', '2017-10-06 15:56:20', '2017-10-06 15:56:20'),
+(3, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-06 15:56:20', '2017-10-06 15:56:20'),
+(4, 'role-delete', 'Delete Role', 'Delete Role', '2017-10-06 15:56:20', '2017-10-06 15:56:20'),
+(5, 'item-list', 'Display Item Listing', 'See only Listing Of Item', '2017-10-06 15:56:20', '2017-10-06 15:56:20'),
+(6, 'item-create', 'Create Item', 'Create New Item', '2017-10-06 15:56:20', '2017-10-06 15:56:20'),
+(7, 'item-edit', 'Edit Item', 'Edit Item', '2017-10-06 15:56:20', '2017-10-06 15:56:20'),
+(8, 'item-delete', 'Delete Item', 'Delete Item', '2017-10-06 15:56:20', '2017-10-06 15:56:20');
 
 -- --------------------------------------------------------
 
@@ -154,18 +156,17 @@ CREATE TABLE `permission_role` (
 --
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
-(1, 7),
-(2, 7),
-(3, 7),
-(4, 7),
-(5, 7),
-(5, 8),
-(6, 7),
-(6, 8),
-(7, 7),
-(7, 8),
-(8, 7),
-(8, 8);
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(6, 2),
+(7, 1),
+(7, 2),
+(8, 1),
+(8, 2);
 
 -- --------------------------------------------------------
 
@@ -187,8 +188,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(7, 'Admin', 'Admin', 'Admin bertugas memanajemen akun', '2017-10-03 06:46:50', '2017-10-03 06:49:57'),
-(8, 'Kepala', 'Kepala BLK', 'Kepala bertugas', '2017-10-03 06:49:23', '2017-10-03 06:49:23');
+(1, 'Staf', 'Staf', 'bertugas', '2017-10-06 15:57:26', '2017-10-06 15:57:26'),
+(2, 'Kepala', 'Kepala BLK', 'bertugas', '2017-10-06 15:58:14', '2017-10-06 15:58:14');
 
 -- --------------------------------------------------------
 
@@ -206,8 +207,10 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
-(3, 8),
-(4, 7);
+(3, 2),
+(4, 1),
+(5, 1),
+(5, 2);
 
 -- --------------------------------------------------------
 
@@ -303,7 +306,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `items`
 --
@@ -318,7 +321,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -340,7 +343,7 @@ ALTER TABLE `permission_role`
 --
 ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
