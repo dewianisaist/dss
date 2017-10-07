@@ -25,7 +25,7 @@ Route::get('admin/logout','AuthAdmin\AuthController@logout');
 
 //Route::group(['middleware' => ['admin']], function() {
 
-	Route::get('admin/dashboard',['as'=>'admin.dashboard','uses'=>'Admin\HomeController@index']);	
+	//Route::get('admin/dashboard',['as'=>'admin.dashboard','uses'=>'Admin\HomeController@index']);	
 	
 	// Route::get('admin/users',['as'=>'admin.users.index','uses'=>'Admin\AdminController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
 	// Route::get('admin/users/create',['as'=>'admin.users.create','uses'=>'Admin\AdminController@create','middleware' => ['permission:role-create']]);
