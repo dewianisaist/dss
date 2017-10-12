@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = Role::orderBy('id','DESC')->paginate(5);
-        return view('admin.roles.index',compact('roles'))
+        return view('roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -30,7 +30,7 @@ class RoleController extends Controller
     public function create()
     {
         $permission = Permission::get();
-        return view('admin.roles.create',compact('permission'));
+        return view('roles.create',compact('permission'));
     }
 
     /**
@@ -58,7 +58,7 @@ class RoleController extends Controller
             $role->attachPermission($value);
         }
 
-        return redirect()->route('admin.roles.index')
+        return redirect()->route('roles.index')
                         ->with('success','Role created successfully');
     }
     /**
@@ -74,7 +74,7 @@ class RoleController extends Controller
             ->where("permission_role.role_id",$id)
             ->get();
 
-        return view('admin.roles.show',compact('role','rolePermissions'));
+        return view('roles.show',compact('role','rolePermissions'));
     }
 
     /**
@@ -90,7 +90,7 @@ class RoleController extends Controller
         $rolePermissions = DB::table("permission_role")->where("permission_role.role_id",$id)
             ->lists('permission_role.permission_id','permission_role.permission_id');
 
-        return view('admin.roles.edit',compact('role','permission','rolePermissions'));
+        return view('roles.edit',compact('role','permission','rolePermissions'));
     }
 
     /**
@@ -120,7 +120,7 @@ class RoleController extends Controller
             $role->attachPermission($value);
         }
 
-        return redirect()->route('admin.roles.index')
+        return redirect()->route('roles.index')
                         ->with('success','Role updated successfully');
     }
     /**
@@ -132,7 +132,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         DB::table("roles")->where('id',$id)->delete();
-        return redirect()->route('admin.roles.index')
+        return redirect()->route('roles.index')
                         ->with('success','Role deleted successfully');
     }
 }

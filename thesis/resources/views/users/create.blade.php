@@ -7,7 +7,7 @@
                 <h2>Buat Akun Baru</h2>
             </div>
             <div class="pull-right mb-1">
-                <a class="btn btn-primary" href="{{ route('admin.users.index') }}"> Kembali</a>
+                <a class="btn btn-primary" href="{{ route('users.index') }}"> Kembali</a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
 			</ul>
 		</div>
 	@endif
-	{!! Form::open(array('route' => 'admin.users.store','method'=>'POST')) !!}
+	{!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">

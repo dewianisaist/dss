@@ -7,7 +7,7 @@
 	            <h2>Detail Item</h2>
 	        </div>
 	        <div class="pull-right mb-1">
-	            <a class="btn btn-primary" href="{{ route('admin.itemCRUD2.index') }}"> Kembali</a>
+	            <a class="btn btn-primary" href="{{ route('itemCRUD2.index') }}"> Kembali</a>
 	        </div>
 	    </div>
 	</div>

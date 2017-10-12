@@ -7,7 +7,7 @@
 	            <h2>Buat Item Baru</h2>
 	        </div>
 	        <div class="pull-right mb-1">
-	            <a class="btn btn-primary" href="{{ route('admin.itemCRUD2.index') }}"> Kembali</a>
+	            <a class="btn btn-primary" href="{{ route('itemCRUD2.index') }}"> Kembali</a>
 	        </div>
 	    </div>
 	</div>
@@ -21,7 +21,7 @@
 			</ul>
 		</div>
 	@endif
-	{!! Form::open(array('route' => 'admin.itemCRUD2.store','method'=>'POST')) !!}
+	{!! Form::open(array('route' => 'itemCRUD2.store','method'=>'POST')) !!}
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">

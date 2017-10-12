@@ -17,61 +17,62 @@ Route::get('/', function() {
 
 Route::auth();
   
-Route::get('/home', 'UserController@index');    
+// Route::get('/home', 'HomeController@index');    
 
-Route::get('admin/','AuthAdmin\AuthController@showLoginForm');
-Route::post('admin/', 'AuthAdmin\AuthController@login');
-Route::get('admin/logout','AuthAdmin\AuthController@logout');
+// Route::get('admin/','AuthAdmin\AuthController@showLoginForm');
+// Route::post('admin/', 'AuthAdmin\AuthController@login');
+// Route::get('admin/logout','AuthAdmin\AuthController@logout');
 
-//Route::group(['middleware' => ['admin']], function() {
+//Route::group(['middleware' => ['auth']], function() {
 
-	//Route::get('admin/dashboard',['as'=>'admin.dashboard','uses'=>'Admin\HomeController@index']);	
+	//Route::get('/dashboard', 'HomeController@index');
+	Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@index']);	
 	
-	// Route::get('admin/users',['as'=>'admin.users.index','uses'=>'Admin\AdminController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
-	// Route::get('admin/users/create',['as'=>'admin.users.create','uses'=>'Admin\AdminController@create','middleware' => ['permission:role-create']]);
-	// Route::post('admin/users/create',['as'=>'admin.users.store','uses'=>'Admin\AdminController@store','middleware' => ['permission:role-create']]);
-	// Route::get('admin/users/{id}',['as'=>'admin.users.show','uses'=>'Admin\AdminController@show']);
-	// Route::get('admin/users/{id}/edit',['as'=>'admin.users.edit','uses'=>'Admin\AdminController@edit','middleware' => ['permission:role-edit']]);
-	// Route::patch('admin/users/{id}',['as'=>'admin.users.update','uses'=>'Admin\AdminController@update','middleware' => ['permission:role-edit']]);
-	// Route::delete('admin/users/{id}',['as'=>'admin.users.destroy','uses'=>'Admin\AdminController@destroy','middleware' => ['permission:role-delete']]);
+	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+	// Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create','middleware' => ['permission:role-create']]);
+	// Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store','middleware' => ['permission:role-create']]);
+	// Route::get('users/{id}',['as'=>'users.show','uses'=>'UserController@show']);
+	// Route::get('users/{id}/edit',['as'=>'users.edit','uses'=>'UserController@edit','middleware' => ['permission:role-edit']]);
+	// Route::patch('users/{id}',['as'=>'users.update','uses'=>'UserController@update','middleware' => ['permission:role-edit']]);
+	// Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy','middleware' => ['permission:role-delete']]);
 
-	Route::get('admin/users',['as'=>'admin.users.index','uses'=>'Admin\AdminController@index']);
-	Route::get('admin/users/create',['as'=>'admin.users.create','uses'=>'Admin\AdminController@create']);
-	Route::post('admin/users/create',['as'=>'admin.users.store','uses'=>'Admin\AdminController@store']);
-	Route::get('admin/users/{id}',['as'=>'admin.users.show','uses'=>'Admin\AdminController@show']);
-	Route::get('admin/users/{id}/edit',['as'=>'admin.users.edit','uses'=>'Admin\AdminController@edit']);
-	Route::patch('admin/users/{id}',['as'=>'admin.users.update','uses'=>'Admin\AdminController@update']);
-	Route::delete('admin/users/{id}',['as'=>'admin.users.destroy','uses'=>'Admin\AdminController@destroy']);
+	Route::get('users',['as'=>'users.index','uses'=>'UserController@index']);
+	Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create']);
+	Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store']);
+	Route::get('users/{id}',['as'=>'users.show','uses'=>'UserController@show']);
+	Route::get('users/{id}/edit',['as'=>'users.edit','uses'=>'UserController@edit']);
+	Route::patch('users/{id}',['as'=>'users.update','uses'=>'UserController@update']);
+	Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy']);
 
-	// Route::get('admin/roles',['as'=>'admin.roles.index','uses'=>'Admin\RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
-	// Route::get('admin/roles/create',['as'=>'admin.roles.create','uses'=>'Admin\RoleController@create','middleware' => ['permission:role-create']]);
-	// Route::post('admin/roles/create',['as'=>'admin.roles.store','uses'=>'Admin\RoleController@store','middleware' => ['permission:role-create']]);
-	// Route::get('admin/roles/{id}',['as'=>'admin.roles.show','uses'=>'Admin\RoleController@show']);
-	// Route::get('admin/roles/{id}/edit',['as'=>'admin.roles.edit','uses'=>'Admin\RoleController@edit','middleware' => ['permission:role-edit']]);
-	// Route::patch('admin/roles/{id}',['as'=>'admin.roles.update','uses'=>'Admin\RoleController@update','middleware' => ['permission:role-edit']]);
-	// Route::delete('admin/roles/{id}',['as'=>'admin.roles.destroy','uses'=>'Admin\RoleController@destroy','middleware' => ['permission:role-delete']]);
+	// Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+	// Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create','middleware' => ['permission:role-create']]);
+	// Route::post('roles/create',['as'=>'roles.store','uses'=>'RoleController@store','middleware' => ['permission:role-create']]);
+	// Route::get('roles/{id}',['as'=>'roles.show','uses'=>'RoleController@show']);
+	// Route::get('roles/{id}/edit',['as'=>'roles.edit','uses'=>'RoleController@edit','middleware' => ['permission:role-edit']]);
+	// Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update','middleware' => ['permission:role-edit']]);
+	// Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy','middleware' => ['permission:role-delete']]);
 
-	Route::get('admin/roles',['as'=>'admin.roles.index','uses'=>'Admin\RoleController@index']);
-	Route::get('admin/roles/create',['as'=>'admin.roles.create','uses'=>'Admin\RoleController@create']);
-	Route::post('admin/roles/create',['as'=>'admin.roles.store','uses'=>'Admin\RoleController@store']);
-	Route::get('admin/roles/{id}',['as'=>'admin.roles.show','uses'=>'Admin\RoleController@show']);
-	Route::get('admin/roles/{id}/edit',['as'=>'admin.roles.edit','uses'=>'Admin\RoleController@edit']);
-	Route::patch('admin/roles/{id}',['as'=>'admin.roles.update','uses'=>'Admin\RoleController@update']);
-	Route::delete('admin/roles/{id}',['as'=>'admin.roles.destroy','uses'=>'Admin\RoleController@destroy']);
+	Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index']);
+	Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create']);
+	Route::post('roles/create',['as'=>'roles.store','uses'=>'RoleController@store']);
+	Route::get('roles/{id}',['as'=>'roles.show','uses'=>'RoleController@show']);
+	Route::get('roles/{id}/edit',['as'=>'roles.edit','uses'=>'RoleController@edit']);
+	Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update']);
+	Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy']);
 
-	// Route::get('admin/itemCRUD2',['as'=>'admin.itemCRUD2.index','uses'=>'Admin\ItemCRUD2Controller@index','middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
-	// Route::get('admin/itemCRUD2/create',['as'=>'admin.itemCRUD2.create','uses'=>'Admin\ItemCRUD2Controller@create','middleware' => ['permission:item-create']]);
-	// Route::post('admin/itemCRUD2/create',['as'=>'admin.itemCRUD2.store','uses'=>'Admin\ItemCRUD2Controller@store','middleware' => ['permission:item-create']]);
-	// Route::get('admin/itemCRUD2/{id}',['as'=>'admin.itemCRUD2.show','uses'=>'Admin\ItemCRUD2Controller@show']);
-	// Route::get('admin/itemCRUD2/{id}/edit',['as'=>'admin.itemCRUD2.edit','uses'=>'Admin\ItemCRUD2Controller@edit','middleware' => ['permission:item-edit']]);
-	// Route::patch('admin/itemCRUD2/{id}',['as'=>'admin.itemCRUD2.update','uses'=>'Admin\ItemCRUD2Controller@update','middleware' => ['permission:item-edit']]);
-	// Route::delete('admin/itemCRUD2/{id}',['as'=>'admin.itemCRUD2.destroy','uses'=>'Admin\ItemCRUD2Controller@destroy','middleware' => ['permission:item-delete']]);
+	// Route::get('itemCRUD2',['as'=>'itemCRUD2.index','uses'=>'ItemCRUD2Controller@index','middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
+	// Route::get('itemCRUD2/create',['as'=>'itemCRUD2.create','uses'=>'ItemCRUD2Controller@create','middleware' => ['permission:item-create']]);
+	// Route::post('itemCRUD2/create',['as'=>'itemCRUD2.store','uses'=>'ItemCRUD2Controller@store','middleware' => ['permission:item-create']]);
+	// Route::get('itemCRUD2/{id}',['as'=>'itemCRUD2.show','uses'=>'ItemCRUD2Controller@show']);
+	// Route::get('itemCRUD2/{id}/edit',['as'=>'itemCRUD2.edit','uses'=>'ItemCRUD2Controller@edit','middleware' => ['permission:item-edit']]);
+	// Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update','middleware' => ['permission:item-edit']]);
+	// Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy','middleware' => ['permission:item-delete']]);
 
-	Route::get('admin/itemCRUD2',['as'=>'admin.itemCRUD2.index','uses'=>'Admin\ItemCRUD2Controller@index']);
-	Route::get('admin/itemCRUD2/create',['as'=>'admin.itemCRUD2.create','uses'=>'Admin\ItemCRUD2Controller@create']);
-	Route::post('admin/itemCRUD2/create',['as'=>'admin.itemCRUD2.store','uses'=>'Admin\ItemCRUD2Controller@store']);
-	Route::get('admin/itemCRUD2/{id}',['as'=>'admin.itemCRUD2.show','uses'=>'Admin\ItemCRUD2Controller@show']);
-	Route::get('admin/itemCRUD2/{id}/edit',['as'=>'admin.itemCRUD2.edit','uses'=>'Admin\ItemCRUD2Controller@edit']);
-	Route::patch('admin/itemCRUD2/{id}',['as'=>'admin.itemCRUD2.update','uses'=>'Admin\ItemCRUD2Controller@update']);
-	Route::delete('admin/itemCRUD2/{id}',['as'=>'admin.itemCRUD2.destroy','uses'=>'Admin\ItemCRUD2Controller@destroy']);
+	Route::get('itemCRUD2',['as'=>'itemCRUD2.index','uses'=>'ItemCRUD2Controller@index']);
+	Route::get('itemCRUD2/create',['as'=>'itemCRUD2.create','uses'=>'ItemCRUD2Controller@create']);
+	Route::post('itemCRUD2/create',['as'=>'itemCRUD2.store','uses'=>'ItemCRUD2Controller@store']);
+	Route::get('itemCRUD2/{id}',['as'=>'itemCRUD2.show','uses'=>'ItemCRUD2Controller@show']);
+	Route::get('itemCRUD2/{id}/edit',['as'=>'itemCRUD2.edit','uses'=>'ItemCRUD2Controller@edit']);
+	Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update']);
+	Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy']);
 //});

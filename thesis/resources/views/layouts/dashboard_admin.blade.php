@@ -35,7 +35,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Ubah Password</a>
-                    <a class="dropdown-item" href="{{ url('/admin/logout') }}"><i class="fa fa-lock"></i> Logout</a>
+                    <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-lock"></i> Logout</a>
                 </div>
             </li>
 
@@ -47,16 +47,16 @@
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="icon-info"></i> Tujuan Sistem</span></a>
+                        <a class="nav-link" href="{{ route('dashboard') }}"><i class="icon-info"></i> Tujuan Sistem</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.users.index') }}"><i class="icon-people"></i> Data Admin</span></a>
+                        <a class="nav-link" href="{{ route('users.index') }}"><i class="icon-people"></i> Data Pengguna</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="icon-key"></i> Data <dfn>Roles</dfn></span></a>
+                        <a class="nav-link" href="{{ route('roles.index') }}"><i class="icon-key"></i> Data <dfn>Roles</dfn></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.itemCRUD2.index') }}"><i class="fa fa-user"></i> Item</span></a>
+                        <a class="nav-link" href="{{ route('itemCRUD2.index') }}"><i class="fa fa-user"></i> Item</span></a>
                     </li>
                 </ul>
             </nav>

@@ -8,7 +8,7 @@
 	        </div>
 	        <div class="pull-right mb-1">
 	        	{{--  @permission('role-create')  --}}
-	            <a class="btn btn-success" href="{{ route('admin.roles.create') }}"> Buat <dfn>Role</dfn> Baru</a>
+	            <a class="btn btn-success" href="{{ route('roles.create') }}"> Buat <dfn>Role</dfn> Baru</a>
 	            {{--  @endpermission  --}}
 	        </div>
 	    </div>
@@ -31,12 +31,12 @@
 		<td>{{ $role->display_name }}</td>
 		<td>{{ $role->description }}</td>
 		<td>
-			<a class="btn btn-info" href="{{ route('admin.roles.show',$role->id) }}">Detail</a>
+			<a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Detail</a>
 			{{--  @permission('role-edit')  --}}
-			<a class="btn btn-primary" href="{{ route('admin.roles.edit',$role->id) }}">Edit</a>
+			<a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
 			{{--  @endpermission  --}}
 			{{--  @permission('role-delete')  --}}
-			{!! Form::open(['method' => 'DELETE','route' => ['admin.roles.destroy', $role->id],'style'=>'display:inline']) !!}
+			{!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}
         	{{--  @endpermission  --}}
