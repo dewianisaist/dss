@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 13, 2017 at 06:16 AM
+-- Generation Time: Oct 13, 2017 at 07:51 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -168,7 +168,15 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (3, 5),
 (3, 6),
 (3, 7),
-(3, 8);
+(3, 8),
+(4, 1),
+(4, 2),
+(4, 3),
+(4, 4),
+(4, 5),
+(4, 6),
+(4, 7),
+(4, 8);
 
 -- --------------------------------------------------------
 
@@ -204,7 +212,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (2, 'Staf', 'Staf', 'Staf bertugas sebagai admin', '2017-10-12 21:14:37', '2017-10-12 21:14:37'),
-(3, 'Kepala', 'Kepala BLK', 'Kepala BLK bertugas sebagai pembuat keputusan', '2017-10-12 21:15:13', '2017-10-12 21:15:13');
+(3, 'Kepala', 'Kepala BLK', 'Kepala BLK bertugas sebagai pembuat keputusan', '2017-10-12 21:15:13', '2017-10-12 21:15:13'),
+(4, 'Superadmin', 'Superadmin', 'Merupakan peneliti', '2017-10-13 10:33:35', '2017-10-13 10:33:35');
 
 -- --------------------------------------------------------
 
@@ -216,6 +225,14 @@ CREATE TABLE `role_user` (
   `role_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `role_user`
+--
+
+INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
+(2, 8),
+(4, 7);
 
 -- --------------------------------------------------------
 
@@ -284,7 +301,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `no_identitas`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi', 'dewi@tes.com', '$2y$10$QDG9mohLPkJwkY.S8gQZxuaXgq5KqRQY5MtTDm1o.c0', NULL, '2017-10-12 21:15:56', '2017-10-12 21:15:56');
+(7, '12345678', 'Dewi', 'dewianisaist@gmail.com', '$2y$10$lHTmv4q5zEkFWNmr3lhLROJk3JzJmOcCxoAL8FDRJPo', NULL, '2017-10-13 10:50:34', '2017-10-13 10:50:34'),
+(8, '123456', 'Ana', 'ana@tes.com', '$2y$10$2Y4XRqWYo/brlxZ3.tygH.S8pyLtWF2IuHgLvcT7tC8', NULL, '2017-10-13 10:50:57', '2017-10-13 10:50:57');
 
 --
 -- Indexes for dumped tables
@@ -437,7 +455,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sub_kejuruan`
 --
@@ -452,7 +470,7 @@ ALTER TABLE `upload`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --
