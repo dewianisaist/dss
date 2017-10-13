@@ -20,8 +20,14 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>NIP:</strong>
-                {{ $user->nip }}
+                <strong>No. Identitas:</strong>
+                {{ $user->no_identitas }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Email:</strong>
+                {{ $user->email }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

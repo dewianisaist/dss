@@ -16,13 +16,13 @@ class PermissionTableSeeder extends Seeder
         $permission = [
         	[
         		'name' => 'role-list',
-        		'display_name' => 'Display Role Listing',
-        		'description' => 'See only Listing Of Role'
+        		'display_name' => 'Menampilkan daftar Role',
+        		'description' => 'Hanya melihat daftar Role'
         	],
         	[
         		'name' => 'role-create',
-        		'display_name' => 'Create Role',
-        		'description' => 'Create New Role'
+        		'display_name' => 'Membuat Role',
+        		'description' => 'Membuat Role baru'
         	],
         	[
         		'name' => 'role-edit',
@@ -31,18 +31,18 @@ class PermissionTableSeeder extends Seeder
         	],
         	[
         		'name' => 'role-delete',
-        		'display_name' => 'Delete Role',
-        		'description' => 'Delete Role'
+        		'display_name' => 'Hapus Role',
+        		'description' => 'Hapus Role'
         	],
         	[
         		'name' => 'item-list',
-        		'display_name' => 'Display Item Listing',
-        		'description' => 'See only Listing Of Item'
+        		'display_name' => 'Menampilkan daftar Item',
+        		'description' => 'Hanya melihat daftar Item'
         	],
         	[
         		'name' => 'item-create',
-        		'display_name' => 'Create Item',
-        		'description' => 'Create New Item'
+        		'display_name' => 'Membuat Item',
+        		'description' => 'Membuat Item baru'
         	],
         	[
         		'name' => 'item-edit',
@@ -51,8 +51,8 @@ class PermissionTableSeeder extends Seeder
         	],
         	[
         		'name' => 'item-delete',
-        		'display_name' => 'Delete Item',
-        		'description' => 'Delete Item'
+        		'display_name' => 'Hapus Item',
+        		'description' => 'Hapus Item'
         	]
         ];
 

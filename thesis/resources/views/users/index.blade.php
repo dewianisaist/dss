@@ -23,7 +23,8 @@
 		<tr>
 			<th>No</th>
 			<th>Nama</th>
-			<th>NIP</th>
+			<th>No. Identitas</th>
+			<th>Email</th>
 			<th><dfn>Roles</dfn></th>
 			<th width="280px">Action</th>
 		</tr>
@@ -31,7 +32,8 @@
 	<tr>
 		<td>{{ ++$i }}</td>
 		<td>{{ $user->name }}</td>
-		<td>{{ $user->nip }}</td>
+		<td>{{ $user->no_identitas }}</td>
+		<td>{{ $user->email }}</td>
 		<td>
 			@if(!empty($user->roles))
 				@foreach($user->roles as $v)

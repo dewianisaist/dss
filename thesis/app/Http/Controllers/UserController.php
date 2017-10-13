@@ -45,6 +45,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'no_identitas' => 'required|unique:users,no_identitas',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
@@ -59,7 +60,7 @@ class UserController extends Controller
         }
 
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+                        ->with('success','User berhasil dibuat');
     }
 
     /**
@@ -100,6 +101,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'no_identitas' => 'required|unique:users,no_identitas'.$id,
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
@@ -122,7 +124,7 @@ class UserController extends Controller
         }
 
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+                        ->with('success','User berhasil diedit');
     }
 
     /**
@@ -135,6 +137,6 @@ class UserController extends Controller
     {
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success','User berhasil dihapus');
     }
 }

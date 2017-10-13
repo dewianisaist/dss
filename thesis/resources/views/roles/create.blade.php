@@ -13,7 +13,7 @@
 	</div>
 	@if (count($errors) > 0)
 		<div class="alert alert-danger">
-			<strong>Whoops!</strong> There were some problems with your input.<br><br>
+			<strong>Maaf!</strong> Ada kesalahan dengan data yang Anda masukkan.<br><br>
 			<ul>
 				@foreach ($errors->all() as $error)
 					<li>{{ $error }}</li>
@@ -31,8 +31,8 @@
         </div>
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Display Name:</strong>
-                {!! Form::text('display_name', null, array('placeholder' => 'Display Name','class' => 'form-control')) !!}
+                <strong>Nama yang Ditampilkan:</strong>
+                {!! Form::text('display_name', null, array('placeholder' => 'Nama yang ditampilkan','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
