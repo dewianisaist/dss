@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 09, 2017 at 12:41 PM
+-- Generation Time: Oct 13, 2017 at 06:16 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -131,16 +131,44 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
+(2, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
+(3, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
+(4, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
+(5, 'item-list', 'Menampilkan daftar Item', 'Hanya melihat daftar Item', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
+(6, 'item-create', 'Membuat Item', 'Membuat Item baru', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
+(7, 'item-edit', 'Edit Item', 'Edit Item', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
+(8, 'item-delete', 'Hapus Item', 'Hapus Item', '2017-10-12 21:13:44', '2017-10-12 21:13:44');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions_role`
+-- Table structure for table `permission_role`
 --
 
-CREATE TABLE `permissions_role` (
+CREATE TABLE `permission_role` (
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `permission_role`
+--
+
+INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6),
+(3, 7),
+(3, 8);
 
 -- --------------------------------------------------------
 
@@ -170,6 +198,14 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
+(2, 'Staf', 'Staf', 'Staf bertugas sebagai admin', '2017-10-12 21:14:37', '2017-10-12 21:14:37'),
+(3, 'Kepala', 'Kepala BLK', 'Kepala BLK bertugas sebagai pembuat keputusan', '2017-10-12 21:15:13', '2017-10-12 21:15:13');
+
 -- --------------------------------------------------------
 
 --
@@ -177,8 +213,8 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `role_user` (
-  `user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -244,6 +280,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `no_identitas`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, '12345678', 'Dewi', 'dewi@tes.com', '$2y$10$QDG9mohLPkJwkY.S8gQZxuaXgq5KqRQY5MtTDm1o.c0', NULL, '2017-10-12 21:15:56', '2017-10-12 21:15:56');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -303,12 +346,12 @@ ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `permissions_role`
+-- Indexes for table `permission_role`
 --
-ALTER TABLE `permissions_role`
+ALTER TABLE `permission_role`
   ADD PRIMARY KEY (`role_id`,`permission_id`),
-  ADD KEY `fk_roles_has_permissions_permissions1_idx` (`permission_id`),
-  ADD KEY `fk_roles_has_permissions_roles_idx` (`role_id`);
+  ADD KEY `fk_roles_has_permissions_roles1_idx` (`role_id`),
+  ADD KEY `fk_roles_has_permissions_permissions1_idx` (`permission_id`);
 
 --
 -- Indexes for table `riwayat_pendidikan`
@@ -328,9 +371,9 @@ ALTER TABLE `roles`
 -- Indexes for table `role_user`
 --
 ALTER TABLE `role_user`
-  ADD PRIMARY KEY (`user_id`,`role_id`),
-  ADD KEY `fk_users_has_roles_roles1_idx` (`role_id`),
-  ADD KEY `fk_users_has_roles_users1_idx` (`user_id`);
+  ADD PRIMARY KEY (`role_id`,`user_id`),
+  ADD KEY `fk_roles_has_users_roles1_idx` (`role_id`),
+  ADD KEY `fk_roles_has_users_users1_idx` (`user_id`);
 
 --
 -- Indexes for table `seleksi`
@@ -389,12 +432,12 @@ ALTER TABLE `pendidikan`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sub_kejuruan`
 --
@@ -409,7 +452,7 @@ ALTER TABLE `upload`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
@@ -442,11 +485,11 @@ ALTER TABLE `pengalaman_kursus`
   ADD CONSTRAINT `fk_pendaftar_has_kursus_pendaftar1` FOREIGN KEY (`pendaftar_id`) REFERENCES `pendaftar` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `permissions_role`
+-- Constraints for table `permission_role`
 --
-ALTER TABLE `permissions_role`
-  ADD CONSTRAINT `fk_roles_has_permissions_permissions1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_roles_has_permissions_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `permission_role`
+  ADD CONSTRAINT `fk_roles_has_permissions_permissions1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_roles_has_permissions_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `riwayat_pendidikan`
@@ -459,8 +502,8 @@ ALTER TABLE `riwayat_pendidikan`
 -- Constraints for table `role_user`
 --
 ALTER TABLE `role_user`
-  ADD CONSTRAINT `fk_users_has_roles_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_users_has_roles_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_roles_has_users_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_roles_has_users_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `seleksi`
