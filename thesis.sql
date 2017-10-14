@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 13, 2017 at 07:51 PM
+-- Generation Time: Oct 14, 2017 at 11:08 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -23,58 +23,12 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal_seleksi`
+-- Table structure for table `courses`
 --
 
-CREATE TABLE `jadwal_seleksi` (
-  `seleksi_id` int(11) NOT NULL,
-  `sub_kejuruan_id` int(11) NOT NULL,
-  `tanggal` date DEFAULT NULL,
-  `waktu` varchar(20) DEFAULT NULL,
-  `tempat` varchar(100) DEFAULT NULL,
-  `keterangan` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kejuruan`
---
-
-CREATE TABLE `kejuruan` (
+CREATE TABLE `courses` (
   `id` int(11) NOT NULL,
-  `nama` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kursus`
---
-
-CREATE TABLE `kursus` (
-  `id` int(11) NOT NULL,
-  `jurusan` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pendaftar`
---
-
-CREATE TABLE `pendaftar` (
-  `id` int(11) NOT NULL,
-  `users_id` int(11) NOT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `no_telp` varchar(15) DEFAULT NULL,
-  `jenis_kelamin` tinyint(1) DEFAULT NULL COMMENT '1. Laki-laki\n2. Perempuan',
-  `tempat_lahir` varchar(50) DEFAULT NULL,
-  `tanggal_lahir` date DEFAULT NULL,
-  `anak_ke` tinyint(2) DEFAULT NULL,
-  `jumlah_saudara` tinyint(2) DEFAULT NULL,
-  `agama` tinyint(1) DEFAULT NULL COMMENT '1. Islam\n2. Katolik\n3. Kristen\n4. Hindu\n5. Budha\n6. Konghucu',
-  `nama_ibu_kandung` varchar(100) DEFAULT NULL,
+  `major` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -82,38 +36,41 @@ CREATE TABLE `pendaftar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pendaftaran`
+-- Table structure for table `course_experience`
 --
 
-CREATE TABLE `pendaftaran` (
-  `pendaftar_id` int(11) NOT NULL,
-  `sub_kejuruan_id` int(11) NOT NULL,
-  `tanggal_mendaftar` timestamp NULL DEFAULT NULL
+CREATE TABLE `course_experience` (
+  `registrant_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `organizer` varchar(100) DEFAULT NULL,
+  `graduation_year` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pendidikan`
+-- Table structure for table `educational_backgroud`
 --
 
-CREATE TABLE `pendidikan` (
+CREATE TABLE `educational_backgroud` (
+  `registrant_id` int(11) NOT NULL,
+  `education_id` int(11) NOT NULL,
+  `name_institution` varchar(100) DEFAULT NULL,
+  `graduation_year` year(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `educations`
+--
+
+CREATE TABLE `educations` (
   `id` int(11) NOT NULL,
-  `jenjang` varchar(50) DEFAULT NULL,
-  `jurusan` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pengalaman_kursus`
---
-
-CREATE TABLE `pengalaman_kursus` (
-  `pendaftar_id` int(11) NOT NULL,
-  `kursus_id` int(11) NOT NULL,
-  `penyelenggara` varchar(100) DEFAULT NULL,
-  `tahun_lulus` year(4) DEFAULT NULL
+  `stage` varchar(50) DEFAULT NULL,
+  `major` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -136,14 +93,18 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
-(2, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
-(3, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
-(4, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
-(5, 'item-list', 'Menampilkan daftar Item', 'Hanya melihat daftar Item', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
-(6, 'item-create', 'Membuat Item', 'Membuat Item baru', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
-(7, 'item-edit', 'Edit Item', 'Edit Item', '2017-10-12 21:13:44', '2017-10-12 21:13:44'),
-(8, 'item-delete', 'Hapus Item', 'Hapus Item', '2017-10-12 21:13:44', '2017-10-12 21:13:44');
+(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(7, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
+(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2017-10-14 02:06:08', '2017-10-14 02:06:08');
 
 -- --------------------------------------------------------
 
@@ -161,34 +122,61 @@ CREATE TABLE `permission_role` (
 --
 
 INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
 (2, 1),
 (2, 2),
 (2, 3),
 (2, 4),
-(3, 5),
-(3, 6),
-(3, 7),
-(3, 8),
-(4, 1),
-(4, 2),
-(4, 3),
-(4, 4),
-(4, 5),
-(4, 6),
-(4, 7),
-(4, 8);
+(2, 5),
+(2, 6),
+(2, 7),
+(2, 8);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `riwayat_pendidikan`
+-- Table structure for table `registrants`
 --
 
-CREATE TABLE `riwayat_pendidikan` (
-  `pendaftar_id` int(11) NOT NULL,
-  `pendidikan_id` int(11) NOT NULL,
-  `nama_institusi` varchar(100) DEFAULT NULL,
-  `tahun_lulus` year(4) DEFAULT NULL
+CREATE TABLE `registrants` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(15) DEFAULT NULL,
+  `gender` tinyint(1) DEFAULT NULL COMMENT '1. Laki-laki\n2. Perempuan',
+  `place_birth` varchar(50) DEFAULT NULL,
+  `date_birth` date DEFAULT NULL,
+  `order_child` tinyint(2) DEFAULT NULL,
+  `amount_sibling` tinyint(2) DEFAULT NULL,
+  `religion` tinyint(1) DEFAULT NULL COMMENT '1. Islam\n2. Katolik\n3. Kristen\n4. Hindu\n5. Budha\n6. Konghucu',
+  `biological_mother_name` varchar(100) DEFAULT NULL,
+  `father_name` varchar(100) DEFAULT NULL,
+  `parent_address` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registration`
+--
+
+CREATE TABLE `registration` (
+  `registrant_id` int(11) NOT NULL,
+  `sub_vocational_id` int(11) NOT NULL,
+  `register_date` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -211,9 +199,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(2, 'Staf', 'Staf', 'Staf bertugas sebagai admin', '2017-10-12 21:14:37', '2017-10-12 21:14:37'),
-(3, 'Kepala', 'Kepala BLK', 'Kepala BLK bertugas sebagai pembuat keputusan', '2017-10-12 21:15:13', '2017-10-12 21:15:13'),
-(4, 'Superadmin', 'Superadmin', 'Merupakan peneliti', '2017-10-13 10:33:35', '2017-10-13 10:33:35');
+(1, 'Superadmin', 'Superadmin', 'Merupakan peneliti', '2017-10-14 02:06:40', '2017-10-14 02:06:40'),
+(2, 'Staf', 'Admin', 'Merupakan staf', '2017-10-14 02:07:23', '2017-10-14 02:07:23');
 
 -- --------------------------------------------------------
 
@@ -231,52 +218,72 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
-(2, 8),
-(4, 7);
+(1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seleksi`
+-- Table structure for table `schedule_selection`
 --
 
-CREATE TABLE `seleksi` (
-  `id` int(11) NOT NULL,
-  `pendaftar_id` int(11) NOT NULL,
-  `nilai_tertulis` varchar(45) DEFAULT NULL,
-  `nilai_wawancara` varchar(45) DEFAULT NULL
+CREATE TABLE `schedule_selection` (
+  `selection_id` int(11) NOT NULL,
+  `sub_vocational_id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `time` varchar(20) DEFAULT NULL,
+  `place` varchar(100) DEFAULT NULL,
+  `information` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_kejuruan`
+-- Table structure for table `selections`
 --
 
-CREATE TABLE `sub_kejuruan` (
+CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
-  `kejuruan_id` int(11) NOT NULL,
-  `nama` varchar(100) DEFAULT NULL,
-  `kuota` varchar(10) DEFAULT NULL,
-  `lama_pelatihan` varchar(10) DEFAULT NULL,
-  `tujuan` varchar(500) DEFAULT NULL,
-  `unit_kompetensi` varchar(500) DEFAULT NULL,
-  `persyaratan_peserta` varchar(500) DEFAULT NULL,
-  `tanggal_akhir_pendaftaran` timestamp NULL DEFAULT NULL
+  `registrant_id` int(11) NOT NULL,
+  `written_value` varchar(45) DEFAULT NULL,
+  `interview_value` varchar(45) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `upload`
+-- Table structure for table `sub_vocationals`
 --
 
-CREATE TABLE `upload` (
+CREATE TABLE `sub_vocationals` (
   `id` int(11) NOT NULL,
-  `pendaftar_id` int(11) NOT NULL,
-  `pas_foto` varchar(255) DEFAULT NULL,
+  `vocational_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `quota` varchar(10) DEFAULT NULL,
+  `long_training` varchar(10) DEFAULT NULL,
+  `goal` varchar(500) DEFAULT NULL,
+  `unit_competence` varchar(500) DEFAULT NULL,
+  `requirement_participant` varchar(500) DEFAULT NULL,
+  `final_registration_date` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uploads`
+--
+
+CREATE TABLE `uploads` (
+  `id` int(11) NOT NULL,
+  `registrant_id` int(11) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
   `ktp` varchar(255) DEFAULT NULL,
-  `ijazah_terakhir` varchar(255) DEFAULT NULL
+  `last_certificate` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -301,61 +308,60 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `no_identitas`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(7, '12345678', 'Dewi', 'dewianisaist@gmail.com', '$2y$10$lHTmv4q5zEkFWNmr3lhLROJk3JzJmOcCxoAL8FDRJPo', NULL, '2017-10-13 10:50:34', '2017-10-13 10:50:34'),
-(8, '123456', 'Ana', 'ana@tes.com', '$2y$10$2Y4XRqWYo/brlxZ3.tygH.S8pyLtWF2IuHgLvcT7tC8', NULL, '2017-10-13 10:50:57', '2017-10-13 10:50:57');
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$4x14SEA3Ex/yfSYbMMxxOeMe5i0mVt1PpaDN82vmCOp', NULL, '2017-10-14 02:07:46', '2017-10-14 02:07:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vocationals`
+--
+
+CREATE TABLE `vocationals` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `vocationals`
+--
+
+INSERT INTO `vocationals` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(2, 'Otomotif', 'test', '2017-10-14 01:59:35', '2017-10-14 01:59:35');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `jadwal_seleksi`
+-- Indexes for table `courses`
 --
-ALTER TABLE `jadwal_seleksi`
-  ADD PRIMARY KEY (`seleksi_id`,`sub_kejuruan_id`),
-  ADD KEY `fk_seleksi_has_sub_kejuruan_sub_kejuruan1_idx` (`sub_kejuruan_id`),
-  ADD KEY `fk_seleksi_has_sub_kejuruan_seleksi1_idx` (`seleksi_id`);
-
---
--- Indexes for table `kejuruan`
---
-ALTER TABLE `kejuruan`
+ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kursus`
+-- Indexes for table `course_experience`
 --
-ALTER TABLE `kursus`
+ALTER TABLE `course_experience`
+  ADD PRIMARY KEY (`registrant_id`,`course_id`),
+  ADD KEY `fk_pendaftar_has_kursus_kursus1_idx` (`course_id`),
+  ADD KEY `fk_pendaftar_has_kursus_pendaftar1_idx` (`registrant_id`);
+
+--
+-- Indexes for table `educational_backgroud`
+--
+ALTER TABLE `educational_backgroud`
+  ADD PRIMARY KEY (`registrant_id`,`education_id`),
+  ADD KEY `fk_pendaftar_has_pendidikan_pendidikan1_idx` (`education_id`),
+  ADD KEY `fk_pendaftar_has_pendidikan_pendaftar1_idx` (`registrant_id`);
+
+--
+-- Indexes for table `educations`
+--
+ALTER TABLE `educations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pendaftar`
---
-ALTER TABLE `pendaftar`
-  ADD PRIMARY KEY (`id`,`users_id`),
-  ADD KEY `fk_pendaftar_users1_idx` (`users_id`);
-
---
--- Indexes for table `pendaftaran`
---
-ALTER TABLE `pendaftaran`
-  ADD PRIMARY KEY (`pendaftar_id`,`sub_kejuruan_id`),
-  ADD KEY `fk_pendaftar_has_sub_kejuruan_sub_kejuruan1_idx` (`sub_kejuruan_id`),
-  ADD KEY `fk_pendaftar_has_sub_kejuruan_pendaftar1_idx` (`pendaftar_id`);
-
---
--- Indexes for table `pendidikan`
---
-ALTER TABLE `pendidikan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pengalaman_kursus`
---
-ALTER TABLE `pengalaman_kursus`
-  ADD PRIMARY KEY (`pendaftar_id`,`kursus_id`),
-  ADD KEY `fk_pendaftar_has_kursus_kursus1_idx` (`kursus_id`),
-  ADD KEY `fk_pendaftar_has_kursus_pendaftar1_idx` (`pendaftar_id`);
 
 --
 -- Indexes for table `permissions`
@@ -372,12 +378,19 @@ ALTER TABLE `permission_role`
   ADD KEY `fk_roles_has_permissions_permissions1_idx` (`permission_id`);
 
 --
--- Indexes for table `riwayat_pendidikan`
+-- Indexes for table `registrants`
 --
-ALTER TABLE `riwayat_pendidikan`
-  ADD PRIMARY KEY (`pendaftar_id`,`pendidikan_id`),
-  ADD KEY `fk_pendaftar_has_pendidikan_pendidikan1_idx` (`pendidikan_id`),
-  ADD KEY `fk_pendaftar_has_pendidikan_pendaftar1_idx` (`pendaftar_id`);
+ALTER TABLE `registrants`
+  ADD PRIMARY KEY (`id`,`user_id`),
+  ADD KEY `fk_pendaftar_users1_idx` (`user_id`);
+
+--
+-- Indexes for table `registration`
+--
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`registrant_id`,`sub_vocational_id`),
+  ADD KEY `fk_pendaftar_has_sub_kejuruan_sub_kejuruan1_idx` (`sub_vocational_id`),
+  ADD KEY `fk_pendaftar_has_sub_kejuruan_pendaftar1_idx` (`registrant_id`);
 
 --
 -- Indexes for table `roles`
@@ -394,25 +407,33 @@ ALTER TABLE `role_user`
   ADD KEY `fk_roles_has_users_users1_idx` (`user_id`);
 
 --
--- Indexes for table `seleksi`
+-- Indexes for table `schedule_selection`
 --
-ALTER TABLE `seleksi`
-  ADD PRIMARY KEY (`id`,`pendaftar_id`),
-  ADD KEY `fk_seleksi_pendaftar1_idx` (`pendaftar_id`);
+ALTER TABLE `schedule_selection`
+  ADD PRIMARY KEY (`selection_id`,`sub_vocational_id`),
+  ADD KEY `fk_seleksi_has_sub_kejuruan_sub_kejuruan1_idx` (`sub_vocational_id`),
+  ADD KEY `fk_seleksi_has_sub_kejuruan_seleksi1_idx` (`selection_id`);
 
 --
--- Indexes for table `sub_kejuruan`
+-- Indexes for table `selections`
 --
-ALTER TABLE `sub_kejuruan`
-  ADD PRIMARY KEY (`id`,`kejuruan_id`),
-  ADD KEY `fk_sub_kejuruan_kejuruan1_idx` (`kejuruan_id`);
+ALTER TABLE `selections`
+  ADD PRIMARY KEY (`id`,`registrant_id`),
+  ADD KEY `fk_seleksi_pendaftar1_idx` (`registrant_id`);
 
 --
--- Indexes for table `upload`
+-- Indexes for table `sub_vocationals`
 --
-ALTER TABLE `upload`
-  ADD PRIMARY KEY (`id`,`pendaftar_id`),
-  ADD KEY `fk_upload_pendaftar1_idx` (`pendaftar_id`);
+ALTER TABLE `sub_vocationals`
+  ADD PRIMARY KEY (`id`,`vocational_id`),
+  ADD KEY `fk_sub_kejuruan_kejuruan1_idx` (`vocational_id`);
+
+--
+-- Indexes for table `uploads`
+--
+ALTER TABLE `uploads`
+  ADD PRIMARY KEY (`id`,`registrant_id`),
+  ADD KEY `fk_upload_pendaftar1_idx` (`registrant_id`);
 
 --
 -- Indexes for table `users`
@@ -423,84 +444,77 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `no_identitas_UNIQUE` (`no_identitas`);
 
 --
+-- Indexes for table `vocationals`
+--
+ALTER TABLE `vocationals`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `kejuruan`
+-- AUTO_INCREMENT for table `courses`
 --
-ALTER TABLE `kejuruan`
+ALTER TABLE `courses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `kursus`
+-- AUTO_INCREMENT for table `educations`
 --
-ALTER TABLE `kursus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `pendaftar`
---
-ALTER TABLE `pendaftar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `pendidikan`
---
-ALTER TABLE `pendidikan`
+ALTER TABLE `educations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `registrants`
+--
+ALTER TABLE `registrants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `sub_kejuruan`
+-- AUTO_INCREMENT for table `sub_vocationals`
 --
-ALTER TABLE `sub_kejuruan`
+ALTER TABLE `sub_vocationals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `upload`
+-- AUTO_INCREMENT for table `uploads`
 --
-ALTER TABLE `upload`
+ALTER TABLE `uploads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `vocationals`
+--
+ALTER TABLE `vocationals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `jadwal_seleksi`
+-- Constraints for table `course_experience`
 --
-ALTER TABLE `jadwal_seleksi`
-  ADD CONSTRAINT `fk_seleksi_has_sub_kejuruan_seleksi1` FOREIGN KEY (`seleksi_id`) REFERENCES `seleksi` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_seleksi_has_sub_kejuruan_sub_kejuruan1` FOREIGN KEY (`sub_kejuruan_id`) REFERENCES `sub_kejuruan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `course_experience`
+  ADD CONSTRAINT `fk_pendaftar_has_kursus_kursus1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_pendaftar_has_kursus_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `pendaftar`
+-- Constraints for table `educational_backgroud`
 --
-ALTER TABLE `pendaftar`
-  ADD CONSTRAINT `fk_pendaftar_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `pendaftaran`
---
-ALTER TABLE `pendaftaran`
-  ADD CONSTRAINT `fk_pendaftar_has_sub_kejuruan_pendaftar1` FOREIGN KEY (`pendaftar_id`) REFERENCES `pendaftar` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_pendaftar_has_sub_kejuruan_sub_kejuruan1` FOREIGN KEY (`sub_kejuruan_id`) REFERENCES `sub_kejuruan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `pengalaman_kursus`
---
-ALTER TABLE `pengalaman_kursus`
-  ADD CONSTRAINT `fk_pendaftar_has_kursus_kursus1` FOREIGN KEY (`kursus_id`) REFERENCES `kursus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_pendaftar_has_kursus_pendaftar1` FOREIGN KEY (`pendaftar_id`) REFERENCES `pendaftar` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `educational_backgroud`
+  ADD CONSTRAINT `fk_pendaftar_has_pendidikan_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pendaftar_has_pendidikan_pendidikan1` FOREIGN KEY (`education_id`) REFERENCES `educations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `permission_role`
@@ -510,11 +524,17 @@ ALTER TABLE `permission_role`
   ADD CONSTRAINT `fk_roles_has_permissions_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `riwayat_pendidikan`
+-- Constraints for table `registrants`
 --
-ALTER TABLE `riwayat_pendidikan`
-  ADD CONSTRAINT `fk_pendaftar_has_pendidikan_pendaftar1` FOREIGN KEY (`pendaftar_id`) REFERENCES `pendaftar` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_pendaftar_has_pendidikan_pendidikan1` FOREIGN KEY (`pendidikan_id`) REFERENCES `pendidikan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `registrants`
+  ADD CONSTRAINT `fk_pendaftar_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `registration`
+--
+ALTER TABLE `registration`
+  ADD CONSTRAINT `fk_pendaftar_has_sub_kejuruan_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_pendaftar_has_sub_kejuruan_sub_kejuruan1` FOREIGN KEY (`sub_vocational_id`) REFERENCES `sub_vocationals` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `role_user`
@@ -524,22 +544,29 @@ ALTER TABLE `role_user`
   ADD CONSTRAINT `fk_roles_has_users_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `seleksi`
+-- Constraints for table `schedule_selection`
 --
-ALTER TABLE `seleksi`
-  ADD CONSTRAINT `fk_seleksi_pendaftar1` FOREIGN KEY (`pendaftar_id`) REFERENCES `pendaftar` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `schedule_selection`
+  ADD CONSTRAINT `fk_seleksi_has_sub_kejuruan_seleksi1` FOREIGN KEY (`selection_id`) REFERENCES `selections` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_seleksi_has_sub_kejuruan_sub_kejuruan1` FOREIGN KEY (`sub_vocational_id`) REFERENCES `sub_vocationals` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `sub_kejuruan`
+-- Constraints for table `selections`
 --
-ALTER TABLE `sub_kejuruan`
-  ADD CONSTRAINT `fk_sub_kejuruan_kejuruan1` FOREIGN KEY (`kejuruan_id`) REFERENCES `kejuruan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `selections`
+  ADD CONSTRAINT `fk_seleksi_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `upload`
+-- Constraints for table `sub_vocationals`
 --
-ALTER TABLE `upload`
-  ADD CONSTRAINT `fk_upload_pendaftar1` FOREIGN KEY (`pendaftar_id`) REFERENCES `pendaftar` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `sub_vocationals`
+  ADD CONSTRAINT `fk_sub_kejuruan_kejuruan1` FOREIGN KEY (`vocational_id`) REFERENCES `vocationals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `uploads`
+--
+ALTER TABLE `uploads`
+  ADD CONSTRAINT `fk_upload_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
