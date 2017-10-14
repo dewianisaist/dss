@@ -75,4 +75,20 @@ Route::auth();
 	Route::get('itemCRUD2/{id}/edit',['as'=>'itemCRUD2.edit','uses'=>'ItemCRUD2Controller@edit']);
 	Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update']);
 	Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy']);
+
+	// Route::get('kejuruan',['as'=>'kejuruan.index','uses'=>'KejuruanController@index','middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
+	// Route::get('kejuruan/create',['as'=>'kejuruan.create','uses'=>'KejuruanController@create','middleware' => ['permission:item-create']]);
+	// Route::post('kejuruan/create',['as'=>'kejuruan.store','uses'=>'KejuruanController@store','middleware' => ['permission:item-create']]);
+	// Route::get('kejuruan/{id}',['as'=>'kejuruan.show','uses'=>'KejuruanController@show']);
+	// Route::get('kejuruan/{id}/edit',['as'=>'kejuruan.edit','uses'=>'KejuruanController@edit','middleware' => ['permission:item-edit']]);
+	// Route::patch('kejuruan/{id}',['as'=>'kejuruan.update','uses'=>'KejuruanController@update','middleware' => ['permission:item-edit']]);
+	// Route::delete('kejuruan/{id}',['as'=>'kejuruan.destroy','uses'=>'KejuruanController@destroy','middleware' => ['permission:item-delete']]);
+
+	Route::get('kejuruan',['as'=>'kejuruan.index','uses'=>'KejuruanController@index']);
+	Route::get('kejuruan/create',['as'=>'kejuruan.create','uses'=>'KejuruanController@create']);
+	Route::post('kejuruan/create',['as'=>'kejuruan.store','uses'=>'KejuruanController@store']);
+	Route::get('kejuruan/{id}',['as'=>'kejuruan.show','uses'=>'KejuruanController@show']);
+	Route::get('kejuruan/{id}/edit',['as'=>'kejuruan.edit','uses'=>'KejuruanController@edit']);
+	Route::patch('kejuruan/{id}',['as'=>'kejuruan.update','uses'=>'KejuruanController@update']);
+	Route::delete('kejuruan/{id}',['as'=>'kejuruan.destroy','uses'=>'KejuruanController@destroy']);
 //});
