@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 14, 2017 at 11:08 AM
+-- Generation Time: Oct 14, 2017 at 04:34 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -88,24 +88,6 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `permissions`
---
-
-INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(7, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2017-10-14 02:06:08', '2017-10-14 02:06:08'),
-(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2017-10-14 02:06:08', '2017-10-14 02:06:08');
-
 -- --------------------------------------------------------
 
 --
@@ -116,32 +98,6 @@ CREATE TABLE `permission_role` (
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `permission_role`
---
-
-INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(1, 6),
-(1, 7),
-(1, 8),
-(1, 9),
-(1, 10),
-(1, 11),
-(1, 12),
-(2, 1),
-(2, 2),
-(2, 3),
-(2, 4),
-(2, 5),
-(2, 6),
-(2, 7),
-(2, 8);
 
 -- --------------------------------------------------------
 
@@ -194,14 +150,6 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Superadmin', 'Superadmin', 'Merupakan peneliti', '2017-10-14 02:06:40', '2017-10-14 02:06:40'),
-(2, 'Staf', 'Admin', 'Merupakan staf', '2017-10-14 02:07:23', '2017-10-14 02:07:23');
-
 -- --------------------------------------------------------
 
 --
@@ -212,13 +160,6 @@ CREATE TABLE `role_user` (
   `role_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `role_user`
---
-
-INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
-(1, 1);
 
 -- --------------------------------------------------------
 
@@ -294,7 +235,7 @@ CREATE TABLE `uploads` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `no_identitas` varchar(20) DEFAULT NULL,
+  `identity_number` varchar(20) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
@@ -302,13 +243,6 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `no_identitas`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$4x14SEA3Ex/yfSYbMMxxOeMe5i0mVt1PpaDN82vmCOp', NULL, '2017-10-14 02:07:46', '2017-10-14 02:07:46');
 
 -- --------------------------------------------------------
 
@@ -323,13 +257,6 @@ CREATE TABLE `vocationals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `vocationals`
---
-
-INSERT INTO `vocationals` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(2, 'Otomotif', 'test', '2017-10-14 01:59:35', '2017-10-14 01:59:35');
 
 --
 -- Indexes for dumped tables
@@ -441,7 +368,7 @@ ALTER TABLE `uploads`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email_UNIQUE` (`email`),
-  ADD UNIQUE KEY `no_identitas_UNIQUE` (`no_identitas`);
+  ADD UNIQUE KEY `no_identitas_UNIQUE` (`identity_number`);
 
 --
 -- Indexes for table `vocationals`
@@ -467,7 +394,7 @@ ALTER TABLE `educations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `registrants`
 --
@@ -477,7 +404,7 @@ ALTER TABLE `registrants`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
@@ -492,12 +419,12 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --
 ALTER TABLE `vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
