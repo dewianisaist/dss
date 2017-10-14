@@ -32,7 +32,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>No. Identitas:</strong>
-                {!! Form::text('no_identitas', null, array('placeholder' => 'No. Identitas (Pegawai berupa NIP dan Pendaftar berupa NIK)','class' => 'form-control')) !!}
+                {!! Form::text('identity_number', null, array('placeholder' => 'No. Identitas (Pegawai berupa NIP dan Pendaftar berupa NIK)','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

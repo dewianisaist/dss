@@ -32,7 +32,7 @@
 	<tr>
 		<td>{{ ++$i }}</td>
 		<td>{{ $user->name }}</td>
-		<td>{{ $user->no_identitas }}</td>
+		<td>{{ $user->identity_number }}</td>
 		<td>{{ $user->email }}</td>
 		<td>
 			@if(!empty($user->roles))

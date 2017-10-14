@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'no_identitas' => 'required|unique:users,no_identitas',
+            'identity_number' => 'required|unique:users,identity_number',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
@@ -101,7 +101,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'no_identitas' => 'required|unique:users,no_identitas,'.$id,
+            'identity_number' => 'required|unique:users,identity_number,'.$id,
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
