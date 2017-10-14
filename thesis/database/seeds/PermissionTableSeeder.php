@@ -14,6 +14,26 @@ class PermissionTableSeeder extends Seeder
     {
         
         $permission = [
+			[
+        		'name' => 'user-list',
+        		'display_name' => 'Menampilkan daftar Pengguna',
+        		'description' => 'Hanya melihat daftar Pengguna'
+        	],
+        	[
+        		'name' => 'user-create',
+        		'display_name' => 'Membuat Pengguna',
+        		'description' => 'Membuat Pengguna baru'
+        	],
+        	[
+        		'name' => 'user-edit',
+        		'display_name' => 'Edit Pengguna',
+        		'description' => 'Edit Pengguna'
+        	],
+        	[
+        		'name' => 'user-delete',
+        		'display_name' => 'Hapus Pengguna',
+        		'description' => 'Hapus Pengguna'
+        	],
         	[
         		'name' => 'role-list',
         		'display_name' => 'Menampilkan daftar Role',
@@ -35,24 +55,24 @@ class PermissionTableSeeder extends Seeder
         		'description' => 'Hapus Role'
         	],
         	[
-        		'name' => 'item-list',
-        		'display_name' => 'Menampilkan daftar Item',
-        		'description' => 'Hanya melihat daftar Item'
+        		'name' => 'vocational-list',
+        		'display_name' => 'Menampilkan daftar Kejuruan',
+        		'description' => 'Hanya melihat daftar Kejuruan'
         	],
         	[
-        		'name' => 'item-create',
-        		'display_name' => 'Membuat Item',
-        		'description' => 'Membuat Item baru'
+        		'name' => 'vocational-create',
+        		'display_name' => 'Membuat Kejuruan',
+        		'description' => 'Membuat Kejuruan baru'
         	],
         	[
-        		'name' => 'item-edit',
-        		'display_name' => 'Edit Item',
-        		'description' => 'Edit Item'
+        		'name' => 'vocational-edit',
+        		'display_name' => 'Edit Kejuruan',
+        		'description' => 'Edit Kejuruan'
         	],
         	[
-        		'name' => 'item-delete',
-        		'display_name' => 'Hapus Item',
-        		'description' => 'Hapus Item'
+        		'name' => 'vocational-delete',
+        		'display_name' => 'Hapus Kejuruan',
+        		'description' => 'Hapus Kejuruan'
         	]
         ];
 

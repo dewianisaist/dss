@@ -59,7 +59,7 @@
                         <a class="nav-link" href="{{ route('itemCRUD2.index') }}"><i class="fa fa-user"></i> Item</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('kejuruan.index') }}"><i class="icon-wrench"></i> Kejuruan</span></a>
+                        <a class="nav-link" href="{{ route('vocationals.index') }}"><i class="icon-wrench"></i> Kejuruan</span></a>
                     </li>
                 </ul>
             </nav>

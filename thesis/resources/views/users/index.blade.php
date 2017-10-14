@@ -7,7 +7,7 @@
                 <h2>Data Akun Pengguna</h2>
             </div>
             <div class="pull-right mb-1">
-				{{--  @permission('item-create')  --}}
+				{{--  @permission('user-create')  --}}
                 <a class="btn btn-success" href="{{ route('users.create') }}"> Buat Akun Baru</a>
 				{{--  @endpermission  --}}
 			</div>
@@ -43,10 +43,10 @@
 		</td>
 		<td>
 			<a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Detail</a>
-			{{--  @permission('item-edit')  --}}
+			{{--  @permission('user-edit')  --}}
 			<a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
 			{{--  @endpermission  --}}
-			{{--  @permission('item-delete')  --}}
+			{{--  @permission('user-delete')  --}}
 			{!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}

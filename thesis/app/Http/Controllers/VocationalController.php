@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Kejuruan;
+use App\Vocational;
 
-class KejuruanController extends Controller
+class VocationalController extends Controller
 {
     /**
     * Display a listing of the resource.
@@ -15,8 +15,8 @@ class KejuruanController extends Controller
     */
    public function index(Request $request)
    {
-       $kejuruans = Kejuruan::orderBy('id','DESC')->paginate(5);
-       return view('kejuruan.index',compact('kejuruans'))
+       $vocationals = Vocational::orderBy('id','DESC')->paginate(5);
+       return view('vocationals.index',compact('vocationals'))
            ->with('i', ($request->input('page', 1) - 1) * 5);
    }
 
@@ -27,7 +27,7 @@ class KejuruanController extends Controller
     */
    public function create()
    {
-       return view('kejuruan.create');
+       return view('vocationals.create');
    }
 
    /**
@@ -39,12 +39,13 @@ class KejuruanController extends Controller
    public function store(Request $request)
    {
        $this->validate($request, [
-           'nama' => 'required',
+        'name' => 'required',
+        'description' => 'required',
        ]);
 
-       Kejuruan::create($request->all());
+       Vocational::create($request->all());
 
-       return redirect()->route('kejuruan.index')
+       return redirect()->route('vocationals.index')
                        ->with('success','Kejuruan berhasil dibuat');
    }
 
@@ -56,8 +57,8 @@ class KejuruanController extends Controller
     */
    public function show($id)
    {
-       $kejuruan = Kejuruan::find($id);
-       return view('kejuruan.show',compact('kejuruan'));
+       $vocational = Vocational::find($id);
+       return view('vocationals.show',compact('vocational'));
    }
 
    /**
@@ -68,8 +69,8 @@ class KejuruanController extends Controller
     */
    public function edit($id)
    {
-       $kejuruan = Kejuruan::find($id);
-       return view('kejuruan.edit',compact('kejuruan'));
+       $vocational = Vocational::find($id);
+       return view('vocationals.edit',compact('vocational'));
    }
 
    /**
@@ -82,12 +83,13 @@ class KejuruanController extends Controller
    public function update(Request $request, $id)
    {
        $this->validate($request, [
-           'nama' => 'required',
+           'name' => 'required',
+           'description' => 'required',
        ]);
 
-       Kejuruan::find($id)->update($request->all());
+       Vocational::find($id)->update($request->all());
 
-       return redirect()->route('kejuruan.index')
+       return redirect()->route('vocationals.index')
                        ->with('success','Kejuruan berhasil diedit');
    }
 
@@ -99,8 +101,8 @@ class KejuruanController extends Controller
     */
    public function destroy($id)
    {
-       Kejuruan::find($id)->delete();
-       return redirect()->route('kejuruan.index')
+       Vocational::find($id)->delete();
+       return redirect()->route('vocationals.index')
                        ->with('success','Kejuruan berhasil dihapus');
    }
 }

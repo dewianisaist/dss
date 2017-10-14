@@ -7,8 +7,8 @@
 	            <h2>Manajemen Kejuruan</h2>
 	        </div>
 	        <div class="pull-right mb-1">
-	        	{{--  @permission('kejuruan-create')  --}}
-	            <a class="btn btn-success" href="{{ route('kejuruan.create') }}"> Tambahkan Kejuruan</a>
+	        	{{--  @permission('vocational-create')  --}}
+	            <a class="btn btn-success" href="{{ route('vocationals.create') }}"> Tambahkan Kejuruan</a>
 	            {{--  @endpermission  --}}
 	        </div>
 	    </div>
@@ -22,21 +22,21 @@
 		<tr>
 			<th>No</th>
 			<th>Nama</th>
-			<th>Sub Kejuruan</th>
+			<th>Deskripsi</th>
 			<th width="280px">Action</th>
 		</tr>
-	@foreach ($kejuruans as $key => $kejuruan)
+	@foreach ($vocationals as $key => $vocational)
 	<tr>
 		<td>{{ ++$i }}</td>
-		<td>{{ $kejuruan->nama }}</td>
-		<td></td>
+		<td>{{ $vocational->name }}</td>
+		<td>{{ $vocational->description }}</td>
 		<td>
-			<a class="btn btn-info" href="{{ route('kejuruan.show',$kejuruan->id) }}">Detail</a>
-			{{--  @permission('kejuruan-edit')  --}}
-			<a class="btn btn-primary" href="{{ route('kejuruan.edit',$kejuruan->id) }}">Edit</a>
+			<a class="btn btn-info" href="{{ route('vocationals.show',$vocational->id) }}">Detail</a>
+			{{--  @permission('vocational-edit')  --}}
+			<a class="btn btn-primary" href="{{ route('vocationals.edit',$vocational->id) }}">Edit</a>
 			{{--  @endpermission  --}}
-			{{--  @permission('kejuruan-delete')  --}}
-			{!! Form::open(['method' => 'DELETE','route' => ['kejuruan.destroy', $kejuruan->id],'style'=>'display:inline']) !!}
+			{{--  @permission('vocational-delete')  --}}
+			{!! Form::open(['method' => 'DELETE','route' => ['vocationals.destroy', $vocational->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}
         	{{--  @endpermission  --}}
@@ -44,5 +44,5 @@
 	</tr>
 	@endforeach
 	</table>
-	{!! $kejuruans->render() !!}
+	{!! $vocationals->render() !!}
 @endsection

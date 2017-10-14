@@ -7,7 +7,7 @@
 	            <h2>Edit Kejuruan</h2>
 	        </div>
 	        <div class="pull-right mb-1">
-	            <a class="btn btn-primary" href="{{ route('kejuruan.index') }}"> Kembali</a>
+	            <a class="btn btn-primary" href="{{ route('vocationals.index') }}"> Kembali</a>
 	        </div>
 	    </div>
 	</div>
@@ -21,12 +21,18 @@
 			</ul>
 		</div>
 	@endif
-	{!! Form::model($kejuruan, ['method' => 'PATCH','route' => ['kejuruan.update', $kejuruan->id]]) !!}
+	{!! Form::model($vocational, ['method' => 'PATCH','route' => ['vocationals.update', $vocational->id]]) !!}
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama:</strong>
-                {!! Form::text('nama', null, array('placeholder' => 'Nama Kejuruan','class' => 'form-control')) !!}
+                {!! Form::text('name', null, array('placeholder' => 'Nama Kejuruan','class' => 'form-control')) !!}
+            </div>
+        </div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Deskripsi:</strong>
+                {!! Form::textarea('description', null, array('placeholder' => 'Deskripsi','class' => 'form-control','style'=>'height:100px')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
