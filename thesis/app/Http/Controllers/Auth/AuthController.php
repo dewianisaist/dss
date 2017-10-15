@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -31,6 +32,8 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected $username = 'identity_number';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -38,7 +41,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'logout']);
+        // $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -50,8 +54,9 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'name' => 'required|max:100',
+            'identity_number' => 'required|max:20|unique:users',
+            'email' => 'required|email|max:100|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -66,24 +71,10 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'identity_number' => $data['identity_number'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
 
-    public function showLoginForm(){
-        if(Auth::guard('admin')->check()){
-            return redirect('/admin');
-        }else{
-            return view('auth.login');
-        }
-    }
-
-    public function showRegistrationForm(){
-        if(Auth::guard('admin')->check()){
-            return redirect('/admin');
-        }else{
-            return view('auth.register');
-        }
-    }
 }

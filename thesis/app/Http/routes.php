@@ -17,7 +17,7 @@ Route::get('/', function() {
 
 Route::auth();
   
-// Route::get('/home', 'HomeController@index');    
+ Route::get('/home', 'HomeController@index');    
 
 // Route::get('admin/','AuthAdmin\AuthController@showLoginForm');
 // Route::post('admin/', 'AuthAdmin\AuthController@login');
@@ -59,22 +59,6 @@ Route::auth();
 	Route::get('roles/{id}/edit',['as'=>'roles.edit','uses'=>'RoleController@edit']);
 	Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update']);
 	Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy']);
-
-	// Route::get('itemCRUD2',['as'=>'itemCRUD2.index','uses'=>'ItemCRUD2Controller@index','middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
-	// Route::get('itemCRUD2/create',['as'=>'itemCRUD2.create','uses'=>'ItemCRUD2Controller@create','middleware' => ['permission:item-create']]);
-	// Route::post('itemCRUD2/create',['as'=>'itemCRUD2.store','uses'=>'ItemCRUD2Controller@store','middleware' => ['permission:item-create']]);
-	// Route::get('itemCRUD2/{id}',['as'=>'itemCRUD2.show','uses'=>'ItemCRUD2Controller@show']);
-	// Route::get('itemCRUD2/{id}/edit',['as'=>'itemCRUD2.edit','uses'=>'ItemCRUD2Controller@edit','middleware' => ['permission:item-edit']]);
-	// Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update','middleware' => ['permission:item-edit']]);
-	// Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy','middleware' => ['permission:item-delete']]);
-
-	Route::get('itemCRUD2',['as'=>'itemCRUD2.index','uses'=>'ItemCRUD2Controller@index']);
-	Route::get('itemCRUD2/create',['as'=>'itemCRUD2.create','uses'=>'ItemCRUD2Controller@create']);
-	Route::post('itemCRUD2/create',['as'=>'itemCRUD2.store','uses'=>'ItemCRUD2Controller@store']);
-	Route::get('itemCRUD2/{id}',['as'=>'itemCRUD2.show','uses'=>'ItemCRUD2Controller@show']);
-	Route::get('itemCRUD2/{id}/edit',['as'=>'itemCRUD2.edit','uses'=>'ItemCRUD2Controller@edit']);
-	Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update']);
-	Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy']);
 
 	// Route::get('vocationals',['as'=>'vocationals.index','uses'=>'VocationalController@index','middleware' => ['permission:vocational-list|vocational-create|vocational-edit|vocational-delete']]);
 	// Route::get('vocationals/create',['as'=>'vocationals.create','uses'=>'VocationalController@create','middleware' => ['permission:vocational-create']]);

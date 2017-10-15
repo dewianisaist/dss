@@ -24,6 +24,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('identity_number') ? ' has-error' : '' }}">
+                            <div class="input-group mb-1">
+                                <span class="input-group-addon"><i class="icon-user"></i></span>
+                                <input id="identity_number" type="text" class="form-control" name="identity_number" placeholder="Nomor Identitas" required value="{{ old('identity_number') }}">
+                            </div>
+                            <div>
+                                @if ($errors->has('identity_number'))
+                                    <span class="help-block font-italic">
+                                        <strong>{{ $errors->first('identity_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <div class="input-group mb-1">
                                 <span class="input-group-addon">@</span>

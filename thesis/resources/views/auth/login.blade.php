@@ -11,17 +11,17 @@
                         <p class="text-muted">Masuk ke akun Anda</p>
                         <form role="form" method="POST" action="{{ url('/login') }}">
                             {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('identity_number') ? ' has-error' : '' }}">
                                 <div>
-                                    @if ($errors->has('email'))
+                                    @if ($errors->has('identity_number'))
                                         <span class="help-block font-italic">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong>{{ $errors->first('identity_number') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                                 <div class="input-group mb-1">
                                     <span class="input-group-addon"><i class="icon-user"></i></span>
-                                    <input id="email" type="email" class="form-control" name="email" placeholder="Email" required value="{{ old('email') }}">
+                                    <input id="identity_number" type="text" class="form-control" name="identity_number" placeholder="Nomor Identitas" required value="{{ old('identity_number') }}">
                                 </div>
                             </div>
 
