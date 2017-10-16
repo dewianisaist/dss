@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2017 at 04:34 PM
+-- Generation Time: Oct 16, 2017 at 04:56 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -56,12 +56,12 @@ CREATE TABLE `criterias` (
   `id` int(11) NOT NULL,
   `group_criteria` int(11) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
-  `partial_weight` double DEFAULT NULL,
-  `global_weight` double DEFAULT NULL,
-  `preference` varchar(100) DEFAULT NULL,
-  `parameter_p` double DEFAULT NULL,
-  `parameter_q` double DEFAULT NULL,
-  `parameter_s` double DEFAULT NULL,
+  `partial_weight` decimal(5,3) DEFAULT NULL,
+  `global_weight` decimal(5,3) DEFAULT NULL,
+  `preference` tinyint(2) DEFAULT NULL COMMENT '1. Type 1: Usual criterion\n2. Type 2: Quasi-criterion (U-Shape)\n3. Type 3: Criterion with linear preference (V-Shape)\n4. Type 4: Level criterion\n5. Type 5: Criterion with linear preference and indifference area\n6. Type 6: Gaussian criterion',
+  `parameter_p` decimal(10,3) DEFAULT NULL,
+  `parameter_q` decimal(10,3) DEFAULT NULL,
+  `parameter_s` decimal(10,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -102,7 +102,7 @@ CREATE TABLE `educations` (
 CREATE TABLE `pairwise_comparisons` (
   `criteria1_id` int(11) NOT NULL,
   `criteria2_id` int(11) NOT NULL,
-  `nilai` double DEFAULT NULL,
+  `nilai` decimal(5,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -127,18 +127,18 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(7, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2017-10-16 07:31:49', '2017-10-16 07:31:49'),
-(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2017-10-16 07:31:49', '2017-10-16 07:31:49');
+(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(7, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
+(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2017-10-16 07:54:52', '2017-10-16 07:54:52');
 
 -- --------------------------------------------------------
 
@@ -223,7 +223,7 @@ CREATE TABLE `result_selections` (
   `id` int(11) NOT NULL,
   `selection_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `nilai` double DEFAULT NULL,
+  `nilai` decimal(10,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -248,9 +248,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Superadmin', 'Peneliti', 'Superadmin merupakan peneliti ', '2017-10-16 07:32:35', '2017-10-16 07:32:35'),
-(2, 'Admin', 'Staf', 'Admin merupakan salah seorang staf', '2017-10-16 07:33:12', '2017-10-16 07:33:12'),
-(3, 'Kepala', 'Kepala BLK', 'Kepala merupakan pembuat keputusan', '2017-10-16 07:33:45', '2017-10-16 07:33:45');
+(1, 'Superadmin', 'Peneliti', 'Superadmin merupakan peneliti', '2017-10-16 07:55:28', '2017-10-16 07:55:28'),
+(2, 'Admin', 'Staf', 'Admin merupakan staf', '2017-10-16 07:55:47', '2017-10-16 07:55:47'),
+(3, 'Kepala', 'Kepala BLK', 'Kepala merupakan pembuat keputusan', '2017-10-16 07:56:09', '2017-10-16 07:56:09');
 
 -- --------------------------------------------------------
 
@@ -284,8 +284,8 @@ CREATE TABLE `selections` (
   `time` varchar(20) DEFAULT NULL,
   `place` varchar(100) DEFAULT NULL,
   `information` varchar(500) DEFAULT NULL,
-  `written_value` double DEFAULT NULL,
-  `interview_value` double DEFAULT NULL,
+  `written_value` decimal(3,3) DEFAULT NULL,
+  `interview_value` decimal(3,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -348,7 +348,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$yo.rAobL/tq/nk6L/ongZed86gHqJmDVgCWXKfZFlXF', NULL, '2017-10-16 07:34:01', '2017-10-16 07:34:01');
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$hDBmXSF1hW/qqs3BEJJ9Uewyi0bQklZmRGLUIjexpd5', NULL, '2017-10-16 07:56:24', '2017-10-16 07:56:24');
 
 -- --------------------------------------------------------
 
