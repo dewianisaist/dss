@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -31,7 +31,7 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/home';
 
-    protected $username = 'identity_number';
+    // protected $username = 'identity_number';
 
     /**
      * Create a new authentication controller instance.
@@ -42,6 +42,33 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
         // $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+    }
+
+    public function authenticate()
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'identity_number' => 'required|max:20|unique:users',
+        //     'password' => 'required|min:6|confirmed',
+        // ]);
+        // if ($validator->fails()) {
+        //     return response()->validationFailed($validator->message());
+        // } else {
+        //     $identity_number = $request->input('identity_number');
+        //     $password = $request->input('password');
+
+        //     $credentials =['identity_number' => $identity_number, 'password' => $password];
+        //     $auth = Auth::attempts($credentials);
+        // }
+        // if($auth){
+            
+        // }
+        if (Auth::attempt([
+            'identity_number' => $identity_number, 
+            'password' => $password])) {
+            var_dump($identity_number); exit();
+            // Authentication passed...
+            return redirect()->intended('home');
+        }
     }
 
     /**

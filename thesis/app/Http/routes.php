@@ -17,11 +17,11 @@ Route::get('/', function() {
 
 Route::auth();
   
- Route::get('/home', 'HomeController@index');    
+Route::get('/home', 'HomeController@index');    
 
-// Route::get('admin/','AuthAdmin\AuthController@showLoginForm');
-// Route::post('admin/', 'AuthAdmin\AuthController@login');
-// Route::get('admin/logout','AuthAdmin\AuthController@logout');
+// Route::get('auth/login', 'Auth\AuthController@getLogin');
+// Route::post('auth/login', 'Auth\AuthController@postLogin');
+// Route::get('auth/logout',	'Auth\AuthController@getLogout');
 
 //Route::group(['middleware' => ['auth']], function() {
 
