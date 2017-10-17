@@ -31,7 +31,7 @@
         <ul class="nav navbar-nav ml-auto mr-2">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="hidden-md-down">{{ Auth::user()->name }}</span>
+                    {{--  <span class="hidden-md-down">{{ Auth::user()->name }}</span>  --}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Ubah Password</a>
@@ -47,13 +47,13 @@
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('user/home_user') }}"><i class="fa fa-user"></i> Profil</span></a>
+                        <a class="nav-link" href="{{ route('registrants.index') }}"><i class="fa fa-user"></i> Profil</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('user/home_user') }}"><i class="icon-star"></i> Hasil Seleksi</span></a>
+                        <a class="nav-link" href="{{ route('registrants.index') }}"><i class="icon-star"></i> Hasil Seleksi</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('user/home_user') }}"><i class="icon-speedometer"></i> Riwayat</span></a>
+                        <a class="nav-link" href="{{ route('registrants.index') }}"><i class="icon-speedometer"></i> Riwayat</span></a>
                     </li>
                 </ul>
             </nav>

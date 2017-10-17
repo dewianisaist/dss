@@ -28,6 +28,16 @@ Route::get('/home', 'HomeController@index');
 	//Route::get('/dashboard', 'HomeController@index');
 	Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@index']);	
 	
+	//registrants
+	// Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index','middleware' => ['permission:user-list|user-edit']]);
+	// Route::get('registrants/{id}/edit',['as'=>'registrants.edit','uses'=>'RegistrantController@edit','middleware' => ['permission:user-edit']]);
+	// Route::patch('registrants/{id}',['as'=>'registrants.update','uses'=>'RegistrantController@update','middleware' => ['permission:user-edit']]);
+
+	Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index']);
+	Route::get('registrants/{id}/edit',['as'=>'registrants.edit','uses'=>'RegistrantController@edit']);
+	Route::patch('registrants/{id}',['as'=>'registrants.update','uses'=>'RegistrantController@update']);
+
+	//users
 	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:user-list|user-create|user-edit|user-delete']]);
 	// Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create','middleware' => ['permission:user-create']]);
 	// Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store','middleware' => ['permission:user-create']]);
