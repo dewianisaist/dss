@@ -8,6 +8,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -30,8 +31,7 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-
-    // protected $username = 'identity_number';
+    protected $username = 'identity_number';
 
     /**
      * Create a new authentication controller instance.
@@ -43,32 +43,26 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-    public function authenticate()
-    {
-        // $validator = Validator::make($request->all(), [
-        //     'identity_number' => 'required|max:20|unique:users',
-        //     'password' => 'required|min:6|confirmed',
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->validationFailed($validator->message());
-        // } else {
-        //     $identity_number = $request->input('identity_number');
-        //     $password = $request->input('password');
-
-        //     $credentials =['identity_number' => $identity_number, 'password' => $password];
-        //     $auth = Auth::attempts($credentials);
-        // }
-        // if($auth){
-            
-        // }
-        if (Auth::attempt([
-            'identity_number' => $identity_number, 
-            'password' => $password])) {
-            var_dump($identity_number); exit();
-            // Authentication passed...
-            return redirect()->intended('home');
-        }
-    }
+    public function postLogin(Request $request)
+	{
+		$this->validate($request, [
+            'identity_number' => 'required|numeric', 
+            'password' => 'required',
+		]);
+ 
+		$credentials = $request->only('identity_number', 'password');
+ 
+		if ($this->auth->attempt($credentials, $request->has('remember')))
+		{
+			return redirect()->intended($this->redirectPath());
+		}
+ 
+		return redirect($this->loginPath())
+					->withInput($request->only('identity_number', 'remember'))
+					->withErrors([
+						'identity_number' => $this->getFailedLoginMessage(),
+					]);
+	}
 
     /**
      * Get a validator for an incoming registration request.
