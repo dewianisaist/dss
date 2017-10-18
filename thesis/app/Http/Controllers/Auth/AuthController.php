@@ -94,6 +94,13 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $user = User::find($create->id);
+        $role = Role::where('name', '=', 'pendaftar')->firstOrFail();
+        
+        $user->roles()->attach($role->id);
+
+        return $create;
     }
 
 }
