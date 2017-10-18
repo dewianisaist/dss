@@ -32,7 +32,6 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-
     protected $username = 'identity_number';
 
     /**
@@ -42,14 +41,14 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
-        // $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     public function postLogin(Request $request)
 	{
 		$this->validate($request, [
-			'identity_number' => 'required|numeric', 'password' => 'required',
+            'identity_number' => 'required|numeric', 
+            'password' => 'required',
 		]);
  
 		$credentials = $request->only('identity_number', 'password');
@@ -98,9 +97,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::find($create->id);
-
-        $role = Role::whereName('pengguna')->firstOrFail();
-
+        $role = Role::whereName('pendaftar')->firstOrFail();
         $user->roles()->attach($role->id);
 
         return $create;
