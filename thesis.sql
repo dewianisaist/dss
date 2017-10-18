@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2017 at 04:56 PM
+-- Generation Time: Oct 18, 2017 at 06:17 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -127,18 +127,18 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(7, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2017-10-16 07:54:52', '2017-10-16 07:54:52'),
-(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2017-10-16 07:54:52', '2017-10-16 07:54:52');
+(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(7, 'role-edit', 'Edit Role', 'Edit Role', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2017-10-17 21:14:43', '2017-10-17 21:14:43'),
+(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2017-10-17 21:14:43', '2017-10-17 21:14:43');
 
 -- --------------------------------------------------------
 
@@ -172,10 +172,15 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (2, 2),
 (2, 3),
 (2, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(2, 8),
 (3, 9),
 (3, 10),
 (3, 11),
-(3, 12);
+(3, 12),
+(5, 9);
 
 -- --------------------------------------------------------
 
@@ -248,9 +253,10 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Superadmin', 'Peneliti', 'Superadmin merupakan peneliti', '2017-10-16 07:55:28', '2017-10-16 07:55:28'),
-(2, 'Admin', 'Staf', 'Admin merupakan staf', '2017-10-16 07:55:47', '2017-10-16 07:55:47'),
-(3, 'Kepala', 'Kepala BLK', 'Kepala merupakan pembuat keputusan', '2017-10-16 07:56:09', '2017-10-16 07:56:09');
+(1, 'superadmin', 'Superadmin', 'Superadmin merupakan peneliti', '2017-10-17 21:15:20', '2017-10-17 21:15:20'),
+(2, 'admin', 'Admin', 'Admin merupakan staf', '2017-10-17 21:15:46', '2017-10-17 21:15:46'),
+(3, 'kepala', 'Kepala BLK', 'Kepala merupakan pembuat keputusan', '2017-10-17 21:16:12', '2017-10-17 21:16:12'),
+(5, 'pendaftar', 'Pendaftar', 'Pendaftar merupakan calon peserta seleksi', '2017-10-17 21:17:32', '2017-10-17 21:17:32');
 
 -- --------------------------------------------------------
 
@@ -337,7 +343,7 @@ CREATE TABLE `users` (
   `identity_number` varchar(20) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -348,7 +354,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$hDBmXSF1hW/qqs3BEJJ9Uewyi0bQklZmRGLUIjexpd5', NULL, '2017-10-16 07:56:24', '2017-10-16 07:56:24');
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$QSegh5oXdFAmkQ521SM8VO0s/.78UaRRsImJbn0aP/l52crOsnj3K', NULL, '2017-10-17 21:16:53', '2017-10-17 21:16:53');
 
 -- --------------------------------------------------------
 
@@ -541,7 +547,7 @@ ALTER TABLE `result_selections`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `selections`
 --
@@ -602,8 +608,8 @@ ALTER TABLE `pairwise_comparisons`
 -- Constraints for table `permission_role`
 --
 ALTER TABLE `permission_role`
-  ADD CONSTRAINT `fk_roles_has_permissions_permissions1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_roles_has_permissions_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_roles_has_permissions_permissions1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_roles_has_permissions_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `registrants`
