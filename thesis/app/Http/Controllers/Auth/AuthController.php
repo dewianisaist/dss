@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use Auth;
 use Validator;
+use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -88,16 +89,15 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $create = User::create([
             'identity_number' => $data['identity_number'],
+            'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
         $user = User::find($create->id);
-        $role = Role::where('name', '=', 'pendaftar')->firstOrFail();
-        
+        $role = Role::whereName('pendaftar')->firstOrFail();
         $user->roles()->attach($role->id);
 
         return $create;
