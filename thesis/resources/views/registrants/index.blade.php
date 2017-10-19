@@ -23,7 +23,7 @@
 		@foreach ($data as $key => $registrant)
 		<tr>
 			<th>Nama</th>
-			<td>{{ $registrant->name }}</td>
+			<td>{{ $registrant->user->name }}</td>
 		</tr>
 		<tr>
 			<th>NIK</th>
