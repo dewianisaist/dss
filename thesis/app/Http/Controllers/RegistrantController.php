@@ -12,8 +12,4 @@ use App\Course;
 
 class RegistrantController extends Controller
 {
-    public function index(Request $request)
-    {
-
-    }
 }
