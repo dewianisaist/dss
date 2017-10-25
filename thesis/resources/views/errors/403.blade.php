@@ -1,4 +1,4 @@
-@extends('layouts.dashboard_admin')
+@extends('layouts.master_admin')
  
 @section('content')
 	<h1>You don't have permission.</h1>

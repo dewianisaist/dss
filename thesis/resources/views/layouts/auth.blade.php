@@ -11,10 +11,10 @@
 
     <!-- Icons -->
     <link href={{ asset('user_theme/assets/font-awesome/css/font-awesome.min.css') }} rel="stylesheet">
-    <link href={{ asset('admin_theme/css/simple-line-icons.css') }} rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('AdminLTE/bower_components/Ionicons/css/ionicons.min.css') }}">
 
     <!-- Main styles for this application -->
-    <link href={{ asset('admin_theme/css/style-user.css') }} rel="stylesheet">
+    <link href={{ asset('user_theme/style-user.css') }} rel="stylesheet">
 
 </head>
 

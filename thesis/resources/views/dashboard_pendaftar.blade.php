@@ -1,3 +1,3 @@
-@extends('layouts.dashboard_registrant')
+@extends('layouts.master_admin')
 
 @section('content')

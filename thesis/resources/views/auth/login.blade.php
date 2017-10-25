@@ -20,7 +20,7 @@
                                     @endif
                                 </div>
                                 <div class="input-group mb-1">
-                                    <span class="input-group-addon"><i class="icon-user"></i></span>
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     <input id="identity_number" type="text" class="form-control" name="identity_number" placeholder="Nomor Identitas" required value="{{ old('identity_number') }}">
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                     @endif
                                 </div>
                                 <div class="input-group mb-2">
-                                    <span class="input-group-addon"><i class="icon-lock"></i></span>
+                                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                     <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                                 </div>
                             </div>

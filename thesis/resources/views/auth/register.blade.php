@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <div class="input-group mb-1">
-                                <span class="input-group-addon"><i class="icon-user"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <input id="name" type="text" class="form-control" name="name" placeholder="Nama" required value="{{ old('name') }}">
                             </div>
                             <div>
@@ -26,7 +26,7 @@
 
                         <div class="form-group{{ $errors->has('identity_number') ? ' has-error' : '' }}">
                             <div class="input-group mb-1">
-                                <span class="input-group-addon"><i class="icon-user"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <input id="identity_number" type="text" class="form-control" name="identity_number" placeholder="Nomor Identitas" required value="{{ old('identity_number') }}">
                             </div>
                             <div>
@@ -54,7 +54,7 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="input-group mb-1">
-                                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                 <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                             </div>
                             <div>
@@ -68,7 +68,7 @@
                         
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             <div class="input-group mb-2">
-                                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-repeat"></i></span>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Ulangi Password" required>
                             </div>
                             <div>

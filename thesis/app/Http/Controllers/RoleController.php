@@ -17,9 +17,9 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id','DESC')->paginate(5);
+        $roles = Role::orderBy('id','DESC')->paginate(10);
         return view('roles.index',compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -59,7 +59,7 @@ class RoleController extends Controller
         }
 
         return redirect()->route('roles.index')
-                        ->with('success','Role berhasil diedit');
+                        ->with('success','Role berhasil dibuat');
     }
     /**
      * Display the specified resource.

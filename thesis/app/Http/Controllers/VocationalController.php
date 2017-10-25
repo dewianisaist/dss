@@ -15,9 +15,9 @@ class VocationalController extends Controller
     */
    public function index(Request $request)
    {
-       $vocationals = Vocational::orderBy('id','DESC')->paginate(5);
+       $vocationals = Vocational::orderBy('id','DESC')->paginate(10);
        return view('vocationals.index',compact('vocationals'))
-           ->with('i', ($request->input('page', 1) - 1) * 5);
+           ->with('i', ($request->input('page', 1) - 1) * 10);
    }
 
    /**
