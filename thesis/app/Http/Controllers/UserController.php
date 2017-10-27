@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Role;
+use App\Http\Models\User;
+use App\Http\Models\Role;
 use DB;
 use Hash;
 

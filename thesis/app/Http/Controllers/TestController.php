@@ -11,9 +11,22 @@ use App\Http\Models\Education;
 use App\Http\Models\Course;
 use Auth;
 
-class RegistrantController extends Controller
+class TestController extends Controller
 {
-    public function index() {
+    public function test() {
+        $data = Registrant::whereUserId(Auth::user()->id)->first();
+
+        $upload = new Upload;
+        $upload->registrant_id = $data->id;
+        $upload->photo = 'photo_dewianisa.jpg';
+        $upload->ktp = 'ktp_dewianisa.jpg';
+        $upload->last_certificate = 'certificate_dewi.jpg';
+        $upload->save();
+
+        return $upload;
+    }
+
+    public function registrant() {
         $registrant = new Registrant;
         $registrant->user_id = Auth::user()->id;
         $registrant->address = 'Jalan Kebahagiaan Jogja 98';
@@ -30,5 +43,18 @@ class RegistrantController extends Controller
         $registrant->save();
 
         return $registrant;
+    }
+
+    public function upload() {
+        $data = Registrant::whereUserId(Auth::user()->id)->first();
+
+        $upload = new Upload;
+        $upload->registrant_id = $data->id;
+        $upload->photo = 'photo_dewianisa.jpg';
+        $upload->ktp = 'ktp_dewianisa.jpg';
+        $upload->last_certificate = 'certificate_dewi.jpg';
+        $upload->save();
+
+        return $upload;
     }
 }

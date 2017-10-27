@@ -85,4 +85,6 @@ Route::get('/home', 'HomeController@index');
 	Route::get('vocationals/{id}/edit',['as'=>'vocationals.edit','uses'=>'VocationalController@edit']);
 	Route::patch('vocationals/{id}',['as'=>'vocationals.update','uses'=>'VocationalController@update']);
 	Route::delete('vocationals/{id}',['as'=>'vocationals.destroy','uses'=>'VocationalController@destroy']);
+
+	Route::get('test', 'TestController@test');
 //});
