@@ -6,7 +6,7 @@
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('educations.index') }}"><i class="fa fa-users"></i> Manajemen Pendidikan</a></li>
+  <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i> Manajemen Pendidikan</a></li>
   <li class="active">Buat Pendidikan Baru</li>
 </ol>
 @endsection

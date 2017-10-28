@@ -31,7 +31,7 @@
 		</div>
 	
 		<br/>
-    	<table id="table_users" class="table table-bordered table-striped">
+    	<table id="table_vocationals" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>No</th>
