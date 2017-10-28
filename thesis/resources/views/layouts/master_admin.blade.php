@@ -116,6 +116,8 @@
         <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
         <li><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i>  <span>Data <dfn>Roles</dfn></span></a></li>
         <li><a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i>  <span>Kejuruan</span></a></li>
+        <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a></li>
+        {{--  <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>  --}}
 
         {{--  <li class="active treeview">
           <a href="#">
