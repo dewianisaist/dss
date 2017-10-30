@@ -22,9 +22,7 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  @permission('profile-user-edit')  --}}
 					<a class="btn btn-success" href="{{ route('profile_users.edit') }}"> Edit Profil</a>
-					{{--  @endpermission  --}}
 				</div>
 			</div>
 		</div>
