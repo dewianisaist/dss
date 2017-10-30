@@ -102,5 +102,9 @@ Route::get('/home', 'HomeController@index');
 	Route::patch('courses/{id}',['as'=>'courses.update','uses'=>'CourseController@update']);
 	Route::delete('courses/{id}',['as'=>'courses.destroy','uses'=>'CourseController@destroy']);
 
+	Route::get('profile_users',['as'=>'profile_users.show','uses'=>'ProfileUserController@show']);
+	Route::get('profile_users/edit',['as'=>'profile_users.edit','uses'=>'ProfileUserController@edit']);
+	Route::patch('profile_users',['as'=>'profile_users.update','uses'=>'ProfileUserController@update']);
+	
 	Route::get('test', 'TestController@test');
 //});
