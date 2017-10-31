@@ -1,5 +1,9 @@
 @extends('layouts.master_admin')
 
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+@endsection
+
 @section('content_header')
 <h1>
   Edit Sub-Kejuruan
@@ -75,7 +79,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </div>
-							{!! Form::text('final_registration_date', null, array('placeholder' => 'Tanggal Akhir Pendaftaran','class' => 'form-control pull-right')) !!}
+							{!! Form::text('final_registration_date', null, array('placeholder' => 'Tanggal Akhir Pendaftaran','class' => 'form-control pull-right', 'id' => 'datepicker')) !!}
             </div>
           </div>
 				</div>
@@ -86,4 +90,11 @@
 		{!! Form::close() !!}
 	</div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script>
+	$('#datepicker').datetimepicker()
+</script>
 @endsection
