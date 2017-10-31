@@ -35,7 +35,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
             <strong>Kejuruan:</strong>
-						{!! Form::select('vocationals[]', $vocational,[], array('class' => 'form-control select2','multiple')) !!}
+						{!! Form::select('vocational_id', $vocational,[], array('class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">

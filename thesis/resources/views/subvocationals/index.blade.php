@@ -48,13 +48,7 @@
 					<tr>
 						<td>{{ ++$i }}</td>
 						<td>{{ $subvocational->name }}</td>
-						<td>
-							@if(!empty($subvocational->vocationals))
-								@foreach($subvocational->vocationals as $v)
-									{{ $v->name }}
-								@endforeach
-							@endif
-						</td>
+						<td>{{ $subvocational->vocational->name }}</td>
 						<td>{{ $subvocational->quota }}</td>
 						<td>{{ $subvocational->long_training }}</td>
 						<td>{{ $subvocational->final_registration_date }}</td>

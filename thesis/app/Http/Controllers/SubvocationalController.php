@@ -16,7 +16,7 @@ class SubvocationalController extends Controller
     */
    public function index(Request $request)
    {
-       $data = Subvocational::orderBy('id','DESC')->paginate(10);
+       $data = Subvocational::with('vocational')->orderBy('id','DESC')->paginate(10);
        return view('subvocationals.index',compact('data'))
            ->with('i', ($request->input('page', 1) - 1) * 10);
    }
@@ -28,8 +28,8 @@ class SubvocationalController extends Controller
     */
    public function create()
    {
-       $vocationals = Vocational::lists('name','id');
-       return view('subvocationals.create',compact('vocationals'));
+       $vocational = Vocational::lists('name','id');
+       return view('subvocationals.create',compact('vocational'));
    }
 
    /**
@@ -42,7 +42,7 @@ class SubvocationalController extends Controller
    {
        $this->validate($request, [
         'name' => 'required',
-        'vocationals' => 'required',
+        'vocational_id' => 'required',
         'quota' => 'required',
         'long_training' => 'required',
         'final_registration_date' => 'required',
@@ -50,9 +50,6 @@ class SubvocationalController extends Controller
 
        $input = $request->all();
        $subvocational = Subvocational::create($input);
-       foreach ($request->input('vocationals') as $key => $value) {
-           $subvocational->Vocational($value);
-       }
 
        return redirect()->route('subvocationals.index')
                        ->with('success','Sub-Kejuruan berhasil dibuat');
