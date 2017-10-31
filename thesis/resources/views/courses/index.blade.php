@@ -2,12 +2,12 @@
  
 @section('content_header')
 <h1>
-  Manajemen Kejuruan
+  Manajemen Kursus
   <dfn><small>Control panel</small></dfn>
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li class="active">Manajemen Kejuruan</li>
+  <li class="active">Manajemen Kursus</li>
 </ol>
 @endsection
 
@@ -23,36 +23,34 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  @permission('vocational-create')  --}}
-					<a class="btn btn-success" href="{{ route('vocationals.create') }}"> Tambahkan Kejuruan</a>
+					{{--  @permission('course-create')  --}}
+					<a class="btn btn-success" href="{{ route('courses.create') }}"> Tambahkan Kursus</a>
 					{{--  @endpermission  --}}
 				</div>
 			</div>
 		</div>
 	
 		<br/>
-    	<table id="table_vocationals" class="table table-bordered table-striped">
+    	<table id="table_courses" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Nama</th>
-					<th>Deskripsi</th>
+					<th>Jurusan</th>
 					<th width="280px">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($vocationals as $key => $vocational)
+				@foreach ($courses as $key => $course)
 					<tr>
 						<td>{{ ++$i }}</td>
-						<td>{{ $vocational->name }}</td>
-						<td>{{ $vocational->description }}</td>
+						<td>{{ $course->major }}</td>
 						<td>
-							<a class="btn btn-info" href="{{ route('vocationals.show',$vocational->id) }}">Detail</a>
-							{{--  @permission('vocational-edit')  --}}
-							<a class="btn btn-primary" href="{{ route('vocationals.edit',$vocational->id) }}">Edit</a>
+							<a class="btn btn-info" href="{{ route('courses.show',$course->id) }}">Detail</a>
+							{{--  @permission('course-edit')  --}}
+							<a class="btn btn-primary" href="{{ route('courses.edit',$course->id) }}">Edit</a>
 							{{--  @endpermission  --}}
-							{{--  @permission('vocational-delete')  --}}
-							{!! Form::open(['method' => 'DELETE','route' => ['vocationals.destroy', $vocational->id],'style'=>'display:inline']) !!}
+							{{--  @permission('course-delete')  --}}
+							{!! Form::open(['method' => 'DELETE','route' => ['courses.destroy', $course->id],'style'=>'display:inline']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 							{!! Form::close() !!}
 							{{--  @endpermission  --}}
@@ -61,7 +59,7 @@
 				@endforeach
 			</tbody>
 		</table>
-		{!! $vocationals->render() !!}
+		{!! $courses->render() !!}
 	</div>
 </div>	
 @endsection

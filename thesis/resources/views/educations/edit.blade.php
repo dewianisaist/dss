@@ -2,12 +2,12 @@
 
 @section('content_header')
 <h1>
-  Edit Kejuruan
+  Edit Pendidikan
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i> Manajemen Kejuruan</a></li>
-  <li class="active">Edit Kejuruan</li>
+  <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i> Manajemen Pendidikan</a></li>
+  <li class="active">Edit Pendidikan</li>
 </ol>
 @endsection
  
@@ -24,18 +24,18 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::model($vocational, ['method' => 'PATCH','route' => ['vocationals.update', $vocational->id]]) !!}
+		{!! Form::model($education, ['method' => 'PATCH','route' => ['educations.update', $education->id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nama:</strong>
-						{!! Form::text('name', null, array('placeholder' => 'Nama Kejuruan','class' => 'form-control')) !!}
+						<strong>Jenjang:</strong>
+						{!! Form::text('stage', null, array('placeholder' => 'Jenjang Pendidikan','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Deskripsi:</strong>
-						{!! Form::textarea('description', null, array('placeholder' => 'Deskripsi','class' => 'form-control','style'=>'height:100px')) !!}
+						<strong>Jurusan:</strong>
+						{!! Form::text('major', null, array('placeholder' => 'Jurusan','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">

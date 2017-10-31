@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>503. Sedang dalam perbaikan.</title>
+        <title>404. Halaman tidak ditemukan.</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Maaf! Sedang dalam perbaikan.</div>
+                <div class="title">Maaf! Halaman tidak ditemukan.</div>
             </div>
         </div>
     </body>

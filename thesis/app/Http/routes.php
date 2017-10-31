@@ -86,5 +86,25 @@ Route::get('/home', 'HomeController@index');
 	Route::patch('vocationals/{id}',['as'=>'vocationals.update','uses'=>'VocationalController@update']);
 	Route::delete('vocationals/{id}',['as'=>'vocationals.destroy','uses'=>'VocationalController@destroy']);
 
+	Route::get('educations',['as'=>'educations.index','uses'=>'EducationController@index']);
+	Route::get('educations/create',['as'=>'educations.create','uses'=>'EducationController@create']);
+	Route::post('educations/create',['as'=>'educations.store','uses'=>'EducationController@store']);
+	Route::get('educations/{id}',['as'=>'educations.show','uses'=>'EducationController@show']);
+	Route::get('educations/{id}/edit',['as'=>'educations.edit','uses'=>'EducationController@edit']);
+	Route::patch('educations/{id}',['as'=>'educations.update','uses'=>'EducationController@update']);
+	Route::delete('educations/{id}',['as'=>'educations.destroy','uses'=>'EducationController@destroy']);
+
+	Route::get('courses',['as'=>'courses.index','uses'=>'CourseController@index']);
+	Route::get('courses/create',['as'=>'courses.create','uses'=>'CourseController@create']);
+	Route::post('courses/create',['as'=>'courses.store','uses'=>'CourseController@store']);
+	Route::get('courses/{id}',['as'=>'courses.show','uses'=>'CourseController@show']);
+	Route::get('courses/{id}/edit',['as'=>'courses.edit','uses'=>'CourseController@edit']);
+	Route::patch('courses/{id}',['as'=>'courses.update','uses'=>'CourseController@update']);
+	Route::delete('courses/{id}',['as'=>'courses.destroy','uses'=>'CourseController@destroy']);
+
+	Route::get('profile_users',['as'=>'profile_users.show','uses'=>'ProfileUserController@show']);
+	Route::get('profile_users/edit',['as'=>'profile_users.edit','uses'=>'ProfileUserController@edit']);
+	Route::patch('profile_users',['as'=>'profile_users.update','uses'=>'ProfileUserController@update']);
+	
 	Route::get('test', 'TestController@test');
 //});

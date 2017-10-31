@@ -1,5 +1,5 @@
 @extends('layouts.master_admin')
  
 @section('content')
-	<h1>You don't have permission.</h1>
+	<h1>Maaf! Anda tidak mempunyai hak akses.</h1>
 @endsection

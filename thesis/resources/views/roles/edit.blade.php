@@ -6,7 +6,7 @@
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('roles.index') }}"><i class="fa fa-users"></i> Manajemen <dfn>Role</dfn></a></li>
+  <li><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i> Manajemen <dfn>Role</dfn></a></li>
   <li class="active">Edit <dfn>Role</dfn></li>
 </ol>
 @endsection
