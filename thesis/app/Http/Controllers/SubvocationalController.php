@@ -75,14 +75,10 @@ class SubvocationalController extends Controller
     */
    public function edit($id)
    {
-       $vocational = Vocational::find($id);
-       return view('vocationals.edit',compact('vocational'));
+        $subvocational = Subvocational::find($id);
+        $vocational = Vocational::lists('name','id');
 
-       $subvocational = Subvocational::find($id);
-       $vocationals = Vocational::lists('name','id');
-    //    $userRole = $user->roles->lists('id','id')->toArray();
-
-       return view('subvocationals.edit',compact('subvocational','vocationals','userRole'));
+        return view('subvocationals.edit',compact('subvocational','vocational'));
    }
 
    /**
@@ -96,22 +92,15 @@ class SubvocationalController extends Controller
    {
        $this->validate($request, [
         'name' => 'required',
-        'vocationals' => 'required',
+        'vocational_id' => 'required',
         'quota' => 'required',
         'long_training' => 'required',
         'final_registration_date' => 'required',
        ]);
 
        $input = $request->all();
-
        $subvocational = Subvocational::find($id);
        $subvocational->update($input);
-    //    DB::table('role_user')->where('user_id',$id)->delete();
-
-        foreach ($request->input('vocationals') as $key => $value) {
-            // $user->attachRole($value);
-        }
-       Vocational::find($id)->update($request->all());
 
        return redirect()->route('subvocationals.index')
                        ->with('success','Sub-Kejuruan berhasil diedit');

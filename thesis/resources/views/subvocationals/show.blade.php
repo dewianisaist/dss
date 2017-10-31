@@ -27,11 +27,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Kejuruan:</strong>
-					@if(!empty($subvocational->vocationals))
-						@foreach($subvocational->vocationals as $v)
-							{{ $v->name }}
-						@endforeach
-					@endif
+					{{ $subvocational->vocational->name }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
