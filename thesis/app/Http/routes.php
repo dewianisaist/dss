@@ -106,13 +106,13 @@ Route::get('/home', 'HomeController@index');
 	Route::get('profile_users/edit',['as'=>'profile_users.edit','uses'=>'ProfileUserController@edit']);
 	Route::patch('profile_users',['as'=>'profile_users.update','uses'=>'ProfileUserController@update']);
 	
-	// Route::get('subvocationals',['as'=>'subvocationals.index','uses'=>'SubvocationalController@index']);
-	// Route::get('subvocationals/create',['as'=>'subvocationals.create','uses'=>'SubvocationalController@create']);
-	// Route::post('subvocationals/create',['as'=>'subvocationals.store','uses'=>'SubvocationalController@store']);
-	// Route::get('subvocationals/{id}',['as'=>'subvocationals.show','uses'=>'SubvocationalController@show']);
-	// Route::get('subvocationals/{id}/edit',['as'=>'subvocationals.edit','uses'=>'SubvocationalController@edit']);
-	// Route::patch('subvocationals/{id}',['as'=>'subvocationals.update','uses'=>'SubvocationalController@update']);
-	// Route::delete('subvocationals/{id}',['as'=>'subvocationals.destroy','uses'=>'SubvocationalController@destroy']);
+	Route::get('subvocationals',['as'=>'subvocationals.index','uses'=>'SubvocationalController@index']);
+	Route::get('subvocationals/create',['as'=>'subvocationals.create','uses'=>'SubvocationalController@create']);
+	Route::post('subvocationals/create',['as'=>'subvocationals.store','uses'=>'SubvocationalController@store']);
+	Route::get('subvocationals/{id}',['as'=>'subvocationals.show','uses'=>'SubvocationalController@show']);
+	Route::get('subvocationals/{id}/edit',['as'=>'subvocationals.edit','uses'=>'SubvocationalController@edit']);
+	Route::patch('subvocationals/{id}',['as'=>'subvocationals.update','uses'=>'SubvocationalController@update']);
+	Route::delete('subvocationals/{id}',['as'=>'subvocationals.destroy','uses'=>'SubvocationalController@destroy']);
 
 	Route::get('test', 'TestController@test');
 //});
