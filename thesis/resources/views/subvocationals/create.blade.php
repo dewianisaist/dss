@@ -95,6 +95,8 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script>
-	$('#datepicker').datetimepicker()
+	$('#datepicker').datetimepicker({
+		format: 'YYYY-MM-DD HH:mm:ss'
+	});
 </script>
 @endsection
