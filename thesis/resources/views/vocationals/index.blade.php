@@ -37,7 +37,7 @@
 					<th>No</th>
 					<th>Nama</th>
 					<th>Deskripsi</th>
-					<th width="280px">Action</th>
+					<th width="280px">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
