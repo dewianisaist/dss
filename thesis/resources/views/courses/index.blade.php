@@ -36,7 +36,7 @@
 				<tr>
 					<th>No</th>
 					<th>Jurusan</th>
-					<th width="280px">Action</th>
+					<th width="280px">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
