@@ -14,16 +14,9 @@ use Auth;
 class TestController extends Controller
 {
     public function test() {
+        
+
         $data = Registrant::whereUserId(Auth::user()->id)->first();
-
-        $upload = new Upload;
-        $upload->registrant_id = $data->id;
-        $upload->photo = 'photo_dewianisa.jpg';
-        $upload->ktp = 'ktp_dewianisa.jpg';
-        $upload->last_certificate = 'certificate_dewi.jpg';
-        $upload->save();
-
-        return $upload;
     }
 
     public function registrant() {
