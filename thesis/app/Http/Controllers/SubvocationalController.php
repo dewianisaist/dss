@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Subvocational;
 use App\Http\Models\Vocational;
+use DB;
 
 class SubvocationalController extends Controller
 {
@@ -77,8 +78,9 @@ class SubvocationalController extends Controller
    {
         $subvocational = Subvocational::find($id);
         $vocational = Vocational::lists('name','id');
+        $vocationalchoosen = DB::table('sub_vocationals')->where('id', $subvocational)->value('name');
 
-        return view('subvocationals.edit',compact('subvocational','vocational'));
+        return view('subvocationals.edit',compact('subvocational','vocational','vocationalchoosen'));
    }
 
    /**
