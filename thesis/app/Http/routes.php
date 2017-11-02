@@ -17,16 +17,12 @@ Route::get('/', function() {
 
 Route::auth();
   
-Route::get('/home', 'HomeController@index');    
-
-// Route::get('auth/login', 'Auth\AuthController@getLogin');
-// Route::post('auth/login', 'Auth\AuthController@postLogin');
-// Route::get('auth/logout',	'Auth\AuthController@getLogout');
+Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index']);
 
 //Route::group(['middleware' => ['auth']], function() {
 
 	//Route::get('/dashboard', 'HomeController@index');
-	Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@index']);	
+	// Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@index']);	
 	
 	//registrants
 	// Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index','middleware' => ['permission:user-list|user-edit']]);
@@ -113,6 +109,8 @@ Route::get('/home', 'HomeController@index');
 	Route::get('subvocationals/{id}/edit',['as'=>'subvocationals.edit','uses'=>'SubvocationalController@edit']);
 	Route::patch('subvocationals/{id}',['as'=>'subvocationals.update','uses'=>'SubvocationalController@update']);
 	Route::delete('subvocationals/{id}',['as'=>'subvocationals.destroy','uses'=>'SubvocationalController@destroy']);
+
+
 
 	Route::get('test', 'TestController@test');
 //});

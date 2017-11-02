@@ -33,7 +33,7 @@
 @section('content')
 <div class="box box-default">
     <div class="box-body">
-    @if ($message = Session::get('success'))
+        @if ($message = Session::get('success'))
 			<div class="alert alert-success">
 				<p>{{ $message }}</p>
 			</div>

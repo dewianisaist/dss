@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Upload extends Model
 {
     protected $table = 'uploads';
+    public $fillable = ['registrant_id', 'photo', 'ktp', 'last_certificate'];
 
     public function registrant() {
-        return $this->hasOne('App\Http\Models\Registrant');
+        return $this->belongsTo('App\Http\Models\Registrant');
     }
 }
