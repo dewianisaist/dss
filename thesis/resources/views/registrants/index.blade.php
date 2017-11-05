@@ -39,7 +39,7 @@
  		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					<a class="btn btn-success" href="{{ route('registrants.edit',$data->id) }}"> Edit Data Diri</a>
+					<a class="btn btn-success" href="{{ route('registrants.edit') }}"> Edit Data Diri</a>
 				</div>
 			</div>
    		</div>

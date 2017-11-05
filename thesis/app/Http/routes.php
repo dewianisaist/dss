@@ -24,8 +24,8 @@ Route::auth();
 	
 	//registrants
 	Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index']);
-	Route::get('registrants/{id}/edit',['as'=>'registrants.edit','uses'=>'RegistrantController@edit']);
-	Route::patch('registrants/{id}',['as'=>'registrants.update','uses'=>'RegistrantController@update']);
+	Route::get('registrants/edit',['as'=>'registrants.edit','uses'=>'RegistrantController@edit']);
+	Route::patch('registrants/',['as'=>'registrants.update','uses'=>'RegistrantController@update']);
 
 	//users
 	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:user-list|user-create|user-edit|user-delete']]);

@@ -34,12 +34,11 @@ class RegistrantController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-   public function edit($id)
+   public function edit()
    {
-    //    $registrant = Registrant::whereUserId(Auth::user()->id)->first();
-       $registrant = Registrant::find($id);
-       $user = User::find(Auth::user()->id);
-       return view('registrants.edit',compact('registrant','user'));
+       $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
+    //    return $user;
+       return view('registrants.edit',compact('user'));
    }
 
    /**
@@ -50,23 +49,41 @@ class RegistrantController extends Controller
     */
     public function update(Request $request)
     {
-        // $this->validate($request, [
-        //      'name' => 'required',
-        //      'email' => 'required|email|unique:users,email,'.Auth::user()->id,
-        //      'password' => 'same:confirm-password',
-        // ]);
+        $this->validate($request, [
+             'name' => 'required',
+             'email' => 'required|email|unique:users,email,'.Auth::user()->id,
+             'password' => 'same:confirm-password',
+             'address' => 'required',
+             'phone_number' => 'required',
+             'gender' => 'required',
+             'place_birth' => 'required',
+             'date_birth' => 'required',
+             'order_child' => 'required',
+             'amount_sibling' => 'required',
+             'religion' => 'required',
+             'biological_mother_name' => 'required',
+             'father_name' => 'required',
+             'parent_address' => 'required',
+            //  'photo' => 'required',
+            //  'ktp' => 'required',
+            //  'last_cetificate' => 'required',
+        ]);
  
-        // $input = $request->all();
-        // if(!empty($input['password'])){ 
-        //     $input['password'] = Hash::make($input['password']);
-        // }else{
-        //     $input = array_except($input,array('password'));    
-        // }
+        $input = $request->all();
+        if(!empty($input['password'])){ 
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = array_except($input,array('password'));    
+        }
  
-        // $profile_user = User::find(Auth::user()->id);
-        // $profile_user->update($input);
+        $user = User::find(Auth::user()->id);
+        $user->update($input);
+        $registrant = Registrant::find(Auth::user()->id);
+        $registrant->update($input);
+        $upload = Upload::find(Auth::user()->id);
+        $upload->update($input);
  
-        // return redirect()->route('profile_users.show')
-        //                 ->with('success','Profil berhasil diedit');
+        return redirect()->route('registrants.index')
+                        ->with('success','Data diri berhasil disimpan');
     }
 }
