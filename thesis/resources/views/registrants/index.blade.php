@@ -1,7 +1,20 @@
 @extends('layouts.master_registrant')
 
 @section('sidebar_menu')
-<li class="active"><a href="{{ route('registrants.index') }}"><i class="fa fa-user"></i> <span>Data Diri</span></a></li>
+<li class="active treeview menu-open">
+  <a href="{{ route('registrants.index') }}">
+    <i class="fa fa-user"></i>
+    <span>Profil</span>
+  	<span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+  </a>
+  <ul class="treeview-menu">
+    <li class="active"><a href="{{ route('registrants.index') }}"><i class="fa fa-user"></i> Data Diri</a></li>
+    {{--  <li><a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>
+	<li><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>  --}}
+  </ul>
+</li>
 @endsection
 
 @section('content_header')
@@ -26,7 +39,7 @@
  		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  <a class="btn btn-success" href="{{ route('registrants.edit') }}"> Edit</a>  --}}
+					<a class="btn btn-success" href="{{ route('registrants.edit',$data->id) }}"> Edit Data Diri</a>
 				</div>
 			</div>
    		</div>
@@ -83,58 +96,6 @@
 		<tr>
 			<th>Alamat Orangtua</th>
 			<td>{{ $data->parent_address }}</td>
-		</tr>
-		<tr>
-			<th>Riwayat Pendidikan</th>
-			<td>
-				{{--  @if(!empty($data->educations))
-				<thead>
-					<tr>
-						<th>No</th>
-						<th>Jenjang</th>
-						<th>Nama Institusi</th>
-						<th>Jurusan</th>
-						<th>Tahun Lulus</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach ($data->educations as $education)
-					<tr>
-						<td>{{ ++$i }}</td>
-						<td>{{ $education->stage }}</td>
-						<td>{{ $education->name_institution }}</td>
-						<td>{{ $education->major }}</td>
-						<td>{{ $education->graduation_year }}</td>
-					</tr>
-					@endforeach
-				</tbody>
-				@endif  --}}
-			</td>
-		</tr>
-		<tr>
-			<th>Pengalaman Kursus</th>
-			<td>
-				{{--  @if(!empty($data->courses))
-				<thead>
-					<tr>
-						<th>No</th>
-						<th>Jurusan</th>
-						<th>Penyelenggara</th>
-						<th>Tahun Lulus</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach ($data->courses as $course)
-					<tr>
-						<td>{{ ++$i }}</td>
-						<td>{{ $course->major }}</td>
-						<td>{{ $course->organizer }}</td>
-						<td>{{ $course->graduation_year }}</td>
-					</tr>
-					@endforeach
-				</tbody>
-				@endif  --}}
-			</td>
 		</tr>
 		<tr>
 			<th>Pas Foto</th>

@@ -27,7 +27,7 @@
                         <div class="form-group{{ $errors->has('identity_number') ? ' has-error' : '' }}">
                             <div class="input-group mb-1">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input id="identity_number" type="text" class="form-control" name="identity_number" placeholder="Nomor Identitas" required value="{{ old('identity_number') }}">
+                                <input id="identity_number" type="text" class="form-control" name="identity_number" placeholder="Nomor Identitas berupa NIK" required value="{{ old('identity_number') }}">
                             </div>
                             <div>
                                 @if ($errors->has('identity_number'))

@@ -16,8 +16,6 @@ Route::get('/', function() {
 });
 
 Route::auth();
-  
-Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index']);
 
 //Route::group(['middleware' => ['auth']], function() {
 
@@ -25,10 +23,6 @@ Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantControlle
 	// Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@index']);	
 	
 	//registrants
-	// Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index','middleware' => ['permission:user-list|user-edit']]);
-	// Route::get('registrants/{id}/edit',['as'=>'registrants.edit','uses'=>'RegistrantController@edit','middleware' => ['permission:user-edit']]);
-	// Route::patch('registrants/{id}',['as'=>'registrants.update','uses'=>'RegistrantController@update','middleware' => ['permission:user-edit']]);
-
 	Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index']);
 	Route::get('registrants/{id}/edit',['as'=>'registrants.edit','uses'=>'RegistrantController@edit']);
 	Route::patch('registrants/{id}',['as'=>'registrants.update','uses'=>'RegistrantController@update']);
