@@ -1,47 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>404. Halaman tidak ditemukan.</title>
+@extends('layouts.error')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('title')
+<title>404. Halaman tidak ditemukan.</title>
+@endsection
 
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Maaf! Halaman tidak ditemukan.</div>
-            </div>
-        </div>
-    </body>
-</html>
+@section('content')
+<img src="../../errors/404_asset.png" alt="404 Page Not Found">
+<div class="title">Maaf! Halaman tidak ditemukan.</div>
+<br/>
+<a class="button" href="/"> Home</a>
+@endsection
