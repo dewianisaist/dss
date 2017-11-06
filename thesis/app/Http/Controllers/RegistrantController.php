@@ -24,7 +24,7 @@ class RegistrantController extends Controller
     public function index() {
         // $data = Registrant::whereUserId(Auth::user()->id)->first();
         $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
-        return $user;
+        //return $user;
         if ($user->registrant == null) {
             return view('registrants.edit',compact('user'));
         } else {
@@ -85,7 +85,7 @@ class RegistrantController extends Controller
                         'email' => $input['email'], 
                         'password' => $input['password']]);
 
-        $registrant = Registrant::find(Auth::user()->registrant->id)->update(['address' => $input['address'], 
+        $registrant = Registrant::firstOrCreate(['user_id' => Auth::user()->id,'address' => $input['address'], 
                                                                               'phone_number' => $input['phone_number'], 
                                                                               'gender' => $input['gender'], 
                                                                               'place_birth' => $input['place_birth'], 
@@ -97,7 +97,7 @@ class RegistrantController extends Controller
                                                                               'father_name' => $input['father_name'], 
                                                                               'parent_address' => $input['parent_address']]);
 
-        $upload = Upload::whereRegistrantId(Auth::user()->registrant->id)->update(['photo' => $input['photo'], 
+        $upload = Upload::firstOrCreate(['registrant_id' => $registrant->id, 'photo' => $input['photo'], 
                                                                                    'ktp' => $input['ktp'], 
                                                                                    'last_certificate' => $input['last_certificate']]);
  
