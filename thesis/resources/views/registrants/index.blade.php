@@ -48,66 +48,66 @@
 	<table class="table table-striped">
 		<tr>
 			<th>Nama</th>
-			<td>{{ $data->user->name }}</td>
+			<td>{{ $user->name }}</td>
 		</tr>
 		<tr>
 			<th>NIK</th>
-			<td>{{ $data->user->identity_number }}</td>
+			<td>{{ $user->identity_number }}</td>
 		</tr>
 		<tr>
 			<th>email</th>
-			<td>{{ $data->user->email }}</td>
+			<td>{{ $user->email }}</td>
 		</tr>
 		<tr>
 			<th>Alamat</th>
-			<td>{{ $data->address }}</td>
+			<td>{{ $user->registrant->address }}</td>
 		</tr>
 		<tr>
 			<th>No. Telepon/HP</th>
-			<td>{{ $data->phone_number }}</td>
+			<td>{{ $user->registrant->phone_number }}</td>
 		</tr>
 		<tr>
 			<th>Jenis Kelamin</th>
-			<td>{{ $data->gender }}</td>
+			<td>{{ $user->registrant->gender }}</td>
 		</tr>
 		<tr>
 			<th>Tempat, Tanggal Lahir</th>
-			<td>{{ $data->place_birth }}, {{ $data->date_birth }}</td>
+			<td>{{ $user->registrant->place_birth }}, {{ $user->registrant->date_birth }}</td>
 		</tr>
 		<tr>
 			<th>Anak ke-</th>
-			<td>{{ $data->order_child }}</td>
+			<td>{{ $user->registrant->order_child }}</td>
 		</tr>
 		<tr>
 			<th>Jumlah Saudara</th>
-			<td>{{ $data->amount_sibling }}</td>
+			<td>{{ $user->registrant->amount_sibling }}</td>
 		</tr><tr>
 			<th>Agama</th>
-			<td>{{ $data->religion }}</td>
+			<td>{{ $user->registrant->religion }}</td>
 		</tr>
 		<tr>
 			<th>Nama Ibu Kandung</th>
-			<td>{{ $data->biological_mother_name }}</td>
+			<td>{{ $user->registrant->biological_mother_name }}</td>
 		</tr>
 		<tr>
 			<th>Nama Ayah</th>
-			<td>{{ $data->father_name }}</td>
+			<td>{{ $user->registrant->father_name }}</td>
 		</tr>
 		<tr>
 			<th>Alamat Orangtua</th>
-			<td>{{ $data->parent_address }}</td>
+			<td>{{ $user->registrant->parent_address }}</td>
 		</tr>
 		<tr>
 			<th>Pas Foto</th>
-			<td>{{ $data->upload->photo }}</td>
+			<td>{{ $user->registrant->upload->photo }}</td>
 		</tr>
 		<tr>
 			<th>KTP</th>
-			<td>{{ $data->upload->ktp }}</td>
+			<td>{{ $user->registrant->upload->ktp }}</td>
 		</tr>
 		<tr>
 			<th>Ijazah Terakhir</th>
-			<td>{{ $data->upload->last_certificate }}</td>
+			<td>{{ $user->registrant->upload->last_certificate }}</td>
 		</tr>
 	</table>
 @endsection

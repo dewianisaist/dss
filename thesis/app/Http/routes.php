@@ -104,7 +104,4 @@ Route::auth();
 	Route::patch('subvocationals/{id}',['as'=>'subvocationals.update','uses'=>'SubvocationalController@update']);
 	Route::delete('subvocationals/{id}',['as'=>'subvocationals.destroy','uses'=>'SubvocationalController@destroy']);
 
-
-
-	Route::get('test', 'TestController@test');
 //});
