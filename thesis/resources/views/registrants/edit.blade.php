@@ -161,8 +161,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
 						<strong>Pas Foto <small>(Ukuran maksimal 2 MB)</small>:</strong>
-                        {!! Form::text('photo', isset($user->registrant->upload->photo) ? $user->registrant->upload->photo : '', array('placeholder' => 'Photo','class' => 'form-control')) !!}
-						{{--  {!! Form::file('photo', null, array('class' => 'custom-file-control')) !!}  --}}
+                        {{--  {!! Form::text('photo', isset($user->registrant->upload->photo) ? $user->registrant->upload->photo : '', array('placeholder' => 'Photo','class' => 'form-control')) !!}  --}}
+						{!! Form::file('photo', null, array('class' => 'custom-file-control')) !!}
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
