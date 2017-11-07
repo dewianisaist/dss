@@ -45,7 +45,7 @@
                 </ul>
             </div>
 	    @endif
-        {!! Form::model($user, ['method' => 'PATCH','route' => ['registrants.update', isset($user->registrant->id) ? $user->registrant->id : $user->user_id]]) !!}
+        {!! Form::model($user, ['method' => 'PATCH','route' => ['registrants.update', isset($user->registrant->id) ? $user->registrant->id : $user->user_id], 'files' => true]) !!}
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">

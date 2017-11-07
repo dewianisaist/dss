@@ -99,7 +99,7 @@
 		</tr>
 		<tr>
 			<th>Pas Foto</th>
-			<td>{{ $user->registrant->upload->photo }}</td>
+			<td><img width="250" src="{{ URL::to('/uploads/' . $user->registrant->upload->photo) }}" alt="{{ $user->name }}" /></td>
 		</tr>
 		<tr>
 			<th>KTP</th>

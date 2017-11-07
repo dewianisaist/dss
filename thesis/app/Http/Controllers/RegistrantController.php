@@ -66,15 +66,17 @@ class RegistrantController extends Controller
              'biological_mother_name' => 'required',
              'father_name' => 'required',
              'parent_address' => 'required',
-            //  'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'photo' => 'required',
              'ktp' => 'required',
              'last_certificate' => 'required',
         ]);
         
+        $photoName = '';
         if ($request->hasFile('photo')) {
             $photo = $request->input('photo');
-            $photoName = $request->file('photo')->getClientOriginalName();
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $photoName = 'photo_'.md5(Auth::user()->id).'.'.$extension;
             $destination = base_path() . '/public/uploads';
             $request->file('photo')->move($destination, $photoName);
         }
@@ -91,21 +93,25 @@ class RegistrantController extends Controller
                         'email' => $input['email'], 
                         'password' => $input['password']]);
         
-        $registrant = Registrant::firstOrCreate(['user_id' => Auth::user()->id,'address' => $input['address'], 
-                                                                               'phone_number' => $input['phone_number'], 
-                                                                               'gender' => $input['gender'], 
-                                                                               'place_birth' => $input['place_birth'], 
-                                                                               'date_birth' => $input['date_birth'], 
-                                                                               'order_child' => $input['order_child'], 
-                                                                               'amount_sibling' => $input['amount_sibling'], 
-                                                                               'religion' => $input['religion'], 
-                                                                               'biological_mother_name' => $input['biological_mother_name'],
-                                                                               'father_name' => $input['father_name'], 
-                                                                               'parent_address' => $input['parent_address']]);
+        $registrant = Registrant::firstOrCreate(['user_id' => Auth::user()->id]);
+        $registrant->address = $input['address'];
+        $registrant->phone_number = $input['phone_number'];
+        $registrant->gender = $input['gender'];
+        $registrant->place_birth = $input['place_birth'];
+        $registrant->date_birth = $input['date_birth'];
+        $registrant->order_child = $input['order_child'];
+        $registrant->amount_sibling = $input['amount_sibling'];
+        $registrant->religion = $input['religion'];
+        $registrant->biological_mother_name = $input['biological_mother_name'];
+        $registrant->father_name = $input['father_name'];
+        $registrant->parent_address = $input['parent_address'];
+        $registrant->save();
 
-        $upload = Upload::firstOrNew(['registrant_id' => $registrant->id, 'photo' => $input['photo'], 
-                                                                          'ktp' => $input['ktp'], 
-                                                                          'last_certificate' => $input['last_certificate']]);
+        $upload = Upload::firstOrNew(['registrant_id' => $registrant->id]);
+        $upload->photo = $photoName;
+        $upload->ktp = $input['ktp'];
+        $upload->last_certificate = $input['last_certificate'];
+        $upload->save();
  
         return redirect()->route('registrants.index')
                         ->with('success','Data diri berhasil disimpan');
