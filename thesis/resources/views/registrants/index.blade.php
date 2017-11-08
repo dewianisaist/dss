@@ -30,6 +30,13 @@
 @section('content')
 <div class="box box-default">
     <div class="box-body">
+		@if($errors->has())
+			@foreach($errors->all() as $error)
+				<div class="alert alert-danger">
+					<p>{{ $error }}</p>
+				</div>
+			@endforeach
+		@endif
 		@if ($message = Session::get('success'))
 			<div class="alert alert-success">
 				<p>{{ $message }}</p>
