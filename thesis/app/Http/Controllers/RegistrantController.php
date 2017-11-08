@@ -66,26 +66,17 @@ class RegistrantController extends Controller
              'biological_mother_name' => 'required',
              'father_name' => 'required',
              'parent_address' => 'required',
-             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-             'photo' => 'required',
+             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'ktp' => 'required',
              'last_certificate' => 'required',
         ]);
         
-        $photoName = '';
-        if ($request->hasFile('photo')) {
-            $photo = $request->input('photo');
-            $extension = $request->file('photo')->getClientOriginalExtension();
-            $photoName = 'photo_'.md5(Auth::user()->id).'.'.$extension;
-            $destination = base_path() . '/public/uploads';
-            $request->file('photo')->move($destination, $photoName);
-        }
-
         $input = $request->all();
+
         $user = User::find(Auth::user()->id);
-        if(!empty($input['password'])){ 
+        if (!empty($input['password'])) { 
             $input['password'] = Hash::make($input['password']);
-        }else{
+        } else {
             $input['password'] = $user->password;    
         }
  
@@ -108,7 +99,18 @@ class RegistrantController extends Controller
         $registrant->save();
 
         $upload = Upload::firstOrNew(['registrant_id' => $registrant->id]);
-        $upload->photo = $photoName;
+        $photoName = '';
+        if ($request->hasFile('photo')) {
+            $photo = $request->input('photo');
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $photoName = 'photo_'.md5(Auth::user()->id).'.'.$extension;
+            $destination = base_path() . '/public/uploads';
+            $request->file('photo')->move($destination, $photoName);
+            $upload->photo = $photoName;
+        } else {
+            $upload->photo = $upload->photo;
+        }
+        
         $upload->ktp = $input['ktp'];
         $upload->last_certificate = $input['last_certificate'];
         $upload->save();
