@@ -103,11 +103,11 @@
 		</tr>
 		<tr>
 			<th>KTP</th>
-			<td>{{ $user->registrant->upload->ktp }}</td>
+			<td><a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->registrant->upload->ktp) }}" target="_blank"> Lihat KTP</a></td>
 		</tr>
 		<tr>
 			<th>Ijazah Terakhir</th>
-			<td>{{ $user->registrant->upload->last_certificate }}</td>
+			<td><a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->registrant->upload->last_certificate) }}" target="_blank"> Lihat Ijazah Terakhir</a></td>
 		</tr>
 	</table>
 @endsection

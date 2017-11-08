@@ -66,9 +66,9 @@ class RegistrantController extends Controller
              'biological_mother_name' => 'required',
              'father_name' => 'required',
              'parent_address' => 'required',
-             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-             'ktp' => 'required',
-             'last_certificate' => 'required',
+             'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+             'ktp' => 'mimes:pdf,doc,docx|max:2048',
+             'last_certificate' => 'mimes:pdf,doc,docx|max:2048',
         ]);
         
         $input = $request->all();
@@ -102,17 +102,38 @@ class RegistrantController extends Controller
         $photoName = '';
         if ($request->hasFile('photo')) {
             $photo = $request->input('photo');
-            $extension = $request->file('photo')->getClientOriginalExtension();
-            $photoName = 'photo_'.md5(Auth::user()->id).'.'.$extension;
-            $destination = base_path() . '/public/uploads';
-            $request->file('photo')->move($destination, $photoName);
+            $photoExtension = $request->file('photo')->getClientOriginalExtension();
+            $photoName = 'photo_'.md5(Auth::user()->id).'.'.$photoExtension;
+            $photoDestination = base_path() . '/public/uploads';
+            $request->file('photo')->move($photoDestination, $photoName);
             $upload->photo = $photoName;
         } else {
-            $upload->photo = $upload->photo;
+            $upload->photo;
         }
         
-        $upload->ktp = $input['ktp'];
-        $upload->last_certificate = $input['last_certificate'];
+        $ktpName = '';
+        if ($request->hasFile('ktp')) {
+            $ktp = $request->input('ktp');
+            $ktpExtension = $request->file('ktp')->getClientOriginalExtension();
+            $ktpName = 'ktp_'.md5(Auth::user()->id).'.'.$ktpExtension;
+            $ktpDestination = base_path() . '/public/uploads';
+            $request->file('ktp')->move($ktpDestination, $ktpName);
+            $upload->ktp = $ktpName;
+        } else {
+            $upload->ktp;
+        }
+
+        $lastcertificateName = '';
+        if ($request->hasFile('last_certificate')) {
+            $last_certificate = $request->input('last_certificate');
+            $lastcertificateExtension = $request->file('last_certificate')->getClientOriginalExtension();
+            $lastcertificateName = 'lastcertificate_'.md5(Auth::user()->id).'.'.$lastcertificateExtension;
+            $lastcertificateDestination = base_path() . '/public/uploads';
+            $request->file('last_certificate')->move($lastcertificateDestination, $lastcertificateName);
+            $upload->last_certificate = $lastcertificateName;
+        } else {
+            $upload->last_certificate;
+        }
         $upload->save();
  
         return redirect()->route('registrants.index')

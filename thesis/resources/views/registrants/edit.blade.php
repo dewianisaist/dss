@@ -160,23 +160,20 @@
 				</div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Pas Foto <small>(Ukuran maksimal 2 MB)</small>:</strong>
-                        {{--  {!! Form::text('photo', isset($user->registrant->upload->photo) ? $user->registrant->upload->photo : '', array('placeholder' => 'Photo','class' => 'form-control')) !!}  --}}
+						<strong>Pas Foto <small>(Format file: jpeg/png/jpg, Ukuran maksimal 2 MB)</small>:</strong>
 						{!! Form::file('photo', null, array('class' => 'custom-file-control')) !!}
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>KTP:</strong>
-                        {!! Form::text('ktp', isset($user->registrant->upload->ktp) ? $user->registrant->upload->ktp : '', array('placeholder' => 'KTP','class' => 'form-control')) !!}
-						{{--  {!! Form::file('ktp', null, array('class' => 'custom-file-control')) !!}  --}}
+						<strong>KTP <small>(Format file: pdf/doc/docx, Ukuran maksimal 2 MB)</small>:</strong>
+						{!! Form::file('ktp', null, array('class' => 'custom-file-control')) !!}
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Ijazah Terakhir:</strong>
-                        {!! Form::text('last_certificate', isset($user->registrant->upload->last_certificate) ? $user->registrant->upload->last_certificate : '', array('placeholder' => 'Ijazah Terakhir','class' => 'form-control')) !!}
-						{{--  {!! Form::file('last_certificate', null, array('class' => 'custom-file-control')) !!}  --}}
+						<strong>Ijazah Terakhir <small>(Format file: pdf/doc/docx, Ukuran maksimal 2 MB)</small>:</strong>
+						{!! Form::file('last_certificate', null, array('class' => 'custom-file-control')) !!}
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
