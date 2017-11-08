@@ -66,7 +66,7 @@ class RegistrantController extends Controller
              'biological_mother_name' => 'required',
              'father_name' => 'required',
              'parent_address' => 'required',
-             'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+             'photo' => 'mimes:jpeg,png,jpg|max:2048',
              'ktp' => 'mimes:pdf,doc,docx|max:2048',
              'last_certificate' => 'mimes:pdf,doc,docx|max:2048',
         ]);
