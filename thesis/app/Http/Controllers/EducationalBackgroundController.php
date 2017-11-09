@@ -20,13 +20,13 @@ class EducationalBackgroundController extends Controller
     */
    public function index(Request $request)
    {
-        $users = User::with('registrant', 'registrant.educations')->find(Auth::user()->id);
+        $user = User::with('registrant', 'registrant.educations')->find(Auth::user()->id);
         $educational_backgrounds = EducationalBackground::orderBy('education_id','DESC')->paginate(10);
         
-        if ($users->registrant == null) {
-           return view('registrants.edit',compact('users'));
+        if ($user->registrant == null) {
+           return view('registrants.edit',compact('user'));
         } else {
-            return view('educational_background.index',compact('users', 'educational_backgrounds'))
+            return view('educational_background.index',compact('user', 'educational_backgrounds'))
                         ->with('i', ($request->input('page', 1) - 1) * 10);
         }
    }
@@ -70,7 +70,7 @@ class EducationalBackgroundController extends Controller
     /**
     * Display the specified resource.
     *
-    * @param  int  $id
+    * @param  int  $education_id
     * @return \Illuminate\Http\Response
     */
     public function show($education_id)
@@ -84,7 +84,7 @@ class EducationalBackgroundController extends Controller
    /**
     * Show the form for editing the specified resource.
     *
-    * @param  int  $id
+    * @param  int  $education_id
     * @return \Illuminate\Http\Response
     */
    public function edit($education_id)
@@ -101,7 +101,7 @@ class EducationalBackgroundController extends Controller
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
+    * @param  int  $education_id
     * @return \Illuminate\Http\Response
     */
    public function update(Request $request, $education_id)

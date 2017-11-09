@@ -12,7 +12,7 @@
   <ul class="treeview-menu">
     <li><a href="{{ route('registrants.index') }}"><i class="fa fa-user"></i> Data Diri</a></li>
     <li class="active"><a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>
-	{{--  <li><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>  --}}
+		<li><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Pengalaman Kursus/Pelatihan</a></li>
   </ul>
 </li>
 @endsection
@@ -68,13 +68,4 @@
 		{!! Form::close() !!}
 	</div>
 </div>
-@endsection
-
-@section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-<script>
-	$('#datepicker').datetimepicker({
-		format: 'YYYY-MM-DD HH:mm:ss'
-	});
-</script>
 @endsection

@@ -11,23 +11,23 @@
   </a>
   <ul class="treeview-menu">
     <li><a href="{{ route('registrants.index') }}"><i class="fa fa-user"></i> Data Diri</a></li>
-    <li class="active"><a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>
-		<li><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Pengalaman Kursus/Pelatihan</a></li>
+    <li><a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>
+		<li class="active"><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Pengalaman Kursus/Pelatihan</a></li>
   </ul>
 </li>
 @endsection
  
 @section('content_header')
 <h1>
-  Tambah Riwayat Pendidikan
+  Edit Pengalaman Kursus/Pelatihan
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>
-  <li class="active">Tambah Riwayat Pendidikan</li>
+  <li><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Pengalaman Kursus/Pelatihan</a></li>
+  <li class="active">Edit Pengalaman Kursus/Pelatihan</li>
 </ol>
 @endsection
-
+ 
 @section('content')
 <div class="box box-primary">
     <div class="box-body">
@@ -41,24 +41,24 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::open(array('route' => 'educational_background.store','method'=>'POST')) !!}
+		{!! Form::model($course_experience, ['method' => 'PATCH','route' => ['course_experience.update', $course_experience->course_id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nama Institusi:</strong>
-						{!! Form::text('name_institution', null, array('placeholder' => 'Nama Institusi','class' => 'form-control')) !!}
+            <strong>Jurusan:</strong>
+						{!! Form::select('course_id', $course, $coursechoosen, array('class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-            <strong>Jenjang dan Jurusan:</strong>
-						{!! Form::select('education_id', $education,[], array('class' => 'form-control')) !!}
+						<strong>Penyelenggara:</strong>
+						{!! Form::text('organizer', null, array('placeholder' => 'Nama Institusi Penyelenggara','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
 						<strong>Tahun Lulus:</strong>
-						{!! Form::text('graduation_year', null, array('placeholder' => 'Tahun lulus','class' => 'form-control')) !!}
+						{!! Form::text('graduation_year', null, array('placeholder' => 'Tahun Lulus','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">

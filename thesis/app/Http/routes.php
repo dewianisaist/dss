@@ -36,6 +36,15 @@ Route::auth();
 	Route::patch('educational_background/{id}',['as'=>'educational_background.update','uses'=>'EducationalBackgroundController@update']);
 	Route::delete('educational_background/{id}',['as'=>'educational_background.destroy','uses'=>'EducationalBackgroundController@destroy']);
 
+	//course_experience
+	Route::get('course_experience',['as'=>'course_experience.index','uses'=>'CourseExperienceController@index']);
+	Route::get('course_experience/create',['as'=>'course_experience.create','uses'=>'CourseExperienceController@create']);
+	Route::post('course_experience/create',['as'=>'course_experience.store','uses'=>'CourseExperienceController@store']);
+	Route::get('course_experience/{id}',['as'=>'course_experience.show','uses'=>'CourseExperienceController@show']);
+	Route::get('course_experience/{id}/edit',['as'=>'course_experience.edit','uses'=>'CourseExperienceController@edit']);
+	Route::patch('course_experience/{id}',['as'=>'course_experience.update','uses'=>'CourseExperienceController@update']);
+	Route::delete('course_experience/{id}',['as'=>'course_experience.destroy','uses'=>'CourseExperienceController@destroy']);
+
 	//users
 	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:user-list|user-create|user-edit|user-delete']]);
 	// Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create','middleware' => ['permission:user-create']]);
