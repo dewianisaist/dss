@@ -23,7 +23,6 @@ class RegistrantController extends Controller
     */
     public function index() {
         $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
-        //return $user;
         if ($user->registrant == null) {
             return view('registrants.edit',compact('user'));
         } else {
@@ -39,7 +38,6 @@ class RegistrantController extends Controller
    public function edit()
    {
        $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
-    //    return $user;
        return view('registrants.edit',compact('user'));
    }
 

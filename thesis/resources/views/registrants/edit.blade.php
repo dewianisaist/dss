@@ -15,8 +15,8 @@
   </a>
   <ul class="treeview-menu">
     <li class="active"><a href="{{ route('registrants.index') }}"><i class="fa fa-user"></i> Data Diri</a></li>
-    {{--  <li><a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>
-	<li><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>  --}}
+    <li><a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>
+	{{--  <li><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>  --}}
   </ul>
 </li>
 @endsection

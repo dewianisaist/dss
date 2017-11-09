@@ -27,6 +27,15 @@ Route::auth();
 	Route::get('registrants/edit',['as'=>'registrants.edit','uses'=>'RegistrantController@edit']);
 	Route::patch('registrants/',['as'=>'registrants.update','uses'=>'RegistrantController@update']);
 
+	//educational_background
+	Route::get('educational_background',['as'=>'educational_background.index','uses'=>'EducationalBackgroundController@index']);
+	Route::get('educational_background/create',['as'=>'educational_background.create','uses'=>'EducationalBackgroundController@create']);
+	Route::post('educational_background/create',['as'=>'educational_background.store','uses'=>'EducationalBackgroundController@store']);
+	Route::get('educational_background/{id}',['as'=>'educational_background.show','uses'=>'EducationalBackgroundController@show']);
+	Route::get('educational_background/{id}/edit',['as'=>'educational_background.edit','uses'=>'EducationalBackgroundController@edit']);
+	Route::patch('educational_background/{id}',['as'=>'educational_background.update','uses'=>'EducationalBackgroundController@update']);
+	Route::delete('educational_background/{id}',['as'=>'educational_background.destroy','uses'=>'EducationalBackgroundController@destroy']);
+
 	//users
 	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:user-list|user-create|user-edit|user-delete']]);
 	// Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create','middleware' => ['permission:user-create']]);
