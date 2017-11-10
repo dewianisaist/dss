@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Upload extends Model
 {
     protected $table = 'uploads';
+    
     public $fillable = ['registrant_id', 'photo', 'ktp', 'last_certificate'];
 
     public function registrant() {

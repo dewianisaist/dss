@@ -27,4 +27,8 @@ class Registrant extends Model
     public function courses() {
         return $this->belongsToMany('App\Http\Models\Course', 'course_experience');
     }
+
+    public function subvocationals() {
+        return $this->belongsToMany('App\Http\Models\Subvocational', 'registration');
+    }
 }
