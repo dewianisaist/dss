@@ -49,7 +49,7 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					{{--  <th>Jurusan</th>  --}}
+					<th>Jurusan</th>
 					<th>Penyelenggara</th>
 					<th>Tahun Lulus</th>
 					<th width="280px">Aksi</th>
@@ -59,7 +59,7 @@
 				@foreach ($course_experiences as $key => $course_experience)
 				<tr>
 					<td>{{ ++$i }}</td>
-					{{--  <td>{{ $course_experience->course_id }}</td>  --}}
+					<td>{{ $course_experience->course->major }}</td>
 					<td>{{ $course_experience->organizer }}</td>
 					<td>{{ $course_experience->graduation_year }}</td>
 					<td>

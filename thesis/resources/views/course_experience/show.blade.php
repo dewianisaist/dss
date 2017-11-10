@@ -38,7 +38,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Jurusan:</strong>
-					{{ $course->major }}
+					{{ $course_experience->course->major }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">

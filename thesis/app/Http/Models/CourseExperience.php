@@ -11,4 +11,12 @@ class CourseExperience extends Model
     public $fillable = ['registrant_id','course_id','organizer','graduation_year'];   
     
     public $timestamps = false; 
+
+    public function registrant() {
+        return $this->belongsTo('App\Http\Models\Registrant');
+    }
+
+    public function course() {
+        return $this->belongsTo('App\Http\Models\Course');
+    }
 }

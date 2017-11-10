@@ -20,12 +20,13 @@ class CourseExperienceController extends Controller
     */
    public function index(Request $request)
    {
-        $user = User::with('registrant', 'registrant.courses')->find(Auth::user()->id);
-        $course_experiences = CourseExperience::orderBy('course_id','DESC')->paginate(10);
+        $user = User::with('registrant')->find(Auth::user()->id);
         
         if ($user->registrant == null) {
            return view('registrants.edit',compact('user'));
         } else {
+            $course_experiences = CourseExperience::with('course')->whereRegistrantId($user->registrant->id)->orderBy('course_id','DESC')->paginate(10);
+            
             return view('course_experience.index',compact('user', 'course_experiences'))
                         ->with('i', ($request->input('page', 1) - 1) * 10);
         }
@@ -58,8 +59,8 @@ class CourseExperienceController extends Controller
        ]);
 
        $input = $request->all();
-       $users = User::with('registrant', 'registrant.educations')->find(Auth::user()->id);
-       $input['registrant_id'] = $users->registrant->id;
+       $user = User::with('registrant')->find(Auth::user()->id);
+       $input['registrant_id'] = $user->registrant->id;
        $course_experience = CourseExperience::create($input);
 
        return redirect()->route('course_experience.index')
@@ -74,10 +75,9 @@ class CourseExperienceController extends Controller
     */
     public function show($course_id)
     {
-        $course = Course::where('id', $course_id)->first();
-        $course_experience = CourseExperience::where('course_id', $course_id)->first();
-
-        return view('course_experience.show',compact('course','course_experience'));
+        $course_experience = CourseExperience::with('course')->where('course_id', $course_id)->first();
+        
+        return view('course_experience.show',compact('course_experience'));
     }
  
    /**
@@ -111,8 +111,8 @@ class CourseExperienceController extends Controller
         ]);   
 
         $input = $request->except('_method', '_token');
-        $users = User::with('registrant', 'registrant.educations')->find(Auth::user()->id);
-        $input['registrant_id'] = $users->registrant->id;
+        $user = User::with('registrant')->find(Auth::user()->id);
+        $input['registrant_id'] = $user->registrant->id;
         CourseExperience::where('course_id', $course_id)->update($input);
 
        return redirect()->route('course_experience.index')
