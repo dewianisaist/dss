@@ -25,7 +25,7 @@ class EducationalBackgroundController extends Controller
         if ($user->registrant == null) {
            return view('registrants.edit',compact('user'));
         } else {
-            $educational_backgrounds = EducationalBackground::whereRegistrantId($user->registrant->id)->orderBy('education_id','DESC')->paginate(10);
+            $educational_backgrounds = EducationalBackground::with('education')->whereRegistrantId($user->registrant->id)->orderBy('education_id','DESC')->paginate(10);
             
             return view('educational_background.index',compact('user', 'educational_backgrounds'))
                         ->with('i', ($request->input('page', 1) - 1) * 10);
@@ -60,8 +60,8 @@ class EducationalBackgroundController extends Controller
        ]);
 
        $input = $request->all();
-       $users = User::with('registrant', 'registrant.educations')->find(Auth::user()->id);
-       $input['registrant_id'] = $users->registrant->id;
+       $user = User::with('registrant')->find(Auth::user()->id);
+       $input['registrant_id'] = $user->registrant->id;
        $educational_background = EducationalBackground::create($input);
 
        return redirect()->route('educational_background.index')
@@ -76,10 +76,9 @@ class EducationalBackgroundController extends Controller
     */
     public function show($education_id)
     {
-        $education = Education::where('id', $education_id)->first();
-        $educational_background = EducationalBackground::where('education_id', $education_id)->first();
+        $educational_background = EducationalBackground::with('education')->where('education_id', $education_id)->first();
 
-        return view('educational_background.show',compact('education','educational_background'));
+        return view('educational_background.show',compact('educational_background'));
     }
  
    /**
@@ -114,8 +113,8 @@ class EducationalBackgroundController extends Controller
         ]);   
 
        $input = $request->except('_method', '_token');
-       $users = User::with('registrant', 'registrant.educations')->find(Auth::user()->id);
-       $input['registrant_id'] = $users->registrant->id;
+       $user = User::with('registrant')->find(Auth::user()->id);
+       $input['registrant_id'] = $user->registrant->id;
        EducationalBackground::where('education_id', $education_id)->update($input);
 
        return redirect()->route('educational_background.index')
