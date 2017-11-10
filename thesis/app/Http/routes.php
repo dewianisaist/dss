@@ -22,12 +22,12 @@ Route::auth();
 	//Route::get('/dashboard', 'HomeController@index');
 	// Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@index']);	
 	
-	//registrants
+	//registrants - tidak ada permission
 	Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index']);
 	Route::get('registrants/edit',['as'=>'registrants.edit','uses'=>'RegistrantController@edit']);
 	Route::patch('registrants/',['as'=>'registrants.update','uses'=>'RegistrantController@update']);
 
-	//educational_background
+	//educational_background - tidak ada permission
 	Route::get('educational_background',['as'=>'educational_background.index','uses'=>'EducationalBackgroundController@index']);
 	Route::get('educational_background/create',['as'=>'educational_background.create','uses'=>'EducationalBackgroundController@create']);
 	Route::post('educational_background/create',['as'=>'educational_background.store','uses'=>'EducationalBackgroundController@store']);
@@ -36,7 +36,7 @@ Route::auth();
 	Route::patch('educational_background/{id}',['as'=>'educational_background.update','uses'=>'EducationalBackgroundController@update']);
 	Route::delete('educational_background/{id}',['as'=>'educational_background.destroy','uses'=>'EducationalBackgroundController@destroy']);
 
-	//course_experience
+	//course_experience - tidak ada permission
 	Route::get('course_experience',['as'=>'course_experience.index','uses'=>'CourseExperienceController@index']);
 	Route::get('course_experience/create',['as'=>'course_experience.create','uses'=>'CourseExperienceController@create']);
 	Route::post('course_experience/create',['as'=>'course_experience.store','uses'=>'CourseExperienceController@store']);
@@ -54,6 +54,7 @@ Route::auth();
 	// Route::patch('users/{id}',['as'=>'users.update','uses'=>'UserController@update','middleware' => ['permission:user-edit']]);
 	// Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy','middleware' => ['permission:user-delete']]);
 
+	//users - ada permission, belum ditambahkan
 	Route::get('users',['as'=>'users.index','uses'=>'UserController@index']);
 	Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create']);
 	Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store']);
@@ -70,6 +71,7 @@ Route::auth();
 	// Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update','middleware' => ['permission:role-edit']]);
 	// Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy','middleware' => ['permission:role-delete']]);
 
+	//roles - ada permission, belum ditambahkan
 	Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index']);
 	Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create']);
 	Route::post('roles/create',['as'=>'roles.store','uses'=>'RoleController@store']);
@@ -86,6 +88,7 @@ Route::auth();
 	// Route::patch('vocationals/{id}',['as'=>'vocationals.update','uses'=>'VocationalController@update','middleware' => ['permission:vocational-edit']]);
 	// Route::delete('vocationals/{id}',['as'=>'vocationals.destroy','uses'=>'VocationalController@destroy','middleware' => ['permission:vocational-delete']]);
 
+	//vocationals - ada permission, belum ditambahkan
 	Route::get('vocationals',['as'=>'vocationals.index','uses'=>'VocationalController@index']);
 	Route::get('vocationals/create',['as'=>'vocationals.create','uses'=>'VocationalController@create']);
 	Route::post('vocationals/create',['as'=>'vocationals.store','uses'=>'VocationalController@store']);
@@ -94,6 +97,7 @@ Route::auth();
 	Route::patch('vocationals/{id}',['as'=>'vocationals.update','uses'=>'VocationalController@update']);
 	Route::delete('vocationals/{id}',['as'=>'vocationals.destroy','uses'=>'VocationalController@destroy']);
 
+	//educations - ada permission, belum ditambahkan
 	Route::get('educations',['as'=>'educations.index','uses'=>'EducationController@index']);
 	Route::get('educations/create',['as'=>'educations.create','uses'=>'EducationController@create']);
 	Route::post('educations/create',['as'=>'educations.store','uses'=>'EducationController@store']);
@@ -102,6 +106,7 @@ Route::auth();
 	Route::patch('educations/{id}',['as'=>'educations.update','uses'=>'EducationController@update']);
 	Route::delete('educations/{id}',['as'=>'educations.destroy','uses'=>'EducationController@destroy']);
 
+	//courses - ada permission, belum ditambahkan
 	Route::get('courses',['as'=>'courses.index','uses'=>'CourseController@index']);
 	Route::get('courses/create',['as'=>'courses.create','uses'=>'CourseController@create']);
 	Route::post('courses/create',['as'=>'courses.store','uses'=>'CourseController@store']);
@@ -110,10 +115,12 @@ Route::auth();
 	Route::patch('courses/{id}',['as'=>'courses.update','uses'=>'CourseController@update']);
 	Route::delete('courses/{id}',['as'=>'courses.destroy','uses'=>'CourseController@destroy']);
 
+	//profile_users - tidak ada permission
 	Route::get('profile_users',['as'=>'profile_users.show','uses'=>'ProfileUserController@show']);
 	Route::get('profile_users/edit',['as'=>'profile_users.edit','uses'=>'ProfileUserController@edit']);
 	Route::patch('profile_users',['as'=>'profile_users.update','uses'=>'ProfileUserController@update']);
 	
+	//subvocationals - ada permission, belum ditambahkan
 	Route::get('subvocationals',['as'=>'subvocationals.index','uses'=>'SubvocationalController@index']);
 	Route::get('subvocationals/create',['as'=>'subvocationals.create','uses'=>'SubvocationalController@create']);
 	Route::post('subvocationals/create',['as'=>'subvocationals.store','uses'=>'SubvocationalController@store']);
@@ -121,5 +128,14 @@ Route::auth();
 	Route::get('subvocationals/{id}/edit',['as'=>'subvocationals.edit','uses'=>'SubvocationalController@edit']);
 	Route::patch('subvocationals/{id}',['as'=>'subvocationals.update','uses'=>'SubvocationalController@update']);
 	Route::delete('subvocationals/{id}',['as'=>'subvocationals.destroy','uses'=>'SubvocationalController@destroy']);
+
+	//preferences - ada permission, belum ditambahkan
+	Route::get('preferences',['as'=>'preferences.index','uses'=>'PreferenceController@index']);
+	Route::get('preferences/create',['as'=>'preferences.create','uses'=>'PreferenceController@create']);
+	Route::post('preferences/create',['as'=>'preferences.store','uses'=>'PreferenceController@store']);
+	Route::get('preferences/{id}',['as'=>'preferences.show','uses'=>'PreferenceController@show']);
+	Route::get('preferences/{id}/edit',['as'=>'preferences.edit','uses'=>'PreferenceController@edit']);
+	Route::patch('preferences/{id}',['as'=>'preferences.update','uses'=>'PreferenceController@update']);
+	Route::delete('preferences/{id}',['as'=>'preferences.destroy','uses'=>'PreferenceController@destroy']);
 
 //});

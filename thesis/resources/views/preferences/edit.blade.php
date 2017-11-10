@@ -3,7 +3,7 @@
 @section('sidebar_menu')
 <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
 <li><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i>  <span>Data <dfn>Roles</dfn></span></a></li>
-<li class="treeview">
+<li class="active treeview menu-open">
   <a href="{{ route('vocationals.index') }}">
     <i class="fa fa-industry"></i>
     <span>Program</span>
@@ -12,13 +12,13 @@
     </span>
   </a>
   <ul class="treeview-menu">
-    <li><a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i> Kejuruan</a></li>
+    <li class="active"><a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i> Kejuruan</a></li>
     <li><a href="{{ route('subvocationals.index') }}"><i class="fa fa-industry"></i> Sub-Kejuruan</a></li>
   </ul>
 </li>
 <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a></li>
-<li class="active"><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
-<li class="treeview">
+<li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
+<li class="active treeview menu-open">
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
     <span>Penilaian</span>
@@ -27,20 +27,20 @@
     </span>
   </a>
   <ul class="treeview-menu">
-    <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i>  <span>Preferensi</span></a></li>
+    <li class="active"><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i>  <span>Preferensi</span></a></li>
     {{--  <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i>  <span>Hasil</a></li>  --}}
   </ul>
 </li>
 @endsection
-
+  
 @section('content_header')
 <h1>
-  Edit Kursus
+  Edit Preferensi
+  <dfn><small>Control panel</small></dfn>
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i> Manajemen Kursus</a></li>
-  <li class="active">Edit Kursus</li>
+  <li class="active">Edit Preferensi</li>
 </ol>
 @endsection
  
@@ -57,12 +57,18 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::model($course, ['method' => 'PATCH','route' => ['courses.update', $course->id]]) !!}
+		{!! Form::model($vocational, ['method' => 'PATCH','route' => ['vocationals.update', $vocational->id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Jurusan:</strong>
-						{!! Form::text('major', null, array('placeholder' => 'Jurusan Kursus','class' => 'form-control')) !!}
+						<strong>Nama:</strong>
+						{!! Form::text('name', null, array('placeholder' => 'Nama Kejuruan','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Deskripsi:</strong>
+						{!! Form::textarea('description', null, array('placeholder' => 'Deskripsi','class' => 'form-control','style'=>'height:100px')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
