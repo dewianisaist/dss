@@ -20,12 +20,13 @@ class EducationalBackgroundController extends Controller
     */
    public function index(Request $request)
    {
-        $user = User::with('registrant', 'registrant.educations')->find(Auth::user()->id);
-        $educational_backgrounds = EducationalBackground::orderBy('education_id','DESC')->paginate(10);
+        $user = User::with('registrant')->find(Auth::user()->id);
         
         if ($user->registrant == null) {
            return view('registrants.edit',compact('user'));
         } else {
+            $educational_backgrounds = EducationalBackground::whereRegistrantId($user->registrant->id)->orderBy('education_id','DESC')->paginate(10);
+            
             return view('educational_background.index',compact('user', 'educational_backgrounds'))
                         ->with('i', ($request->input('page', 1) - 1) * 10);
         }
