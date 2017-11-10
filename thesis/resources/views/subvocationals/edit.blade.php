@@ -22,6 +22,19 @@
 </li>
 <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a></li>
 <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
+<li class="treeview">
+  <a href="{{ route('preferences.index') }}">
+    <i class="fa fa-hourglass-half"></i>
+    <span>Penilaian</span>
+  	<span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+  </a>
+  <ul class="treeview-menu">
+    <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i>  <span>Preferensi</span></a></li>
+    {{--  <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i>  <span>Hasil</a></li>  --}}
+  </ul>
+</li>
 @endsection
  
 @section('content_header')
