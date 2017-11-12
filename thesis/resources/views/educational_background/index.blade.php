@@ -65,9 +65,17 @@
 					<td>{{ $educational_background->education->major }}</td>
 					<td>{{ $educational_background->graduation_year }}</td>
 					<td>
-						<a class="btn btn-info" href="{{ route('educational_background.show',$educational_background->education_id) }}">Detail</a>
-						<a class="btn btn-primary" href="{{ route('educational_background.edit',$educational_background->education_id) }}">Edit</a>
-						{!! Form::open(['method' => 'DELETE','route' => ['educational_background.destroy', $educational_background->education_id],'style'=>'display:inline']) !!}
+						<a class="btn btn-info" href="{{ URL::route('educational_background.show', 
+																								[$educational_background->education_id,
+																								$educational_background->name_institution, 
+																								$educational_background->graduation_year]) }}">Detail</a>
+						<a class="btn btn-primary" href="{{ URL::route('educational_background.edit', 
+																										[$educational_background->education_id,
+																										$educational_background->name_institution, 
+																										$educational_background->graduation_year]) }}">Edit</a>
+						{!! Form::open(['method' => 'DELETE','route' => ['educational_background.destroy', 
+										$educational_background->education_id,$educational_background->name_institution, 
+										$educational_background->graduation_year],'style'=>'display:inline']) !!}
 						{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 						{!! Form::close() !!}
 					</td>

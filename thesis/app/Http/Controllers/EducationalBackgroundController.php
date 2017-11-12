@@ -25,7 +25,8 @@ class EducationalBackgroundController extends Controller
         if ($user->registrant == null) {
            return view('registrants.edit',compact('user'));
         } else {
-            $educational_backgrounds = EducationalBackground::with('education')->whereRegistrantId($user->registrant->id)->orderBy('education_id','DESC')->paginate(10);
+            $educational_backgrounds = EducationalBackground::with('education')->whereRegistrantId($user->registrant->id)
+                                                                               ->orderBy('education_id','DESC')->paginate(10);
             
             return view('educational_background.index',compact('user', 'educational_backgrounds'))
                         ->with('i', ($request->input('page', 1) - 1) * 10);
@@ -40,7 +41,7 @@ class EducationalBackgroundController extends Controller
    public function create()
    {
     $education = Education::select(DB::raw('CONCAT(stage, " - ", major) AS jenjang_jurusan'), 'id')
-                                            ->lists('jenjang_jurusan', 'id');
+                                       ->lists('jenjang_jurusan', 'id');
 
     return view('educational_background.create',compact('education'));
    }
@@ -71,25 +72,29 @@ class EducationalBackgroundController extends Controller
     /**
     * Display the specified resource.
     *
-    * @param  int  $education_id
+    * @param  int  $education_id, $name_institution, $graduation_year
     * @return \Illuminate\Http\Response
     */
-    public function show($education_id)
+    public function show($education_id, $name_institution, $graduation_year)
     {
-        $educational_background = EducationalBackground::with('education')->where('education_id', $education_id)->first();
-
+        $educational_background = EducationalBackground::with('education')
+                                                        ->where('education_id', $education_id)
+                                                        ->where('name_institution', $name_institution)
+                                                        ->where('graduation_year', $graduation_year)->first();
         return view('educational_background.show',compact('educational_background'));
     }
  
    /**
     * Show the form for editing the specified resource.
     *
-    * @param  int  $education_id
+    * @param  int  $education_id, $name_institution, $graduation_year
     * @return \Illuminate\Http\Response
     */
-   public function edit($education_id)
+   public function edit($education_id, $name_institution, $graduation_year)
    {
-        $educational_background = EducationalBackground::where('education_id', $education_id)->first();
+        $educational_background = EducationalBackground::where('education_id', $education_id)
+                                                        ->where('name_institution', $name_institution)
+                                                        ->where('graduation_year', $graduation_year)->first();
         $education = Education::select(DB::raw('CONCAT(stage, " - ", major) AS jenjang_jurusan'), 'id')
                                                 ->lists('jenjang_jurusan', 'id');
         $educationchoosen = EducationalBackground::where('education_id', $educational_background)->value('education_id');
@@ -101,10 +106,10 @@ class EducationalBackgroundController extends Controller
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @param  int  $education_id
+    * @param  int  $education_id, $name_institution, $graduation_year
     * @return \Illuminate\Http\Response
     */
-   public function update(Request $request, $education_id)
+   public function update(Request $request, $education_id, $name_institution, $graduation_year)
    {
         $this->validate($request, [
             'name_institution' => 'required',
@@ -115,7 +120,10 @@ class EducationalBackgroundController extends Controller
        $input = $request->except('_method', '_token');
        $user = User::with('registrant')->find(Auth::user()->id);
        $input['registrant_id'] = $user->registrant->id;
-       EducationalBackground::where('education_id', $education_id)->update($input);
+       EducationalBackground::where('education_id', $education_id)
+                            ->where('name_institution', $name_institution)
+                            ->where('graduation_year', $graduation_year)
+                            ->update($input);
 
        return redirect()->route('educational_background.index')
                         ->with('success','Riwayat pendidikan berhasil diedit');
@@ -124,12 +132,15 @@ class EducationalBackgroundController extends Controller
    /**
     * Remove the specified resource from storage.
     *
-    * @param  int  $education_id
+    * @param  int  $education_id, $name_institution, $graduation_year
     * @return \Illuminate\Http\Response
     */
-   public function destroy($education_id)
+   public function destroy($education_id, $name_institution, $graduation_year)
    {
-       EducationalBackground::where('education_id', $education_id)->delete();
+       EducationalBackground::where('education_id', $education_id)
+                            ->where('name_institution', $name_institution)
+                            ->where('graduation_year', $graduation_year)
+                            ->delete();
 
        return redirect()->route('educational_background.index')
                         ->with('success','Riwayat pendidikan berhasil dihapus');

@@ -31,10 +31,10 @@ Route::auth();
 	Route::get('educational_background',['as'=>'educational_background.index','uses'=>'EducationalBackgroundController@index']);
 	Route::get('educational_background/create',['as'=>'educational_background.create','uses'=>'EducationalBackgroundController@create']);
 	Route::post('educational_background/create',['as'=>'educational_background.store','uses'=>'EducationalBackgroundController@store']);
-	Route::get('educational_background/{id}',['as'=>'educational_background.show','uses'=>'EducationalBackgroundController@show']);
-	Route::get('educational_background/{id}/edit',['as'=>'educational_background.edit','uses'=>'EducationalBackgroundController@edit']);
-	Route::patch('educational_background/{id}',['as'=>'educational_background.update','uses'=>'EducationalBackgroundController@update']);
-	Route::delete('educational_background/{id}',['as'=>'educational_background.destroy','uses'=>'EducationalBackgroundController@destroy']);
+	Route::get('educational_background/{id}/{institutionid}/{graduationid}',['as'=>'educational_background.show','uses'=>'EducationalBackgroundController@show']);
+	Route::get('educational_background/{id}/{institutionid}/{graduationid}/edit',['as'=>'educational_background.edit','uses'=>'EducationalBackgroundController@edit']);
+	Route::patch('educational_background/{id}/{institutionid}/{graduationid}',['as'=>'educational_background.update','uses'=>'EducationalBackgroundController@update']);
+	Route::delete('educational_background/{id}/{institutionid}/{graduationid}',['as'=>'educational_background.destroy','uses'=>'EducationalBackgroundController@destroy']);
 
 	//course_experience - tidak ada permission
 	Route::get('course_experience',['as'=>'course_experience.index','uses'=>'CourseExperienceController@index']);

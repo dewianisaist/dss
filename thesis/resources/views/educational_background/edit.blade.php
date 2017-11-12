@@ -41,7 +41,9 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::model($educational_background, ['method' => 'PATCH','route' => ['educational_background.update', $educational_background->education_id]]) !!}
+		{!! Form::model($educational_background, ['method' => 'PATCH','route' => ['educational_background.update', 
+							$educational_background->education_id, $educational_background->name_institution, 
+							$educational_background->graduation_year]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
