@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 09, 2017 at 05:08 PM
+-- Generation Time: Nov 12, 2017 at 04:03 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -50,8 +50,8 @@ INSERT INTO `courses` (`id`, `major`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `course_experience` (
   `registrant_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
-  `organizer` varchar(100) DEFAULT NULL,
-  `graduation_year` year(4) DEFAULT NULL
+  `organizer` varchar(100) NOT NULL,
+  `graduation_year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -59,8 +59,8 @@ CREATE TABLE `course_experience` (
 --
 
 INSERT INTO `course_experience` (`registrant_id`, `course_id`, `organizer`, `graduation_year`) VALUES
-(1, 1, 'test penyelenggara 1', 2010),
-(1, 2, 'organizer 2', 2016);
+(1, 1, 'A', 2010),
+(1, 2, 'Tunas Jaya', 2012);
 
 -- --------------------------------------------------------
 
@@ -91,8 +91,8 @@ CREATE TABLE `criterias` (
 CREATE TABLE `educational_background` (
   `registrant_id` int(11) NOT NULL,
   `education_id` int(11) NOT NULL,
-  `name_institution` varchar(100) DEFAULT NULL,
-  `graduation_year` year(4) DEFAULT NULL
+  `name_institution` varchar(100) NOT NULL,
+  `graduation_year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -102,8 +102,9 @@ CREATE TABLE `educational_background` (
 INSERT INTO `educational_background` (`registrant_id`, `education_id`, `name_institution`, `graduation_year`) VALUES
 (1, 2, 'SDN 1 Bantul', 2004),
 (1, 3, 'SMP 1 Bantul', 2007),
-(1, 5, 'SMA 1 Bantul', 2010),
-(1, 8, 'UGM', 2014),
+(1, 6, 'SMA 1 Bantul', 2015),
+(1, 7, 'SMK 1 Bantul', 2015),
+(1, 8, 'UGM Jogja', 2013),
 (1, 9, 'UGM', 2017);
 
 -- --------------------------------------------------------
@@ -339,6 +340,7 @@ INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
 (5, 15),
 (5, 16),
 (5, 17),
+(5, 18),
 (8, 8),
 (8, 10),
 (8, 12);
@@ -447,7 +449,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$2pNzr3yp2GYlVrqq5Wmfb.bRpA77/vfgf203DaENMV12dPqN9J0Yq', 'dBkSjmSqrt2YvYVy9kuzl3gwaCd0DiDiTo1l1mTBZH6YtRnH90uSmJjApKTW', '2017-10-17 21:16:53', '2017-11-01 23:46:58'),
 (5, '44444444', 'pendaftar 3', 'pendaftar3@tes.com', '$2y$10$a6rU.U6LUP531qy06kJuwuZFTJQ9F/QgagDsw01AAx9koPlhdtpJi', 'XREU371rNZXNgyyiZzk8fWStBE5YIp8KBWC6vDsrc8hZYmaaKTjYkrHVAvXw', '2017-10-17 23:27:11', '2017-11-06 03:04:08'),
-(6, '11111111', 'pendaftar 1abc', 'pendaftar1abc@tes.com', '$2y$10$OeonwX8NnwEcm2yX7.OJUukXUYWOdn/sPuANroPexuh4N.zlF/ojO', 'KpMg6HXComlbMuXljwz5xumqcxophHZy7YiVRC1CWcFG4WK91OyeYGZk4FOF', '2017-10-18 06:45:21', '2017-11-07 21:25:22'),
+(6, '11111111', 'pendaftar 1abc ok', 'pendaftar1abc@tes.com', '$2y$10$OeonwX8NnwEcm2yX7.OJUukXUYWOdn/sPuANroPexuh4N.zlF/ojO', '6sMEUBiznNu8WX6U0MjWBCqGR9GJGkf1GZC3SvObcTtQZl0G0ihjnZZzgTrE', '2017-10-18 06:45:21', '2017-11-12 07:55:46'),
 (8, '77777777', 'z', 'ana@tes.comx', '$2y$10$49i22d1tkyUSUwYiTPmodORiK5zwJb247XG9AfpakJ4G6QXrXK70q', NULL, '2017-10-25 11:19:33', '2017-10-25 11:19:33'),
 (9, '55555555', 'b', 'b@tes.com', '$2y$10$kxjdNEVAZyF5/qN8gOYrM.STdJTGf1CLk7VniOORMwhIqtycRbryO', NULL, '2017-10-25 11:19:52', '2017-10-25 11:19:52'),
 (10, '88888888', 'a', 'f@tes.com', '$2y$10$GfMTtAXagRgRALezrb90iukwxlGDSGts96oV9KEKcCvr4yRA.9pte', NULL, '2017-10-25 11:20:11', '2017-10-25 11:48:04'),
@@ -457,7 +459,8 @@ INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `reme
 (14, '0987654321', 'k', 'k@tes.com', '$2y$10$9vWduI9BkQxo.FnLxUcLFOeofM7WoGwlTsdt3v6yPgt9zl1LNIlNK', NULL, '2017-10-25 12:37:55', '2017-10-25 12:37:55'),
 (15, '567890', 'hello', 'hello@test.com', '$2y$10$YUl7GobZsmT2ZZzjUo5omuMthtcu/NFXbRgdMzu8SrSgsgsHciDUm', NULL, '2017-10-25 12:38:20', '2017-10-25 12:38:20'),
 (16, '123123', 'lala', 'la@tes.com', '$2y$10$WizBsbCIvCNzIyUdL7apy.npg24clkIcn0jQv78wsOS9gNLQkxZr.', '80NAWmTUfrr5wSBgSsC3Mwr7V7XyERsxlwE72qfeiRWvxDLwqfJu5i3WjSrk', '2017-10-25 13:03:24', '2017-10-25 13:05:24'),
-(17, '101010', 'pendaftar10', 'pendaftar10@tes.com', '$2y$10$IqshMWOtcLZ91WrA6eG04e4p7mLlJalpMboQmP90F0qmiH36/HjNG', NULL, '2017-11-07 21:26:19', '2017-11-07 21:26:19');
+(17, '101010', 'pendaftar10', 'pendaftar10@tes.com', '$2y$10$IqshMWOtcLZ91WrA6eG04e4p7mLlJalpMboQmP90F0qmiH36/HjNG', NULL, '2017-11-07 21:26:19', '2017-11-07 21:26:19'),
+(18, '898989', 'siena', 'siena@test.com', '$2y$10$JFgde4oi9T6A1ZmSkKqn8OlfdqB/E6VQwYCbKvSVzL6.C.v3ma7BS', 'AehUgT37lkxk8DDiJJ9FXtQiIpNB741iQP48Lmn7SHe1jGnc79TD1UFGePam', '2017-11-09 10:46:22', '2017-11-09 10:48:50');
 
 -- --------------------------------------------------------
 
@@ -496,7 +499,7 @@ ALTER TABLE `courses`
 -- Indexes for table `course_experience`
 --
 ALTER TABLE `course_experience`
-  ADD PRIMARY KEY (`registrant_id`,`course_id`),
+  ADD PRIMARY KEY (`registrant_id`,`course_id`,`organizer`,`graduation_year`),
   ADD KEY `fk_pendaftar_has_kursus_kursus1_idx` (`course_id`),
   ADD KEY `fk_pendaftar_has_kursus_pendaftar1_idx` (`registrant_id`);
 
@@ -511,7 +514,7 @@ ALTER TABLE `criterias`
 -- Indexes for table `educational_background`
 --
 ALTER TABLE `educational_background`
-  ADD PRIMARY KEY (`registrant_id`,`education_id`),
+  ADD PRIMARY KEY (`registrant_id`,`education_id`,`name_institution`,`graduation_year`),
   ADD KEY `fk_pendaftar_has_pendidikan_pendidikan1_idx` (`education_id`),
   ADD KEY `fk_pendaftar_has_pendidikan_pendaftar1_idx` (`registrant_id`);
 
@@ -679,7 +682,7 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --
