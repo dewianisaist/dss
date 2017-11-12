@@ -23,7 +23,8 @@ class CourseExperienceController extends Controller
         $user = User::with('registrant')->find(Auth::user()->id);
         
         if ($user->registrant == null) {
-           return view('registrants.edit',compact('user'));
+            return redirect()->route('registrants.edit')
+                             ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
         } else {
             $course_experiences = CourseExperience::with('course')->whereRegistrantId($user->registrant->id)->orderBy('course_id','DESC')->paginate(10);
             

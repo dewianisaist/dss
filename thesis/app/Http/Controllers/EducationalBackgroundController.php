@@ -23,7 +23,8 @@ class EducationalBackgroundController extends Controller
         $user = User::with('registrant')->find(Auth::user()->id);
         
         if ($user->registrant == null) {
-           return view('registrants.edit',compact('user'));
+            return redirect()->route('registrants.edit')
+                             ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
         } else {
             $educational_backgrounds = EducationalBackground::with('education')->whereRegistrantId($user->registrant->id)
                                                                                ->orderBy('education_id','DESC')->paginate(10);

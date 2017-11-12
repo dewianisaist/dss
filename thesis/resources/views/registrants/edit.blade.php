@@ -35,6 +35,11 @@
 @section('content')
 <div class="box box-primary">
     <div class="box-body">
+        @if ($message = Session::get('failed'))
+			<div class="alert alert-error">
+				<p>{{ $message }}</p>
+			</div>
+		@endif
 	    @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Maaf!</strong> Ada kesalahan dengan data yang Anda masukkan.<br><br>

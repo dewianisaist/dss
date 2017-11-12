@@ -24,7 +24,8 @@ class RegistrantController extends Controller
     public function index() {
         $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
         if ($user->registrant == null) {
-            return view('registrants.edit',compact('user'));
+            return redirect()->route('registrants.edit')
+                             ->with('failed','Silahkan lengkapi data diri Anda dahulu.');
         } else {
             return view('registrants.index',compact('user'));
         }
