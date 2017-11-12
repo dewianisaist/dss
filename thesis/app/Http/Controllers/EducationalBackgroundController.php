@@ -80,7 +80,9 @@ class EducationalBackgroundController extends Controller
         $educational_background = EducationalBackground::with('education')
                                                         ->where('education_id', $education_id)
                                                         ->where('name_institution', $name_institution)
-                                                        ->where('graduation_year', $graduation_year)->first();
+                                                        ->where('graduation_year', $graduation_year)
+                                                        ->first();
+
         return view('educational_background.show',compact('educational_background'));
     }
  

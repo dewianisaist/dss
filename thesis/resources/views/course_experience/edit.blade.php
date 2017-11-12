@@ -41,7 +41,8 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::model($course_experience, ['method' => 'PATCH','route' => ['course_experience.update', $course_experience->course_id]]) !!}
+		{!! Form::model($course_experience, ['method' => 'PATCH','route' => ['course_experience.update', 
+						$course_experience->course_id, $course_experience->organizer, $course_experience->graduation_year]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">

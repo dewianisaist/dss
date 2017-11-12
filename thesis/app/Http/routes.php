@@ -40,10 +40,10 @@ Route::auth();
 	Route::get('course_experience',['as'=>'course_experience.index','uses'=>'CourseExperienceController@index']);
 	Route::get('course_experience/create',['as'=>'course_experience.create','uses'=>'CourseExperienceController@create']);
 	Route::post('course_experience/create',['as'=>'course_experience.store','uses'=>'CourseExperienceController@store']);
-	Route::get('course_experience/{id}',['as'=>'course_experience.show','uses'=>'CourseExperienceController@show']);
-	Route::get('course_experience/{id}/edit',['as'=>'course_experience.edit','uses'=>'CourseExperienceController@edit']);
-	Route::patch('course_experience/{id}',['as'=>'course_experience.update','uses'=>'CourseExperienceController@update']);
-	Route::delete('course_experience/{id}',['as'=>'course_experience.destroy','uses'=>'CourseExperienceController@destroy']);
+	Route::get('course_experience/{id}/{organizerid}/{graduationid}',['as'=>'course_experience.show','uses'=>'CourseExperienceController@show']);
+	Route::get('course_experience/{id}/{organizerid}/{graduationid}/edit',['as'=>'course_experience.edit','uses'=>'CourseExperienceController@edit']);
+	Route::patch('course_experience/{id}/{organizerid}/{graduationid}',['as'=>'course_experience.update','uses'=>'CourseExperienceController@update']);
+	Route::delete('course_experience/{id}/{organizerid}/{graduationid}',['as'=>'course_experience.destroy','uses'=>'CourseExperienceController@destroy']);
 
 	//registration - tidak ada permission
 	Route::get('registrations',['as'=>'registrations.index','uses'=>'RegistrationController@index']);

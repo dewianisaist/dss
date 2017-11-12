@@ -63,9 +63,17 @@
 					<td>{{ $course_experience->organizer }}</td>
 					<td>{{ $course_experience->graduation_year }}</td>
 					<td>
-						<a class="btn btn-info" href="{{ route('course_experience.show',$course_experience->course_id) }}">Detail</a>
-						<a class="btn btn-primary" href="{{ route('course_experience.edit',$course_experience->course_id) }}">Edit</a>
-						{!! Form::open(['method' => 'DELETE','route' => ['course_experience.destroy', $course_experience->course_id],'style'=>'display:inline']) !!}
+						<a class="btn btn-info" href="{{ URL::route('course_experience.show',
+																								[$course_experience->course_id,
+																								$course_experience->organizer,
+																								$course_experience->graduation_year]) }}">Detail</a>
+						<a class="btn btn-primary" href="{{ URL::route('course_experience.edit',
+																									[$course_experience->course_id,
+																									$course_experience->organizer,
+																									$course_experience->graduation_year]) }}">Edit</a>
+						{!! Form::open(['method' => 'DELETE','route' => ['course_experience.destroy', 
+										$course_experience->course_id, $course_experience->organizer, 
+										$course_experience->graduation_year],'style'=>'display:inline']) !!}
 						{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 						{!! Form::close() !!}
 					</td>

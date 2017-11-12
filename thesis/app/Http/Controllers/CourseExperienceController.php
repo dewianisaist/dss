@@ -70,12 +70,15 @@ class CourseExperienceController extends Controller
     /**
     * Display the specified resource.
     *
-    * @param  int  $course_id
+    * @param  int  $course_id, $organizer, $graduation_year
     * @return \Illuminate\Http\Response
     */
-    public function show($course_id)
+    public function show($course_id, $organizer, $graduation_year)
     {
-        $course_experience = CourseExperience::with('course')->where('course_id', $course_id)->first();
+        $course_experience = CourseExperience::with('course')->where('course_id', $course_id)
+                                                             ->where('organizer', $organizer)
+                                                             ->where('graduation_year', $graduation_year)
+                                                             ->first();
         
         return view('course_experience.show',compact('course_experience'));
     }
@@ -83,12 +86,15 @@ class CourseExperienceController extends Controller
    /**
     * Show the form for editing the specified resource.
     *
-    * @param  int  $course_id
+    * @param  int  $course_id, $organizer, $graduation_year
     * @return \Illuminate\Http\Response
     */
-   public function edit($course_id)
+   public function edit($course_id, $organizer, $graduation_year)
    {
-        $course_experience = CourseExperience::where('course_id', $course_id)->first();
+        $course_experience = CourseExperience::where('course_id', $course_id)
+                                             ->where('organizer', $organizer)
+                                             ->where('graduation_year', $graduation_year)
+                                             ->first();
         $course = Course::lists('major','id');
         $coursechoosen = CourseExperience::where('course_id', $course_experience)->value('course_id');
 
@@ -99,10 +105,10 @@ class CourseExperienceController extends Controller
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @param  int  $course_id
+    * @param  int  $course_id, $organizer, $graduation_year
     * @return \Illuminate\Http\Response
     */
-   public function update(Request $request, $course_id)
+   public function update(Request $request, $course_id, $organizer, $graduation_year)
    {
         $this->validate($request, [
             'course_id' => 'required',
@@ -113,7 +119,10 @@ class CourseExperienceController extends Controller
         $input = $request->except('_method', '_token');
         $user = User::with('registrant')->find(Auth::user()->id);
         $input['registrant_id'] = $user->registrant->id;
-        CourseExperience::where('course_id', $course_id)->update($input);
+        CourseExperience::where('course_id', $course_id)
+                        ->where('organizer', $organizer)
+                        ->where('graduation_year', $graduation_year)
+                        ->update($input);
 
        return redirect()->route('course_experience.index')
                         ->with('success','Pengalaman kursus/pelatihan berhasil diedit');
@@ -122,12 +131,15 @@ class CourseExperienceController extends Controller
    /**
     * Remove the specified resource from storage.
     *
-    * @param  int  $course_id
+    * @param  int  $course_id, $organizer, $graduation_year
     * @return \Illuminate\Http\Response
     */
-   public function destroy($course_id)
+   public function destroy($course_id, $organizer, $graduation_year)
    {
-       CourseExperience::where('course_id', $course_id)->delete();
+       CourseExperience::where('course_id', $course_id)
+                        ->where('organizer', $organizer)
+                        ->where('graduation_year', $graduation_year)
+                        ->delete();
 
        return redirect()->route('course_experience.index')
                         ->with('success','Pengalaman kursus/pelatihan berhasil dihapus');
