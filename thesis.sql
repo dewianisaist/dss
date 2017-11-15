@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2017 at 06:06 PM
+-- Generation Time: Nov 15, 2017 at 04:35 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -32,6 +32,15 @@ CREATE TABLE `courses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `major`, `created_at`, `updated_at`) VALUES
+(1, 'Menjahit', '2017-11-13 23:55:55', '2017-11-13 23:55:55'),
+(2, 'Menyetir', '2017-11-13 23:56:03', '2017-11-13 23:56:03'),
+(3, 'Komputer', '2017-11-13 23:56:10', '2017-11-13 23:56:10');
 
 -- --------------------------------------------------------
 
@@ -79,6 +88,13 @@ CREATE TABLE `educational_background` (
   `graduation_year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `educational_background`
+--
+
+INSERT INTO `educational_background` (`registrant_id`, `education_id`, `name_institution`, `graduation_year`) VALUES
+(1, 1, 'SDN 1 Bantul', 2000);
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +108,17 @@ CREATE TABLE `educations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `educations`
+--
+
+INSERT INTO `educations` (`id`, `stage`, `major`, `created_at`, `updated_at`) VALUES
+(1, 'SD', '', '2017-11-13 23:53:51', '2017-11-13 23:53:51'),
+(2, 'SMP', '', '2017-11-13 23:55:09', '2017-11-13 23:55:09'),
+(3, 'SMA', 'IPA', '2017-11-13 23:55:18', '2017-11-13 23:55:18'),
+(4, 'SMA', 'IPS', '2017-11-13 23:55:25', '2017-11-13 23:55:25'),
+(5, 'SMK', 'Multimedia', '2017-11-13 23:55:34', '2017-11-13 23:55:34');
 
 -- --------------------------------------------------------
 
@@ -227,15 +254,6 @@ CREATE TABLE `registration` (
   `sub_vocational_id` int(11) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `registration`
---
-
-INSERT INTO `registration` (`registrant_id`, `sub_vocational_id`, `register_date`) VALUES
-(1, 1, '2017-11-13 10:02:07'),
-(1, 1, '2017-11-13 10:04:05'),
-(1, 2, '2017-11-13 10:03:03');
 
 -- --------------------------------------------------------
 
@@ -581,7 +599,7 @@ ALTER TABLE `vocationals`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `criterias`
 --
@@ -591,12 +609,12 @@ ALTER TABLE `criterias`
 -- AUTO_INCREMENT for table `educational_background`
 --
 ALTER TABLE `educational_background`
-  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
