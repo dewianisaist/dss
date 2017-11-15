@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2017 at 12:51 AM
+-- Generation Time: Nov 13, 2017 at 06:06 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -209,6 +209,13 @@ CREATE TABLE `registrants` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `registrants`
+--
+
+INSERT INTO `registrants` (`id`, `user_id`, `address`, `phone_number`, `gender`, `place_birth`, `date_birth`, `order_child`, `amount_sibling`, `religion`, `biological_mother_name`, `father_name`, `parent_address`, `created_at`, `updated_at`) VALUES
+(1, 4, 'alamat pendafta 1', '08101010', 'Perempuan', 'tl1', '1990-11-29', 2, 2, 'Islam', 'ibu 1', 'ayah 1', 'ortu alamat 1', '2017-11-13 08:59:32', '2017-11-13 08:59:32');
+
 -- --------------------------------------------------------
 
 --
@@ -218,8 +225,17 @@ CREATE TABLE `registrants` (
 CREATE TABLE `registration` (
   `registrant_id` int(11) NOT NULL,
   `sub_vocational_id` int(11) NOT NULL,
-  `register_date` timestamp NULL DEFAULT NULL
+  `register_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`registrant_id`, `sub_vocational_id`, `register_date`) VALUES
+(1, 1, '2017-11-13 10:02:07'),
+(1, 1, '2017-11-13 10:04:05'),
+(1, 2, '2017-11-13 10:03:03');
 
 -- --------------------------------------------------------
 
@@ -335,6 +351,15 @@ CREATE TABLE `sub_vocationals` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `sub_vocationals`
+--
+
+INSERT INTO `sub_vocationals` (`id`, `vocational_id`, `name`, `quota`, `long_training`, `goal`, `unit_competence`, `requirement_participant`, `final_registration_date`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Otomotif sub 1', 16, '100', 'tujuan a', 'unit a', 'syarat a', '2017-11-29 16:59:59', '2017-11-13 09:01:30', '2017-11-13 09:01:30'),
+(2, 1, 'Otomotif sub 2', 16, '180', 'tujuan b', 'unit b', ' syarat b', '2017-11-30 16:59:59', '2017-11-13 09:02:23', '2017-11-13 09:02:23'),
+(3, 2, 'Menjahit sub 1', 20, '160', 'tujuan jahit', 'unit jahit', 'syarat jahit', '2017-12-08 16:59:59', '2017-11-13 09:03:12', '2017-11-13 09:03:12');
+
 -- --------------------------------------------------------
 
 --
@@ -350,6 +375,13 @@ CREATE TABLE `uploads` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `uploads`
+--
+
+INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, NULL, NULL, '2017-11-13 08:59:32', '2017-11-13 08:59:32');
 
 -- --------------------------------------------------------
 
@@ -391,6 +423,14 @@ CREATE TABLE `vocationals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `vocationals`
+--
+
+INSERT INTO `vocationals` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Otomotif', 'test', '2017-11-13 09:00:24', '2017-11-13 09:00:24'),
+(2, 'Menjahit', 'test jahit', '2017-11-13 09:00:39', '2017-11-13 09:00:39');
 
 --
 -- Indexes for dumped tables
@@ -464,7 +504,7 @@ ALTER TABLE `registrants`
 -- Indexes for table `registration`
 --
 ALTER TABLE `registration`
-  ADD PRIMARY KEY (`registrant_id`,`sub_vocational_id`),
+  ADD PRIMARY KEY (`registrant_id`,`sub_vocational_id`,`register_date`),
   ADD KEY `fk_pendaftar_has_sub_kejuruan_sub_kejuruan1_idx` (`sub_vocational_id`),
   ADD KEY `fk_pendaftar_has_sub_kejuruan_pendaftar1_idx` (`registrant_id`);
 
@@ -566,7 +606,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `registrants`
 --
 ALTER TABLE `registrants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `result_selections`
 --
@@ -586,12 +626,12 @@ ALTER TABLE `selections`
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
 ALTER TABLE `sub_vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -601,7 +641,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vocationals`
 --
 ALTER TABLE `vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --

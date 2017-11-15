@@ -46,13 +46,9 @@ Route::auth();
 	Route::delete('course_experience/{id}/{organizerid}/{graduationid}',['as'=>'course_experience.destroy','uses'=>'CourseExperienceController@destroy']);
 
 	//registration - tidak ada permission
-	Route::get('registrations',['as'=>'registrations.index','uses'=>'RegistrationController@index']);
-	Route::get('registrations/create',['as'=>'registrations.create','uses'=>'RegistrationController@create']);
-	Route::post('registrations/create',['as'=>'registrations.store','uses'=>'RegistrationController@store']);
-	Route::get('registrations/{id}',['as'=>'registrations.show','uses'=>'RegistrationController@show']);
-	Route::get('registrations/{id}/edit',['as'=>'registrations.edit','uses'=>'RegistrationController@edit']);
-	Route::patch('registrations/{id}',['as'=>'registrations.update','uses'=>'RegistrationController@update']);
-	Route::delete('registrations/{id}',['as'=>'registrations.destroy','uses'=>'RegistrationController@destroy']);
+	Route::get('registration',['as'=>'registration.index','uses'=>'RegistrationController@index']);
+	Route::get('registration/create',['as'=>'registration.create','uses'=>'RegistrationController@create']);
+	Route::post('registration/create',['as'=>'registration.store','uses'=>'RegistrationController@store']);
 
 	//users
 	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:user-list|user-create|user-edit|user-delete']]);
