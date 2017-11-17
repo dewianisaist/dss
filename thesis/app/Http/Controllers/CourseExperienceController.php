@@ -26,7 +26,8 @@ class CourseExperienceController extends Controller
             return redirect()->route('registrants.edit')
                              ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
         } else {
-            $course_experiences = CourseExperience::with('course')->whereRegistrantId($user->registrant->id)->orderBy('course_id','DESC')->paginate(10);
+            $course_experiences = CourseExperience::with('course')->whereRegistrantId($user->registrant->id)
+                                                                  ->orderBy('course_id','DESC')->paginate(10);
             
             return view('course_experience.index',compact('user', 'course_experiences'))
                         ->with('i', ($request->input('page', 1) - 1) * 10);

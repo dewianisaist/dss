@@ -20,7 +20,7 @@ class RegistrationController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-   public function index()
+   public function index(Request $request)
    {
         $user = User::with('registrant')->find(Auth::user()->id);        
         $educational_background = EducationalBackground::whereRegistrantId($user->registrant->id)->first();
@@ -35,9 +35,11 @@ class RegistrationController extends Controller
         } elseif ($registration == null) {
             return redirect()->route('registration.create');
         } else {
-            $registration = Registration::with('subvocational')->whereRegistrantId($user->registrant->id)
-                                                               ->orderBy('register_date','DESC')->paginate(10);
-            return view('registration.index',compact('user', 'educational_backgrounds'));
+            $registrations = Registration::with('subvocational')->whereRegistrantId($user->registrant->id)
+                                                                ->orderBy('register_date','DESC')->paginate(10);
+            return $registrations;
+            // return view('registration.index',compact('registrations'))
+            //     ->with('i', ($request->input('page', 1) - 1) * 10);
         }
    }
 
@@ -74,22 +76,4 @@ class RegistrationController extends Controller
        return redirect()->route('registration.index')
                         ->with('success','Selamat Anda berhasil melakukan pendaftaran pelatihan.');
    }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $education_id, $name_institution, $graduation_year
-    * @return \Illuminate\Http\Response
-    */
-    public function show($education_id, $name_institution, $graduation_year)
-    {
-        // $educational_background = EducationalBackground::with('education')
-        //                                                 ->where('education_id', $education_id)
-        //                                                 ->where('name_institution', $name_institution)
-        //                                                 ->where('graduation_year', $graduation_year)
-        //                                                 ->first();
-
-        // return view('educational_background.show',compact('educational_background'));
-    }
-
 }
