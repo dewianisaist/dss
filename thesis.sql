@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2017 at 04:35 PM
+-- Generation Time: Nov 17, 2017 at 11:45 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -38,9 +38,9 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `major`, `created_at`, `updated_at`) VALUES
-(1, 'Menjahit', '2017-11-13 23:55:55', '2017-11-13 23:55:55'),
-(2, 'Menyetir', '2017-11-13 23:56:03', '2017-11-13 23:56:03'),
-(3, 'Komputer', '2017-11-13 23:56:10', '2017-11-13 23:56:10');
+(1, 'Menjahit', '2017-11-17 15:44:35', '2017-11-17 15:44:35'),
+(2, 'Akutansi', '2017-11-17 15:44:44', '2017-11-17 15:44:44'),
+(3, 'Otomotif', '2017-11-17 15:44:51', '2017-11-17 15:44:51');
 
 -- --------------------------------------------------------
 
@@ -88,13 +88,6 @@ CREATE TABLE `educational_background` (
   `graduation_year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `educational_background`
---
-
-INSERT INTO `educational_background` (`registrant_id`, `education_id`, `name_institution`, `graduation_year`) VALUES
-(1, 1, 'SDN 1 Bantul', 2000);
-
 -- --------------------------------------------------------
 
 --
@@ -114,11 +107,12 @@ CREATE TABLE `educations` (
 --
 
 INSERT INTO `educations` (`id`, `stage`, `major`, `created_at`, `updated_at`) VALUES
-(1, 'SD', '', '2017-11-13 23:53:51', '2017-11-13 23:53:51'),
-(2, 'SMP', '', '2017-11-13 23:55:09', '2017-11-13 23:55:09'),
-(3, 'SMA', 'IPA', '2017-11-13 23:55:18', '2017-11-13 23:55:18'),
-(4, 'SMA', 'IPS', '2017-11-13 23:55:25', '2017-11-13 23:55:25'),
-(5, 'SMK', 'Multimedia', '2017-11-13 23:55:34', '2017-11-13 23:55:34');
+(1, 'SD', '', '2017-11-17 15:43:46', '2017-11-17 15:43:46'),
+(2, 'SMP', '', '2017-11-17 15:43:52', '2017-11-17 15:43:52'),
+(3, 'SMA', 'IPS', '2017-11-17 15:44:01', '2017-11-17 15:44:01'),
+(4, 'SMA', 'IPA', '2017-11-17 15:44:08', '2017-11-17 15:44:08'),
+(5, 'SMK', 'Multimedia', '2017-11-17 15:44:17', '2017-11-17 15:44:17'),
+(6, 'Perguruan Tinggi', 'Akutansi', '2017-11-17 15:44:25', '2017-11-17 15:44:25');
 
 -- --------------------------------------------------------
 
@@ -154,18 +148,18 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(7, 'role-edit', 'Edit Role', 'Edit Role', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2017-11-12 16:41:15', '2017-11-12 16:41:15'),
-(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2017-11-12 16:41:16', '2017-11-12 16:41:16'),
-(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2017-11-12 16:41:16', '2017-11-12 16:41:16'),
-(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2017-11-12 16:41:16', '2017-11-12 16:41:16');
+(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(7, 'role-edit', 'Edit Role', 'Edit Role', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2017-11-17 15:35:24', '2017-11-17 15:35:24'),
+(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2017-11-17 15:35:24', '2017-11-17 15:35:24');
 
 -- --------------------------------------------------------
 
@@ -196,21 +190,22 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (1, 11),
 (1, 12),
 (2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
 (2, 5),
+(2, 6),
+(2, 7),
+(2, 8),
 (2, 9),
+(2, 10),
+(2, 11),
+(2, 12),
 (3, 1),
-(3, 2),
-(3, 3),
-(3, 4),
 (3, 5),
-(3, 6),
-(3, 7),
-(3, 8),
 (3, 9),
-(3, 10),
-(3, 11),
-(3, 12),
-(4, 9);
+(4, 9),
+(5, 9);
 
 -- --------------------------------------------------------
 
@@ -236,13 +231,6 @@ CREATE TABLE `registrants` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `registrants`
---
-
-INSERT INTO `registrants` (`id`, `user_id`, `address`, `phone_number`, `gender`, `place_birth`, `date_birth`, `order_child`, `amount_sibling`, `religion`, `biological_mother_name`, `father_name`, `parent_address`, `created_at`, `updated_at`) VALUES
-(1, 4, 'alamat pendafta 1', '08101010', 'Perempuan', 'tl1', '1990-11-29', 2, 2, 'Islam', 'ibu 1', 'ayah 1', 'ortu alamat 1', '2017-11-13 08:59:32', '2017-11-13 08:59:32');
-
 -- --------------------------------------------------------
 
 --
@@ -252,7 +240,7 @@ INSERT INTO `registrants` (`id`, `user_id`, `address`, `phone_number`, `gender`,
 CREATE TABLE `registration` (
   `registrant_id` int(11) NOT NULL,
   `sub_vocational_id` int(11) NOT NULL,
-  `register_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -290,10 +278,11 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Superadmin', 'Peneliti', 'Peneliti memiliki seluruh akses dari aplikasi', '2017-11-12 16:44:17', '2017-11-12 16:44:17'),
-(2, 'Kepala', 'Kepala BLK', 'Kepala merupakan pengambil keputusan', '2017-11-12 16:45:34', '2017-11-12 16:45:34'),
-(3, 'Admin', 'Staf', 'Staf bertugas mengelola aplikasi', '2017-11-12 16:47:13', '2017-11-12 16:47:45'),
-(4, 'Pendaftar', 'Pendaftar', 'Pendaftar merupakan calon peserta pelatihan', '2017-11-12 16:48:24', '2017-11-12 16:48:24');
+(1, 'Superadmin', 'Peneliti', 'Peneliti memiliki semua kewenangan', '2017-11-17 15:36:58', '2017-11-17 15:36:58'),
+(2, 'Admin', 'Staf', 'Staf melakukan pengelolaan data', '2017-11-17 15:37:35', '2017-11-17 15:37:35'),
+(3, 'Kepala', 'Kepala BLK', 'Kepala BLK merupakan pembuat keputusan', '2017-11-17 15:38:20', '2017-11-17 15:38:20'),
+(4, 'Kajur', 'Kepala Jurusan', 'Kapala jurusan memberikan penilain seleksi', '2017-11-17 15:39:04', '2017-11-17 15:39:04'),
+(5, 'Pendaftar', 'Pendaftar', 'Pendaftar merupakan peserta seleksi', '2017-11-17 15:40:01', '2017-11-17 15:40:01');
 
 -- --------------------------------------------------------
 
@@ -312,9 +301,7 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
 (1, 1),
-(2, 2),
-(3, 3),
-(4, 4);
+(5, 2);
 
 -- --------------------------------------------------------
 
@@ -325,11 +312,11 @@ INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
 CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
   `registrant_id` int(11) NOT NULL,
+  `selection_schedule_id` int(11) NOT NULL,
   `written_value` decimal(3,3) DEFAULT NULL,
   `interview_value` decimal(3,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `selection_schedule_id` int(11) NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -340,13 +327,13 @@ CREATE TABLE `selections` (
 
 CREATE TABLE `selection_schedules` (
   `id` int(11) NOT NULL,
+  `sub_vocational_id` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `time` varchar(20) DEFAULT NULL,
   `place` varchar(100) DEFAULT NULL,
   `information` varchar(500) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `sub_vocational_id` int(11) NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -374,9 +361,9 @@ CREATE TABLE `sub_vocationals` (
 --
 
 INSERT INTO `sub_vocationals` (`id`, `vocational_id`, `name`, `quota`, `long_training`, `goal`, `unit_competence`, `requirement_participant`, `final_registration_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Otomotif sub 1', 16, '100', 'tujuan a', 'unit a', 'syarat a', '2017-11-29 16:59:59', '2017-11-13 09:01:30', '2017-11-13 09:01:30'),
-(2, 1, 'Otomotif sub 2', 16, '180', 'tujuan b', 'unit b', ' syarat b', '2017-11-30 16:59:59', '2017-11-13 09:02:23', '2017-11-13 09:02:23'),
-(3, 2, 'Menjahit sub 1', 20, '160', 'tujuan jahit', 'unit jahit', 'syarat jahit', '2017-12-08 16:59:59', '2017-11-13 09:03:12', '2017-11-13 09:03:12');
+(1, 1, 'Otomotif sub 1', 16, '170', 'tujuan oto sub', 'unit oto sub', 'syarat oto sub', '2017-12-09 16:59:59', '2017-11-17 15:42:02', '2017-11-17 15:42:02'),
+(2, 1, 'Otomotif sub 2', 16, '100', 'tujuan oto 2', 'unit oto 2', 'syarat oto 2', '2017-12-15 16:59:59', '2017-11-17 15:42:49', '2017-11-17 15:42:49'),
+(3, 1, 'Menjahit sub 1', 20, '200', 'tujuan jahit 1', 'unit jahit 1', 'syarat jahit 1', '2017-12-08 22:43:32', '2017-11-17 15:43:36', '2017-11-17 15:43:36');
 
 -- --------------------------------------------------------
 
@@ -393,13 +380,6 @@ CREATE TABLE `uploads` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `uploads`
---
-
-INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, NULL, '2017-11-13 08:59:32', '2017-11-13 08:59:32');
 
 -- --------------------------------------------------------
 
@@ -423,10 +403,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$KTbhBqSPeGjpLMBK0KI0aeBLEPv/0Vm./WTq.dZ75vtC/Ht3kUzdm', NULL, '2017-11-12 16:48:44', '2017-11-12 16:48:44'),
-(2, '11111111', 'Mr A', 'a@test.com', '$2y$10$StsVs1gOhb55qdw8VFo8o.NYhB8QhtxF/XbEWog6f0afK1TsNrrl2', NULL, '2017-11-12 16:49:39', '2017-11-12 16:49:39'),
-(3, '22222222', 'Mr B', 'b@test.com', '$2y$10$5uxNWFx2sO3M9OSCUAJvvOEbHetm8eNs9DT2MNrSqBelJnhKaw1K6', NULL, '2017-11-12 16:50:01', '2017-11-12 16:50:01'),
-(4, '101010', 'pendaftar1', 'pendaftar1@test.com', '$2y$10$m2yWb1jKj2FWp2iZpzWUvuD.Wl/picZOOwKKsVf94zvN1yfxAE0kO', NULL, '2017-11-12 16:51:07', '2017-11-12 16:51:07');
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$3K.6S08H.JGFMCu/Z0gu9.GHxbkaIC9.x5gkqofK0YujEaRS45DzO', NULL, '2017-11-17 15:39:27', '2017-11-17 15:39:27'),
+(2, '11111111', 'pendaftar 1', 'pendaftar1@tes.com', '$2y$10$Rbip4G2xkC4L/ZeLdFTDneQDS3LzBNTCLLz6N10t.zxCFJ3fTlTM2', NULL, '2017-11-17 15:40:28', '2017-11-17 15:40:28');
 
 -- --------------------------------------------------------
 
@@ -447,8 +425,8 @@ CREATE TABLE `vocationals` (
 --
 
 INSERT INTO `vocationals` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Otomotif', 'test', '2017-11-13 09:00:24', '2017-11-13 09:00:24'),
-(2, 'Menjahit', 'test jahit', '2017-11-13 09:00:39', '2017-11-13 09:00:39');
+(1, 'Otomotif', 'tes oto', '2017-11-17 15:40:53', '2017-11-17 15:40:53'),
+(2, 'Menjahit', 'tes jahit', '2017-11-17 15:41:04', '2017-11-17 15:41:04');
 
 --
 -- Indexes for dumped tables
@@ -609,12 +587,12 @@ ALTER TABLE `criterias`
 -- AUTO_INCREMENT for table `educational_background`
 --
 ALTER TABLE `educational_background`
-  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -624,7 +602,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `registrants`
 --
 ALTER TABLE `registrants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `result_selections`
 --
@@ -634,11 +612,16 @@ ALTER TABLE `result_selections`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `selection_schedules`
+--
+ALTER TABLE `selection_schedules`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
@@ -649,12 +632,12 @@ ALTER TABLE `sub_vocationals`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --

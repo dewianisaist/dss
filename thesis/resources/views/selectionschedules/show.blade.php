@@ -2,7 +2,7 @@
 
 @section('sidebar_menu')
 <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
-<li class="active"><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i>  <span>Data <dfn>Roles</dfn></span></a></li>
+<li><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i>  <span>Data <dfn>Roles</dfn></span></a></li>
 <li class="treeview">
   <a href="{{ route('vocationals.index') }}">
     <i class="fa fa-industry"></i>
@@ -18,7 +18,7 @@
 </li>
 <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a></li>
 <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
-<li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi</span></a></li>
+<li class="active"><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi</span></a></li>
 <li class="treeview">
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
@@ -33,48 +33,56 @@
   </ul>
 </li>
 @endsection
-  
+ 
 @section('content_header')
 <h1>
-  Detail <dfn>Role</dfn>
+  Detail Jadwal Seleksi
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i> Manajemen <dfn>Role</dfn></a></li>
-  <li class="active">Detail <dfn>Role</dfn></li>
+  <li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i> Manajemen Jadwal Seleksi</a></li>
+  <li class="active">Detail Jadwal Seleksi</li>
 </ol>
 @endsection
 
 @section('content')
 <div class="box box-default">
     <div class="box-header with-border">
-        <h3 class="box-title"><dfn>Role</dfn> {{ $role->display_name }}</h3>
+        {{--  <h3 class="box-title">{{ $selectionschedule->subvocational->name }}</h3>  --}}
     </div>
     <div class="box-body">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Nama:</strong>
-                    {{ $role->display_name }}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Deskripsi:</strong>
-                    {{ $role->description }}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong><dfn>Permission</dfn>:</strong>
-                    @if(!empty($rolePermissions))
-                        @foreach($rolePermissions as $v)
-                            <label class="label label-success">{{ $v->display_name }}</label>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Sub-Kejuruan:</strong>
+					{{--  {{ $selectionschedule->subvocational->name }}  --}}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Tanggal:</strong>
+					{{ $selectionschedule->date }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Waktu:</strong>
+					{{ $selectionschedule->time }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Tempat:</strong>
+					{{ $selectionschedule->place }}
+				</div>
+			</div>	
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Keterangan:</strong>
+					{{ $selectionschedule->information }}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection

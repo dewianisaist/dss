@@ -7,7 +7,7 @@
 @section('sidebar_menu')
 <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
 <li><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i>  <span>Data <dfn>Roles</dfn></span></a></li>
-<li class="active treeview menu-open">
+<li class="treeview">
   <a href="{{ route('vocationals.index') }}">
     <i class="fa fa-industry"></i>
     <span>Program</span>
@@ -17,12 +17,12 @@
   </a>
   <ul class="treeview-menu">
     <li><a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i> Kejuruan</a></li>
-    <li class="active"><a href="{{ route('subvocationals.index') }}"><i class="fa fa-industry"></i> Sub-Kejuruan</a></li>
+    <li><a href="{{ route('subvocationals.index') }}"><i class="fa fa-industry"></i> Sub-Kejuruan</a></li>
   </ul>
 </li>
 <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a></li>
 <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
-<li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi</span></a></li>
+<li class="active"><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi</span></a></li>
 <li class="treeview">
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
@@ -40,12 +40,12 @@
  
 @section('content_header')
 <h1>
-  Edit Sub-Kejuruan
+  Edit Jadwal Seleksi
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('subvocationals.index') }}"><i class="fa fa-industry"></i> Manajemen Sub-Kejuruan</a></li>
-  <li class="active">Edit Sub-Kejuruan</li>
+  <li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i> Manajemen Jadwal Seleksi</a></li>
+  <li class="active">Edit Jadwal Seleksi</li>
 </ol>
 @endsection
  
@@ -62,60 +62,47 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::model($subvocational, ['method' => 'PATCH','route' => ['subvocationals.update', $subvocational->id]]) !!}
+		{!! Form::model($selectionschedule, ['method' => 'PATCH','route' => ['selectionschedules.update', $selectionschedule->id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nama Sub-Kejuruan:</strong>
-						{!! Form::text('name', null, array('placeholder' => 'Nama Sub-Kejuruan','class' => 'form-control')) !!}
+            <strong>Sub-Kejuruan:</strong>
+						{!! Form::select('sub_vocational_id', $subvocational, $subvocationalchoosen, array('class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-            <strong>Kejuruan:</strong>
-						{!! Form::select('vocational_id', $vocational, $vocationalchoosen, array('class' => 'form-control')) !!}
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<div class="form-group">
-						<strong>Kuota:</strong>
-						{!! Form::text('quota', null, array('placeholder' => 'Kuota','class' => 'form-control')) !!}
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<div class="form-group">
-						<strong>Lama Pelatihan:</strong>
-						{!! Form::text('long_training', null, array('placeholder' => 'Lama Pelatihan (dalam satuan jam)','class' => 'form-control')) !!}
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<div class="form-group">
-						<strong>Tujuan Pelatihan:</strong>
-						{!! Form::textarea('goal', null, array('placeholder' => 'Tujuan Pelatihan','class' => 'form-control','style'=>'height:100px')) !!}
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<div class="form-group">
-						<strong>Unit Kompetensi:</strong>
-						{!! Form::textarea('unit_competence', null, array('placeholder' => 'Unit Kompetensi','class' => 'form-control','style'=>'height:100px')) !!}
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<div class="form-group">
-						<strong>Persyaratan Peserta:</strong>
-						{!! Form::textarea('requirement_participant', null, array('placeholder' => 'Persyaratan Peserta','class' => 'form-control','style'=>'height:100px')) !!}
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<div class="form-group">
-            <strong>Tanggal Akhir Pendaftaran:</strong>
+            <strong>Tanggal:</strong>
             <div class="input-group date">
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </div>
-							{!! Form::text('final_registration_date', null, array('placeholder' => 'Tanggal Akhir Pendaftaran','class' => 'form-control pull-right', 'id' => 'datepicker')) !!}
+							{!! Form::text('date', null, array('placeholder' => 'Tanggal Seleksi','class' => 'form-control pull-right', 'id' => 'datepicker')) !!}
             </div>
           </div>
+				</div>
+					<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+            <strong>Waktu:</strong>
+            <div class="input-group date">
+              <div class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+              </div>
+							{!! Form::text('time', null, array('placeholder' => 'Waktu Seleksi','class' => 'form-control pull-right', 'id' => 'timepicker')) !!}
+            </div>
+          </div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Tempat:</strong>
+						{!! Form::text('place', null, array('placeholder' => 'Tempat Pelaksanaan Seleksi','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Keterangan:</strong>
+						{!! Form::textarea('information', null, array('placeholder' => 'Informasi Tambahan','class' => 'form-control','style'=>'height:100px')) !!}
+					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<button type="submit" class="btn btn-primary">Simpan</button>
@@ -130,7 +117,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script>
 	$('#datepicker').datetimepicker({
-		format: 'YYYY-MM-DD HH:mm:ss'
+		format: 'YYYY-MM-DD'
+	});
+</script>
+
+<script>
+	$('#timepicker').datetimepicker({
+		format: 'HH:mm'
 	});
 </script>
 @endsection

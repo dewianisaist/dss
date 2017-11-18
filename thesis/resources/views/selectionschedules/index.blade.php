@@ -1,7 +1,7 @@
 @extends('layouts.master_admin')
 
 @section('sidebar_menu')
-<li class="active"><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
+<li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
 <li><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i>  <span>Data <dfn>Roles</dfn></span></a></li>
 <li class="treeview">
   <a href="{{ route('vocationals.index') }}">
@@ -18,7 +18,7 @@
 </li>
 <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a></li>
 <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
-<li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi</span></a></li>
+<li class="active"><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi</span></a></li>
 <li class="treeview">
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
@@ -33,15 +33,15 @@
   </ul>
 </li>
 @endsection
-
+  
 @section('content_header')
 <h1>
-  Data Akun Pengguna
+  Manajemen Jadwal Seleksi
   <dfn><small>Control panel</small></dfn>
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li class="active">Data Pengguna</li>
+  <li class="active">Manajemen Jadwal Seleksi</li>
 </ol>
 @endsection
 
@@ -57,55 +57,52 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  @permission('user-create')  --}}
-					<a class="btn btn-success" href="{{ route('users.create') }}"> Buat Akun Baru</a>
+					{{--  @permission('selectionschedule-create')  --}}
+					<a class="btn btn-success" href="{{ route('selectionschedules.create') }}"> Tambahkan Jadwal Seleksi</a>
 					{{--  @endpermission  --}}
 				</div>
 			</div>
 		</div>
-
+	
 		<br/>
-    	<table id="table_users" class="table table-bordered table-striped">
+    	<table id="table_selectionschedules" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Nama</th>
-					<th>No. Identitas</th>
-					<th>Email</th>
-					<th><dfn>Roles</dfn></th>
+					<th>Sub-Kejuruan</th>
+					<th>Tanggal</th>
+					<th>Waktu</th>
+					<th>Tempat</th>
+					<th>Keterangan</th>
 					<th width="280px">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($data as $key => $user)
-				<tr>
-					<td>{{ ++$i }}</td>
-					<td>{{ $user->name }}</td>
-					<td>{{ $user->identity_number }}</td>
-					<td>{{ $user->email }}</td>
-					<td>
-						@if(!empty($user->roles))
-							@foreach($user->roles as $v)
-								<label class="label label-success">{{ $v->display_name }}</label>
-							@endforeach
-						@endif
-					</td>
-					<td>
-						<a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Detail</a>
-						{{--  @permission('user-edit')  --}}
-						<a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-						{{--  @endpermission  --}}
-						{{--  @permission('user-delete')  --}}
-						{!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-						{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-						{!! Form::close() !!}
-						{{--  @endpermission  --}}
-					</td>
-				</tr>		
+				@foreach ($data as $key => $selectionschedule)
+					<tr>
+						<td>{{ ++$i }}</td>
+						<td></td>
+						{{--  <td>{{ $selectionschedule->subvocational->name }}</td>  --}}
+						<td>{{ $selectionschedule->date }}</td>
+						<td>{{ $selectionschedule->time }}</td>
+						<td>{{ $selectionschedule->place }}</td>
+						<td>{{ $selectionschedule->information }}</td>
+						<td>
+							<a class="btn btn-info" href="{{ route('selectionschedules.show',$selectionschedule->id) }}">Detail</a>
+							{{--  @permission('selectionschedule-edit')  --}}
+							<a class="btn btn-primary" href="{{ route('selectionschedules.edit',$selectionschedule->id) }}">Edit</a>
+							{{--  @endpermission  --}}
+							{{--  @permission('selectionschedule-delete')  --}}
+							{!! Form::open(['method' => 'DELETE','route' => ['selectionschedules.destroy', $selectionschedule->id],'style'=>'display:inline']) !!}
+							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+							{!! Form::close() !!}
+							{{--  @endpermission --}}
+						</td>
+					</tr>
 				@endforeach
 			</tbody>
 		</table>
 		{!! $data->render() !!}
 	</div>
-</div>
+</div>	
 @endsection

@@ -134,6 +134,15 @@ Route::auth();
 	Route::patch('subvocationals/{id}',['as'=>'subvocationals.update','uses'=>'SubvocationalController@update']);
 	Route::delete('subvocationals/{id}',['as'=>'subvocationals.destroy','uses'=>'SubvocationalController@destroy']);
 
+	//selectionschedule - ada permission, belum ditambahkan
+	Route::get('selectionschedules',['as'=>'selectionschedules.index','uses'=>'SelectionScheduleController@index']);
+	Route::get('selectionschedules/create',['as'=>'selectionschedules.create','uses'=>'SelectionScheduleController@create']);
+	Route::post('selectionschedules/create',['as'=>'selectionschedules.store','uses'=>'SelectionScheduleController@store']);
+	Route::get('selectionschedules/{id}',['as'=>'selectionschedules.show','uses'=>'SelectionScheduleController@show']);
+	Route::get('selectionschedules/{id}/edit',['as'=>'selectionschedules.edit','uses'=>'SelectionScheduleController@edit']);
+	Route::patch('selectionschedules/{id}',['as'=>'selectionschedules.update','uses'=>'SelectionScheduleController@update']);
+	Route::delete('selectionschedules/{id}',['as'=>'selectionschedules.destroy','uses'=>'SelectionScheduleController@destroy']);
+
 	//preferences - ada permission, belum ditambahkan
 	Route::get('preferences',['as'=>'preferences.index','uses'=>'PreferenceController@index']);
 	Route::get('preferences/create',['as'=>'preferences.create','uses'=>'PreferenceController@create']);
