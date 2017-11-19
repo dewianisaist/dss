@@ -48,14 +48,14 @@
 @section('content')
 <div class="box box-default">
     <div class="box-header with-border">
-        {{--  <h3 class="box-title">{{ $selectionschedule->subvocational->name }}</h3>  --}}
+        <h3 class="box-title">{{ $selectionschedule->subvocational->name }}</h3>
     </div>
     <div class="box-body">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Sub-Kejuruan:</strong>
-					{{--  {{ $selectionschedule->subvocational->name }}  --}}
+					{{ $selectionschedule->subvocational->name }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">

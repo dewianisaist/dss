@@ -11,6 +11,10 @@ class SelectionSchedule extends Model
     public $fillable = ['sub_vocational_id', 'date', 'time', 'place', 'information'];
 
     public function subvocational() {
-        return $this->belongsTo('App\Http\Models\Subvocational');
+        return $this->belongsTo('App\Http\Models\Subvocational','sub_vocational_id');
+    }
+
+    public function selection() {
+        return $this->hasOne('App\Http\Models\Selection');
     }
 }

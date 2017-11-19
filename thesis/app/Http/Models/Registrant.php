@@ -31,4 +31,8 @@ class Registrant extends Model
     public function subvocationals() {
         return $this->belongsToMany('App\Http\Models\Subvocational', 'registration');
     }
+
+    public function selection() {
+        return $this->hasOne('App\Http\Models\Selection');
+    }
 }

@@ -81,8 +81,7 @@
 				@foreach ($data as $key => $selectionschedule)
 					<tr>
 						<td>{{ ++$i }}</td>
-						<td></td>
-						{{--  <td>{{ $selectionschedule->subvocational->name }}</td>  --}}
+						<td>{{ $selectionschedule->subvocational->name }}</td>
 						<td>{{ $selectionschedule->date }}</td>
 						<td>{{ $selectionschedule->time }}</td>
 						<td>{{ $selectionschedule->place }}</td>

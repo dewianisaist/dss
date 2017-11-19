@@ -37,9 +37,8 @@ class RegistrationController extends Controller
         } else {
             $registrations = Registration::with('subvocational')->whereRegistrantId($user->registrant->id)
                                                                 ->orderBy('register_date','DESC')->paginate(10);
-            return $registrations;
-            // return view('registration.index',compact('registrations'))
-            //     ->with('i', ($request->input('page', 1) - 1) * 10);
+            return view('registration.index',compact('registrations'))
+                ->with('i', ($request->input('page', 1) - 1) * 10);
         }
    }
 

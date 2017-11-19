@@ -17,7 +17,8 @@ Route::get('/', function() {
 
 Route::auth();
 
-//Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function() {
+	// Route::group(['middleware' => ['acl:superadmin']], function() {
 
 	//Route::get('/dashboard', 'HomeController@index');
 	// Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@index']);	
@@ -60,7 +61,8 @@ Route::auth();
 	// Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy','middleware' => ['permission:user-delete']]);
 
 	//users - ada permission, belum ditambahkan
-	Route::get('users',['as'=>'users.index','uses'=>'UserController@index']);
+	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index', 'middleware' => ['acl:superadmin|admin']]);	Route::get('users',['as'=>'users.index','uses'=>'UserController@index', 'middleware' => ['acl:superadmin|admin']]);
+	Route::get('users',['as'=>'users.index','uses'=>'UserController@index']);	
 	Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create']);
 	Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store']);
 	Route::get('users/{id}',['as'=>'users.show','uses'=>'UserController@show']);
@@ -143,6 +145,15 @@ Route::auth();
 	Route::patch('selectionschedules/{id}',['as'=>'selectionschedules.update','uses'=>'SelectionScheduleController@update']);
 	Route::delete('selectionschedules/{id}',['as'=>'selectionschedules.destroy','uses'=>'SelectionScheduleController@destroy']);
 
+	//selection - ada permission, belum ditambahkan
+	Route::get('selections',['as'=>'selections.index','uses'=>'SelectionController@index']);
+	Route::get('selections/create',['as'=>'selections.create','uses'=>'SelectionController@create']);
+	Route::post('selections/create',['as'=>'selections.store','uses'=>'SelectionController@store']);
+	Route::get('selections/{id}',['as'=>'selections.show','uses'=>'SelectionController@show']);
+	Route::get('selections/{id}/edit',['as'=>'selections.edit','uses'=>'SelectionController@edit']);
+	Route::patch('selections/{id}',['as'=>'selections.update','uses'=>'SelectionController@update']);
+	Route::delete('selections/{id}',['as'=>'selections.destroy','uses'=>'SelectionController@destroy']);
+
 	//preferences - ada permission, belum ditambahkan
 	Route::get('preferences',['as'=>'preferences.index','uses'=>'PreferenceController@index']);
 	Route::get('preferences/create',['as'=>'preferences.create','uses'=>'PreferenceController@create']);
@@ -152,4 +163,4 @@ Route::auth();
 	Route::patch('preferences/{id}',['as'=>'preferences.update','uses'=>'PreferenceController@update']);
 	Route::delete('preferences/{id}',['as'=>'preferences.destroy','uses'=>'PreferenceController@destroy']);
 
-//});
+});
