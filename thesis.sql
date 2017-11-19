@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 19, 2017 at 11:39 AM
+-- Generation Time: Nov 19, 2017 at 02:46 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -32,6 +32,15 @@ CREATE TABLE `courses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `major`, `created_at`, `updated_at`) VALUES
+(1, 'Menyetir', '2017-11-19 06:33:29', '2017-11-19 06:33:29'),
+(2, 'Bahasa Inggris', '2017-11-19 06:33:36', '2017-11-19 06:33:36'),
+(3, 'Komputer', '2017-11-19 06:33:46', '2017-11-19 06:33:46');
 
 -- --------------------------------------------------------
 
@@ -81,6 +90,15 @@ CREATE TABLE `educational_background` (
   `graduation_year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `educational_background`
+--
+
+INSERT INTO `educational_background` (`registrant_id`, `education_id`, `name_institution`, `graduation_year`) VALUES
+(1, 1, 'SDN 1 Bantul', 2007),
+(1, 2, 'SMP', 2010),
+(1, 3, 'SMA 1 Bantul', 2013);
+
 -- --------------------------------------------------------
 
 --
@@ -94,6 +112,17 @@ CREATE TABLE `educations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `educations`
+--
+
+INSERT INTO `educations` (`id`, `stage`, `major`, `created_at`, `updated_at`) VALUES
+(1, 'SD', '', '2017-11-19 06:32:41', '2017-11-19 06:32:41'),
+(2, 'SMP', '', '2017-11-19 06:32:46', '2017-11-19 06:32:46'),
+(3, 'SMA', 'IPA', '2017-11-19 06:32:51', '2017-11-19 06:33:05'),
+(4, 'SMA', 'IPS', '2017-11-19 06:33:00', '2017-11-19 06:33:00'),
+(5, 'SMK', 'Multimedia', '2017-11-19 06:33:13', '2017-11-19 06:33:13');
 
 -- --------------------------------------------------------
 
@@ -234,6 +263,13 @@ CREATE TABLE `registrants` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `registrants`
+--
+
+INSERT INTO `registrants` (`id`, `user_id`, `address`, `phone_number`, `gender`, `place_birth`, `date_birth`, `order_child`, `amount_sibling`, `religion`, `biological_mother_name`, `father_name`, `parent_address`, `created_at`, `updated_at`) VALUES
+(1, 11, 'Alamat pendaftar 1', '08511111111', 'Perempuan', 'tl1', '1998-07-22', 2, 3, 'Konghucu', 'ibu 1', 'ayah 1', 'alamat ortu 1', '2017-11-19 06:44:05', '2017-11-19 06:44:05');
+
 -- --------------------------------------------------------
 
 --
@@ -245,6 +281,13 @@ CREATE TABLE `registration` (
   `sub_vocational_id` int(11) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`registrant_id`, `sub_vocational_id`, `register_date`) VALUES
+(1, 2, '2017-11-19 06:45:20');
 
 -- --------------------------------------------------------
 
@@ -305,7 +348,14 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
-(1, 4);
+(1, 4),
+(2, 10),
+(3, 5),
+(4, 11),
+(5, 6),
+(6, 7),
+(7, 8),
+(7, 9);
 
 -- --------------------------------------------------------
 
@@ -340,6 +390,14 @@ CREATE TABLE `selection_schedules` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `selection_schedules`
+--
+
+INSERT INTO `selection_schedules` (`id`, `sub_vocational_id`, `date`, `time`, `place`, `information`, `created_at`, `updated_at`) VALUES
+(1, 1, '2017-12-16', '08:00', 'R. Oto 1', '', '2017-11-19 06:34:21', '2017-11-19 06:34:21'),
+(2, 2, '2017-12-23', '08:00', 'R. Oto 2', 'pakaian rapi, sepatu, ktp', '2017-11-19 06:35:53', '2017-11-19 06:35:53');
+
 -- --------------------------------------------------------
 
 --
@@ -360,6 +418,15 @@ CREATE TABLE `sub_vocationals` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `sub_vocationals`
+--
+
+INSERT INTO `sub_vocationals` (`id`, `vocational_id`, `name`, `quota`, `long_training`, `goal`, `unit_competence`, `requirement_participant`, `final_registration_date`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Otomotif sub 1', 16, '200', 'tujuan oto', 'unit oto', 'syarat oto', '2017-12-10 16:59:59', '2017-11-19 06:31:04', '2017-11-19 06:31:04'),
+(2, 1, 'Otomotif sub 2', 16, '180', 'tujuan oto 2', 'unit oto 2', 'syarat oto 2', '2017-12-16 16:59:59', '2017-11-19 06:31:50', '2017-11-19 06:31:50'),
+(3, 1, 'Menjahit sub 1', 20, '360', 'tujuan menjahit', 'unit menjahit', 'syarat menjahit', '2017-12-09 16:59:59', '2017-11-19 06:32:33', '2017-11-19 06:32:33');
+
 -- --------------------------------------------------------
 
 --
@@ -375,6 +442,13 @@ CREATE TABLE `uploads` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `uploads`
+--
+
+INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
+(1, 1, 'photo_6512bd43d9caa6e02c990b0a82652dca.jpg', 'ktp_6512bd43d9caa6e02c990b0a82652dca.pdf', 'lastcertificate_6512bd43d9caa6e02c990b0a82652dca.pdf', '2017-11-19 06:44:05', '2017-11-19 06:44:05');
 
 -- --------------------------------------------------------
 
@@ -398,7 +472,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$32W17DK3I/80n6eEaXpyO.penHp3MxX0/mJPaKUZjsV.nAEZ/bxxq', NULL, '2017-11-19 03:34:38', '2017-11-19 03:34:38');
+(4, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$32W17DK3I/80n6eEaXpyO.penHp3MxX0/mJPaKUZjsV.nAEZ/bxxq', 'olA7FeZ0ld85T99o1HMtL4xipGufI4U9DmMmIsU2IZHOJaderEt3IL9BKVXh', '2017-11-19 03:34:38', '2017-11-19 06:40:51'),
+(5, '101010', 'Mr. A', 'a@test.com', '$2y$10$x6TtTvd.irZAZk3YiLN1K.qkRsbbP3W5BTgH3TRGj/c8kSKNeBJ1q', NULL, '2017-11-19 06:38:36', '2017-11-19 06:38:36'),
+(6, '202020', 'Mr. B', 'b@test.com', '$2y$10$FDBdZeAblrqwlT6R5vNRwO2tLddckXNyo1sd80ywvN8YucQTG.BYO', NULL, '2017-11-19 06:39:02', '2017-11-19 06:39:02'),
+(7, '303030', 'Mr. C', 'c@test.com', '$2y$10$n8m5QZuLr3BY60jeEwEjE.UqkNGPmz2wTuxN1m7549G2ojiMA4TRK', NULL, '2017-11-19 06:39:25', '2017-11-19 06:39:25'),
+(8, '404040', 'Mr. D', 'd@test.com', '$2y$10$Y4kH1fhMZNsuyMy1VJ5S7O87CPg3idIIn61uTC6fsf2FGa6Me960.', NULL, '2017-11-19 06:39:50', '2017-11-19 06:39:50'),
+(9, '505050', 'Mr. E', 'e@test.com', '$2y$10$pa..L.AHLOuV1lk2ZS.WNec9t4bN1i0OLhnsmpyjZl46pyEbwyAXq', NULL, '2017-11-19 06:40:13', '2017-11-19 06:40:13'),
+(10, '909090', 'Mr. I', 'i@test.com', '$2y$10$QRa/GJqNpmAaHwu.taPNbeDbjpBN1v.jV71HphFqbobjjEq3d/9Fa', NULL, '2017-11-19 06:40:35', '2017-11-19 06:40:35'),
+(11, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$DTeZ/tKboguYLw5MDRU0g.PfHwCYINrjVeWfAn8/Bw7Wqqaj4ntRa', 'IRi1EIKPI9eOr2SK6jnYUqqEh69RoTIqQaaJb6hKND4oKoZSDM5R49hZ2jyw', '2017-11-19 06:41:31', '2017-11-19 06:45:31');
 
 -- --------------------------------------------------------
 
@@ -413,6 +494,14 @@ CREATE TABLE `vocationals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `vocationals`
+--
+
+INSERT INTO `vocationals` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Otomotif', 'test otomotif', '2017-11-19 06:29:54', '2017-11-19 06:29:54'),
+(2, 'Menjahit', 'test menjahit', '2017-11-19 06:30:06', '2017-11-19 06:30:06');
 
 --
 -- Indexes for dumped tables
@@ -569,7 +658,7 @@ ALTER TABLE `vocationals`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `criterias`
 --
@@ -579,12 +668,12 @@ ALTER TABLE `criterias`
 -- AUTO_INCREMENT for table `educational_background`
 --
 ALTER TABLE `educational_background`
-  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `history_criterias`
 --
@@ -599,7 +688,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `registrants`
 --
 ALTER TABLE `registrants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `result_selections`
 --
@@ -619,27 +708,27 @@ ALTER TABLE `selections`
 -- AUTO_INCREMENT for table `selection_schedules`
 --
 ALTER TABLE `selection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
 ALTER TABLE `sub_vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --
 ALTER TABLE `vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
