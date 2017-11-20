@@ -17,44 +17,17 @@ class SelectionController extends Controller
     */
    public function index(Request $request)
    {
-       $data = Selection::with('registrant','selectionschedule')->orderBy('id','DESC')->paginate(10);
-       return view('selection.index',compact('data'))
-           ->with('i', ($request->input('page', 1) - 1) * 10);
-    // return $data;
-   }
+        $data = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+                            ->join('users', 'users.id', '=', 'registrants.user_id')
+                            ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
+                            ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
+                            ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                            ->orderBy('selections.id','DESC')
+                            ->paginate(10);
 
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function create()
-   {
-       $subvocational = Subvocational::lists('name','id');
-       return view('selection.create',compact('subvocational'));
+        return view('selections.index',compact('data'))
+                    ->with('i', ($request->input('page', 1) - 1) * 10);
    }
-
-   /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-         'sub_vocational_id' => 'required',
-         'date' => 'required',
-         'time' => 'required',
-         'place' => 'required',
-        ]);
- 
-        $input = $request->all();
-        $selectionschedule = SelectionSchedule::create($input);
- 
-        return redirect()->route('selectionschedules.index')
-                        ->with('success','Jadwal seleksi berhasil dibuat');
-    }
  
     /**
     * Display the specified resource.
@@ -64,8 +37,15 @@ class SelectionController extends Controller
     */
    public function show($id)
    {
-       $selectionschedule = SelectionSchedule::find($id);
-       return view('selectionschedules.show',compact('selectionschedule'));
+        $selection = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+                                ->join('users', 'users.id', '=', 'registrants.user_id')
+                                ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
+                                ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
+                                ->where('selections.id', '=', $id)
+                                ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                                ->first();
+
+        return view('selections.show',compact('selection'));
    }
 
    /**
@@ -76,11 +56,15 @@ class SelectionController extends Controller
     */
    public function edit($id)
    {
-        $selectionschedule = SelectionSchedule::find($id);
-        $subvocational = Subvocational::lists('name','id');
-        $subvocationalchoosen = Subvocational::where('id', $selectionschedule)->value('name');
+        $selection = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+                                ->join('users', 'users.id', '=', 'registrants.user_id')
+                                ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
+                                ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
+                                ->where('selections.id', '=', $id)
+                                ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                                ->first();
 
-        return view('selectionschedules.edit',compact('selectionschedule','subvocational','subvocationalchoosen'));
+        return view('selections.edit',compact('selection'));
    }
 
    /**
@@ -93,30 +77,21 @@ class SelectionController extends Controller
    public function update(Request $request, $id)
    {
        $this->validate($request, [
-        'sub_vocational_id' => 'required',
-        'date' => 'required',
-        'time' => 'required',
-        'place' => 'required',
+        'written_value' => 'required',
+        'interview_value' => 'required',
        ]);
 
        $input = $request->all();
-       $selectionschedule = SelectionSchedule::find($id);
-       $selectionschedule->update($input);
+       $selection = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+                                ->join('users', 'users.id', '=', 'registrants.user_id')
+                                ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
+                                ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
+                                ->where('selections.id', '=', $id)
+                                ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                                ->first();
+       $selection->update($input);
 
-       return redirect()->route('selectionschedules.index')
-                       ->with('success','Jadwal seleksi berhasil diedit');
-   }
-
-   /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-   public function destroy($id)
-   {
-       SelectionSchedule::find($id)->delete();
-       return redirect()->route('selectionschedules.index')
-                       ->with('success','Jadwal seleksi berhasil dihapus');
+       return redirect()->route('selections.index')
+                        ->with('success','Nilai seleksi berhasil ditambahkan');
    }
 }

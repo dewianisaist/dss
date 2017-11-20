@@ -147,12 +147,9 @@ Route::group(['middleware' => ['auth']], function() {
 
 	//selection - ada permission, belum ditambahkan
 	Route::get('selections',['as'=>'selections.index','uses'=>'SelectionController@index']);
-	Route::get('selections/create',['as'=>'selections.create','uses'=>'SelectionController@create']);
-	Route::post('selections/create',['as'=>'selections.store','uses'=>'SelectionController@store']);
 	Route::get('selections/{id}',['as'=>'selections.show','uses'=>'SelectionController@show']);
 	Route::get('selections/{id}/edit',['as'=>'selections.edit','uses'=>'SelectionController@edit']);
 	Route::patch('selections/{id}',['as'=>'selections.update','uses'=>'SelectionController@update']);
-	Route::delete('selections/{id}',['as'=>'selections.destroy','uses'=>'SelectionController@destroy']);
 
 	//preferences - ada permission, belum ditambahkan
 	Route::get('preferences',['as'=>'preferences.index','uses'=>'PreferenceController@index']);
