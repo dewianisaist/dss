@@ -22,7 +22,8 @@
 </li>
 <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a></li>
 <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
-<li class="active"><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi</span></a></li>
+<li class="active"><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-o"></i>  <span>Jadwal Seleksi</span></a></li>
+<li><a href="{{ route('selections.index') }}"><i class="fa fa-balance-scale"></i>  <span>Nilai Seleksi</span></a></li>
 <li class="treeview">
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
@@ -44,7 +45,7 @@
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i> Manajemen Jadwal Seleksi</a></li>
+  <li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-o"></i> Manajemen Jadwal Seleksi</a></li>
   <li class="active">Edit Jadwal Seleksi</li>
 </ol>
 @endsection

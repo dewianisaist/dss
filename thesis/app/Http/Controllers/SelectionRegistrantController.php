@@ -18,10 +18,16 @@ class SelectionRegistrantController extends Controller
     */
     public function index(Request $request)
     {
-        $data = Selection::with('registrant','selectionschedule')->orderBy('id','DESC')->paginate(10);
-        return view('selections.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+        $data = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+                            ->join('users', 'users.id', '=', 'registrants.user_id')
+                            ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
+                            ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
+                            ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                            ->orderBy('selections.id','DESC')
+                            ->paginate(10);
         // return $data;
+        return view('selections.index',compact('data'))
+                    ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

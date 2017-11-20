@@ -151,6 +151,15 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('selections/{id}/edit',['as'=>'selections.edit','uses'=>'SelectionController@edit']);
 	Route::patch('selections/{id}',['as'=>'selections.update','uses'=>'SelectionController@update']);
 
+	//selectionregistrant - ada permission, belum ditambahkan
+	Route::get('selectionregistrants',['as'=>'selectionregistrants.index','uses'=>'SelectionRegistrantController@index']);
+	Route::get('selectionregistrants/create',['as'=>'selectionregistrants.create','uses'=>'SelectionRegistrantController@create']);
+	Route::post('selectionregistrants/create',['as'=>'selectionregistrants.store','uses'=>'SelectionRegistrantController@store']);
+	Route::get('selectionregistrants/{id}',['as'=>'selectionregistrants.show','uses'=>'SelectionRegistrantController@show']);
+	Route::get('selectionregistrants/{id}/edit',['as'=>'selectionregistrants.edit','uses'=>'SelectionRegistrantController@edit']);
+	Route::patch('selectionregistrants/{id}',['as'=>'selectionregistrants.update','uses'=>'SelectionRegistrantController@update']);
+	Route::delete('selectionregistrants/{id}',['as'=>'selectionregistrants.destroy','uses'=>'SelectionRegistrantController@destroy']);
+
 	//preferences - ada permission, belum ditambahkan
 	Route::get('preferences',['as'=>'preferences.index','uses'=>'PreferenceController@index']);
 	Route::get('preferences/create',['as'=>'preferences.create','uses'=>'PreferenceController@create']);
