@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 19, 2017 at 02:46 PM
+-- Generation Time: Nov 20, 2017 at 06:13 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -70,9 +70,9 @@ CREATE TABLE `criterias` (
   `global_weight` decimal(5,3) DEFAULT NULL,
   `preference` tinyint(2) DEFAULT NULL COMMENT '1. Type 1: Usual criterion\n2. Type 2: Quasi-criterion (U-Shape)\n3. Type 3: Criterion with linear preference (V-Shape)\n4. Type 4: Level criterion\n5. Type 5: Criterion with linear preference and indifference area\n6. Type 6: Gaussian criterion',
   `kaidah` varchar(10) DEFAULT NULL,
-  `parameter_p` decimal(10,3) DEFAULT NULL,
-  `parameter_q` decimal(10,3) DEFAULT NULL,
-  `parameter_s` decimal(10,3) DEFAULT NULL,
+  `parameter_p` decimal(20,3) DEFAULT NULL,
+  `parameter_q` decimal(20,3) DEFAULT NULL,
+  `parameter_s` decimal(20,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -149,7 +149,7 @@ CREATE TABLE `history_criterias` (
 CREATE TABLE `pairwise_comparisons` (
   `criteria1_id` int(11) NOT NULL,
   `criteria2_id` int(11) NOT NULL,
-  `nilai` decimal(5,3) DEFAULT NULL,
+  `nilai` decimal(20,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -299,7 +299,7 @@ CREATE TABLE `result_selections` (
   `id` int(11) NOT NULL,
   `selection_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `value` decimal(10,3) DEFAULT NULL,
+  `value` decimal(20,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -367,11 +367,18 @@ CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
   `registrant_id` int(11) NOT NULL,
   `selection_schedule_id` int(11) NOT NULL,
-  `written_value` decimal(3,3) DEFAULT NULL,
-  `interview_value` decimal(3,3) DEFAULT NULL,
+  `written_value` decimal(5,2) DEFAULT NULL,
+  `interview_value` decimal(5,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `selections`
+--
+
+INSERT INTO `selections` (`id`, `registrant_id`, `selection_schedule_id`, `written_value`, `interview_value`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '100.00', '100.00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -703,7 +710,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `selection_schedules`
 --
