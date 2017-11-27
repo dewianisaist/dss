@@ -22,17 +22,20 @@ class RegistrationController extends Controller
     */
    public function index(Request $request)
    {
-        $user = User::with('registrant')->find(Auth::user()->id);        
-        $educational_background = EducationalBackground::whereRegistrantId($user->registrant->id)->first();
-        $registration = Registration::whereRegistrantId($user->registrant->id)->first();
-        
+        $user = User::with('registrant')->find(Auth::user()->id);     
         if ($user->registrant == null) {
             return redirect()->route('registrants.edit')
                              ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
-        } elseif ($educational_background == null) {
+        } 
+
+        $educational_background = EducationalBackground::whereRegistrantId($user->registrant->id)->first();
+        if ($educational_background == null) {
             return redirect()->route('educational_background.index')
                              ->with('failed','Maaf, silahkan tambahkan Riwayat Pendidikan Anda dahulu.');
-        } elseif ($registration == null) {
+        } 
+        
+        $registration = Registration::whereRegistrantId($user->registrant->id)->first();
+        if ($registration == null) {
             return redirect()->route('registration.create');
         } else {
             $registrations = Registration::with('subvocational')->whereRegistrantId($user->registrant->id)
