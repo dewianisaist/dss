@@ -20,7 +20,7 @@
 <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
 <li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-o"></i>  <span>Jadwal Seleksi</span></a></li>
 <li><a href="{{ route('selections.index') }}"><i class="fa fa-balance-scale"></i>  <span>Nilai Seleksi</span></a></li>
-<li class="active"><a href="{{ route('selectionregistrants.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Nilai Seleksi</span></a></li>
+<li class="active"><a href="{{ route('selectionregistrants.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi Pendaftar</span></a></li>
 <li class="treeview">
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
@@ -38,12 +38,12 @@
   
 @section('content_header')
 <h1>
-  Manajemen Nilai Seleksi
+  Manajemen Jadwal Seleksi Pendaftar
   <dfn><small>Control panel</small></dfn>
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li class="active">Manajemen Nilai Seleksi</li>
+  <li class="active">Manajemen Jadwal Seleksi Pendaftar</li>
 </ol>
 @endsection
 
@@ -56,6 +56,16 @@
 			</div>
 		@endif
 	
+		<div class="row">
+			<div class="col-lg-12 margin-tb">
+				<div class="pull-right mb-1">
+					{{--  @permission('selectionregistrant-create')  --}}
+					<a class="btn btn-success" href="{{ route('selectionregistrants.create') }}"> Tambahkan Jadwal Seleksi Pendaftar</a>
+					{{--  @endpermission  --}}
+				</div>
+			</div>
+		</div>
+
 		<br/>
     	<table id="table_selections" class="table table-bordered table-striped">
 			<thead>
@@ -65,26 +75,27 @@
 					<th>Sub-Kejuruan</th>
 					<th>Tanggal Seleksi</th>
 					<th>Waktu Seleksi</th>
-					<th>Nilai Tes Tertulis</th>
-					<th>Nilai Tes Wawancara</th>
 					<th width="280px">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($data as $key => $selection)
+				@foreach ($data as $key => $selectionregistrant)
 					<tr>
 						<td>{{ ++$i }}</td>
-						<td>{{ $selection->name_registrant }}</td>
-						<td>{{ $selection->name_sub_vocational }}</td>
-						<td>{{ $selection->date }}</td>
-						<td>{{ $selection->time }}</td>
-						<td>{{ $selection->written_value }}</td>
-						<td>{{ $selection->interview_value }}</td>
+						<td>{{ $selectionregistrant->name_registrant }}</td>
+						<td>{{ $selectionregistrant->name_sub_vocational }}</td>
+						<td>{{ $selectionregistrant->date }}</td>
+						<td>{{ $selectionregistrant->time }}</td>
 						<td>
-							<a class="btn btn-info" href="{{ route('selections.show',$selection->id) }}">Detail</a>
-							{{--  @permission('selection-edit')  --}}
-							<a class="btn btn-primary" href="{{ route('selections.edit',$selection->id) }}">Input Nilai Seleksi</a>
+							<a class="btn btn-info" href="{{ route('selectionregistrants.show',$selectionregistrant->id) }}">Detail</a>
+							{{--  @permission('selectionregistrant-edit')  --}}
+							<a class="btn btn-primary" href="{{ route('selectionregistrants.edit',$selectionregistrant->id) }}">Edit</a>
 							{{--  @endpermission  --}}
+							{{--  @permission('selectionregistrant-delete')  --}}
+							{!! Form::open(['method' => 'DELETE','route' => ['selectionregistrants.destroy', $selectionregistrant->id],'style'=>'display:inline']) !!}
+							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+							{!! Form::close() !!}
+							{{--  @endpermission --}}
 						</td>
 					</tr>
 				@endforeach
