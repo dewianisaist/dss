@@ -79,7 +79,7 @@
 						{!! Form::text('date', isset($selection->date) ? $selection->date : '', array('class' => 'form-control pull-right','disabled')) !!}
           </div>
 				</div>
-					<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
             <strong>Waktu:</strong>
 						{!! Form::text('time', isset($selection->time) ? $selection->time : '', array('class' => 'form-control pull-right','disabled')) !!}
