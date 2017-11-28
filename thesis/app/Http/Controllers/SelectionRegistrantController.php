@@ -90,8 +90,8 @@ class SelectionRegistrantController extends Controller
                         ->lists('jadwal','selection_schedules.id');
         // return $schedule;
 
-        return compact('registrant', 'subvocational', 'schedule');
-        // return view('selection_registrants.create',compact('registrant', 'subvocational', 'schedule'));
+        // return compact('registrant', 'subvocational', 'schedule');
+        return view('selection_registrants.create',compact('registrant', 'subvocational', 'schedule'));
     }
 
    /**
