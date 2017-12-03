@@ -55,7 +55,7 @@ class SelectionRegistrantController extends Controller
                           ->lists('users.name','registration.registrant_id');
         // return $registrant;
 
-        // SELECT users.name, sv.name, concat(ss.date," ", ss.time) as jadwal 
+        // SELECT users.name, sv.name, concat(sv, name ," ", ss.date, " ", ss.time) as jadwal 
         // FROM users, registrants rs, registration rn, sub_vocationals sv, selection_schedules ss 
         // WHERE users.id = rs.user_id AND
         // rs.id = rn.registrant_id AND
@@ -63,35 +63,17 @@ class SelectionRegistrantController extends Controller
         // sv.id = ss.sub_vocational_id AND
         // users.name = "Pendaftar 1"
 
-        $subvocational = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                             ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                             ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
-                             ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
-                             ->select('registration.sub_vocational_id', 'sub_vocationals.name AS subkejuruan')
-                            //  ->whereIn('registration.registrant_id', $registrant)->value('users.name')
-                             ->lists('subkejuruan','registration.sub_vocational_id');
-        // return $subvocational;
-
-        // SELECT users.name, sv.name, concat(ss.date," ", ss.time) as jadwal 
-        // FROM users, registrants rs, registration rn, sub_vocationals sv, selection_schedules ss 
-        // WHERE users.id = rs.user_id AND
-        // rs.id = rn.registrant_id AND
-        // rn.sub_vocational_id = sv.id AND
-        // sv.id = ss.sub_vocational_id AND
-        // users.name = "Pendaftar 1" AND
-        // sv.name = "Menjahit sub 1"
-
         $schedule = User::join('registrants', 'registrants.user_id', '=', 'users.id')
                         ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
                         ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
                         ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
-                        ->select('selection_schedules.id', DB::raw('CONCAT(selection_schedules.date," - ",selection_schedules.time) as jadwal'))
-                        // ->whereIn('registration.sub_vocational_id', $subvocational)->value('sub_vocationals.name AS subkejuruan')
+                        ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
+                        // ->where('registrants.user_id', $registrant)->value('users.name')
                         ->lists('jadwal','selection_schedules.id');
         // return $schedule;
 
-        // return compact('registrant', 'subvocational', 'schedule');
-        return view('selection_registrants.create',compact('registrant', 'subvocational', 'schedule'));
+        // return compact('registrant', 'schedule');
+        return view('selection_registrants.create',compact('registrant', 'schedule'));
     }
 
    /**
@@ -110,8 +92,8 @@ class SelectionRegistrantController extends Controller
         $input = $request->all();
         $selection = Selection::create($input);
  
-        return redirect()->route('selections.index')
-                        ->with('success','Jadwal seleksi peserta berhasil dibuat');
+        return redirect()->route('selectionregistrants.index')
+                        ->with('success','Jadwal seleksi pendaftar berhasil dibuat');
     }
  
     /**
@@ -140,11 +122,37 @@ class SelectionRegistrantController extends Controller
     */
    public function edit($id)
    {
-        $registrant = Registrant::lists('name','id');
-        $selectionschedule = SelectionSchedule::select(DB::raw('CONCAT(date, " - ", time) AS waktu_seleksi'), 'id')
-                                                            ->lists('waktu_seleksi', 'id');
+        $selection = Selection::find($id);
+        $registrant = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+                          ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
+                          ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                          ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
+                          ->select('users.name', 'registration.registrant_id')
+                          ->lists('users.name','registration.registrant_id');
 
-        return view('selectionschedules.edit',compact('selectionschedule','subvocational','subvocationalchoosen'));
+        $registrantchoosen = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+                                 ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
+                                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                                 ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
+                                 ->select('users.name', 'registration.registrant_id')
+                                 ->where('registration.registrant_id', $selection)->value('users.name');
+
+        $schedule = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+                        ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
+                        ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                        ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
+                        ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
+                        ->lists('jadwal','selection_schedules.id');
+        
+        $schedulechoosen = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+                                ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
+                                ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                                ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
+                                ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
+                                ->where('selection_schedules.id', $selection)->value(DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'));
+
+        return view('selection_registrants.edit',compact('selection', 'registrant', 'registrantchoosen', 'schedule', 'schedulechoosen'));
+        // return $selection;     
    }
 
    /**
@@ -157,18 +165,16 @@ class SelectionRegistrantController extends Controller
    public function update(Request $request, $id)
    {
        $this->validate($request, [
-        'sub_vocational_id' => 'required',
-        'date' => 'required',
-        'time' => 'required',
-        'place' => 'required',
+        'registrant_id' => 'required',
+        'selection_schedule_id' => 'required',
        ]);
 
        $input = $request->all();
-       $selectionschedule = SelectionSchedule::find($id);
-       $selectionschedule->update($input);
+       $selection = Selection::find($id);
+       $selection->update($input);
 
-       return redirect()->route('selectionschedules.index')
-                       ->with('success','Jadwal seleksi berhasil diedit');
+       return redirect()->route('selectionregistrants.index')
+                       ->with('success','Jadwal seleksi pendaftar berhasil diedit');
    }
 
    /**
@@ -181,6 +187,6 @@ class SelectionRegistrantController extends Controller
    {
        Selection::find($id)->delete();
        return redirect()->route('selectionregistrants.index')
-                       ->with('success','Jadwal seleksi peserta berhasil dihapus');
+                       ->with('success','Jadwal seleksi pendaftar berhasil dihapus');
    }
 }

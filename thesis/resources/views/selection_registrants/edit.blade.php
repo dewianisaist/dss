@@ -38,12 +38,12 @@
  
 @section('content_header')
 <h1>
-  Buat Jadwal Seleksi Pendaftar
+  Edit Jadwal Seleksi Pendaftar
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
   <li><a href="{{ route('selectionregistrants.index') }}"><i class="fa fa-calendar-check-o"></i> Manajemen Jadwal Seleksi Pendaftar</a></li>
-  <li class="active">Buat Jadwal Seleksi Pendaftar</li>
+  <li class="active">Edit Jadwal Seleksi Pendaftar</li>
 </ol>
 @endsection
 
@@ -60,18 +60,18 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::open(array('route' => 'selectionregistrants.store','method'=>'POST')) !!}
+		{!! Form::model($selection, ['method' => 'PATCH','route' => ['selectionregistrants.update', $selection->id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
             <strong>Nama Pendaftar:</strong>
-						{!! Form::select('registrant_id', $registrant,[], array('class' => 'form-control')) !!}
+						{!! Form::select('registrant_id', $registrant, $registrantchoosen, array('class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
             <strong>Jadwal Seleksi:</strong>
-						{!! Form::select('selection_schedule_id', $schedule,[], array('class' => 'form-control')) !!}
+						{!! Form::select('selection_schedule_id', $schedule, $schedulechoosen, array('class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
