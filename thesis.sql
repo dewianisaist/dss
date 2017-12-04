@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2017 at 07:46 AM
+-- Generation Time: Dec 04, 2017 at 07:59 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -150,7 +150,7 @@ CREATE TABLE `history_criterias` (
 CREATE TABLE `pairwise_comparisons` (
   `criteria1_id` int(11) NOT NULL,
   `criteria2_id` int(11) NOT NULL,
-  `nilai` decimal(20,3) DEFAULT NULL,
+  `value` decimal(20,3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
