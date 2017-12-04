@@ -92,6 +92,6 @@ class SelectionController extends Controller
        $selection->update($input);
 
        return redirect()->route('selections.index')
-                        ->with('success','Nilai seleksi berhasil ditambahkan');
+                        ->with('success','Nilai seleksi berhasil disimpan');
    }
 }

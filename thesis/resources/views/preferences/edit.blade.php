@@ -3,7 +3,7 @@
 @section('sidebar_menu')
 <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
 <li><a href="{{ route('roles.index') }}"><i class="fa fa-key"></i>  <span>Data <dfn>Roles</dfn></span></a></li>
-<li class="active treeview menu-open">
+<li class="treeview">
   <a href="{{ route('vocationals.index') }}">
     <i class="fa fa-industry"></i>
     <span>Program</span>
@@ -12,13 +12,27 @@
     </span>
   </a>
   <ul class="treeview-menu">
-    <li class="active"><a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i> Kejuruan</a></li>
+    <li><a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i> Kejuruan</a></li>
     <li><a href="{{ route('subvocationals.index') }}"><i class="fa fa-industry"></i> Sub-Kejuruan</a></li>
   </ul>
 </li>
 <li><a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a></li>
 <li><a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a></li>
-<li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi</span></a></li>
+<li><a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-o"></i>  <span>Jadwal Seleksi</span></a></li>
+<li><a href="{{ route('selections.index') }}"><i class="fa fa-balance-scale"></i>  <span>Nilai Seleksi</span></a></li>
+<li><a href="{{ route('selectionregistrants.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi Pendaftar</span></a></li>
+<li class="treeview">
+  <a href="{{ route('criterias.index') }}">
+    <i class="fa fa-list"></i>
+    <span>Kriteria</span>
+  	<span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+  </a>
+  <ul class="treeview-menu">
+    <li><a href="{{ route('criterias.index') }}"><i class="fa fa-list"></i> Kriteria dari Kajian Pustaka</a></li>
+  </ul>
+</li>
 <li class="active treeview menu-open">
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
@@ -28,20 +42,19 @@
     </span>
   </a>
   <ul class="treeview-menu">
-    <li class="active"><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i>  <span>Preferensi</span></a></li>
-    {{--  <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i>  <span>Hasil</a></li>  --}}
+    <li class="active"><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a></li>
   </ul>
 </li>
 @endsection
   
 @section('content_header')
 <h1>
-  Edit Preferensi
-  <dfn><small>Control panel</small></dfn>
+  Edit Tipe Preferensi
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li class="active">Edit Preferensi</li>
+  <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a></li>
+  <li class="active">Edit Tipe Preferensi</li>
 </ol>
 @endsection
  
@@ -58,18 +71,58 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::model($vocational, ['method' => 'PATCH','route' => ['vocationals.update', $vocational->id]]) !!}
+		{!! Form::model($preference, ['method' => 'PATCH','route' => ['preferences.update', $preference->id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nama:</strong>
-						{!! Form::text('name', null, array('placeholder' => 'Nama Kejuruan','class' => 'form-control')) !!}
+						<strong>Kriteria:</strong>
+						{!! Form::text('name', isset($preference->name) ? $preference->name : '', array('placeholder' => 'Nama Kriteria','class' => 'form-control','disabled')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Deskripsi:</strong>
-						{!! Form::textarea('description', null, array('placeholder' => 'Deskripsi','class' => 'form-control','style'=>'height:100px')) !!}
+						<strong>Tipe Preferensi:</strong>
+            {!! Form::select('preference', 
+              array(
+                  'Tipe 1' => 'Tipe 1', 
+                  'Tipe 2' => 'Tipe 2',
+                  'Tipe 3' => 'Tipe 3',
+                  'Tipe 4' => 'Tipe 4',
+                  'Tipe 5' => 'Tipe 5',
+                  'Tipe 6' => 'Tipe 6'
+              ), 
+              isset($preference->preference) ? $preference->preference : '', array('class' => 'form-control')) 
+            !!}
+					</div>
+				</div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Kaidah (Maks/Min):</strong>
+            {!! Form::select('max_min', 
+              array(
+                  'Maksimasi' => 'Maksimasi', 
+                  'Minimasi' => 'Minimasi',
+              ), 
+              isset($preference->max_min) ? $preference->max_min : '', array('class' => 'form-control')) 
+            !!}
+					</div>
+				</div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Parameter p:</strong>
+						{!! Form::text('parameter_p', isset($preference->parameter_p) ? $preference->parameter_p : '', array('placeholder' => 'Parameter p','class' => 'form-control')) !!}
+					</div>
+				</div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Parameter q:</strong>
+						{!! Form::text('parameter_q', isset($preference->parameter_q) ? $preference->parameter_q : '', array('placeholder' => 'Parameter q','class' => 'form-control')) !!}
+					</div>
+				</div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Parameter s:</strong>
+						{!! Form::text('parameter_s', isset($preference->parameter_s) ? $preference->parameter_s : '', array('placeholder' => 'Parameter s','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">

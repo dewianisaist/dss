@@ -46,62 +46,62 @@
   </ul>
 </li>
 @endsection
-   
+  
 @section('content_header')
 <h1>
-  Tipe Preferensi
-  <dfn><small>Control panel</small></dfn>
+  Detail Tipe Preferensi
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li class="active">Tipe Preferensi</li>
+  <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a></li>
+  <li class="active">Detail Tipe Preferensi</li>
 </ol>
 @endsection
 
 @section('content')
-<div class="box">
-	<div class="box-body">
-		@if ($message = Session::get('success'))
-			<div class="alert alert-success">
-				<p>{{ $message }}</p>
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3 class="box-title">{{ $preference->name }}</h3>
+    </div>
+    <div class="box-body">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Kriteria:</strong>
+					{{ $preference->name }}
+				</div>
 			</div>
-		@endif
-
-		<br/>
-    	<table id="table_preferences" class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>Kriteria</th>
-					<th>Tipe Preferensi</th>
-					<th>Kaidah (Maks/Min)</th>
-					<th>Parameter p</th>
-					<th>Parameter q</th>
-					<th>Parameter s</th>
-					<th width="280px">Aksi</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach ($preferences as $key => $preference)
-					<tr>
-						<td>{{ ++$i }}</td>
-						<td>{{ $preference->name }}</td>
-						<td>{{ $preference->preference }}</td>
-						<td>{{ $preference->max_min }}</td>
-						<td>{{ $preference->parameter_p }}</td>
-						<td>{{ $preference->parameter_q }}</td>
-						<td>{{ $preference->parameter_s }}</td>
-						<td>
-							<a class="btn btn-info" href="{{ route('preferences.show',$preference->id) }}">Detail</a>
-							{{--  @permission('preference-edit')  --}}
-							<a class="btn btn-primary" href="{{ route('preferences.edit',$preference->id) }}">Edit</a>
-							{{--  @endpermission  --}}
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
-		{!! $preferences->render() !!}
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Tipe Preferensi:</strong>
+					{{ $preference->preference }}
+				</div>
+			</div>
+      <div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Kaidah (Maks/Min):</strong>
+					{{ $preference->max_min }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Parameter p:</strong>
+					{{ $preference->parameter_p }}
+				</div>
+			</div>
+      <div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Parameter q:</strong>
+					{{ $preference->parameter_q }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Parameter s:</strong>
+					{{ $preference->parameter_s }}
+				</div>
+			</div>
+		</div>
 	</div>
-</div>	
+</div>
 @endsection
