@@ -160,6 +160,15 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('selectionregistrants/{id}',['as'=>'selectionregistrants.update','uses'=>'SelectionRegistrantController@update']);
 	Route::delete('selectionregistrants/{id}',['as'=>'selectionregistrants.destroy','uses'=>'SelectionRegistrantController@destroy']);
 
+	//criteria - ada permission, belum ditambahkan
+	Route::get('criterias',['as'=>'criterias.index','uses'=>'CriteriaController@index']);
+	Route::get('criterias/create',['as'=>'criterias.create','uses'=>'CriteriaController@create']);
+	Route::post('criterias/create',['as'=>'criterias.store','uses'=>'CriteriaController@store']);
+	Route::get('criterias/{id}',['as'=>'criterias.show','uses'=>'CriteriaController@show']);
+	Route::get('criterias/{id}/edit',['as'=>'criterias.edit','uses'=>'CriteriaController@edit']);
+	Route::patch('criterias/{id}',['as'=>'criterias.update','uses'=>'CriteriaController@update']);
+	Route::delete('criterias/{id}',['as'=>'criterias.destroy','uses'=>'CriteriaController@destroy']);
+
 	//preferences - ada permission, belum ditambahkan
 	Route::get('preferences',['as'=>'preferences.index','uses'=>'PreferenceController@index']);
 	Route::get('preferences/create',['as'=>'preferences.create','uses'=>'PreferenceController@create']);
