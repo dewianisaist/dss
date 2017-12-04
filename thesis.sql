@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2017 at 07:59 AM
+-- Generation Time: Dec 04, 2017 at 02:34 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -68,7 +68,7 @@ CREATE TABLE `criterias` (
   `description` varchar(500) DEFAULT NULL,
   `partial_weight` decimal(5,3) DEFAULT NULL,
   `global_weight` decimal(5,3) DEFAULT NULL,
-  `preference` tinyint(2) DEFAULT NULL COMMENT '1. Type 1: Usual criterion\n2. Type 2: Quasi-criterion (U-Shape)\n3. Type 3: Criterion with linear preference (V-Shape)\n4. Type 4: Level criterion\n5. Type 5: Criterion with linear preference and indifference area\n6. Type 6: Gaussian criterion',
+  `preference` varchar(10) DEFAULT NULL,
   `max_min` varchar(10) DEFAULT NULL,
   `parameter_p` decimal(20,3) DEFAULT NULL,
   `parameter_q` decimal(20,3) DEFAULT NULL,
@@ -76,6 +76,13 @@ CREATE TABLE `criterias` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `criterias`
+--
+
+INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `partial_weight`, `global_weight`, `preference`, `max_min`, `parameter_p`, `parameter_q`, `parameter_s`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Kriteria Pustaka 1', 'OK Kriteria pustaka 1 (sumber: XYZ, 2017)', NULL, NULL, 'Tipe 2', 'Minimasi', '0.000', '0.500', '0.000', '2017-12-04 01:03:45', '2017-12-04 06:33:55');
 
 -- --------------------------------------------------------
 
@@ -683,7 +690,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --
