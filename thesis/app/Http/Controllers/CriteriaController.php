@@ -13,7 +13,7 @@ class CriteriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $criterias = Criteria::orderBy('id','DESC')->paginate(10);
         return view('criterias.index',compact('criterias'))
@@ -27,7 +27,7 @@ class CriteriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('criterias.create');
     }
 
     /**
@@ -38,7 +38,15 @@ class CriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+           ]);
+    
+           Criteria::create($request->all());
+    
+           return redirect()->route('criterias.index')
+                            ->with('success','Kriteria berhasil dibuat');
     }
 
     /**
@@ -49,7 +57,8 @@ class CriteriaController extends Controller
      */
     public function show($id)
     {
-        //
+        $criteria = Criteria::find($id);
+        return view('criterias.show',compact('criteria'));
     }
 
     /**
@@ -60,7 +69,8 @@ class CriteriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $criteria = Criteria::find($id);
+        return view('criterias.edit',compact('criteria'));
     }
 
     /**
@@ -72,7 +82,15 @@ class CriteriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+ 
+        Criteria::find($id)->update($request->all());
+ 
+        return redirect()->route('criterias.index')
+                         ->with('success','Kriteria berhasil diedit');
     }
 
     /**
@@ -83,6 +101,8 @@ class CriteriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Criteria::find($id)->delete();
+        return redirect()->route('criterias.index')
+                        ->with('success','Kriteria berhasil dihapus');
     }
 }
