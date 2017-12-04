@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 20, 2017 at 06:13 AM
+-- Generation Time: Dec 04, 2017 at 07:46 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -69,7 +69,7 @@ CREATE TABLE `criterias` (
   `partial_weight` decimal(5,3) DEFAULT NULL,
   `global_weight` decimal(5,3) DEFAULT NULL,
   `preference` tinyint(2) DEFAULT NULL COMMENT '1. Type 1: Usual criterion\n2. Type 2: Quasi-criterion (U-Shape)\n3. Type 3: Criterion with linear preference (V-Shape)\n4. Type 4: Level criterion\n5. Type 5: Criterion with linear preference and indifference area\n6. Type 6: Gaussian criterion',
-  `kaidah` varchar(10) DEFAULT NULL,
+  `max_min` varchar(10) DEFAULT NULL,
   `parameter_p` decimal(20,3) DEFAULT NULL,
   `parameter_q` decimal(20,3) DEFAULT NULL,
   `parameter_s` decimal(20,3) DEFAULT NULL,
@@ -97,7 +97,8 @@ CREATE TABLE `educational_background` (
 INSERT INTO `educational_background` (`registrant_id`, `education_id`, `name_institution`, `graduation_year`) VALUES
 (1, 1, 'SDN 1 Bantul', 2007),
 (1, 2, 'SMP', 2010),
-(1, 3, 'SMA 1 Bantul', 2013);
+(1, 3, 'SMA 1 Bantul', 2013),
+(2, 1, 'SD Bantul Timur ', 2009);
 
 -- --------------------------------------------------------
 
@@ -268,7 +269,8 @@ CREATE TABLE `registrants` (
 --
 
 INSERT INTO `registrants` (`id`, `user_id`, `address`, `phone_number`, `gender`, `place_birth`, `date_birth`, `order_child`, `amount_sibling`, `religion`, `biological_mother_name`, `father_name`, `parent_address`, `created_at`, `updated_at`) VALUES
-(1, 11, 'Alamat pendaftar 1', '08511111111', 'Perempuan', 'tl1', '1998-07-22', 2, 3, 'Konghucu', 'ibu 1', 'ayah 1', 'alamat ortu 1', '2017-11-19 06:44:05', '2017-11-19 06:44:05');
+(1, 11, 'Alamat pendaftar 1', '08511111111', 'Perempuan', 'tl1', '1998-07-22', 2, 3, 'Konghucu', 'ibu 1', 'ayah 1', 'alamat ortu 1', '2017-11-19 06:44:05', '2017-11-19 06:44:05'),
+(2, 12, 'pendatar 2 alamat', '086222222', 'Perempuan', 'tl2', '1996-01-30', 1, 0, 'Islam', 'ibu2', 'ayah2', 'ortu 2 alamat', '2017-11-27 07:22:12', '2017-11-27 07:22:12');
 
 -- --------------------------------------------------------
 
@@ -287,7 +289,9 @@ CREATE TABLE `registration` (
 --
 
 INSERT INTO `registration` (`registrant_id`, `sub_vocational_id`, `register_date`) VALUES
-(1, 2, '2017-11-19 06:45:20');
+(1, 1, '2017-11-27 08:17:05'),
+(1, 3, '2017-11-27 13:46:35'),
+(2, 3, '2017-11-27 07:23:33');
 
 -- --------------------------------------------------------
 
@@ -352,6 +356,8 @@ INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
 (2, 10),
 (3, 5),
 (4, 11),
+(4, 12),
+(4, 13),
 (5, 6),
 (6, 7),
 (7, 8),
@@ -378,7 +384,9 @@ CREATE TABLE `selections` (
 --
 
 INSERT INTO `selections` (`id`, `registrant_id`, `selection_schedule_id`, `written_value`, `interview_value`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '100.00', '100.00', NULL, NULL);
+(1, 1, 1, '85.00', '90.00', NULL, '2017-11-20 01:07:08'),
+(19, 1, 3, NULL, NULL, '2017-12-03 08:04:46', '2017-12-03 08:04:46'),
+(20, 2, 3, NULL, NULL, '2017-12-03 08:05:33', '2017-12-03 08:05:47');
 
 -- --------------------------------------------------------
 
@@ -403,7 +411,9 @@ CREATE TABLE `selection_schedules` (
 
 INSERT INTO `selection_schedules` (`id`, `sub_vocational_id`, `date`, `time`, `place`, `information`, `created_at`, `updated_at`) VALUES
 (1, 1, '2017-12-16', '08:00', 'R. Oto 1', '', '2017-11-19 06:34:21', '2017-11-19 06:34:21'),
-(2, 2, '2017-12-23', '08:00', 'R. Oto 2', 'pakaian rapi, sepatu, ktp', '2017-11-19 06:35:53', '2017-11-19 06:35:53');
+(2, 2, '2017-12-23', '08:00', 'R. Oto 2', 'pakaian rapi, sepatu, ktp', '2017-11-19 06:35:53', '2017-11-19 06:35:53'),
+(3, 3, '2017-12-09', '09:00', 'R. Menjahit ', '', '2017-11-27 06:45:29', '2017-11-27 06:45:29'),
+(4, 1, '2017-12-02', '10:00', 'R. Oto 1', '', '2017-11-27 06:47:50', '2017-11-27 06:47:50');
 
 -- --------------------------------------------------------
 
@@ -431,8 +441,8 @@ CREATE TABLE `sub_vocationals` (
 
 INSERT INTO `sub_vocationals` (`id`, `vocational_id`, `name`, `quota`, `long_training`, `goal`, `unit_competence`, `requirement_participant`, `final_registration_date`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Otomotif sub 1', 16, '200', 'tujuan oto', 'unit oto', 'syarat oto', '2017-12-10 16:59:59', '2017-11-19 06:31:04', '2017-11-19 06:31:04'),
-(2, 1, 'Otomotif sub 2', 16, '180', 'tujuan oto 2', 'unit oto 2', 'syarat oto 2', '2017-12-16 16:59:59', '2017-11-19 06:31:50', '2017-11-19 06:31:50'),
-(3, 1, 'Menjahit sub 1', 20, '360', 'tujuan menjahit', 'unit menjahit', 'syarat menjahit', '2017-12-09 16:59:59', '2017-11-19 06:32:33', '2017-11-19 06:32:33');
+(2, 1, 'Otomotif sub 2', 16, '180', 'tujuan oto 2', 'unit oto 2', 'syarat oto 2', '2017-12-16 16:59:59', '2017-11-19 06:31:50', '2017-12-03 06:52:50'),
+(3, 2, 'Menjahit sub 1', 20, '360', 'tujuan menjahit', 'unit menjahit', 'syarat menjahit', '2017-12-09 16:59:59', '2017-11-19 06:32:33', '2017-12-03 06:53:34');
 
 -- --------------------------------------------------------
 
@@ -455,7 +465,8 @@ CREATE TABLE `uploads` (
 --
 
 INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
-(1, 1, 'photo_6512bd43d9caa6e02c990b0a82652dca.jpg', 'ktp_6512bd43d9caa6e02c990b0a82652dca.pdf', 'lastcertificate_6512bd43d9caa6e02c990b0a82652dca.pdf', '2017-11-19 06:44:05', '2017-11-19 06:44:05');
+(1, 1, 'photo_6512bd43d9caa6e02c990b0a82652dca.jpg', 'ktp_6512bd43d9caa6e02c990b0a82652dca.pdf', 'lastcertificate_6512bd43d9caa6e02c990b0a82652dca.pdf', '2017-11-19 06:44:05', '2017-11-19 06:44:05'),
+(2, 2, NULL, NULL, NULL, '2017-11-27 07:22:12', '2017-11-27 07:22:12');
 
 -- --------------------------------------------------------
 
@@ -479,14 +490,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$32W17DK3I/80n6eEaXpyO.penHp3MxX0/mJPaKUZjsV.nAEZ/bxxq', 'olA7FeZ0ld85T99o1HMtL4xipGufI4U9DmMmIsU2IZHOJaderEt3IL9BKVXh', '2017-11-19 03:34:38', '2017-11-19 06:40:51'),
+(4, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$32W17DK3I/80n6eEaXpyO.penHp3MxX0/mJPaKUZjsV.nAEZ/bxxq', 'MFOlJofdb63WRR391WEe6GpdyXshVhTXBBVx297hK78oDofdLxk2wp4Rz3Fy', '2017-11-19 03:34:38', '2017-12-03 07:52:29'),
 (5, '101010', 'Mr. A', 'a@test.com', '$2y$10$x6TtTvd.irZAZk3YiLN1K.qkRsbbP3W5BTgH3TRGj/c8kSKNeBJ1q', NULL, '2017-11-19 06:38:36', '2017-11-19 06:38:36'),
 (6, '202020', 'Mr. B', 'b@test.com', '$2y$10$FDBdZeAblrqwlT6R5vNRwO2tLddckXNyo1sd80ywvN8YucQTG.BYO', NULL, '2017-11-19 06:39:02', '2017-11-19 06:39:02'),
 (7, '303030', 'Mr. C', 'c@test.com', '$2y$10$n8m5QZuLr3BY60jeEwEjE.UqkNGPmz2wTuxN1m7549G2ojiMA4TRK', NULL, '2017-11-19 06:39:25', '2017-11-19 06:39:25'),
 (8, '404040', 'Mr. D', 'd@test.com', '$2y$10$Y4kH1fhMZNsuyMy1VJ5S7O87CPg3idIIn61uTC6fsf2FGa6Me960.', NULL, '2017-11-19 06:39:50', '2017-11-19 06:39:50'),
 (9, '505050', 'Mr. E', 'e@test.com', '$2y$10$pa..L.AHLOuV1lk2ZS.WNec9t4bN1i0OLhnsmpyjZl46pyEbwyAXq', NULL, '2017-11-19 06:40:13', '2017-11-19 06:40:13'),
 (10, '909090', 'Mr. I', 'i@test.com', '$2y$10$QRa/GJqNpmAaHwu.taPNbeDbjpBN1v.jV71HphFqbobjjEq3d/9Fa', NULL, '2017-11-19 06:40:35', '2017-11-19 06:40:35'),
-(11, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$DTeZ/tKboguYLw5MDRU0g.PfHwCYINrjVeWfAn8/Bw7Wqqaj4ntRa', 'IRi1EIKPI9eOr2SK6jnYUqqEh69RoTIqQaaJb6hKND4oKoZSDM5R49hZ2jyw', '2017-11-19 06:41:31', '2017-11-19 06:45:31');
+(11, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$DTeZ/tKboguYLw5MDRU0g.PfHwCYINrjVeWfAn8/Bw7Wqqaj4ntRa', 'qaRbkgR0B8uTfnJWyhRSLUBi6hrqjYDTgWewrxgfoJsVDTWY6DNLKQT7rJUm', '2017-11-19 06:41:31', '2017-11-20 23:28:40'),
+(12, '22222222', 'pendaftar 2', 'pendaftar2@test.com', '$2y$10$sVLDXXQeFxtq.tHlHKU2BO3bw0xCCe8lxiPc/ZNOLDu2zWIR.8LhC', 'lGN87FtJjiYPAXQ3BbtwD91fcnxfRZHO3lpqXDJQl34y76wYpOWAB7SzFvrN', '2017-11-27 07:10:52', '2017-11-27 07:29:05'),
+(13, '33333333', 'Pendaftar 3', 'pendaftar3@test.com', '$2y$10$ickdd4kU9bC8BakMxzVrdeTn069ueTLUMXWJUnp6/1sahEk6TNxJC', '5sHzQD3JbWHHlgpr1dYIa5HiwVt8AkuHJiNPbriulBU0szOhQrWMPpSvEBoj', '2017-11-27 07:24:48', '2017-11-27 07:25:05');
 
 -- --------------------------------------------------------
 
@@ -675,7 +688,7 @@ ALTER TABLE `criterias`
 -- AUTO_INCREMENT for table `educational_background`
 --
 ALTER TABLE `educational_background`
-  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `educations`
 --
@@ -695,7 +708,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `registrants`
 --
 ALTER TABLE `registrants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `result_selections`
 --
@@ -710,12 +723,12 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `selection_schedules`
 --
 ALTER TABLE `selection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
@@ -725,12 +738,12 @@ ALTER TABLE `sub_vocationals`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --
