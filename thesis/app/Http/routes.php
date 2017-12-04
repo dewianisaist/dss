@@ -154,7 +154,7 @@ Route::group(['middleware' => ['auth']], function() {
 	//selectionregistrants - ada permission, belum ditambahkan
 	Route::get('selectionregistrants',['as'=>'selectionregistrants.index','uses'=>'SelectionRegistrantController@index']);
 	Route::get('selectionregistrants/create',['as'=>'selectionregistrants.create','uses'=>'SelectionRegistrantController@create']);
-	Route::post('selectionregistrants/create',['as'=>'selectionregistrants.store','uses'=>'SelectionRegistrantController@store']);
+	Route::post('selectionregistrants/create_',['as'=>'selectionregistrants.store','uses'=>'SelectionRegistrantController@store']);
 	Route::get('selectionregistrants/{id}',['as'=>'selectionregistrants.show','uses'=>'SelectionRegistrantController@show']);
 	Route::get('selectionregistrants/{id}/edit',['as'=>'selectionregistrants.edit','uses'=>'SelectionRegistrantController@edit']);
 	Route::patch('selectionregistrants/{id}',['as'=>'selectionregistrants.update','uses'=>'SelectionRegistrantController@update']);
