@@ -26,6 +26,18 @@
 <li><a href="{{ route('selections.index') }}"><i class="fa fa-balance-scale"></i>  <span>Nilai Seleksi</span></a></li>
 <li><a href="{{ route('selectionregistrants.index') }}"><i class="fa fa-calendar-check-o"></i>  <span>Jadwal Seleksi Pendaftar</span></a></li>
 <li class="treeview">
+  <a href="{{ route('criterias.index') }}">
+    <i class="fa fa-list"></i>
+    <span>Kriteria</span>
+  	<span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+  </a>
+  <ul class="treeview-menu">
+    <li><a href="{{ route('criterias.index') }}"><i class="fa fa-list"></i> Kriteria dari Kajian Pustaka</a></li>
+  </ul>
+</li>
+<li class="treeview">
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
     <span>Penilaian</span>

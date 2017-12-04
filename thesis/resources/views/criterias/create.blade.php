@@ -82,7 +82,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Penjelasan:</strong>
+						<strong>Penjelasan <small>(Sertakan sumber pustaka)</small>:</strong>
 						{!! Form::textarea('description', null, array('placeholder' => 'Penjelasan Kriteria','class' => 'form-control','style'=>'height:100px')) !!}
 					</div>
 				</div>
