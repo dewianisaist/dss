@@ -159,7 +159,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('selectionregistrants/{id}/edit',['as'=>'selectionregistrants.edit','uses'=>'SelectionRegistrantController@edit']);
 	Route::patch('selectionregistrants/{id}',['as'=>'selectionregistrants.update','uses'=>'SelectionRegistrantController@update']);
 	Route::delete('selectionregistrants/{id}',['as'=>'selectionregistrants.destroy','uses'=>'SelectionRegistrantController@destroy']);
-
+	Route::post('selectionregistrants/create',['as'=>'selectionregistrants.select-ajax','uses'=>'SelectionRegistrantController@selectAjax']);
+	
 	//criterias - ada permission, belum ditambahkan
 	Route::get('criterias',['as'=>'criterias.index','uses'=>'CriteriaController@index']);
 	Route::get('criterias/create',['as'=>'criterias.create','uses'=>'CriteriaController@create']);

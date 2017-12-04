@@ -76,13 +76,13 @@
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
             <strong>Nama Pendaftar:</strong>
-						{!! Form::select('registrant_id', $registrant,[], array('class' => 'form-control')) !!}
+						{!! Form::select('registrant_id',[''=>'--- Pilih Nama Pendaftar ---']+$registrants,null,['class'=>'form-control']) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
             <strong>Jadwal Seleksi:</strong>
-						{!! Form::select('selection_schedule_id', $schedule,[], array('class' => 'form-control')) !!}
+						{!! Form::select('selection_schedule_id',[''=>'--- Pilih Jadwal Seleksi ---'],null,['class'=>'form-control']) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -92,4 +92,22 @@
 		{!! Form::close() !!}
 	</div>
 </div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+  $("select[name='registrant_id']").change(function(){
+      var registrant_id = $(this).val();
+      var token = $("input[name='_token']").val();
+      $.ajax({
+          url: "<?php echo route('selectionregistrants.select-ajax') ?>",
+          method: 'POST',
+          data: {registrant_id:registrant_id, _token:token},
+          success: function(data) {
+            $("select[name='selection_schedule_id'").html('');
+            $("select[name='selection_schedule_id'").html(data.options);
+          }
+      });
+  });
+</script>
 @endsection

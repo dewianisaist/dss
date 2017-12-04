@@ -47,33 +47,44 @@ class SelectionRegistrantController extends Controller
         // rn.sub_vocational_id = sv.id AND
         // sv.id = ss.sub_vocational_id
 
-        $registrant = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+        $registrants = User::join('registrants', 'registrants.user_id', '=', 'users.id')
                           ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
                           ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
                           ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
-                          ->select('users.name', 'registration.registrant_id')
-                          ->lists('users.name','registration.registrant_id');
-        // return $registrant;
+                          ->pluck('users.name','registration.registrant_id')
+                          ->all();
 
-        // SELECT users.name, sv.name, concat(sv, name ," ", ss.date, " ", ss.time) as jadwal 
-        // FROM users, registrants rs, registration rn, sub_vocationals sv, selection_schedules ss 
-        // WHERE users.id = rs.user_id AND
-        // rs.id = rn.registrant_id AND
-        // rn.sub_vocational_id = sv.id AND
-        // sv.id = ss.sub_vocational_id AND
-        // users.name = "Pendaftar 1"
+        // $schedules = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+        //                 ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
+        //                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+        //                 ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
+        //                 ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
+        //                 ->where('registrants.user_id', $registrant)->value('users.name')
+        //                 ->lists('jadwal','selection_schedules.id');
 
-        $schedule = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                        ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                        ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
-                        ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
-                        ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
-                        // ->where('registrants.user_id', $registrant)->value('users.name')
-                        ->lists('jadwal','selection_schedules.id');
-        // return $schedule;
+        return view('selection_registrants.create',compact('registrants'));
+    }
 
-        // return compact('registrant', 'schedule');
-        return view('selection_registrants.create',compact('registrant', 'schedule'));
+    /**
+     * Show the application selectAjax.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function selectAjax(Request $request)
+    {
+    	if($request->ajax()){
+    		$schedules = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+                            ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
+                            ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                            ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
+                            ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
+                            ->where('registrants.user_id', $request->registrants.user_id)
+                            ->pluck('jadwal','selection_schedules.id')
+                            ->all();
+
+    		$data = view('selections_registrants.ajax-select',compact('schedules'))->render();
+            return response()->json(['options'=>$data]);
+        }
     }
 
    /**
