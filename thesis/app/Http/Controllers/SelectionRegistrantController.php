@@ -78,7 +78,7 @@ class SelectionRegistrantController extends Controller
                             ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
                             ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
                             ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
-                            ->where('registrants.user_id', $request->registrants.user_id)
+                            ->where('registrants.id', $request->registrants.id)
                             ->pluck('jadwal','selection_schedules.id')
                             ->all();
 
