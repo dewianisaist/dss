@@ -57,8 +57,9 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a class="scroll-link" href="#top-content">Home</a></li>
 						<li><a class="scroll-link" href="#features">Program</a></li>
-						<li><a class="scroll-link" href="#how-it-works">Alur</a></li>
-						<li><a class="scroll-link" href="#testimonials">Tentang</a></li>
+						<li><a class="scroll-link" href="#alur">Alur</a></li>
+						<li><a class="scroll-link" href="#tentang">Tentang</a></li>
+                        <li><a class="scroll-link" href="#hubungi">Hubungi</a></li>
 						<li><a href="/login" target="_blank">Login</a></li>
 					</ul>
 				</div>
