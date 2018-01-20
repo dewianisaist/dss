@@ -63,12 +63,12 @@
 	</div>
 </div>
 
-<!-- KEJURUAN DAN SUB-KEJURUAN -->
+<!-- GALERI -->
 <div class="kejuruan-container section-container section-container-gray-bg">
 	<div class="container">
 	    <div class="row">
 	        <div class="col-sm-12 testimonials section-description wow fadeIn">
-	            <h2><strong>Program</strong> Pelatihan</h2>
+	            <h2><strong>Galeri</strong> Program Pelatihan</h2>
 	            <div class="divider-1 wow fadeInUp"><span></span></div>
             </div>
 	    </div>
