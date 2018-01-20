@@ -176,4 +176,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('preferences/{id}/edit',['as'=>'preferences.edit','uses'=>'PreferenceController@edit']);
 	Route::patch('preferences/{id}',['as'=>'preferences.update','uses'=>'PreferenceController@update']);
 	Route::delete('preferences/{id}',['as'=>'preferences.destroy','uses'=>'PreferenceController@destroy']);
+
+	//manage_registrants - ada permission, belum ditambahkan
+	Route::get('manage_registrants',['as'=>'manage_registrants.index','uses'=>'ManageRegistrantController@index']);
 });
