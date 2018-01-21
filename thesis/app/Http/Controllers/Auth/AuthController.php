@@ -31,7 +31,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/registrants';
+    protected $redirectTo = '/authrole';
     protected $username = 'identity_number';
 
     /**

@@ -179,4 +179,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 	//manage_registrants - ada permission, belum ditambahkan
 	Route::get('manage_registrants',['as'=>'manage_registrants.index','uses'=>'ManageRegistrantController@index']);
+
+	//auth_role - ada permission, belum ditambahkan
+	Route::get('authrole',['as'=>'authrole.index','uses'=>'AuthRoleController@index']);
 });
