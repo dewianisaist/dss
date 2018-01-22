@@ -8,6 +8,7 @@ use App\Http\Models\User;
 use App\Http\Models\Role;
 use DB;
 use Hash;
+use Auth;
 
 class UserController extends Controller
 {
@@ -19,9 +20,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $role_id = Auth::user()->roleId();
         $data = User::orderBy('id','DESC')->paginate(10);
-        return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+        if ($role_id == 1) {
+            return view('users.index',compact('data'))
+                ->with('i', ($request->input('page', 1) - 1) * 10);
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
