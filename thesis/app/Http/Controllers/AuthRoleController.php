@@ -35,12 +35,30 @@ class AuthRoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $auth = Auth::user();
+        $input = $request->all();
+        $role_id = $input['auth_role'];
+        $auth->setRoleId($role_id);
+
+        /**
+         * role_id 1 is staf
+         * role_id 2 is pendaftar
+         * others (role_id 3, 4, 5, 6) are kepala, kasubag_tu, koor_instruktur, kajur
+         */
+        if ($role_id == 1) { 
+            return redirect()->route('users.index');
+        } 
+        elseif ($role_id == 2) {
+            return redirect()->route('registrants.index');
+        }
+        else {
+            return redirect()->route('manage_registrants.index');
+        }
     }
 
     /**

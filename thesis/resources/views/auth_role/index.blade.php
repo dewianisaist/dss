@@ -9,15 +9,18 @@
                     <div class="card-block">
                         <h1>Pilih <dfn>Role</dfn></h1>
                         <p class="text-muted">Masuk sebagai</p>
-                        <form role="form" method="POST" action="{{ url('/login') }}">
-                            {{ csrf_field() }}
+                        {!! Form::open(array('route' => 'authrole.store','method'=>'POST')) !!}
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    @foreach($user->roles as $v)
+                                    @foreach($user->roles as $key => $v)
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="auth_role"> {{ $v->display_name }}
+                                                @if ($key == 0) 
+                                                    <input type="radio" name="auth_role" value={{ $v->id }} checked> {{ $v->display_name }}
+                                                @else
+                                                    <input type="radio" name="auth_role" value={{ $v->id }}> {{ $v->display_name }}
+                                                @endif
                                             </label>
                                         </div>
 							        @endforeach
@@ -29,7 +32,8 @@
                                     <button type="submit" class="btn btn-primary px-2"><i class="fa fa-btn fa-sign-in"></i> Lanjutkan</button>
                                 </div>
                             </div>
-                        </form>
+
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

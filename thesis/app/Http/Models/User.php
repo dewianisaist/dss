@@ -27,6 +27,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function roleId() {
+        if (session()->has('role_id')) {
+            return session('role_id');
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * @param  int  $id
+     */
+    public function setRoleId($id) {
+        session(['role_id' => $id]);
+    }
+
     public function registrant() {
         return $this->hasOne('App\Http\Models\Registrant');
     }

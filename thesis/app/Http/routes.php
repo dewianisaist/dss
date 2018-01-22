@@ -182,4 +182,5 @@ Route::group(['middleware' => ['auth']], function() {
 
 	//auth_role - ada permission, belum ditambahkan
 	Route::get('authrole',['as'=>'authrole.index','uses'=>'AuthRoleController@index']);
+	Route::post('authrole',['as'=>'authrole.store','uses'=>'AuthRoleController@store']);
 });
