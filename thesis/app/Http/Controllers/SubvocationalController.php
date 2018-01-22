@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Models\Subvocational;
 use App\Http\Models\Vocational;
 use DB;
+use Auth;
 
 class SubvocationalController extends Controller
 {
@@ -17,9 +18,14 @@ class SubvocationalController extends Controller
     */
    public function index(Request $request)
    {
-       $data = Subvocational::with('vocational')->orderBy('id','DESC')->paginate(10);
-       return view('subvocationals.index',compact('data'))
-           ->with('i', ($request->input('page', 1) - 1) * 10);
+        $role_id = Auth::user()->roleId();
+        $data = Subvocational::with('vocational')->orderBy('id','DESC')->paginate(10);
+        if ($role_id == 1) {
+            return view('subvocationals.index',compact('data'))
+                ->with('i', ($request->input('page', 1) - 1) * 10);
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**

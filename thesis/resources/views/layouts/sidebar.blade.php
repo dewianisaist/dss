@@ -14,7 +14,9 @@
 
 {{--  Only staf can see "Program (Kejuruan and Sub-Kejuran)"  --}}
 @if(Auth::user()->roleId() == 1)
-<li {{ substr( \Request::route()->getName(), 0, 12 ) == 'vocationals.' ? 'class=active treeview menu-open' : '' }}>
+<li {{ explode( ".",\Request::route()->getName() )[0] == 'vocationals' || 
+  explode( ".",\Request::route()->getName() )[0] == 'subvocationals' 
+  ? 'class=active treeview menu-open' : '' }}>
   <a href="{{ route('vocationals.index') }}">
     <i class="fa fa-industry"></i>
     <span>Program</span>
@@ -47,17 +49,17 @@
 </li>
 @endif
 
+{{--  All user except pendaftar can see "Data Pendaftar"  --}}
+@if(Auth::user()->roleId() != 2)
+<li {{ substr( \Request::route()->getName(), 0, 19 ) == 'manage_registrants.' ? 'class=active' : '' }}>
+  <a href="{{ route('manage_registrants.index') }}"><i class="fa fa-users"></i> <span>Data Pendaftar</span></a>
+</li>
+@endif
+
 {{--  All user except pendaftar can see "Jadwal Seleksi"  --}}
 @if(Auth::user()->roleId() != 2)
 <li {{ substr( \Request::route()->getName(), 0, 19 ) == 'selectionschedules.' ? 'class=active' : '' }}>
   <a href="{{ route('selectionschedules.index') }}"><i class="fa fa-calendar-o"></i>  <span>Jadwal Seleksi</span></a>
-</li>
-@endif
-
-{{--  Kajur, kepala, koor. instruktur can see "Nilai Seleksi"  --}}
-@if(Auth::user()->roleId() == 3 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
-<li {{ substr( \Request::route()->getName(), 0, 11 ) == 'selections.' ? 'class=active' : '' }}>
-  <a href="{{ route('selections.index') }}"><i class="fa fa-balance-scale"></i>  <span>Nilai Seleksi</span></a>
 </li>
 @endif
 
@@ -68,15 +70,19 @@
 </li>
 @endif
 
-{{--  All user except pendaftar can see "Data Pendaftar"  --}}
-@if(Auth::user()->roleId() != 2)
-<li {{ substr( \Request::route()->getName(), 0, 19 ) == 'manage_registrants.' ? 'class=active' : '' }}>
-  <a href="manage_registrants.index"><i class="fa fa-users"></i> <span>Data Pendaftar</span></a>
+{{--  Kajur, kepala, koor. instruktur can see "Nilai Seleksi"  --}}
+@if(Auth::user()->roleId() == 3 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
+<li {{ substr( \Request::route()->getName(), 0, 11 ) == 'selections.' ? 'class=active' : '' }}>
+  <a href="{{ route('selections.index') }}"><i class="fa fa-balance-scale"></i>  <span>Nilai Seleksi</span></a>
 </li>
 @endif
 
-<li class="treeview">
-  <a href="">
+{{--  All user except pendaftar can see "Kriteria"  --}}
+@if(Auth::user()->roleId() != 2)
+<li {{ explode( ".",\Request::route()->getName() )[0] == 'criterias' || 
+  explode( ".",\Request::route()->getName() )[0] == 'criterias' 
+  ? 'class=active treeview menu-open' : '' }}>
+  <a href="{{ route('criterias.index') }}">
     <i class="fa fa-list"></i>
     <span>Kriteria</span>
     <span class="pull-right-container">
@@ -84,14 +90,32 @@
     </span>
   </a>
   <ul class="treeview-menu">
-    <li><a href="{{ route('criterias.index') }}"><i class="fa fa-list"></i> Kriteria dari Kajian Pustaka</a></li>
-    <li><a href=""><i class="fa fa-list"></i> Kuesioner</a></li>
-    <li><a href=""><i class="fa fa-list"></i> Hasil Kriteria Tahap 1</a></li>
-    <li><a href=""><i class="fa fa-list"></i> Kriteria Tahap 2</a></li>
-    <li><a href=""><i class="fa fa-list"></i> Level Hierarki</a></li>
-    <li><a href=""><i class="fa fa-list"></i> Sistem Hierarki</a></li>
+    {{--  Only staf can see "Kriteria dari Kajian Pustaka"  --}}
+    @if(Auth::user()->roleId() == 1)
+      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
+        <a href="{{ route('criterias.index') }}"><i class="fa fa-list"></i> Kriteria dari Kajian Pustaka</a></li>
+    @endif
+
+    @if(Auth::user()->roleId() == 3 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
+      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
+        <a href=""><i class="fa fa-list"></i> Kuesioner</a>
+      </li>
+      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
+        <a href=""><i class="fa fa-list"></i> Hasil Kriteria Tahap 1</a>
+      </li>
+      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
+        <a href=""><i class="fa fa-list"></i> Kriteria Tahap 2</a>
+      </li>
+      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
+        <a href=""><i class="fa fa-list"></i> Level Hierarki</a>
+      </li>
+      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
+        <a href=""><i class="fa fa-list"></i> Sistem Hierarki</a>
+      </li>
+    @endif
   </ul>
 </li>
+@endif
 
 {{--  Only kepala can see "Bobot/Pairwise Comparison"  --}}
 @if(Auth::user()->roleId() == 3)
@@ -100,7 +124,11 @@
 </li>
 @endif
 
-<li class="treeview">
+{{--  All user except pendaftar can see "Kriteria"  --}}
+@if(Auth::user()->roleId() != 2)
+<li {{ explode( ".",\Request::route()->getName() )[0] == 'preferences' || 
+  explode( ".",\Request::route()->getName() )[0] == 'preferences' 
+  ? 'class=active treeview menu-open' : '' }}>
   <a href="{{ route('preferences.index') }}">
     <i class="fa fa-hourglass-half"></i>
     <span>Penilaian</span>
@@ -109,7 +137,16 @@
     </span>
   </a>
   <ul class="treeview-menu">
-    <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a></li>
-    <li><a href=""><i class="fa fa-hourglass-half"></i> Hasil</a></li>
+    {{--  Only kepala can see "Tipe Preferensi"  --}}
+    @if(Auth::user()->roleId() == 3)
+      <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'preferences.' ? 'class=active' : '' }}>
+        <a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a>
+      </li>
+    @endif
+    
+    <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'preferences.' ? 'class=active' : '' }}>
+      <a href=""><i class="fa fa-hourglass-half"></i> Hasil</a>
+    </li>
   </ul>
 </li>
+@endif

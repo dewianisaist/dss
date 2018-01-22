@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Auth;
 
 class ManageRegistrantController extends Controller
 {
@@ -15,7 +15,12 @@ class ManageRegistrantController extends Controller
      */
     public function index()
     {
-        return view('manage_registrants.index');
+        $role_id = Auth::user()->roleId();
+        if ($role_id != 2) {
+            return view('manage_registrants.index',compact('data'));
+        } else {
+            return redirect()->route('registrants.index');
+        }
     }
 
     /**

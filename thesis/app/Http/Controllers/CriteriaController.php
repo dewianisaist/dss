@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Criteria;
+use Auth;
 
 class CriteriaController extends Controller
 {
@@ -15,9 +16,14 @@ class CriteriaController extends Controller
      */
     public function index(Request $request)
     {
+        $role_id = Auth::user()->roleId();
         $criterias = Criteria::orderBy('id','DESC')->paginate(10);
-        return view('criterias.index',compact('criterias'))
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+        if ($role_id == 1) {
+            return view('criterias.index',compact('criterias'))
+                ->with('i', ($request->input('page', 1) - 1) * 10);
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
     }
 
     /**
