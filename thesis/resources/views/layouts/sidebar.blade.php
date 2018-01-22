@@ -1,3 +1,5 @@
+{{--  pegawai  --}}
+
 {{--  Only staf can see "Data Pengguna"  --}}
 @if(Auth::user()->roleId() == 1)
 <li {{ substr( \Request::route()->getName(), 0, 6 ) == 'users.' ? 'class=active' : '' }}>
@@ -95,7 +97,6 @@
       <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
         <a href="{{ route('criterias.index') }}"><i class="fa fa-list"></i> Kriteria dari Kajian Pustaka</a></li>
     @endif
-
     @if(Auth::user()->roleId() == 3 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
       <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
         <a href=""><i class="fa fa-list"></i> Kuesioner</a>
@@ -143,10 +144,46 @@
         <a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a>
       </li>
     @endif
-    
     <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'preferences.' ? 'class=active' : '' }}>
       <a href=""><i class="fa fa-hourglass-half"></i> Hasil</a>
     </li>
   </ul>
+</li>
+@endif
+
+
+{{--  pendaftar  --}}
+
+{{--  Only pendaftar can see "Profil Pendaftar"  --}}
+@if(Auth::user()->roleId() == 2)
+<li {{ explode( ".",\Request::route()->getName() )[0] == 'registrants' || 
+  explode( ".",\Request::route()->getName() )[0] == 'educational_background' ||
+  explode( ".",\Request::route()->getName() )[0] == 'course_experience'
+  ? 'class=active treeview menu-open' : '' }}>
+  <a href="{{ route('registrants.index') }}">
+    <i class="fa fa-user"></i>
+    <span>Profil</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+  </a>
+  <ul class="treeview-menu">
+    <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'registrants.' ? 'class=active' : '' }}>
+      <a href="{{ route('registrants.index') }}"><i class="fa fa-user"></i> Data Diri</a>
+    </li>
+    <li {{ substr( \Request::route()->getName(), 0, 23 ) == 'educational_background.' ? 'class=active' : '' }}>
+      <a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a>
+    </li>
+    <li {{ substr( \Request::route()->getName(), 0, 18 ) == 'course_experience.' ? 'class=active' : '' }}>
+      <a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Pengalaman Kursus/Pelatihan</a>
+    </li>
+  </ul>
+</li>
+@endif
+
+{{--  Only registrant can see "Daftar"  --}}
+@if(Auth::user()->roleId() == 2)
+<li {{ substr( \Request::route()->getName(), 0, 13 ) == 'registration.' ? 'class=active' : '' }}>
+  <a href="{{ route('registration.index') }}"><i class="fa fa-pencil-square-o"></i> <span>Daftar</span></a>
 </li>
 @endif

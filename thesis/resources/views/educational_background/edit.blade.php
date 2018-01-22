@@ -1,21 +1,7 @@
 @extends('layouts.master_registrant')
 
 @section('sidebar_menu')
-<li class="active treeview menu-open">
-  <a href="{{ route('registrants.index') }}">
-    <i class="fa fa-user"></i>
-    <span>Profil</span>
-  	<span class="pull-right-container">
-      <i class="fa fa-angle-left pull-right"></i>
-    </span>
-  </a>
-  <ul class="treeview-menu">
-    <li><a href="{{ route('registrants.index') }}"><i class="fa fa-user"></i> Data Diri</a></li>
-    <li class="active"><a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a></li>
-		<li><a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Pengalaman Kursus/Pelatihan</a></li>
-  </ul>
-</li>
-<li><a href="{{ route('registration.index') }}"><i class="fa fa-pencil-square-o"></i> <span>Daftar</span></a></li>
+	@include('layouts.sidebar')
 @endsection
   
 @section('content_header')
