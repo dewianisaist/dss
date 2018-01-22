@@ -12,7 +12,9 @@
 </li>
 @endif
 
-<li class="treeview">
+{{--  Only staf can see "Program (Kejuruan and Sub-Kejuran)"  --}}
+@if(Auth::user()->roleId() == 1)
+<li {{ substr( \Request::route()->getName(), 0, 12 ) == 'vocationals.' ? 'class=active treeview menu-open' : '' }}>
   <a href="{{ route('vocationals.index') }}">
     <i class="fa fa-industry"></i>
     <span>Program</span>
@@ -21,10 +23,15 @@
     </span>
   </a>
   <ul class="treeview-menu">
-    <li><a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i> Kejuruan</a></li>
-    <li><a href="{{ route('subvocationals.index') }}"><i class="fa fa-industry"></i> Sub-Kejuruan</a></li>
+    <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'vocationals.' ? 'class=active' : '' }}>
+      <a href="{{ route('vocationals.index') }}"><i class="fa fa-industry"></i> Kejuruan</a>
+    </li>
+    <li {{ substr( \Request::route()->getName(), 0, 15 ) == 'subvocationals.' ? 'class=active' : '' }}>
+      <a href="{{ route('subvocationals.index') }}"><i class="fa fa-industry"></i> Sub-Kejuruan</a>
+    </li>
   </ul>
 </li>
+@endif
 
 {{--  Only staf can see "Pendidikan"  --}}
 @if(Auth::user()->roleId() == 1)
