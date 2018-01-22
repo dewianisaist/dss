@@ -19,8 +19,13 @@ class ProfileUserController extends Controller
      */
     public function show()
     {
+        $role_id = Auth::user()->roleId();
         $profile_user = User::find(Auth::user()->id);
-        return view('profile_users.show',compact('profile_user'));
+        if ($role_id != 2) {
+            return view('profile_users.show',compact('profile_user'));
+        } else {
+            return redirect()->route('registrants.index');
+        }
     }
 
     /**
