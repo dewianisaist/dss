@@ -11,7 +11,7 @@
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
   <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> Manajemen Pengguna</a></li>
-  <li class="active">Edit Akun</li>
+  <li class="active">Buat Akun Baru</li>
 </ol>
 @endsection
 

@@ -1,13 +1,13 @@
 {{--  Only staf can see "Data Pengguna"  --}}
 @if(Auth::user()->roleId() == 1)
-<li {{ \Request::route()->getName() == 'users.index' ? 'class=active' : '' }}>
+<li {{ substr( \Request::route()->getName(), 0, 6 ) == 'users.' ? 'class=active' : '' }}>
     <a href="{{ route('users.index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a>
 </li>
 @endif
 
 {{--  Only staf can see "Data Role"  --}}
 @if(Auth::user()->roleId() == 1)
-<li {{ \Request::route()->getName() == 'roles.index' ? 'class=active' : '' }}>
+<li {{ substr( \Request::route()->getName(), 0, 6 ) == 'roles.' ? 'class=active' : '' }}>
     <a href="{{ route('roles.index') }}"><i class="fa fa-key"></i>  <span>Data <dfn>Role</dfn></span></a>
 </li>
 @endif
@@ -28,7 +28,7 @@
 
 {{--  Only staf can see "Pendidikan"  --}}
 @if(Auth::user()->roleId() == 1)
-<li {{ \Request::route()->getName() == 'educations.index' ? 'class=active' : '' }}>
+<li {{ substr( \Request::route()->getName(), 0, 11 ) == 'educations.' ? 'class=active' : '' }}>
     <a href="{{ route('educations.index') }}"><i class="fa fa-graduation-cap"></i>  <span>Pendidikan</span></a>
 </li>
 @endif
