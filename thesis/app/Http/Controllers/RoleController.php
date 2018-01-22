@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Models\Role;
 use App\Http\Models\Permission;
 use DB;
+use Auth;
 
 class RoleController extends Controller
 {
@@ -17,9 +18,14 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+        $role_id = Auth::user()->roleId();
         $roles = Role::orderBy('id','DESC')->paginate(10);
-        return view('roles.index',compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+        if ($role_id == 1) {
+            return view('roles.index',compact('roles'))
+                ->with('i', ($request->input('page', 1) - 1) * 10);
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
     }
 
     /**

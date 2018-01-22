@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Education;
+use Auth;
 
 class EducationController extends Controller
 {
@@ -15,9 +16,14 @@ class EducationController extends Controller
     */
    public function index(Request $request)
    {
-       $educations = Education::orderBy('id','DESC')->paginate(10);
-       return view('educations.index',compact('educations'))
-           ->with('i', ($request->input('page', 1) - 1) * 10);
+        $role_id = Auth::user()->roleId();
+        $educations = Education::orderBy('id','DESC')->paginate(10);
+        if ($role_id == 1) {
+            return view('educations.index',compact('educations'))
+                ->with('i', ($request->input('page', 1) - 1) * 10);
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
    }
 
    /**
