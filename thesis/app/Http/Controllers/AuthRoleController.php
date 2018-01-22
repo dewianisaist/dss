@@ -18,7 +18,6 @@ class AuthRoleController extends Controller
     public function index()
     {
         $user = User::find(Auth::user()->id);
-        // return $user;
         return view('auth_role.index',compact('user'));
     }
 
