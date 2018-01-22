@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Subvocational;
 use App\Http\Models\SelectionSchedule;
+use Auth;
 
 class SelectionScheduleController extends Controller
 {
@@ -16,10 +17,14 @@ class SelectionScheduleController extends Controller
     */
    public function index(Request $request)
    {
-       $data = SelectionSchedule::with('subvocational')->orderBy('id','DESC')->paginate(10);
-       return view('selectionschedules.index',compact('data'))
-           ->with('i', ($request->input('page', 1) - 1) * 10);
-    // return $data;
+        $role_id = Auth::user()->roleId();
+        $data = SelectionSchedule::with('subvocational')->orderBy('id','DESC')->paginate(10);
+        if ($role_id != 2) {
+        return view('selectionschedules.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 10);
+        } else {
+            return redirect()->route('registrants.index');
+        }
    }
 
     /**

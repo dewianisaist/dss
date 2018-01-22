@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Models\Selection;
 use App\Http\Models\Registrant;
 use App\Http\Models\SelectionSchedule;
+use Auth;
 
 class SelectionController extends Controller
 {
@@ -17,6 +18,7 @@ class SelectionController extends Controller
     */
    public function index(Request $request)
    {
+        $role_id = Auth::user()->roleId();
         $data = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
                             ->join('users', 'users.id', '=', 'registrants.user_id')
                             ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
@@ -24,9 +26,12 @@ class SelectionController extends Controller
                             ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
                             ->orderBy('selections.id','DESC')
                             ->paginate(10);
-
-        return view('selections.index',compact('data'))
-                    ->with('i', ($request->input('page', 1) - 1) * 10);
+        if ($role_id == 3 || $role_id == 5 || $role_id == 6) {
+            return view('selections.index',compact('data'))
+                        ->with('i', ($request->input('page', 1) - 1) * 10);
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
  
     /**

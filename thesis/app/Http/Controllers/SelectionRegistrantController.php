@@ -9,6 +9,7 @@ use App\Http\Models\User;
 use App\Http\Models\Registrant;
 use App\Http\Models\SelectionSchedule;
 use DB;
+use Auth;
 
 class SelectionRegistrantController extends Controller
 {
@@ -20,6 +21,7 @@ class SelectionRegistrantController extends Controller
     */
     public function index(Request $request)
     {
+        $role_id = Auth::user()->roleId();
         $data = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
                             ->join('users', 'users.id', '=', 'registrants.user_id')
                             ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
@@ -27,9 +29,12 @@ class SelectionRegistrantController extends Controller
                             ->select('selections.id', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
                             ->orderBy('selections.id','DESC')
                             ->paginate(10);
-        // return $data;
-        return view('selection_registrants.index',compact('data'))
+        if ($role_id != 2) {
+            return view('selection_registrants.index',compact('data'))
                     ->with('i', ($request->input('page', 1) - 1) * 10);
+        } else {
+            return redirect()->route('registrants.index');
+        }
     }
 
     //create dan edit belum
