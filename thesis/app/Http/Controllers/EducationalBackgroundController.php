@@ -20,17 +20,21 @@ class EducationalBackgroundController extends Controller
     */
    public function index(Request $request)
    {
+        $role_id = Auth::user()->roleId();
         $user = User::with('registrant')->find(Auth::user()->id);
-        
-        if ($user->registrant == null) {
-            return redirect()->route('registrants.edit')
-                             ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
+        if ($role_id == 2) {
+            if ($user->registrant == null) {
+                return redirect()->route('registrants.edit')
+                                ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
+            } else {
+                $educational_backgrounds = EducationalBackground::with('education')->whereRegistrantId($user->registrant->id)
+                                                                                ->orderBy('education_id','DESC')->paginate(10);
+                
+                return view('educational_background.index',compact('user', 'educational_backgrounds'))
+                            ->with('i', ($request->input('page', 1) - 1) * 10);
+            }
         } else {
-            $educational_backgrounds = EducationalBackground::with('education')->whereRegistrantId($user->registrant->id)
-                                                                               ->orderBy('education_id','DESC')->paginate(10);
-            
-            return view('educational_background.index',compact('user', 'educational_backgrounds'))
-                        ->with('i', ($request->input('page', 1) - 1) * 10);
+            return redirect()->route('profile_users.show');
         }
    }
 

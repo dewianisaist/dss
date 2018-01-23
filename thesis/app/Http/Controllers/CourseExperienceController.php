@@ -20,17 +20,21 @@ class CourseExperienceController extends Controller
     */
    public function index(Request $request)
    {
+        $role_id = Auth::user()->roleId();
         $user = User::with('registrant')->find(Auth::user()->id);
-        
-        if ($user->registrant == null) {
-            return redirect()->route('registrants.edit')
-                             ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
+        if ($role_id == 2) {
+            if ($user->registrant == null) {
+                return redirect()->route('registrants.edit')
+                                ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
+            } else {
+                $course_experiences = CourseExperience::with('course')->whereRegistrantId($user->registrant->id)
+                                                                    ->orderBy('course_id','DESC')->paginate(10);
+                
+                return view('course_experience.index',compact('user', 'course_experiences'))
+                            ->with('i', ($request->input('page', 1) - 1) * 10);
+            }
         } else {
-            $course_experiences = CourseExperience::with('course')->whereRegistrantId($user->registrant->id)
-                                                                  ->orderBy('course_id','DESC')->paginate(10);
-            
-            return view('course_experience.index',compact('user', 'course_experiences'))
-                        ->with('i', ($request->input('page', 1) - 1) * 10);
+            return redirect()->route('profile_users.show');
         }
    }
 

@@ -22,12 +22,17 @@ class RegistrantController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function index() {
+        $role_id = Auth::user()->roleId();
         $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
-        if ($user->registrant == null) {
-            return redirect()->route('registrants.edit')
-                             ->with('failed','Silahkan lengkapi data diri Anda dahulu.');
+        if ($role_id == 2) {
+            if ($user->registrant == null) {
+                return redirect()->route('registrants.edit')
+                                ->with('failed','Silahkan lengkapi data diri Anda dahulu.');
+            } else {
+                return view('registrants.index',compact('user'));
+            }
         } else {
-            return view('registrants.index',compact('user'));
+            return redirect()->route('profile_users.show');
         }
     }
 
