@@ -32,14 +32,14 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nama Institusi:</strong>
-						{!! Form::text('name_institution', null, array('placeholder' => 'Nama Institusi','class' => 'form-control')) !!}
+            <strong>Jenjang dan Jurusan:</strong>
+						{!! Form::select('education_id', $education,[], array('class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-            <strong>Jenjang dan Jurusan:</strong>
-						{!! Form::select('education_id', $education,[], array('class' => 'form-control')) !!}
+						<strong>Nama Institusi:</strong>
+						{!! Form::text('name_institution', null, array('placeholder' => 'Nama Institusi','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">

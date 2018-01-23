@@ -175,7 +175,7 @@
       <a href="{{ route('educational_background.index') }}"><i class="fa fa-user"></i> Riwayat Pendidikan</a>
     </li>
     <li {{ substr( \Request::route()->getName(), 0, 18 ) == 'course_experience.' ? 'class=active' : '' }}>
-      <a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Pengalaman Kursus/Pelatihan</a>
+      <a href="{{ route('course_experience.index') }}"><i class="fa fa-user"></i> Pengalaman Kursus</a>
     </li>
   </ul>
 </li>

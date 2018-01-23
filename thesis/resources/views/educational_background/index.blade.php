@@ -42,8 +42,8 @@
 				<tr>
 					<th>No</th>
 					<th>Jenjang</th>
-					<th>Nama Institusi</th>
 					<th>Jurusan</th>
+					<th>Nama Institusi</th>
 					<th>Tahun Lulus</th>
 					<th width="280px">Aksi</th>
 				</tr>
@@ -53,8 +53,8 @@
 				<tr>
 					<td>{{ ++$i }}</td>
 					<td>{{ $educational_background->education->stage }}</td>
-					<td>{{ $educational_background->name_institution }}</td>
 					<td>{{ $educational_background->education->major }}</td>
+					<td>{{ $educational_background->name_institution }}</td>
 					<td>{{ $educational_background->graduation_year }}</td>
 					<td>
 						<a class="btn btn-info" href="{{ URL::route('educational_background.show', 

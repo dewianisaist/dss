@@ -30,14 +30,14 @@
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Nama Institusi:</strong>
-					{{ $educational_background->name_institution }}
+					<strong>Jurusan:</strong>
+					{{ $educational_background->education->major }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Jurusan:</strong>
-					{{ $educational_background->education->major }}
+					<strong>Nama Institusi:</strong>
+					{{ $educational_background->name_institution }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">

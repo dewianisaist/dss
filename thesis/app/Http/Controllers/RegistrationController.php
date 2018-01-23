@@ -30,11 +30,11 @@ class RegistrationController extends Controller
                                 ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
             } 
 
-            $educational_background = EducationalBackground::whereRegistrantId($user->registrant->id)->first();
-            if ($educational_background == null) {
-                return redirect()->route('educational_background.index')
-                                ->with('failed','Maaf, silahkan tambahkan Riwayat Pendidikan Anda dahulu.');
-            } 
+            // $educational_background = EducationalBackground::whereRegistrantId($user->registrant->id)->first();
+            // if ($educational_background == null) {
+            //     return redirect()->route('educational_background.index')
+            //                     ->with('failed','Maaf, silahkan tambahkan Riwayat Pendidikan Anda dahulu.');
+            // } 
             
             $registration = Registration::whereRegistrantId($user->registrant->id)->first();
             if ($registration == null) {
@@ -77,7 +77,7 @@ class RegistrationController extends Controller
        $input = $request->all();
        $user = User::with('registrant')->find(Auth::user()->id);
        $input['registrant_id'] = $user->registrant->id;
-       $input['register_date'] = Carbon\Carbon::now()->toDateTimeString();
+       $input['register_date'] = Carbon\Carbon::now(7)->toDateTimeString();
        $registration = Registration::create($input);
 
        return redirect()->route('registration.index')
