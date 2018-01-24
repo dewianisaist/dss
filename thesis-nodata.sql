@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 24, 2018 at 05:35 PM
+-- Generation Time: Jan 24, 2018 at 05:01 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -62,15 +62,6 @@ CREATE TABLE `courses` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `courses`
---
-
-INSERT INTO `courses` (`id`, `major`, `created_at`, `updated_at`) VALUES
-(1, 'Jahit', '2018-01-24 09:31:26', '2018-01-24 09:31:46'),
-(2, 'Komputer', '2018-01-24 09:31:33', '2018-01-24 09:31:33'),
-(3, 'Stir', '2018-01-24 09:31:38', '2018-01-24 09:31:38');
-
 -- --------------------------------------------------------
 
 --
@@ -107,13 +98,6 @@ CREATE TABLE `criterias` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `criterias`
---
-
-INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `partial_weight`, `global_weight`, `preference`, `max_min`, `parameter_p`, `parameter_q`, `parameter_s`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Kriteria 1', 'Test kriteria 1 (Sumber: XYZ, 2018)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-24 09:33:24', '2018-01-24 09:33:24');
-
 -- --------------------------------------------------------
 
 --
@@ -140,18 +124,6 @@ CREATE TABLE `educations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `educations`
---
-
-INSERT INTO `educations` (`id`, `stage`, `major`, `created_at`, `updated_at`) VALUES
-(1, 'SD', '', '2018-01-24 09:30:24', '2018-01-24 09:30:24'),
-(2, 'SMP', '', '2018-01-24 09:30:29', '2018-01-24 09:30:29'),
-(3, 'SMA', 'IPA', '2018-01-24 09:30:37', '2018-01-24 09:30:37'),
-(4, 'SMA', 'IPS', '2018-01-24 09:30:44', '2018-01-24 09:30:44'),
-(5, 'SMK', 'Teknik Kendaraan Ringan', '2018-01-24 09:31:01', '2018-01-24 09:31:01'),
-(6, 'SMK', 'Multimedia', '2018-01-24 09:31:11', '2018-01-24 09:31:11');
 
 -- --------------------------------------------------------
 
@@ -182,24 +154,6 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `permissions`
---
-
-INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(7, 'role-edit', 'Edit Role', 'Edit Role', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2018-01-24 09:12:27', '2018-01-24 09:12:27');
-
 -- --------------------------------------------------------
 
 --
@@ -210,32 +164,6 @@ CREATE TABLE `permission_role` (
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `permission_role`
---
-
-INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(1, 6),
-(1, 7),
-(1, 8),
-(1, 9),
-(1, 10),
-(1, 11),
-(1, 12),
-(2, 9),
-(3, 1),
-(3, 5),
-(3, 9),
-(4, 1),
-(4, 9),
-(5, 9),
-(6, 9);
 
 -- --------------------------------------------------------
 
@@ -260,13 +188,6 @@ CREATE TABLE `registrants` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `registrants`
---
-
-INSERT INTO `registrants` (`id`, `user_id`, `address`, `phone_number`, `gender`, `place_birth`, `date_birth`, `order_child`, `amount_sibling`, `religion`, `biological_mother_name`, `father_name`, `parent_address`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Bantul', '0857123456', 'Laki-laki', 'Bantul', '1998-06-16', 0, 0, 'Islam', '', '', '', '2018-01-24 09:21:23', '2018-01-24 09:21:23');
 
 -- --------------------------------------------------------
 
@@ -307,18 +228,6 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'staf', 'Staf', 'Melakukan pengelolaan data', NULL, NULL),
-(2, 'pendaftar', 'Pendaftar', 'Calon peserta perlatihan', '2018-01-24 09:14:23', '2018-01-24 09:14:23'),
-(3, 'kepala', 'Kepala BLK', 'Pembuat keputusan dan mengawasi setiap proses', '2018-01-24 09:16:08', '2018-01-24 09:16:08'),
-(4, 'kasubag_tu', 'Kepala Sub-Bagian Tata Usaha', 'Melakukan pengawasan', '2018-01-24 09:17:25', '2018-01-24 09:17:25'),
-(5, 'koor_instruktur', 'Koordinator Instruktur', 'Melakukan pengawasan', '2018-01-24 09:18:09', '2018-01-24 09:18:09'),
-(6, 'kajur', 'Kepala Kejuruan', 'Melakukan pengawasan', '2018-01-24 09:18:34', '2018-01-24 09:18:34');
-
 -- --------------------------------------------------------
 
 --
@@ -329,26 +238,6 @@ CREATE TABLE `role_user` (
   `role_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `role_user`
---
-
-INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
-(1, 1),
-(1, 4),
-(2, 1),
-(2, 2),
-(2, 3),
-(3, 1),
-(3, 5),
-(4, 1),
-(4, 6),
-(5, 1),
-(5, 7),
-(6, 1),
-(6, 8),
-(6, 9);
 
 -- --------------------------------------------------------
 
@@ -383,13 +272,6 @@ CREATE TABLE `selection_schedules` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `selection_schedules`
---
-
-INSERT INTO `selection_schedules` (`id`, `sub_vocational_id`, `date`, `time`, `place`, `information`, `created_at`, `updated_at`) VALUES
-(1, 1, '2018-02-28', '08:00', 'R. Teori 1', 'Pakaian rapi dan sepatu', '2018-01-24 09:32:38', '2018-01-24 09:32:50');
-
 -- --------------------------------------------------------
 
 --
@@ -410,15 +292,6 @@ CREATE TABLE `sub_vocationals` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `sub_vocationals`
---
-
-INSERT INTO `sub_vocationals` (`id`, `vocational_id`, `name`, `quota`, `long_training`, `goal`, `unit_competence`, `requirement_participant`, `final_registration_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Sub Kejuruan 1', 16, '480', 'Tujuan Kejuruan 1', 'Unit Kompetensi Kejuruan 1', 'Syarat Kejuruan 1', '2018-02-09 16:59:59', '2018-01-24 09:28:02', '2018-01-24 09:28:02'),
-(2, 2, 'Sub Kejuruan 2', 16, '180', 'Tujuan Kejuruan 2', 'Unit Kompetensi  Kejuruan 2', 'Syarat Kejuruan 2', '2018-02-24 16:59:59', '2018-01-24 09:29:09', '2018-01-24 09:29:09'),
-(3, 2, 'Sub Kejuruan 2.1', 16, '180', 'Tujuan Kejuruan 2.1', 'Unit Kompetensi Kejuruan 2.1', 'Syarat Kejuruan 2.1', '2018-02-13 16:59:59', '2018-01-24 09:30:12', '2018-01-24 09:30:12');
-
 -- --------------------------------------------------------
 
 --
@@ -434,13 +307,6 @@ CREATE TABLE `uploads` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `uploads`
---
-
-INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, NULL, '2018-01-24 09:21:23', '2018-01-24 09:21:23');
 
 -- --------------------------------------------------------
 
@@ -459,21 +325,6 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$vPSli1wHAX4DWVyzOrkTPeQjvV866fPbX3Bccx..YucEPbspw2T6u', 'VcslAx1gmiv5acJ6WslN2RPl9awHClIo0KW2oJGEc68F2CmFZM0XFczluG4j', '2018-01-24 09:03:21', '2018-01-24 09:22:58'),
-(2, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$bl8eboXpSsiJOIRmKjbfleQLFubefs.cHDlkHAkkxk4D6CoDhRz56', 'YybXjCB4x77ThmWViD97KdPiECRhtchrwZFihVWsWHuOTENhXjuh5rLicPRX', '2018-01-24 09:20:41', '2018-01-24 09:21:34'),
-(3, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$R4hZLCU3iN3P9gMlmu5/PuDTrjy5OQtkk4muI5AE7UFYB.jdCD8Bm', 'qC68olE1LyqtMMh2g9isTdKSMrKnMm2bpEMwdNf0HszZhktGobDNblxQh3bp', '2018-01-24 09:22:03', '2018-01-24 09:22:09'),
-(4, '101010', 'Staf OK', 'staf@test.com', '$2y$10$pcn2Nx6iqWagbKTjuEzU..5IZLRXSUUmEjkPlTARRC/L6Ozv1LjDS', NULL, '2018-01-24 09:23:26', '2018-01-24 09:24:30'),
-(5, '202020', 'Kepala OK', 'kepala@test.com', '$2y$10$cReRzY3Fj0H.BgmzJejtbO5y.LB1bJnbuJfHmuf/Z/T6Ik5ebOIP.', NULL, '2018-01-24 09:23:48', '2018-01-24 09:23:48'),
-(6, '303030', 'Kasubag TU OK', 'kasubagtu@test.com', '$2y$10$oAx9BMsSqe5OqLtaArzOV.cos9dEOSZRGIfnmz.13QJmVpU/keiFK', NULL, '2018-01-24 09:24:21', '2018-01-24 09:24:21'),
-(7, '404040', 'Koor Instruktur', 'koorinstruktur@test.com', '$2y$10$mZ53j64OhYuZZtJ1sVAZmupS82SQQxYu6/iVd5xXGZ4u.e6LdkI76', NULL, '2018-01-24 09:24:57', '2018-01-24 09:24:57'),
-(8, '505050', 'Kajur 1 OK', 'kajur1@test.com', '$2y$10$lCwBc6GV7rqhaM9wzZauQeC5NO3sN1hAKkw1fixjfggtVBMB3hfvi', NULL, '2018-01-24 09:25:23', '2018-01-24 09:25:23'),
-(9, '606060', 'Kajur 2 OK', 'kajur2@test.com', '$2y$10$vl.y0DHNDa5jjbMyh1lgfOE9GEUHUd7Sey7wSUIqSp0q3ATHEVGha', NULL, '2018-01-24 09:25:54', '2018-01-24 09:25:54');
-
 -- --------------------------------------------------------
 
 --
@@ -487,15 +338,6 @@ CREATE TABLE `vocationals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `vocationals`
---
-
-INSERT INTO `vocationals` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Kejuruan 1', 'Test Kejuruan 1', '2018-01-24 09:26:19', '2018-01-24 09:26:19'),
-(2, 'Kejuruan 2', 'Test Kejuruan 2', '2018-01-24 09:26:31', '2018-01-24 09:26:31'),
-(3, 'Kejuruan 3', 'Test Kejuruan 3', '2018-01-24 09:26:42', '2018-01-24 09:26:42');
 
 --
 -- Indexes for dumped tables
@@ -666,12 +508,12 @@ ALTER TABLE `conversion`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --
@@ -681,22 +523,22 @@ ALTER TABLE `educational_background`
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `registrants`
 --
 ALTER TABLE `registrants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `selections`
 --
@@ -706,27 +548,27 @@ ALTER TABLE `selections`
 -- AUTO_INCREMENT for table `selection_schedules`
 --
 ALTER TABLE `selection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
 ALTER TABLE `sub_vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --
 ALTER TABLE `vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
