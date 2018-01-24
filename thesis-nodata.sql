@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 24, 2018 at 05:01 PM
+-- Generation Time: Jan 25, 2018 at 12:46 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -250,7 +250,7 @@ CREATE TABLE `selections` (
   `registrant_id` int(11) NOT NULL,
   `selection_schedule_id` int(11) NOT NULL,
   `written_value` decimal(5,2) DEFAULT NULL,
-  `interview_value` decimal(5,2) DEFAULT NULL,
+  `interview_value` varchar(15) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
