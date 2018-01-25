@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 25, 2018 at 12:44 AM
+-- Generation Time: Jan 25, 2018 at 03:23 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -280,6 +280,13 @@ CREATE TABLE `registration` (
   `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`registrant_id`, `sub_vocational_id`, `register_date`) VALUES
+(1, 2, '2018-01-25 01:09:32');
+
 -- --------------------------------------------------------
 
 --
@@ -388,7 +395,8 @@ CREATE TABLE `selection_schedules` (
 --
 
 INSERT INTO `selection_schedules` (`id`, `sub_vocational_id`, `date`, `time`, `place`, `information`, `created_at`, `updated_at`) VALUES
-(1, 1, '2018-02-28', '08:00', 'R. Teori 1', 'Pakaian rapi dan sepatu', '2018-01-24 09:32:38', '2018-01-24 09:32:50');
+(1, 1, '2018-02-28', '08:00', 'R. Teori 1', 'Pakaian rapi dan sepatu', '2018-01-24 09:32:38', '2018-01-24 09:32:50'),
+(2, 2, '2018-02-28', '08:00', 'R. TKR 1', '', '2018-01-24 18:23:21', '2018-01-24 18:23:21');
 
 -- --------------------------------------------------------
 
@@ -464,8 +472,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$vPSli1wHAX4DWVyzOrkTPeQjvV866fPbX3Bccx..YucEPbspw2T6u', 'VcslAx1gmiv5acJ6WslN2RPl9awHClIo0KW2oJGEc68F2CmFZM0XFczluG4j', '2018-01-24 09:03:21', '2018-01-24 09:22:58'),
-(2, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$bl8eboXpSsiJOIRmKjbfleQLFubefs.cHDlkHAkkxk4D6CoDhRz56', 'YybXjCB4x77ThmWViD97KdPiECRhtchrwZFihVWsWHuOTENhXjuh5rLicPRX', '2018-01-24 09:20:41', '2018-01-24 09:21:34'),
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$vPSli1wHAX4DWVyzOrkTPeQjvV866fPbX3Bccx..YucEPbspw2T6u', 'hS8LCayuD51D5o9CfeCukraB41xtXTZI8OOEv3w3xeDDryXuNtCcONJe3kPC', '2018-01-24 09:03:21', '2018-01-24 18:18:53'),
+(2, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$bl8eboXpSsiJOIRmKjbfleQLFubefs.cHDlkHAkkxk4D6CoDhRz56', 'FVLlNTlJhbb3AKjaO4RPiZAokMdvOJfBCkoFsj30KluDKg0T3FQv65Db6qgh', '2018-01-24 09:20:41', '2018-01-24 18:12:36'),
 (3, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$R4hZLCU3iN3P9gMlmu5/PuDTrjy5OQtkk4muI5AE7UFYB.jdCD8Bm', 'qC68olE1LyqtMMh2g9isTdKSMrKnMm2bpEMwdNf0HszZhktGobDNblxQh3bp', '2018-01-24 09:22:03', '2018-01-24 09:22:09'),
 (4, '101010', 'Staf OK', 'staf@test.com', '$2y$10$pcn2Nx6iqWagbKTjuEzU..5IZLRXSUUmEjkPlTARRC/L6Ozv1LjDS', NULL, '2018-01-24 09:23:26', '2018-01-24 09:24:30'),
 (5, '202020', 'Kepala OK', 'kepala@test.com', '$2y$10$cReRzY3Fj0H.BgmzJejtbO5y.LB1bJnbuJfHmuf/Z/T6Ik5ebOIP.', NULL, '2018-01-24 09:23:48', '2018-01-24 09:23:48'),
@@ -701,12 +709,12 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `selection_schedules`
 --
 ALTER TABLE `selection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
