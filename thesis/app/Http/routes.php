@@ -179,12 +179,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 	//manage_registrants - ada permission, belum ditambahkan
 	Route::get('manage_registrants',['as'=>'manage_registrants.index','uses'=>'ManageRegistrantController@index']);
-	Route::get('manage_registrants/create',['as'=>'manage_registrants.create','uses'=>'ManageRegistrantController@create']);
-	Route::post('manage_registrants/create',['as'=>'manage_registrants.store','uses'=>'ManageRegistrantController@store']);
 	Route::get('manage_registrants/{id}',['as'=>'manage_registrants.show','uses'=>'ManageRegistrantController@show']);
-	Route::get('manage_registrants/{id}/edit',['as'=>'manage_registrants.edit','uses'=>'ManageRegistrantController@edit']);
-	Route::patch('manage_registrants/{id}',['as'=>'manage_registrants.update','uses'=>'ManageRegistrantController@update']);
-	Route::delete('manage_registrants/{id}',['as'=>'manage_registrants.destroy','uses'=>'ManageRegistrantController@destroy']);
 
 	//auth_role - ada permission, belum ditambahkan
 	Route::get('authrole',['as'=>'authrole.index','uses'=>'AuthRoleController@index']);

@@ -23,36 +23,18 @@ class ManageRegistrantController extends Controller
     public function index(Request $request)
     {
         $role_id = Auth::user()->roleId();
-        $data = User::with('registrant', 'registrant.upload')->orderBy('id','DESC')
-                                                             ->paginate(10);
+        $data = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+                    ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
+                    ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                    ->select('users.identity_number', 'users.name AS name_registrant', 'sub_vocationals.name AS name_sub_vocational', 'registration.register_date')
+                    ->orderBy('name_registrant','ASC')
+                    ->paginate(10);
         if ($role_id != 2) {
-            // return view('manage_registrants.index',compact('data'))
-            //     ->with('i', ($request->input('page', 1) - 1) * 10);
-            return $data;
+            return view('manage_registrants.index',compact('data'))
+                ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
             return redirect()->route('registrants.index');
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -62,40 +44,6 @@ class ManageRegistrantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

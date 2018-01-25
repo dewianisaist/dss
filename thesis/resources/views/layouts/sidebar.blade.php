@@ -7,6 +7,13 @@
 </li>
 @endif
 
+{{--  All user except pendaftar can see "Data Pendaftar"  --}}
+@if(Auth::user()->roleId() != 2)
+<li {{ substr( \Request::route()->getName(), 0, 19 ) == 'manage_registrants.' ? 'class=active' : '' }}>
+  <a href="{{ route('manage_registrants.index') }}"><i class="fa fa-users"></i> <span>Data Pendaftar</span></a>
+</li>
+@endif
+
 {{--  Only staf can see "Data Role"  --}}
 @if(Auth::user()->roleId() == 1)
 <li {{ substr( \Request::route()->getName(), 0, 6 ) == 'roles.' ? 'class=active' : '' }}>
@@ -48,13 +55,6 @@
 @if(Auth::user()->roleId() == 1)
 <li {{ substr( \Request::route()->getName(), 0, 8 ) == 'courses.' ? 'class=active' : '' }}>
     <a href="{{ route('courses.index') }}"><i class="fa fa-university"></i>  <span>Kursus</span></a>
-</li>
-@endif
-
-{{--  All user except pendaftar can see "Data Pendaftar"  --}}
-@if(Auth::user()->roleId() != 2)
-<li {{ substr( \Request::route()->getName(), 0, 19 ) == 'manage_registrants.' ? 'class=active' : '' }}>
-  <a href="{{ route('manage_registrants.index') }}"><i class="fa fa-users"></i> <span>Data Pendaftar</span></a>
 </li>
 @endif
 

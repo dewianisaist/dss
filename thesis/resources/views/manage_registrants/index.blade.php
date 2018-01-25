@@ -24,50 +24,30 @@
 			</div>
 		@endif
 
-		<div class="row">
-			<div class="col-lg-12 margin-tb">
-				<div class="pull-right mb-1">
-					{{--  @permission('manage_registrants-create')  --}}
-					<a class="btn btn-success" href="{{ route('manage_registrants.create') }}"> Pendaftaran Pendaftar</a>
-					{{--  @endpermission  --}}
-				</div>
-			</div>
-		</div>
-
 		<br/>
     	<table id="table_manage_registrants" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>No</th>
+          <th>No</th>
+          <th>No. Identitas</th>
 					<th>Nama</th>
-					<th>NIK</th>
-					<th>Email</th>
-          <th>Alamat</th>
-          <th>No. Telepon/HP</th>
-          <th>Tempat, Tanggal Lahir</th>
+					<th>Sub-Kejuruan</th>
+          <th>Tanggal Daftar</th>
           <th width="280px">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($data as $key => $user)
 				<tr>
-					<td>{{ ++$i }}</td>
-					<td>{{ $user->name }}</td>
-					<td>{{ $user->identity_number }}</td>
-          <td>{{ $user->email }}</td>
-          {{--  <td>{{ $user->registrant->address }}</td>
-          <td>{{ $user->registrant->phone_number }}</td>
-          <td>{{ $user->registrant->place_birth }}, {{ $user->registrant->date_birth }}</td>  --}}
+          <td>{{ ++$i }}</td>
+          <td>{{ $user->identity_number }}</td>
+					<td>{{ $user->name_registrant }}</td>
+          <td>{{ $user->name_sub_vocational }}</td>
+          <td>{{ $user->register_date }}</td>
 					<td>
-						<a class="btn btn-info" href="{{ route('manage_registrants.show',$user->id) }}">Detail</a>
-						{{--  @permission('manage_registrants-edit')  --}}
-						<a class="btn btn-primary" href="{{ route('manage_registrants.edit',$user->id) }}">Edit</a>
-						{{--  @endpermission  --}}
-						{{--  @permission('manage_registrants-delete')  --}}
-						{!! Form::open(['method' => 'DELETE','route' => ['manage_registrants.destroy', $user->id],'style'=>'display:inline']) !!}
-						{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-						{!! Form::close() !!}
-						{{--  @endpermission  --}}
+            <a class="btn btn-info" href="{{ route('manage_registrants.show',$user->id) }}">Data Diri</a>
+            <a class="btn btn-info" href="{{ route('manage_registrants.show',$user->id) }}">Pendidikan</a>
+            <a class="btn btn-info" href="{{ route('manage_registrants.show',$user->id) }}">Kursus</a>
 					</td>
 				</tr>		
 				@endforeach
