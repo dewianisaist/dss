@@ -43,45 +43,24 @@ class ManageRegistrantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function profile($id)
+    public function show($id)
     {
-        $user = Registrant::select('users.*', 'registrants.*', 'uploads.*')
+        $user = Registrant::select('users.*', 'registrants.*')
                             ->join('users','registrants.user_id', '=', 'users.id')
+                            ->find($id);
+        
+        $upload = Registrant::select('uploads.*')
                             ->join('uploads','uploads.registrant_id', '=', 'registrants.id')
                             ->find($id);
-        return view('manage_registrants.profile',compact('user'));
-    }
 
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $education_id, $name_institution, $graduation_year
-    * @return \Illuminate\Http\Response
-    */
-    public function education($education_id, $name_institution, $graduation_year)
-    {
-        $educational_background = EducationalBackground::with('education')
-                                                        ->where('education_id', $education_id)
-                                                        ->where('name_institution', $name_institution)
-                                                        ->where('graduation_year', $graduation_year)
-                                                        ->first();
-
-        return view('educational_background.show',compact('educational_background'));
-    }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $course_id, $organizer, $graduation_year
-    * @return \Illuminate\Http\Response
-    */
-    public function course($course_id, $organizer, $graduation_year)
-    {
-        $course_experience = CourseExperience::with('course')->where('course_id', $course_id)
-                                                             ->where('organizer', $organizer)
-                                                             ->where('graduation_year', $graduation_year)
-                                                             ->first();
+        $educations = EducationalBackground::with('education')
+                                          ->whereRegistrantId($id)
+                                          ->orderBy('education_id','DESC')->paginate(10);
         
-        return view('course_experience.show',compact('course_experience'));
+        $courses = CourseExperience::with('course')
+                                                ->whereRegistrantId($id)
+                                                ->orderBy('course_id','DESC')->paginate(10);
+
+        return view('manage_registrants.show',compact('user', 'upload', 'educations', 'courses'));
     }
 }
