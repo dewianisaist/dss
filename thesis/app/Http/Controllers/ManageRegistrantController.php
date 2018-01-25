@@ -45,9 +45,11 @@ class ManageRegistrantController extends Controller
      */
     public function profile($id)
     {
-        $user = User::with('registrant', 'registrant.upload')->find($id);
-        // return view('registrants.index',compact('user'));
-        return $user;
+        $user = Registrant::select('users.*', 'registrants.*', 'uploads.*')
+                            ->join('users','registrants.user_id', '=', 'users.id')
+                            ->join('uploads','uploads.registrant_id', '=', 'registrants.id')
+                            ->find($id);
+        return view('manage_registrants.profile',compact('user'));
     }
 
     /**
