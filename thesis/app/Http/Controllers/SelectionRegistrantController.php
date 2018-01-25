@@ -8,6 +8,7 @@ use App\Http\Models\Selection;
 use App\Http\Models\User;
 use App\Http\Models\Registrant;
 use App\Http\Models\SelectionSchedule;
+use App\Http\Models\Registration;
 use DB;
 use Auth;
 
@@ -26,7 +27,7 @@ class SelectionRegistrantController extends Controller
                             ->join('users', 'users.id', '=', 'registrants.user_id')
                             ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                             ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
-                            ->select('selections.id', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                            ->select('selections.id', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'selection_schedules.place', 'sub_vocationals.name AS name_sub_vocational')
                             ->orderBy('selections.id','DESC')
                             ->paginate(10);
         if ($role_id != 2) {
@@ -45,6 +46,25 @@ class SelectionRegistrantController extends Controller
     */
     public function create()
     {
+        $new = array();
+
+        $registrants = Registrant::select('users.name', 'registrants.id as registrant_id')
+                                    ->join('users','registrants.user_id', '=', 'users.id')
+                                    ->get();
+
+        foreach ($registrants as $registrant) {
+            $new[$registrant->name] = new \stdClass();
+            $new[$registrant->name]->registrant = (Object)$registrant;
+            $schedule = Registration::select('selection_schedules.id','sub_vocationals.name','selection_schedules.date','selection_schedules.time', 'selection_schedules.place')
+                                    ->join('selection_schedules','selection_schedules.sub_vocational_id','=','registration.sub_vocational_id')
+                                    ->join('sub_vocationals','sub_vocationals.id','=','selection_schedules.sub_vocational_id')
+                                    ->where('registration.registrant_id','=',$registrant->registrant_id)
+                                    ->get();
+            $new[$registrant->name]->schedule = (object)$schedule;
+        }
+
+        return $new;
+
         // SELECT users.name, sv.name, concat(ss.date," ", ss.time) as jadwal 
         // FROM users, registrants rs, registration rn, sub_vocationals sv, selection_schedules ss 
         // WHERE users.id = rs.user_id AND
@@ -52,12 +72,12 @@ class SelectionRegistrantController extends Controller
         // rn.sub_vocational_id = sv.id AND
         // sv.id = ss.sub_vocational_id
 
-        $registrants = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                          ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                          ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
-                          ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
-                          ->pluck('users.name','registration.registrant_id')
-                          ->all();
+        // $registrants = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+        //                   ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
+        //                   ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+        //                   ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
+        //                   ->pluck('users.name','registration.registrant_id')
+        //                   ->all();
 
         // $schedules = User::join('registrants', 'registrants.user_id', '=', 'users.id')
         //                 ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
@@ -66,7 +86,7 @@ class SelectionRegistrantController extends Controller
         //                 ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
         //                 ->where('registrants.user_id', $registrant)->value('users.name')
         //                 ->lists('jadwal','selection_schedules.id');
-        return view('selection_registrants.create',compact('registrants'));
+        // return view('selection_registrants.create',compact('registrants'));
     }
 
     /**

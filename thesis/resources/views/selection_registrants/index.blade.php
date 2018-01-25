@@ -41,8 +41,9 @@
 					<th>No</th>
 					<th>Nama Pendaftar</th>
 					<th>Sub-Kejuruan</th>
-					<th>Tanggal Seleksi</th>
-					<th>Waktu Seleksi</th>
+					<th>Tanggal</th>
+					<th>Waktu</th>
+					<th>Tempat</th>
 					<th width="280px">Aksi</th>
 				</tr>
 			</thead>
@@ -54,6 +55,7 @@
 						<td>{{ $selectionregistrant->name_sub_vocational }}</td>
 						<td>{{ $selectionregistrant->date }}</td>
 						<td>{{ $selectionregistrant->time }}</td>
+						<td>{{ $selectionregistrant->place }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('selectionregistrants.show',$selectionregistrant->id) }}">Detail</a>
 							{{--  @permission('selectionregistrant-edit')  --}}

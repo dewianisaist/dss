@@ -45,9 +45,15 @@
           <td>{{ $user->name_sub_vocational }}</td>
           <td>{{ $user->register_date }}</td>
 					<td>
-            <a class="btn btn-info" href="{{ route('manage_registrants.show',$user->id) }}">Data Diri</a>
-            <a class="btn btn-info" href="{{ route('manage_registrants.show',$user->id) }}">Pendidikan</a>
-            <a class="btn btn-info" href="{{ route('manage_registrants.show',$user->id) }}">Kursus</a>
+            <a class="btn btn-info" href="{{ route('manage_registrants.profile', $user->id_registrant) }}">Data Diri</a>
+            <a class="btn btn-info" href="{{ route('manage_registrants.education', 
+                                                                                  [$user->education_id,
+                                                                                  $user->name_institution, 
+                                                                                  $user->graduation_year]) }}">Pendidikan</a>
+            <a class="btn btn-info" href="{{ route('manage_registrants.course',
+                                                                                [$user->course_id,
+                                                                                $user->organizer,
+                                                                                $user->graduation_year]) }}">Kursus</a>
 					</td>
 				</tr>		
 				@endforeach

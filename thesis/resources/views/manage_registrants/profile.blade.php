@@ -1,4 +1,4 @@
-@extends('layouts.master_registrant')
+@extends('layouts.master_admin')
 
 @section('sidebar_menu')
 	@include('layouts.sidebar')
@@ -17,21 +17,6 @@
 @section('content')
 <div class="box box-default">
     <div class="box-body">
-		@if ($message = Session::get('success'))
-			<div class="alert alert-success">
-				<p>{{ $message }}</p>
-			</div>
-		@endif
-
- 		<div class="row">
-			<div class="col-lg-12 margin-tb">
-				<div class="pull-right mb-1">
-					<a class="btn btn-success" href="{{ route('registrants.edit') }}"> Edit Data Diri</a>
-				</div>
-			</div>
-   		</div>
-		<br/>
-    
 		<table class="table table-striped">
 			<tr>
 				<th>Nama</th>
