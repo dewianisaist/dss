@@ -63,7 +63,16 @@
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
 						<strong>Nilai Tes Wawancara:</strong>
-						{!! Form::text('interview_value', isset($selection->interview_value) ? $selection->interview_value : '', array('placeholder' => 'Nilai Tes Wawancara','class' => 'form-control')) !!}
+						{!! Form::select('interview_value', 
+							array(
+								'Sangat Baik' => 'Sangat Baik', 
+								'Baik' => 'Baik',
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang',
+								'Sangat Kurang' => 'Sangat Kurang'
+							), 
+							isset($selection->interview_value) ? $selection->interview_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">

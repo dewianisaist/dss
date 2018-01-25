@@ -66,7 +66,6 @@ class SelectionRegistrantController extends Controller
         //                 ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
         //                 ->where('registrants.user_id', $registrant)->value('users.name')
         //                 ->lists('jadwal','selection_schedules.id');
-
         return view('selection_registrants.create',compact('registrants'));
     }
 
