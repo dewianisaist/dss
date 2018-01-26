@@ -86,11 +86,11 @@
 			</tr>
 			<tr>
 				<th>Pas Foto</th>
-				<td><img width="200" src="{{ isset($user->photo) ? URL::to('/uploads/' . $user->photo) : URL::to('/avatars/avatar.png') }}" alt="{{ $user->name }}" /></td>
+				<td><img width="200" src="{{ isset($user->registrant->upload->photo) ? URL::to('/uploads/' . $user->registrant->upload->photo) : URL::to('/avatars/avatar.png') }}" alt="{{ $user->registrant->upload->name }}" /></td>
 			</tr>
 			<tr>
 				<th>KTP</th>
-				<td><a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->ktp) }}" target="_blank"> Lihat KTP</a></td>
+				<td><a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->registrant->upload->ktp) }}" target="_blank"> Lihat KTP</a></td>
 			</tr>
 			<tr>
 				<th>Ijazah Terakhir</th>
