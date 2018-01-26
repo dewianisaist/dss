@@ -50,9 +50,7 @@
 						<td>{{ $preference->parameter_s }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('preferences.show',$preference->id) }}">Detail</a>
-							{{--  @permission('preference-edit')  --}}
 							<a class="btn btn-primary" href="{{ route('preferences.edit',$preference->id) }}">Edit</a>
-							{{--  @endpermission  --}}
 						</td>
 					</tr>
 				@endforeach

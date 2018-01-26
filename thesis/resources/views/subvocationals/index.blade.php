@@ -27,9 +27,7 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  @permission('subvocational-create')  --}}
 					<a class="btn btn-success" href="{{ route('subvocationals.create') }}"> Tambahkan Sub-Kejuruan</a>
-					{{--  @endpermission  --}}
 				</div>
 			</div>
 		</div>
@@ -59,14 +57,10 @@
 
 						<td>
 							<a class="btn btn-info" href="{{ route('subvocationals.show',$subvocational->id) }}">Detail</a>
-							{{--  @permission('subvocational-edit')  --}}
 							<a class="btn btn-primary" href="{{ route('subvocationals.edit',$subvocational->id) }}">Edit</a>
-							{{--  @endpermission  --}}
-							{{--  @permission('subvocational-delete')  --}}
 							{!! Form::open(['method' => 'DELETE','route' => ['subvocationals.destroy', $subvocational->id],'style'=>'display:inline']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 							{!! Form::close() !!}
-							{{--  @endpermission  --}}
 						</td>
 					</tr>
 				@endforeach

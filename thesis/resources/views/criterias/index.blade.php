@@ -27,9 +27,7 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  @permission('criteria-create')  --}}
 					<a class="btn btn-success" href="{{ route('criterias.create') }}"> Tambahkan Kriteria</a>
-					{{--  @endpermission  --}}
 				</div>
 			</div>
 		</div>
@@ -52,14 +50,10 @@
 						<td>{{ $criteria->description }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('criterias.show',$criteria->id) }}">Detail</a>
-							{{--  @permission('criteria-edit')  --}}
 							<a class="btn btn-primary" href="{{ route('criterias.edit',$criteria->id) }}">Edit</a>
-							{{--  @endpermission  --}}
-							{{--  @permission('criteria-delete')  --}}
 							{!! Form::open(['method' => 'DELETE','route' => ['criterias.destroy', $criteria->id],'style'=>'display:inline']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 							{!! Form::close() !!}
-							{{--  @endpermission  --}}
 						</td>
 					</tr>
 				@endforeach

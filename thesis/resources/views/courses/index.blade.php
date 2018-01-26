@@ -27,9 +27,7 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  @permission('course-create')  --}}
 					<a class="btn btn-success" href="{{ route('courses.create') }}"> Tambahkan Kursus</a>
-					{{--  @endpermission  --}}
 				</div>
 			</div>
 		</div>
@@ -50,14 +48,10 @@
 						<td>{{ $course->major }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('courses.show',$course->id) }}">Detail</a>
-							{{--  @permission('course-edit')  --}}
 							<a class="btn btn-primary" href="{{ route('courses.edit',$course->id) }}">Edit</a>
-							{{--  @endpermission  --}}
-							{{--  @permission('course-delete')  --}}
 							{!! Form::open(['method' => 'DELETE','route' => ['courses.destroy', $course->id],'style'=>'display:inline']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 							{!! Form::close() !!}
-							{{--  @endpermission  --}}
 						</td>
 					</tr>
 				@endforeach

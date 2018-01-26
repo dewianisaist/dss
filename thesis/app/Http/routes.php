@@ -18,10 +18,6 @@ Route::get('/', function() {
 Route::auth();
 
 Route::group(['middleware' => ['auth']], function() {
-	// Route::group(['middleware' => ['acl:superadmin']], function() {
-
-	//Route::get('/dashboard', 'HomeController@index');
-	// Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@index']);	
 	
 	//registrants - tidak ada permission
 	Route::get('registrants',['as'=>'registrants.index','uses'=>'RegistrantController@index']);
@@ -51,7 +47,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('registration/create',['as'=>'registration.create','uses'=>'RegistrationController@create']);
 	Route::post('registration/create',['as'=>'registration.store','uses'=>'RegistrationController@store']);
 
-	//users
+	//contoh permission
 	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:user-list|user-create|user-edit|user-delete']]);
 	// Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create','middleware' => ['permission:user-create']]);
 	// Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store','middleware' => ['permission:user-create']]);
@@ -60,8 +56,7 @@ Route::group(['middleware' => ['auth']], function() {
 	// Route::patch('users/{id}',['as'=>'users.update','uses'=>'UserController@update','middleware' => ['permission:user-edit']]);
 	// Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy','middleware' => ['permission:user-delete']]);
 
-	//users - ada permission, belum ditambahkan
-	// Route::get('users',['as'=>'users.index','uses'=>'UserController@index', 'middleware' => ['acl:superadmin|admin']]);	Route::get('users',['as'=>'users.index','uses'=>'UserController@index', 'middleware' => ['acl:superadmin|admin']]);
+	//users - tidak ada permission
 	Route::get('users',['as'=>'users.index','uses'=>'UserController@index']);	
 	Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create']);
 	Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store']);
@@ -70,15 +65,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('users/{id}',['as'=>'users.update','uses'=>'UserController@update']);
 	Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy']);
 
-	// Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
-	// Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create','middleware' => ['permission:role-create']]);
-	// Route::post('roles/create',['as'=>'roles.store','uses'=>'RoleController@store','middleware' => ['permission:role-create']]);
-	// Route::get('roles/{id}',['as'=>'roles.show','uses'=>'RoleController@show']);
-	// Route::get('roles/{id}/edit',['as'=>'roles.edit','uses'=>'RoleController@edit','middleware' => ['permission:role-edit']]);
-	// Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update','middleware' => ['permission:role-edit']]);
-	// Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy','middleware' => ['permission:role-delete']]);
-
-	//roles - ada permission, belum ditambahkan
+	//roles - tidak ada permission
 	Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index']);
 	Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create']);
 	Route::post('roles/create',['as'=>'roles.store','uses'=>'RoleController@store']);
@@ -87,15 +74,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update']);
 	Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy']);
 
-	// Route::get('vocationals',['as'=>'vocationals.index','uses'=>'VocationalController@index','middleware' => ['permission:vocational-list|vocational-create|vocational-edit|vocational-delete']]);
-	// Route::get('vocationals/create',['as'=>'vocationals.create','uses'=>'VocationalController@create','middleware' => ['permission:vocational-create']]);
-	// Route::post('vocationals/create',['as'=>'vocationals.store','uses'=>'VocationalController@store','middleware' => ['permission:vocational-create']]);
-	// Route::get('vocationals/{id}',['as'=>'vocationals.show','uses'=>'VocationalController@show']);
-	// Route::get('vocationals/{id}/edit',['as'=>'vocationals.edit','uses'=>'VocationalController@edit','middleware' => ['permission:vocational-edit']]);
-	// Route::patch('vocationals/{id}',['as'=>'vocationals.update','uses'=>'VocationalController@update','middleware' => ['permission:vocational-edit']]);
-	// Route::delete('vocationals/{id}',['as'=>'vocationals.destroy','uses'=>'VocationalController@destroy','middleware' => ['permission:vocational-delete']]);
-
-	//vocationals - ada permission, belum ditambahkan
+	//vocationals - tidak ada permission
 	Route::get('vocationals',['as'=>'vocationals.index','uses'=>'VocationalController@index']);
 	Route::get('vocationals/create',['as'=>'vocationals.create','uses'=>'VocationalController@create']);
 	Route::post('vocationals/create',['as'=>'vocationals.store','uses'=>'VocationalController@store']);
@@ -104,7 +83,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('vocationals/{id}',['as'=>'vocationals.update','uses'=>'VocationalController@update']);
 	Route::delete('vocationals/{id}',['as'=>'vocationals.destroy','uses'=>'VocationalController@destroy']);
 
-	//educations - ada permission, belum ditambahkan
+	//educations - tidak ada permission
 	Route::get('educations',['as'=>'educations.index','uses'=>'EducationController@index']);
 	Route::get('educations/create',['as'=>'educations.create','uses'=>'EducationController@create']);
 	Route::post('educations/create',['as'=>'educations.store','uses'=>'EducationController@store']);
@@ -113,7 +92,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('educations/{id}',['as'=>'educations.update','uses'=>'EducationController@update']);
 	Route::delete('educations/{id}',['as'=>'educations.destroy','uses'=>'EducationController@destroy']);
 
-	//courses - ada permission, belum ditambahkan
+	//courses - tidak ada permission
 	Route::get('courses',['as'=>'courses.index','uses'=>'CourseController@index']);
 	Route::get('courses/create',['as'=>'courses.create','uses'=>'CourseController@create']);
 	Route::post('courses/create',['as'=>'courses.store','uses'=>'CourseController@store']);
@@ -127,7 +106,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('profile_users/edit',['as'=>'profile_users.edit','uses'=>'ProfileUserController@edit']);
 	Route::patch('profile_users',['as'=>'profile_users.update','uses'=>'ProfileUserController@update']);
 	
-	//subvocationals - ada permission, belum ditambahkan
+	//subvocationals - tidak ada permission
 	Route::get('subvocationals',['as'=>'subvocationals.index','uses'=>'SubvocationalController@index']);
 	Route::get('subvocationals/create',['as'=>'subvocationals.create','uses'=>'SubvocationalController@create']);
 	Route::post('subvocationals/create',['as'=>'subvocationals.store','uses'=>'SubvocationalController@store']);
@@ -161,7 +140,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::delete('selectionregistrants/{id}',['as'=>'selectionregistrants.destroy','uses'=>'SelectionRegistrantController@destroy']);
 	Route::post('selectionregistrants/create',['as'=>'selectionregistrants.select-ajax','uses'=>'SelectionRegistrantController@selectAjax']);
 	
-	//criterias - ada permission, belum ditambahkan
+	//criterias - tidak ada permission
 	Route::get('criterias',['as'=>'criterias.index','uses'=>'CriteriaController@index']);
 	Route::get('criterias/create',['as'=>'criterias.create','uses'=>'CriteriaController@create']);
 	Route::post('criterias/create',['as'=>'criterias.store','uses'=>'CriteriaController@store']);
@@ -170,18 +149,23 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('criterias/{id}',['as'=>'criterias.update','uses'=>'CriteriaController@update']);
 	Route::delete('criterias/{id}',['as'=>'criterias.destroy','uses'=>'CriteriaController@destroy']);
 
-	//preferences - ada permission, belum ditambahkan
+	//preferences - tidak ada permission
 	Route::get('preferences',['as'=>'preferences.index','uses'=>'PreferenceController@index']);
 	Route::get('preferences/{id}',['as'=>'preferences.show','uses'=>'PreferenceController@show']);
 	Route::get('preferences/{id}/edit',['as'=>'preferences.edit','uses'=>'PreferenceController@edit']);
 	Route::patch('preferences/{id}',['as'=>'preferences.update','uses'=>'PreferenceController@update']);
 	Route::delete('preferences/{id}',['as'=>'preferences.destroy','uses'=>'PreferenceController@destroy']);
 
-	//manage_registrants - ada permission, belum ditambahkan
+	//manage_registrants - tidak ada permission
 	Route::get('manage_registrants',['as'=>'manage_registrants.index','uses'=>'ManageRegistrantController@index']);
 	Route::get('manage_registrants/{id}',['as'=>'manage_registrants.show','uses'=>'ManageRegistrantController@show']);
 	
-	//auth_role - ada permission, belum ditambahkan
+	//auth_role - tidak ada permission
 	Route::get('authrole',['as'=>'authrole.index','uses'=>'AuthRoleController@index']);
 	Route::post('authrole',['as'=>'authrole.store','uses'=>'AuthRoleController@store']);
+
+	//questionnaire - tidak ada permission
+	Route::get('questionnaire',['as'=>'questionnaire.index','uses'=>'QuestionnaireController@index']);
+	Route::get('questionnaire/create',['as'=>'questionnaire.create','uses'=>'QuestionnaireController@create']);
+	Route::post('questionnaire/create',['as'=>'questionnaire.store','uses'=>'QuestionnaireController@store']);
 });
