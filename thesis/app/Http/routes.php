@@ -130,7 +130,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('selections/{id}/edit',['as'=>'selections.edit','uses'=>'SelectionController@edit']);
 	Route::patch('selections/{id}',['as'=>'selections.update','uses'=>'SelectionController@update']);
 
-	//selectionregistrants - ada permission, belum ditambahkan
+	//selectionregistrants - ada permission, belum ditambahkan, gag jad, dibuat otomatis
 	Route::get('selectionregistrants',['as'=>'selectionregistrants.index','uses'=>'SelectionRegistrantController@index']);
 	Route::get('selectionregistrants/create',['as'=>'selectionregistrants.create','uses'=>'SelectionRegistrantController@create']);
 	Route::post('selectionregistrants/create_',['as'=>'selectionregistrants.store','uses'=>'SelectionRegistrantController@store']);
