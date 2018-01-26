@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 25, 2018 at 03:23 AM
+-- Generation Time: Jan 26, 2018 at 07:30 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `choices` (
   `user_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `option` varchar(15) DEFAULT NULL,
-  `suggestion` varchar(1) DEFAULT NULL
+  `option` varchar(15) NOT NULL,
+  `suggestion` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -67,9 +67,9 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `major`, `created_at`, `updated_at`) VALUES
-(1, 'Jahit', '2018-01-24 09:31:26', '2018-01-24 09:31:46'),
-(2, 'Komputer', '2018-01-24 09:31:33', '2018-01-24 09:31:33'),
-(3, 'Stir', '2018-01-24 09:31:38', '2018-01-24 09:31:38');
+(1, 'Jahit', '2018-01-25 23:05:23', '2018-01-25 23:05:23'),
+(2, 'Stir', '2018-01-25 23:05:31', '2018-01-25 23:05:31'),
+(3, 'Komputer', '2018-01-25 23:05:38', '2018-01-25 23:05:38');
 
 -- --------------------------------------------------------
 
@@ -83,6 +83,13 @@ CREATE TABLE `course_experience` (
   `organizer` varchar(100) NOT NULL,
   `graduation_year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `course_experience`
+--
+
+INSERT INTO `course_experience` (`registrant_id`, `course_id`, `organizer`, `graduation_year`) VALUES
+(1, 2, '-', 2015);
 
 -- --------------------------------------------------------
 
@@ -112,7 +119,8 @@ CREATE TABLE `criterias` (
 --
 
 INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `partial_weight`, `global_weight`, `preference`, `max_min`, `parameter_p`, `parameter_q`, `parameter_s`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Kriteria 1', 'Test kriteria 1 (Sumber: XYZ, 2018)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-24 09:33:24', '2018-01-24 09:33:24');
+(1, NULL, 'Kriteria 1', 'Sumber kriteria 1 (XYZ, 2017)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-25 23:08:56', '2018-01-25 23:08:56'),
+(2, NULL, 'Kriteria 2', 'Sumber kriteria 2 (XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-25 23:09:11', '2018-01-25 23:09:11');
 
 -- --------------------------------------------------------
 
@@ -126,6 +134,16 @@ CREATE TABLE `educational_background` (
   `name_institution` varchar(100) NOT NULL,
   `graduation_year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `educational_background`
+--
+
+INSERT INTO `educational_background` (`registrant_id`, `education_id`, `name_institution`, `graduation_year`) VALUES
+(1, 1, '-', 2004),
+(1, 2, '-', 2007),
+(1, 3, '-', 2010),
+(3, 1, '-', 2010);
 
 -- --------------------------------------------------------
 
@@ -146,12 +164,12 @@ CREATE TABLE `educations` (
 --
 
 INSERT INTO `educations` (`id`, `stage`, `major`, `created_at`, `updated_at`) VALUES
-(1, 'SD', '', '2018-01-24 09:30:24', '2018-01-24 09:30:24'),
-(2, 'SMP', '', '2018-01-24 09:30:29', '2018-01-24 09:30:29'),
-(3, 'SMA', 'IPA', '2018-01-24 09:30:37', '2018-01-24 09:30:37'),
-(4, 'SMA', 'IPS', '2018-01-24 09:30:44', '2018-01-24 09:30:44'),
-(5, 'SMK', 'Teknik Kendaraan Ringan', '2018-01-24 09:31:01', '2018-01-24 09:31:01'),
-(6, 'SMK', 'Multimedia', '2018-01-24 09:31:11', '2018-01-24 09:31:11');
+(1, 'SD', '', '2018-01-25 23:04:30', '2018-01-25 23:04:30'),
+(2, 'SMP', '', '2018-01-25 23:04:35', '2018-01-25 23:04:35'),
+(3, 'SMA', 'IPA', '2018-01-25 23:04:43', '2018-01-25 23:04:43'),
+(4, 'SMA', 'IPS', '2018-01-25 23:04:53', '2018-01-25 23:04:53'),
+(5, 'SMK', 'Teknik Kendaraan Ringan', '2018-01-25 23:05:02', '2018-01-25 23:05:02'),
+(6, 'SMK', 'Multimedia', '2018-01-25 23:05:09', '2018-01-25 23:05:09');
 
 -- --------------------------------------------------------
 
@@ -187,18 +205,61 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'user-list', 'Menampilkan daftar Pengguna', 'Hanya melihat daftar Pengguna', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(2, 'user-create', 'Membuat Pengguna', 'Membuat Pengguna baru', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(3, 'user-edit', 'Edit Pengguna', 'Edit Pengguna', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(4, 'user-delete', 'Hapus Pengguna', 'Hapus Pengguna', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(5, 'role-list', 'Menampilkan daftar Role', 'Hanya melihat daftar Role', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(6, 'role-create', 'Membuat Role', 'Membuat Role baru', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(7, 'role-edit', 'Edit Role', 'Edit Role', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(8, 'role-delete', 'Hapus Role', 'Hapus Role', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(9, 'vocational-list', 'Menampilkan daftar Kejuruan', 'Hanya melihat daftar Kejuruan', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(10, 'vocational-create', 'Membuat Kejuruan', 'Membuat Kejuruan baru', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(11, 'vocational-edit', 'Edit Kejuruan', 'Edit Kejuruan', '2018-01-24 09:12:27', '2018-01-24 09:12:27'),
-(12, 'vocational-delete', 'Hapus Kejuruan', 'Hapus Kejuruan', '2018-01-24 09:12:27', '2018-01-24 09:12:27');
+(1, 'registrant-list', 'Menampilkan data pendaftar', 'Menampilkan data pendaftar', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(2, 'registrant-edit', 'Edit data pendaftar', 'Edit data pendaftar', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(3, 'educational_background-list', 'Menampilkan daftar riwayat pendidikan', 'Menampilkan daftar riwayat pendidikan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(4, 'educational_background-create', 'Menambahkan riwayat pendidikan', 'Menambahkan riwayat pendidikan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(5, 'educational_background-edit', 'Edit riwayat pendidikan', 'Edit riwayat pendidikan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(6, 'educational_background-delete', 'Hapus riwayat pendidikan', 'Hapus riwayat pendidikan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(7, 'course_experience-list', 'Menampilkan daftar pengalaman kursus', 'Menampilkan daftar pengalaman kursus', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(8, 'course_experience-create', 'Menambahkan pengalaman kursus', 'Menambahkan pengalaman kursus', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(9, 'course_experience-edit', 'Edit pengalaman kursus', 'Edit pengalaman kursus', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(10, 'course_experience-delete', 'Hapus pengalaman kursus', 'Hapus pengalaman kursus', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(11, 'registration-list', 'Menampilkan riwayat pendaftaran', 'Menampilkan riwayat pendaftaran', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(12, 'registration-create', 'Melakukan pendaftaran', 'Melakukan pendaftaran', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(13, 'user-list', 'Menampilkan daftar akun pengguna', 'Menampilkan daftar akun pengguna', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(14, 'user-create', 'Membuat akun pengguna', 'Membuat akun pengguna', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(15, 'user-edit', 'Edit akun pengguna', 'Edit akun pengguna', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(16, 'user-delete', 'Hapus akun pengguna', 'Hapus akun pengguna', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(17, 'role-list', 'Menampilkan daftar role', 'Menampilkan daftar role', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(18, 'role-create', 'Membuat role', 'Membuat role', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(19, 'role-edit', 'Edit role', 'Edit role', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(20, 'role-delete', 'Hapus role', 'Hapus role', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(21, 'vocational-list', 'Menampilkan daftar kejuruan', 'Menampilkan daftar kejuruan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(22, 'vocational-create', 'Membuat kejuruan', 'Membuat kejuruan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(23, 'vocational-edit', 'Edit kejuruan', 'Edit kejuruan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(24, 'vocational-delete', 'Hapus kejuruan', 'Hapus kejuruan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(25, 'education-list', 'Menampilkan daftar pendidikan', 'Menampilkan daftar pendidikan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(26, 'education-create', 'Menambahkan pendidikan', 'Menambahkan pendidikan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(27, 'education-edit', 'Edit pendidikan', 'Edit pendidikan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(28, 'education-delete', 'Hapus pendidikan', 'Hapus pendidikan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(29, 'course-list', 'Menampilkan daftar kursus', 'Menampilkan daftar kursus', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(30, 'course-create', 'Menambahkan kursus', 'Menambahkan kursus', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(31, 'course-edit', 'Edit kursus', 'Edit kursus', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(32, 'course-delete', 'Hapus kursus', 'Hapus kursus', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(33, 'profile_user-list', 'Menampilkan profile user', 'Menampilkan profile user', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(34, 'profile_user-edit', 'Edit profile user', 'Edit profile user', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(35, 'subvocational-list', 'Menampilkan daftar sub-kejuruan', 'Menampilkan daftar sub-kejuruan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(36, 'subvocational-create', 'Membuat sub-kejuruan', 'Membuat sub-kejuruan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(37, 'subvocational-edit', 'Edit sub-kejuruan', 'Edit sub-kejuruan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(38, 'subvocational-delete', 'Hapus sub-kejuruan', 'Hapus sub-kejuruan', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(39, 'criteria-list', 'Menampilkan daftar kriteria', 'Menampilkan daftar kriteria', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(40, 'criteria-create', 'Membuat kriteria', 'Membuat kriteria', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(41, 'criteria-edit', 'Edit kriteria', 'Edit kriteria', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(42, 'criteria-delete', 'Hapus kriteria', 'Hapus kriteria', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(43, 'preference-list', 'Menampilkan daftar preference', 'Menampilkan daftar preference', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(44, 'preference-create', 'Membuat preference', 'Membuat preference', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(45, 'preference-edit', 'Edit preference', 'Edit preference', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(46, 'preference-delete', 'Hapus preference', 'Hapus preference', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(47, 'manage_registrant-list', 'Menampilkan daftar data pendaftar', 'Menampilkan daftar data pendaftar', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(48, 'questionnaire-list', 'Menampilkan isian kuesioner kriteria', 'Menampilkan isian kuesioner kriteria', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(49, 'questionnaire-create', 'Mengisi kuesioner kriteria', 'Mengisi kuesioner kriteria', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(50, 'selectionschedule-list', 'Menampilkan daftar jadwal seleksi', 'Menampilkan daftar jadwal seleksi', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(51, 'selectionschedule-create', 'Membuat jadwal seleksi', 'Membuat jadwal seleksi', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(52, 'selectionschedule-edit', 'Edit jadwal seleksi', 'Edit jadwal seleksi', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(53, 'selectionschedule-delete', 'Hapus jadwal seleksi', 'Hapus jadwal seleksi', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(54, 'selection-list', 'Menampilkan daftar nilai seleksi', 'Menampilkan daftar nilai seleksi', '2018-01-25 22:23:15', '2018-01-25 22:23:15'),
+(55, 'selection-edit', 'Memasukkan nilai seleksi', 'Memasukkan nilai seleksi', '2018-01-25 22:23:15', '2018-01-25 22:23:15');
 
 -- --------------------------------------------------------
 
@@ -216,26 +277,89 @@ CREATE TABLE `permission_role` (
 --
 
 INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(1, 6),
-(1, 7),
-(1, 8),
-(1, 9),
-(1, 10),
-(1, 11),
-(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(1, 16),
+(1, 17),
+(1, 18),
+(1, 19),
+(1, 20),
+(1, 21),
+(1, 22),
+(1, 23),
+(1, 24),
+(1, 25),
+(1, 26),
+(1, 27),
+(1, 28),
+(1, 29),
+(1, 30),
+(1, 31),
+(1, 32),
+(1, 33),
+(1, 34),
+(1, 35),
+(1, 36),
+(1, 37),
+(1, 38),
+(1, 39),
+(1, 40),
+(1, 41),
+(1, 42),
+(1, 47),
+(1, 50),
+(1, 51),
+(1, 52),
+(1, 53),
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(2, 8),
 (2, 9),
-(3, 1),
-(3, 5),
-(3, 9),
-(4, 1),
-(4, 9),
-(5, 9),
-(6, 9);
+(2, 10),
+(2, 11),
+(2, 12),
+(3, 33),
+(3, 34),
+(3, 43),
+(3, 44),
+(3, 45),
+(3, 46),
+(3, 47),
+(3, 48),
+(3, 49),
+(3, 50),
+(3, 51),
+(3, 52),
+(3, 53),
+(3, 54),
+(4, 33),
+(4, 34),
+(4, 47),
+(4, 48),
+(4, 49),
+(4, 50),
+(4, 54),
+(5, 33),
+(5, 34),
+(5, 47),
+(5, 48),
+(5, 49),
+(5, 50),
+(5, 54),
+(6, 33),
+(6, 34),
+(6, 47),
+(6, 48),
+(6, 49),
+(6, 50),
+(6, 54),
+(6, 55);
 
 -- --------------------------------------------------------
 
@@ -266,7 +390,9 @@ CREATE TABLE `registrants` (
 --
 
 INSERT INTO `registrants` (`id`, `user_id`, `address`, `phone_number`, `gender`, `place_birth`, `date_birth`, `order_child`, `amount_sibling`, `religion`, `biological_mother_name`, `father_name`, `parent_address`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Bantul', '0857123456', 'Laki-laki', 'Bantul', '1998-06-16', 0, 0, 'Islam', '', '', '', '2018-01-24 09:21:23', '2018-01-24 09:21:23');
+(1, 8, 'Jetis, Bantul, DIY', '0864324567', 'Laki-laki', 'Bantul', '1996-08-16', 0, 0, 'Islam', '', '', '', '2018-01-25 23:11:46', '2018-01-25 23:11:46'),
+(2, 9, 'Kweden, Bantul, DIY', '0987267382', 'Laki-laki', 'Bantul', '1999-07-22', 0, 0, 'Islam', '', '', '', '2018-01-25 23:15:25', '2018-01-25 23:15:25'),
+(3, 10, 'Pepe, Bantul, DIY', '085736489', 'Laki-laki', 'Bantul', '2018-01-26', 2, 3, 'Islam', 'Ibu 3', 'Ayah 3', 'Pepe, Bantul, DIY', '2018-01-25 23:19:11', '2018-01-25 23:19:11');
 
 -- --------------------------------------------------------
 
@@ -285,7 +411,9 @@ CREATE TABLE `registration` (
 --
 
 INSERT INTO `registration` (`registrant_id`, `sub_vocational_id`, `register_date`) VALUES
-(1, 2, '2018-01-25 01:09:32');
+(1, 2, '2018-01-26 06:13:16'),
+(1, 4, '2018-01-26 06:13:24'),
+(2, 4, '2018-01-26 06:15:52');
 
 -- --------------------------------------------------------
 
@@ -319,12 +447,12 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'staf', 'Staf', 'Melakukan pengelolaan data', NULL, NULL),
-(2, 'pendaftar', 'Pendaftar', 'Calon peserta perlatihan', '2018-01-24 09:14:23', '2018-01-24 09:14:23'),
-(3, 'kepala', 'Kepala BLK', 'Pembuat keputusan dan mengawasi setiap proses', '2018-01-24 09:16:08', '2018-01-24 09:16:08'),
-(4, 'kasubag_tu', 'Kepala Sub-Bagian Tata Usaha', 'Melakukan pengawasan', '2018-01-24 09:17:25', '2018-01-24 09:17:25'),
-(5, 'koor_instruktur', 'Koordinator Instruktur', 'Melakukan pengawasan', '2018-01-24 09:18:09', '2018-01-24 09:18:09'),
-(6, 'kajur', 'Kepala Kejuruan', 'Melakukan pengawasan', '2018-01-24 09:18:34', '2018-01-24 09:18:34');
+(1, 'staf', 'Staf', 'Melakukan pengelolaan data', '2018-01-25 22:27:36', '2018-01-25 22:27:36'),
+(2, 'pendaftar', 'Pendaftar', 'Calon peserta pelatihan', '2018-01-25 22:28:47', '2018-01-25 22:28:47'),
+(3, 'kepala', 'Kepala', 'Pembuat keputusan dan melakukan pengawasan pada proses seleksi peserta pelatihan', '2018-01-25 22:44:58', '2018-01-25 22:44:58'),
+(4, 'kasubag_tu', 'Kepala Sub-Bagian Tata Usaha', 'Melakukan pengawasan terhadap pengelolaan data', '2018-01-25 22:48:56', '2018-01-25 22:48:56'),
+(5, 'koor_instruktur', 'Koordinator Instruktur', 'Melakukan pengawasan ', '2018-01-25 22:51:35', '2018-01-25 22:51:35'),
+(6, 'kajur', 'Kepala Kejuruan', 'Menilai seleksi peserta pelatihan', '2018-01-25 22:54:17', '2018-01-25 22:54:17');
 
 -- --------------------------------------------------------
 
@@ -343,19 +471,21 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
 (1, 1),
-(1, 4),
+(1, 2),
 (2, 1),
-(2, 2),
-(2, 3),
+(2, 8),
+(2, 9),
+(2, 10),
+(2, 11),
 (3, 1),
-(3, 5),
+(3, 3),
 (4, 1),
-(4, 6),
+(4, 4),
 (5, 1),
-(5, 7),
+(5, 5),
 (6, 1),
-(6, 8),
-(6, 9);
+(6, 6),
+(6, 7);
 
 -- --------------------------------------------------------
 
@@ -395,8 +525,10 @@ CREATE TABLE `selection_schedules` (
 --
 
 INSERT INTO `selection_schedules` (`id`, `sub_vocational_id`, `date`, `time`, `place`, `information`, `created_at`, `updated_at`) VALUES
-(1, 1, '2018-02-28', '08:00', 'R. Teori 1', 'Pakaian rapi dan sepatu', '2018-01-24 09:32:38', '2018-01-24 09:32:50'),
-(2, 2, '2018-02-28', '08:00', 'R. TKR 1', '', '2018-01-24 18:23:21', '2018-01-24 18:23:21');
+(1, 1, '2018-03-01', '08:00', 'R. Teori 1', '', '2018-01-25 23:06:24', '2018-01-25 23:06:24'),
+(2, 2, '2018-03-01', '08:00', 'R. TKR 1', 'Pakaian rapi dan bersepatu', '2018-01-25 23:06:52', '2018-01-25 23:08:16'),
+(3, 3, '2018-03-02', '08:00', 'R. TKR 1', 'Pakaian rapi dan bersepatu', '2018-01-25 23:07:20', '2018-01-25 23:08:12'),
+(4, 4, '2018-03-02', '08:00', 'R. Teori 1', 'Pakaian rapi dan bersepatu', '2018-01-25 23:07:39', '2018-01-25 23:08:02');
 
 -- --------------------------------------------------------
 
@@ -423,9 +555,10 @@ CREATE TABLE `sub_vocationals` (
 --
 
 INSERT INTO `sub_vocationals` (`id`, `vocational_id`, `name`, `quota`, `long_training`, `goal`, `unit_competence`, `requirement_participant`, `final_registration_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Sub Kejuruan 1', 16, '480', 'Tujuan Kejuruan 1', 'Unit Kompetensi Kejuruan 1', 'Syarat Kejuruan 1', '2018-02-09 16:59:59', '2018-01-24 09:28:02', '2018-01-24 09:28:02'),
-(2, 2, 'Sub Kejuruan 2', 16, '180', 'Tujuan Kejuruan 2', 'Unit Kompetensi  Kejuruan 2', 'Syarat Kejuruan 2', '2018-02-24 16:59:59', '2018-01-24 09:29:09', '2018-01-24 09:29:09'),
-(3, 2, 'Sub Kejuruan 2.1', 16, '180', 'Tujuan Kejuruan 2.1', 'Unit Kompetensi Kejuruan 2.1', 'Syarat Kejuruan 2.1', '2018-02-13 16:59:59', '2018-01-24 09:30:12', '2018-01-24 09:30:12');
+(1, 1, 'Sub Kejuruan 1.1', 16, '180', 'Tujuan 1.1', 'UK 1.1', 'Syarat 1.1', '2018-02-10 16:59:59', '2018-01-25 23:01:06', '2018-01-25 23:01:06'),
+(2, 2, 'Sub Kejuruan 2.1', 16, '180', 'Tujuan 2.1', 'UK 2.1', 'Syarat 2.1', '2018-02-17 16:59:59', '2018-01-25 23:02:26', '2018-01-25 23:02:26'),
+(3, 2, 'Sub Kejuruan 2.2', 16, '180', 'Tujuan 2.2', 'UK 2.2', 'Syarat 2.2', '2018-03-03 16:59:59', '2018-01-25 23:03:21', '2018-01-25 23:03:21'),
+(4, 3, 'Sub Kejuruan 3.1', 16, '180', 'Tujuan 3.1', 'Uk 3.1', 'Syarat 3.1', '2018-02-09 16:59:59', '2018-01-25 23:04:20', '2018-01-25 23:04:20');
 
 -- --------------------------------------------------------
 
@@ -448,7 +581,9 @@ CREATE TABLE `uploads` (
 --
 
 INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, NULL, '2018-01-24 09:21:23', '2018-01-24 09:21:23');
+(1, 1, 'photo_c9f0f895fb98ab9159f51fd0297e236d.jpeg', 'ktp_c9f0f895fb98ab9159f51fd0297e236d.pdf', 'lastcertificate_c9f0f895fb98ab9159f51fd0297e236d.pdf', '2018-01-25 23:11:46', '2018-01-25 23:27:27'),
+(2, 2, NULL, NULL, NULL, '2018-01-25 23:15:25', '2018-01-25 23:15:25'),
+(3, 3, 'photo_d3d9446802a44259755d38e6d163e820.png', 'ktp_d3d9446802a44259755d38e6d163e820.pdf', 'lastcertificate_d3d9446802a44259755d38e6d163e820.pdf', '2018-01-25 23:19:11', '2018-01-25 23:24:10');
 
 -- --------------------------------------------------------
 
@@ -472,15 +607,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$vPSli1wHAX4DWVyzOrkTPeQjvV866fPbX3Bccx..YucEPbspw2T6u', 'hS8LCayuD51D5o9CfeCukraB41xtXTZI8OOEv3w3xeDDryXuNtCcONJe3kPC', '2018-01-24 09:03:21', '2018-01-24 18:18:53'),
-(2, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$bl8eboXpSsiJOIRmKjbfleQLFubefs.cHDlkHAkkxk4D6CoDhRz56', 'FVLlNTlJhbb3AKjaO4RPiZAokMdvOJfBCkoFsj30KluDKg0T3FQv65Db6qgh', '2018-01-24 09:20:41', '2018-01-24 18:12:36'),
-(3, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$R4hZLCU3iN3P9gMlmu5/PuDTrjy5OQtkk4muI5AE7UFYB.jdCD8Bm', 'qC68olE1LyqtMMh2g9isTdKSMrKnMm2bpEMwdNf0HszZhktGobDNblxQh3bp', '2018-01-24 09:22:03', '2018-01-24 09:22:09'),
-(4, '101010', 'Staf OK', 'staf@test.com', '$2y$10$pcn2Nx6iqWagbKTjuEzU..5IZLRXSUUmEjkPlTARRC/L6Ozv1LjDS', NULL, '2018-01-24 09:23:26', '2018-01-24 09:24:30'),
-(5, '202020', 'Kepala OK', 'kepala@test.com', '$2y$10$cReRzY3Fj0H.BgmzJejtbO5y.LB1bJnbuJfHmuf/Z/T6Ik5ebOIP.', NULL, '2018-01-24 09:23:48', '2018-01-24 09:23:48'),
-(6, '303030', 'Kasubag TU OK', 'kasubagtu@test.com', '$2y$10$oAx9BMsSqe5OqLtaArzOV.cos9dEOSZRGIfnmz.13QJmVpU/keiFK', NULL, '2018-01-24 09:24:21', '2018-01-24 09:24:21'),
-(7, '404040', 'Koor Instruktur', 'koorinstruktur@test.com', '$2y$10$mZ53j64OhYuZZtJ1sVAZmupS82SQQxYu6/iVd5xXGZ4u.e6LdkI76', NULL, '2018-01-24 09:24:57', '2018-01-24 09:24:57'),
-(8, '505050', 'Kajur 1 OK', 'kajur1@test.com', '$2y$10$lCwBc6GV7rqhaM9wzZauQeC5NO3sN1hAKkw1fixjfggtVBMB3hfvi', NULL, '2018-01-24 09:25:23', '2018-01-24 09:25:23'),
-(9, '606060', 'Kajur 2 OK', 'kajur2@test.com', '$2y$10$vl.y0DHNDa5jjbMyh1lgfOE9GEUHUd7Sey7wSUIqSp0q3ATHEVGha', NULL, '2018-01-24 09:25:54', '2018-01-24 09:25:54');
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$UgFPf7CHy555J5kD/W4rHu.R5/SqMFcPUcAg4R0bLmAGl3cB4LDES', 'D8zFYE8MbejYol1cxNQ0TIVWQnaO9zFZW7Mkc4sm1mCk3xDbvsxmdtLhNpVz', '2018-01-25 21:43:23', '2018-01-25 23:09:30'),
+(2, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$2Dj/fj3BfJKJ2Ld51zaP4e8UrpbdIDsvOuxoG5a8pIBCTOl6HhdoW', NULL, '2018-01-25 22:55:13', '2018-01-25 22:55:13'),
+(3, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$0nTbkBOgWx5Sh4WhDbDppO0tKMDpEHJEcRRYS1E5qrj1Bkmoof4d6', NULL, '2018-01-25 22:55:42', '2018-01-25 22:55:42'),
+(4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$kghNJtutmg6lIWZvy88CVuKHJxShtgBbCXObIwCigwHLPrYFoABte', NULL, '2018-01-25 22:56:30', '2018-01-25 22:56:30'),
+(5, '505050', 'Koor Instruktur BLK', 'koorinstruktur@test.com', '$2y$10$yeyMaS6R1vdiWcg37VyqB.bdIGWZoWQjzTaySbq.HN5vk4NxGDzG6', NULL, '2018-01-25 22:56:55', '2018-01-25 22:56:55'),
+(6, '606060', 'Kajur BLK 1 ', 'kajur1@test.com', '$2y$10$sDQWW0HGL0/MLJl2mQwJAul3AS3k6BCu8It0YeB8Y8pe2v0O0zlpG', NULL, '2018-01-25 22:57:57', '2018-01-25 22:57:57'),
+(7, '707070', 'Kajur BLK 2', 'kajur2@test.com', '$2y$10$TSAPE8R5GgvQ.fUrtieHeuU8rfAUI7.QG1ARKhAaT0oJ2jZ.3j37m', NULL, '2018-01-25 22:58:26', '2018-01-25 22:58:26'),
+(8, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$dz36hH18xdTzu2d9c.jK3.Ioq2j0PHuUoxJNgmv37iHSoylMhJ2gW', 'jeMVyyrgqt8JTjQzoiaeb3xRtpNhk9URcTYp3bBypIjTjOrc7oU8DPue3eYK', '2018-01-25 23:09:48', '2018-01-25 23:27:39'),
+(9, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$d10teskyn3A8Eq3GIdW1.uKnJrXnvS6a8uw5PbANfgDMwVYECNtVq', 'fNGAYNgarGsB1mzQxqa9cxDLIH8bSUtajTh4OrkKnjCSeMxpCuhqpgYwMijC', '2018-01-25 23:13:59', '2018-01-25 23:15:59'),
+(10, '33333333', 'Pendaftar 3', 'pendaftar3@test.com', '$2y$10$K.25Oa63VN4dcFwIYro5UuvFMPis1e5XEYLyAUUMwDl5yR6OcCC9S', '8rMUSQfyZs1pOWqk3h2P4WJxgqjwhYUuhQyggCm2GiwNRGDhwZIo1CdUf7oF', '2018-01-25 23:17:29', '2018-01-25 23:26:41'),
+(11, '44444444', 'Pendaftar 4', 'pendaftar4@test.com', '$2y$10$d2Hs8ozrVtTm/4CBsbblsuwxH9eUJgdYNlFwBLAdLMC7vTMZEbyH.', 'S84pNxll0ucY4drdrbaGnBXaEKp6ViuMz6Exvy3PzxPFp6PsMuKag7ITLwtj', '2018-01-25 23:28:13', '2018-01-25 23:28:18');
 
 -- --------------------------------------------------------
 
@@ -501,9 +638,9 @@ CREATE TABLE `vocationals` (
 --
 
 INSERT INTO `vocationals` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Kejuruan 1', 'Test Kejuruan 1', '2018-01-24 09:26:19', '2018-01-24 09:26:19'),
-(2, 'Kejuruan 2', 'Test Kejuruan 2', '2018-01-24 09:26:31', '2018-01-24 09:26:31'),
-(3, 'Kejuruan 3', 'Test Kejuruan 3', '2018-01-24 09:26:42', '2018-01-24 09:26:42');
+(1, 'Kejuruan 1', 'Test kejuruan 1', '2018-01-25 22:59:45', '2018-01-25 22:59:45'),
+(2, 'Kejuruan 2', 'Test kejuruan 2', '2018-01-25 22:59:58', '2018-01-25 22:59:58'),
+(3, 'Kejuruan 3', 'Test kejuruan 3', '2018-01-25 23:00:08', '2018-01-25 23:00:08');
 
 --
 -- Indexes for dumped tables
@@ -513,7 +650,7 @@ INSERT INTO `vocationals` (`id`, `name`, `description`, `created_at`, `updated_a
 -- Indexes for table `choices`
 --
 ALTER TABLE `choices`
-  ADD PRIMARY KEY (`user_id`,`criteria_id`),
+  ADD PRIMARY KEY (`user_id`,`criteria_id`,`option`,`suggestion`),
   ADD KEY `fk_criterias_has_users_users1_idx` (`user_id`),
   ADD KEY `fk_criterias_has_users_criterias1_idx` (`criteria_id`);
 
@@ -679,12 +816,12 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --
 ALTER TABLE `educational_background`
-  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `educations`
 --
@@ -694,12 +831,12 @@ ALTER TABLE `educations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `registrants`
 --
 ALTER TABLE `registrants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -709,27 +846,27 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `selection_schedules`
 --
 ALTER TABLE `selection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
 ALTER TABLE `sub_vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --

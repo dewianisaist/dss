@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 25, 2018 at 12:46 AM
+-- Generation Time: Jan 26, 2018 at 05:42 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `choices` (
   `user_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `option` varchar(15) DEFAULT NULL,
-  `suggestion` varchar(1) DEFAULT NULL
+  `option` varchar(15) NOT NULL,
+  `suggestion` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -347,7 +347,7 @@ CREATE TABLE `vocationals` (
 -- Indexes for table `choices`
 --
 ALTER TABLE `choices`
-  ADD PRIMARY KEY (`user_id`,`criteria_id`),
+  ADD PRIMARY KEY (`user_id`,`criteria_id`,`option`,`suggestion`),
   ADD KEY `fk_criterias_has_users_users1_idx` (`user_id`),
   ADD KEY `fk_criterias_has_users_criterias1_idx` (`criteria_id`);
 
