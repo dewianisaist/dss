@@ -57,8 +57,9 @@ class RegistrationController extends Controller
     */
    public function create()
    {
-       $subvocational = Subvocational::lists('name','id');
-       
+       $date_now = Carbon\Carbon::now(7)->toDateTimeString();
+       $subvocational = Subvocational::where('final_registration_date', '>', $date_now)
+                                    ->lists('name','id');
        return view('registration.create',compact('subvocational'));
    }
 

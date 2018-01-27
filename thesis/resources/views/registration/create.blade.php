@@ -41,7 +41,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-                        <strong>Pilih Sub-Kejuruan:</strong>
+                        <strong>Pilih Sub-Kejuruan <small>(Sub-Kejuruan yang ditampilkan hanya yang sedang dibuka pendaftaran)</small>:</strong>
 						{!! Form::select('sub_vocational_id', $subvocational,[], array('class' => 'form-control')) !!}
 					</div>
 				</div>
