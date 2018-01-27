@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 27, 2018 at 12:26 PM
+-- Generation Time: Jan 27, 2018 at 05:28 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -101,8 +101,8 @@ INSERT INTO `course_experience` (`registrant_id`, `course_id`, `organizer`, `gra
 CREATE TABLE `criterias` (
   `id` int(11) NOT NULL,
   `group_criteria` int(11) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `description` varchar(500) DEFAULT NULL,
+  `name` varchar(500) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `partial_weight` decimal(20,3) DEFAULT NULL,
   `global_weight` decimal(20,3) DEFAULT NULL,
   `preference` varchar(10) DEFAULT NULL,
@@ -124,7 +124,7 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `partial
 (2, NULL, 'Kriteria Pustaka 2', 'Ket kriteria pustaka 2 (XYZ, 2014)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-27 04:00:23', '2018-01-27 04:00:23'),
 (3, NULL, 'Kriteria Pustaka 3', 'Ket kriteria pustaka 3 (XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-27 04:00:39', '2018-01-27 04:00:39'),
 (4, NULL, 'Kriteria Pustaka 4', 'Ket kriteria pustaka 4 (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-27 04:00:52', '2018-01-27 04:00:52'),
-(5, NULL, 'Kriteria Pustaka 5', 'Ket kriteria pustaka 5 (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-27 04:01:02', '2018-01-27 04:01:02');
+(5, NULL, 'Kriteria Pustaka 5 ', 'Ket kriteria pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kriteria Pustaka 5 Kr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-27 04:01:02', '2018-01-27 09:21:59');
 
 -- --------------------------------------------------------
 
@@ -518,7 +518,7 @@ CREATE TABLE `selection_schedules` (
   `date` date DEFAULT NULL,
   `time` varchar(20) DEFAULT NULL,
   `place` varchar(100) DEFAULT NULL,
-  `information` varchar(500) DEFAULT NULL,
+  `information` varchar(1000) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -550,9 +550,9 @@ CREATE TABLE `sub_vocationals` (
   `name` varchar(100) DEFAULT NULL,
   `quota` int(11) DEFAULT NULL,
   `long_training` varchar(10) DEFAULT NULL,
-  `goal` varchar(500) DEFAULT NULL,
-  `unit_competence` varchar(500) DEFAULT NULL,
-  `requirement_participant` varchar(500) DEFAULT NULL,
+  `goal` varchar(1000) DEFAULT NULL,
+  `unit_competence` varchar(1000) DEFAULT NULL,
+  `requirement_participant` varchar(1000) DEFAULT NULL,
   `final_registration_date` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -592,7 +592,7 @@ CREATE TABLE `uploads` (
 
 INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
 (1, 1, 'photo_c9f0f895fb98ab9159f51fd0297e236d.jpeg', 'ktp_c9f0f895fb98ab9159f51fd0297e236d.pdf', 'lastcertificate_c9f0f895fb98ab9159f51fd0297e236d.pdf', '2018-01-27 04:02:53', '2018-01-27 04:02:53'),
-(2, 2, NULL, NULL, NULL, '2018-01-27 04:22:29', '2018-01-27 04:22:29'),
+(2, 2, 'photo_45c48cce2e2d7fbdea1afc51c7c6ad26.png', 'ktp_45c48cce2e2d7fbdea1afc51c7c6ad26.pdf', 'lastcertificate_45c48cce2e2d7fbdea1afc51c7c6ad26.pdf', '2018-01-27 04:22:29', '2018-01-27 07:47:07'),
 (3, 3, NULL, NULL, NULL, '2018-01-27 04:24:38', '2018-01-27 04:24:38');
 
 -- --------------------------------------------------------
@@ -617,7 +617,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'CTOBjDcaAF2JL0o2hIyBfgkxp8WODFp8cVzVPGcwgxNNjBzYm3Aht3MGJ2Ri', '2018-01-27 03:23:49', '2018-01-27 04:20:45'),
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'VnjPvJSD5qJgbUJJRvc1IFUbiEcq8mxzWNwDR9GtyEXksX1RdVIAqZYiZS44', '2018-01-27 03:23:49', '2018-01-27 07:45:58'),
 (2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', NULL, '2018-01-27 03:43:47', '2018-01-27 03:44:21'),
 (3, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$cSc2B1F7pU2Mg5855RYHGO3FQ6g.Za1jshY5mRQHN4qYftHE42NeW', NULL, '2018-01-27 03:44:11', '2018-01-27 03:44:11'),
 (4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', NULL, '2018-01-27 03:44:49', '2018-01-27 03:44:49'),
@@ -625,7 +625,7 @@ INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `reme
 (6, '606060', 'Kajur BLK 1 ', 'kajur1@test.com', '$2y$10$3f47t2m.VpGt2H7Cm/6o2OuD2IVD1Xb/ajXNwJhb1H2FtNIq16EG2', NULL, '2018-01-27 03:45:35', '2018-01-27 03:45:35'),
 (7, '707070', 'Kajur BLK 2', 'kajur2@test.com', '$2y$10$LCZa7BHss00RB/6NCqHod.z71.Ibe5XRsQDP4PZx916VEPZWQiL4.', NULL, '2018-01-27 03:46:00', '2018-01-27 03:46:00'),
 (8, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$68.v0BPzLDZleeo8DxSaduH6UIezllOSBgGbE0D7qV9UmxV.dUs6K', 'xZsIW6MRJwh2tsKFAOM3Vb5lV2CLmua5NHc4SU0FmCGpuFCCkPd8ckBlys5I', '2018-01-27 03:46:15', '2018-01-27 04:23:15'),
-(9, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$dqUXyeibCfmgSh/tSQcn.ul.y6iE2CP4ZY.kSMeN.D/m2SvAUvmZu', 'YRJJIo1hfikoXZ7oYtXKLh11euj7OICKLPRFmW0DnBIZ77a8kq2EzEGxNnNT', '2018-01-27 04:21:36', '2018-01-27 04:22:50'),
+(9, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$dqUXyeibCfmgSh/tSQcn.ul.y6iE2CP4ZY.kSMeN.D/m2SvAUvmZu', 'CSi2D6TcyVdGJjg2OKXDD61BDtCTodGhNavOtLCD51EiBpUYEOoTW7sitimv', '2018-01-27 04:21:36', '2018-01-27 07:47:12'),
 (10, '33333333', 'Pendaftar 3', 'pendaftar3@test.com', '$2y$10$ovt5lW3sbZFhauaL7mr8ye7vIrDuNh5pmFoA4C5D4eRAg/Tf9z8om', 'V1MUpPDNWpNDUQtJX9pss5514wDK6iVox7wEZHGXdrYJUtCH1C36s58EYlGh', '2018-01-27 04:23:38', '2018-01-27 04:24:43'),
 (11, '44444444', 'Pendaftar 4', 'pendaftar4@test.com', '$2y$10$hxnGUN9tnRq7P6JNMEFfdu123tF7eJ1dv43ezedr43GqkvPSkqGm6', '6aoRx6UuzGZcGV2OhDKrCJMWL4Wa3fvcHX86DAYScRsno72a8kEYRvy4Xkx3', '2018-01-27 04:25:04', '2018-01-27 04:25:11');
 
