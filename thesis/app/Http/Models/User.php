@@ -18,6 +18,10 @@ class User extends Authenticatable
         'name', 'identity_number', 'email', 'password',
     ];
 
+    public function criterias() {
+        return $this->belongsToMany('App\Http\Models\Criteria', 'choice');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

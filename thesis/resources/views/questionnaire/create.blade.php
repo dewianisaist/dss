@@ -44,11 +44,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{--  @foreach ($data as $key => $subvocational)  --}}
+                    {{--  @foreach ($data as $key => $questionnaire)  --}}
                         <tr>
                             {{--  <td>{{ ++$i }}</td>
-                            <td>{{ $subvocational->name }}</td>
-                            <td>{{ $subvocational->vocational->name }}</td>
+                            <td>{{ $questionnaire->criteria->name }}</td>
+                            <td>{{ $questionnaire->choice->name }}</td>
                             <td>{{ $subvocational->quota }}</td>
                             <td>{{ $subvocational->long_training }}</td>
                             <td>{{ $subvocational->final_registration_date }}</td>  --}}
@@ -56,7 +56,7 @@
                     {{--  @endforeach  --}}
                 </tbody>
             </table>
-            {{--  {!! $data->render() !!}  --}}
+            {!! $data->render() !!}
 
             {{--  <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">

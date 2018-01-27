@@ -22,4 +22,8 @@ class Criteria extends Model
     public function pairwisecomparison2() {
         return $this->hasOne('App\Http\Models\PairwiseComparison');
     }
+
+    public function users() {
+        return $this->belongsToMany('App\Http\Models\User', 'choice');
+    }
 }
