@@ -26,7 +26,7 @@ class ManageRegistrantController extends Controller
         $data = User::join('registrants', 'registrants.user_id', '=', 'users.id')
                     ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
                     ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
-                    ->select('users.identity_number', 'users.name AS name_registrant', 'registrants.id AS id_registrant', 'sub_vocationals.name AS name_sub_vocational', 'registration.register_date')
+                    ->select('users.identity_number', 'users.name AS name_registrant', 'registrants.id AS id_registrant', 'sub_vocationals.name AS name_sub_vocational', 'registrations.register_date')
                     ->orderBy('name_registrant','ASC')
                     ->paginate(10);
         if ($role_id != 2) {
@@ -48,10 +48,6 @@ class ManageRegistrantController extends Controller
         $user = Registrant::select('users.*', 'registrants.*')
                             ->join('users','registrants.user_id', '=', 'users.id')
                             ->find($id);
-        
-        $upload = Registrant::select('uploads.*')
-                            ->join('uploads','uploads.registrant_id', '=', 'registrants.id')
-                            ->find($id);
 
         $educations = EducationalBackground::with('education')
                                             ->whereRegistrantId($id)
@@ -61,6 +57,6 @@ class ManageRegistrantController extends Controller
                                     ->whereRegistrantId($id)
                                     ->orderBy('course_id','DESC')->paginate(10);
 
-        return view('manage_registrants.show',compact('user', 'upload', 'educations', 'courses'));
+        return view('manage_registrants.show',compact('user', 'educations', 'courses'));
     }
 }
