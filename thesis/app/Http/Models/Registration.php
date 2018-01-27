@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
-    protected $table = 'registration';
+    protected $table = 'registrations';
     
     public $fillable = ['registrant_id','sub_vocational_id', 'register_date'];   
         

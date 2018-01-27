@@ -56,9 +56,9 @@ class SelectionRegistrantController extends Controller
             $new[$registrant->name] = new \stdClass();
             $new[$registrant->name]->registrant = (Object)$registrant;
             $schedule = Registration::select('selection_schedules.id','sub_vocationals.name','selection_schedules.date','selection_schedules.time', 'selection_schedules.place')
-                                    ->join('selection_schedules','selection_schedules.sub_vocational_id','=','registration.sub_vocational_id')
+                                    ->join('selection_schedules','selection_schedules.sub_vocational_id','=','registrations.sub_vocational_id')
                                     ->join('sub_vocationals','sub_vocationals.id','=','selection_schedules.sub_vocational_id')
-                                    ->where('registration.registrant_id','=',$registrant->registrant_id)
+                                    ->where('registrations.registrant_id','=',$registrant->registrant_id)
                                     ->get();
             $new[$registrant->name]->schedule = (object)$schedule;
         }
@@ -66,22 +66,22 @@ class SelectionRegistrantController extends Controller
         return $new;
 
         // SELECT users.name, sv.name, concat(ss.date," ", ss.time) as jadwal 
-        // FROM users, registrants rs, registration rn, sub_vocationals sv, selection_schedules ss 
+        // FROM users, registrants rs, registrations rn, sub_vocationals sv, selection_schedules ss 
         // WHERE users.id = rs.user_id AND
         // rs.id = rn.registrant_id AND
         // rn.sub_vocational_id = sv.id AND
         // sv.id = ss.sub_vocational_id
 
         // $registrants = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-        //                   ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-        //                   ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+        //                   ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
+        //                   ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
         //                   ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
-        //                   ->pluck('users.name','registration.registrant_id')
+        //                   ->pluck('users.name','registrations.registrant_id')
         //                   ->all();
 
         // $schedules = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-        //                 ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-        //                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+        //                 ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
+        //                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
         //                 ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
         //                 ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
         //                 ->where('registrants.user_id', $registrant)->value('users.name')
@@ -98,8 +98,8 @@ class SelectionRegistrantController extends Controller
     {
     	if($request->ajax()){
     		$schedules = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                            ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                            ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                            ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
+                            ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
                             ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
                             ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
                             ->where('registrants.id', $request->registrants.id)
@@ -159,29 +159,29 @@ class SelectionRegistrantController extends Controller
    {
         $selection = Selection::find($id);
         $registrant = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                          ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                          ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                          ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
+                          ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
                           ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
-                          ->select('users.name', 'registration.registrant_id')
-                          ->lists('users.name','registration.registrant_id');
+                          ->select('users.name', 'registrations.registrant_id')
+                          ->lists('users.name','registrations.registrant_id');
 
         $registrantchoosen = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                                 ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                                 ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
+                                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
                                  ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
-                                 ->select('users.name', 'registration.registrant_id')
-                                 ->where('registration.registrant_id', $selection)->value('users.name');
+                                 ->select('users.name', 'registrations.registrant_id')
+                                 ->where('registrations.registrant_id', $selection)->value('users.name');
 
         $schedule = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                        ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                        ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                        ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
+                        ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
                         ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
                         ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
                         ->lists('jadwal','selection_schedules.id');
         
         $schedulechoosen = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                                ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                                ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                                ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
+                                ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
                                 ->join('selection_schedules', 'selection_schedules.sub_vocational_id', '=', 'sub_vocationals.id')
                                 ->select('selection_schedules.id', DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'))
                                 ->where('selection_schedules.id', $selection)->value(DB::raw('CONCAT(sub_vocationals.name," - ", selection_schedules.date," & ",selection_schedules.time) as jadwal'));

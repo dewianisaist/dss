@@ -14,8 +14,8 @@ class Subvocational extends Model
         return $this->belongsTo('App\Http\Models\Vocational');
     }
 
-    public function registrant() {
-        return $this->belongsToMany('App\Http\Models\Registrant', 'registration');
+    public function registration() {
+        return $this->hasOne('App\Http\Models\Registration');
     }
 
     public function selectionschedule() {

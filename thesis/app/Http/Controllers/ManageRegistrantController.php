@@ -24,8 +24,8 @@ class ManageRegistrantController extends Controller
     {
         $role_id = Auth::user()->roleId();
         $data = User::join('registrants', 'registrants.user_id', '=', 'users.id')
-                    ->join('registration', 'registration.registrant_id', '=', 'registrants.id')
-                    ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registration.sub_vocational_id')
+                    ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
+                    ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
                     ->select('users.identity_number', 'users.name AS name_registrant', 'registrants.id AS id_registrant', 'sub_vocationals.name AS name_sub_vocational', 'registration.register_date')
                     ->orderBy('name_registrant','ASC')
                     ->paginate(10);

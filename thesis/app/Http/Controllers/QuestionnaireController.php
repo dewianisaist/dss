@@ -28,7 +28,7 @@ class QuestionnaireController extends Controller
      */
     public function create()
     {
-        // data = user - choice - critera
+        $data = Criteria::select('user.*', 'choice.*');
         return view('questionnaire.create');
     }
 
@@ -39,17 +39,6 @@ class QuestionnaireController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
     {
         //
     }

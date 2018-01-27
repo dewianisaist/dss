@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2018 at 05:42 AM
+-- Generation Time: Jan 27, 2018 at 11:22 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `choices`
+-- Table structure for table `choice`
 --
 
-CREATE TABLE `choices` (
+CREATE TABLE `choice` (
   `user_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
   `option` varchar(15) NOT NULL,
@@ -192,13 +192,16 @@ CREATE TABLE `registrants` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `registration`
+-- Table structure for table `registrations`
 --
 
-CREATE TABLE `registration` (
+CREATE TABLE `registrations` (
+  `id` int(11) NOT NULL,
   `registrant_id` int(11) NOT NULL,
   `sub_vocational_id` int(11) NOT NULL,
-  `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `register_date` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -247,8 +250,8 @@ CREATE TABLE `role_user` (
 
 CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
-  `registrant_id` int(11) NOT NULL,
   `selection_schedule_id` int(11) NOT NULL,
+  `registration_id` int(11) NOT NULL,
   `written_value` decimal(5,2) DEFAULT NULL,
   `interview_value` varchar(15) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -344,9 +347,9 @@ CREATE TABLE `vocationals` (
 --
 
 --
--- Indexes for table `choices`
+-- Indexes for table `choice`
 --
-ALTER TABLE `choices`
+ALTER TABLE `choice`
   ADD PRIMARY KEY (`user_id`,`criteria_id`,`option`,`suggestion`),
   ADD KEY `fk_criterias_has_users_users1_idx` (`user_id`),
   ADD KEY `fk_criterias_has_users_criterias1_idx` (`criteria_id`);
@@ -423,12 +426,12 @@ ALTER TABLE `registrants`
   ADD KEY `fk_pendaftar_users1_idx` (`user_id`);
 
 --
--- Indexes for table `registration`
+-- Indexes for table `registrations`
 --
-ALTER TABLE `registration`
-  ADD PRIMARY KEY (`registrant_id`,`sub_vocational_id`,`register_date`),
-  ADD KEY `fk_pendaftar_has_sub_kejuruan_sub_kejuruan1_idx` (`sub_vocational_id`),
-  ADD KEY `fk_pendaftar_has_sub_kejuruan_pendaftar1_idx` (`registrant_id`);
+ALTER TABLE `registrations`
+  ADD PRIMARY KEY (`id`,`registrant_id`,`sub_vocational_id`),
+  ADD KEY `fk_registration_registrants1_idx` (`registrant_id`),
+  ADD KEY `fk_registration_sub_vocationals1_idx` (`sub_vocational_id`);
 
 --
 -- Indexes for table `result_selections`
@@ -456,9 +459,9 @@ ALTER TABLE `role_user`
 -- Indexes for table `selections`
 --
 ALTER TABLE `selections`
-  ADD PRIMARY KEY (`id`,`registrant_id`,`selection_schedule_id`),
+  ADD PRIMARY KEY (`id`,`selection_schedule_id`,`registration_id`),
   ADD KEY `fk_selections_selection_schedules1_idx` (`selection_schedule_id`),
-  ADD KEY `fk_selections_registrants1_idx` (`registrant_id`);
+  ADD KEY `fk_selections_registrations1_idx` (`registration_id`);
 
 --
 -- Indexes for table `selection_schedules`
@@ -535,6 +538,11 @@ ALTER TABLE `permissions`
 ALTER TABLE `registrants`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `registrations`
+--
+ALTER TABLE `registrations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -574,9 +582,9 @@ ALTER TABLE `vocationals`
 --
 
 --
--- Constraints for table `choices`
+-- Constraints for table `choice`
 --
-ALTER TABLE `choices`
+ALTER TABLE `choice`
   ADD CONSTRAINT `fk_criterias_has_users_criterias1` FOREIGN KEY (`criteria_id`) REFERENCES `criterias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_criterias_has_users_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -627,11 +635,11 @@ ALTER TABLE `registrants`
   ADD CONSTRAINT `fk_pendaftar_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `registration`
+-- Constraints for table `registrations`
 --
-ALTER TABLE `registration`
-  ADD CONSTRAINT `fk_pendaftar_has_sub_kejuruan_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_pendaftar_has_sub_kejuruan_sub_kejuruan1` FOREIGN KEY (`sub_vocational_id`) REFERENCES `sub_vocationals` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `registrations`
+  ADD CONSTRAINT `fk_registration_registrants1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_registration_sub_vocationals1` FOREIGN KEY (`sub_vocational_id`) REFERENCES `sub_vocationals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `result_selections`
@@ -651,7 +659,7 @@ ALTER TABLE `role_user`
 -- Constraints for table `selections`
 --
 ALTER TABLE `selections`
-  ADD CONSTRAINT `fk_selections_registrants1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_selections_registrations1` FOREIGN KEY (`registration_id`) REFERENCES `registrations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_selections_selection_schedules1` FOREIGN KEY (`selection_schedule_id`) REFERENCES `selection_schedules` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
