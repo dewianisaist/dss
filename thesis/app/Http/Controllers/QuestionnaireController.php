@@ -18,6 +18,10 @@ class QuestionnaireController extends Controller
      */
     public function index()
     {
+        // $data = Criteria::select('users.*', 'choice.*', 'criterias.*')
+        //                 ->join('choice', 'choice.criteria_id', '=', 'criterias.id')
+        //                 ->join('users', 'users.id', '=', 'choice.user_id')
+        //                 ->first();
         
     }
 
@@ -26,10 +30,12 @@ class QuestionnaireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $data = Criteria::select('user.*', 'choice.*');
-        return view('questionnaire.create');
+        $criteria = Criteria::orderBy('name','ASC')->paginate(5);
+
+        return view('questionnaire.create',compact('criteria'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**

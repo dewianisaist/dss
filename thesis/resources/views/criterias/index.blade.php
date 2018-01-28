@@ -45,9 +45,9 @@
 			<tbody>
 				@foreach ($criterias as $key => $criteria)
 					<tr>
-						<td>{{ ++$i }}</td>
-						<td>{{ $criteria->name }}</td>
-						<td>{{ $criteria->description }}</td>
+						<td width="5px">{{ ++$i }}</td>
+						<td width="600px">{{ $criteria->name }}</td>
+						<td width="900px">{{ $criteria->description }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('criterias.show',$criteria->id) }}">Detail</a>
 							<a class="btn btn-primary" href="{{ route('criterias.edit',$criteria->id) }}">Edit</a>

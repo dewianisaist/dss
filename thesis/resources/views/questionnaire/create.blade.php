@@ -1,5 +1,11 @@
 @extends('layouts.master_admin')
 
+@section('css')
+<style type="text/css"> 
+    .checkbox label, .radio label{padding-left: 35px };} 
+ </style>
+@endsection
+
 @section('sidebar_menu')
 	@include('layouts.sidebar')
 @endsection
@@ -21,7 +27,7 @@
             <h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
             <ul>
                 <li>Pilihlah kesesuaian masing-masing kriteria berdasarkan proses seleksi peserta pelatihan BLK Bantul.</li>
-                <li>Klik <strong>Submit</strong> jika sudah yakin, karena jika sudah submit tidak diijinkan untuk mengubah pilihan.</li>
+                <li>Klik Submit jika sudah yakin, karena <strong>jika sudah submit tidak diijinkan untuk mengubah pilihan.</strong></li>
             </ul>
         </div>
         @if (count($errors) > 0)
@@ -40,39 +46,31 @@
                     <tr>
                         <th>No</th>
                         <th>Kriteria</th>
+                        <th>Penjelasan Kriteria <small>(beserta sumber pustaka)</small></th>
                         <th>Pilihan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{--  @foreach ($data as $key => $questionnaire)  --}}
+                    @foreach ($criteria as $key => $questionnaire)
                         <tr>
-                            {{--  <td>{{ ++$i }}</td>
-                            <td>{{ $questionnaire->criteria->name }}</td>
-                            <td>{{ $questionnaire->choice->name }}</td>
-                            <td>{{ $subvocational->quota }}</td>
-                            <td>{{ $subvocational->long_training }}</td>
-                            <td>{{ $subvocational->final_registration_date }}</td>  --}}
+                            <td width="5px">{{ ++$i }}</td>
+                            <td width="250px">{{ $questionnaire->name }}</td>
+                            <td width="550px">{{ $questionnaire->description }}</td>
+                            <td width="200px">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="{{ $questionnaire->id }}" value="1"> Sesuai 
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="{{ $questionnaire->id }}" value="0"> Tidak Sesuai 
+                                    </label>
+                                </div>
+                            </td>
                         </tr>
-                    {{--  @endforeach  --}}
+                    @endforeach
                 </tbody>
             </table>
-            {!! $data->render() !!}
-
-            {{--  <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    @foreach($user->roles as $key => $v)
-                        <div class="radio">
-                            <label>
-                                @if ($key == 0) 
-                                    <input type="radio" name="auth_role" value={{ $v->id }} checked> {{ $v->display_name }}
-                                @else
-                                    <input type="radio" name="auth_role" value={{ $v->id }}> {{ $v->display_name }}
-                                @endif
-                            </label>
-                        </div>
-					@endforeach
-                </div>
-            </div>  --}}
+            {!! $criteria->render() !!}
 
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>

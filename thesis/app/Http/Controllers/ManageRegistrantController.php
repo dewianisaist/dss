@@ -51,11 +51,11 @@ class ManageRegistrantController extends Controller
 
         $educations = EducationalBackground::with('education')
                                             ->whereRegistrantId($id)
-                                            ->orderBy('education_id','DESC')->paginate(10);
+                                            ->orderBy('education_id','DESC');
         
         $courses = CourseExperience::with('course')
                                     ->whereRegistrantId($id)
-                                    ->orderBy('course_id','DESC')->paginate(10);
+                                    ->orderBy('course_id','DESC');
 
         return view('manage_registrants.show',compact('user', 'educations', 'courses'));
     }
