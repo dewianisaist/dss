@@ -23,10 +23,10 @@ class ManageRegistrantController extends Controller
     public function index(Request $request)
     {
         $role_id = Auth::user()->roleId();
-        $data = User::join('registrants', 'registrants.user_id', '=', 'users.id')
+        $data = User::select('users.identity_number', 'users.name AS name_registrant', 'registrants.id AS id_registrant', 'sub_vocationals.name AS name_sub_vocational', 'registrations.register_date')
+                    ->join('registrants', 'registrants.user_id', '=', 'users.id')
                     ->join('registrations', 'registrations.registrant_id', '=', 'registrants.id')
                     ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
-                    ->select('users.identity_number', 'users.name AS name_registrant', 'registrants.id AS id_registrant', 'sub_vocationals.name AS name_sub_vocational', 'registrations.register_date')
                     ->orderBy('name_registrant','ASC')
                     ->paginate(10);
         if ($role_id != 2) {
@@ -46,17 +46,20 @@ class ManageRegistrantController extends Controller
     public function show($id)
     {
         $user = Registrant::select('users.*', 'registrants.*')
-                            ->join('users','registrants.user_id', '=', 'users.id')
+                            ->join('users','registrants.user_id', '=', 'users.id') 
                             ->find($id);
-
+        
         $educations = EducationalBackground::with('education')
                                             ->whereRegistrantId($id)
-                                            ->orderBy('education_id','DESC');
+                                            ->orderBy('education_id','DESC')
+                                            ->paginate(10);
         
         $courses = CourseExperience::with('course')
                                     ->whereRegistrantId($id)
-                                    ->orderBy('course_id','DESC');
+                                    ->orderBy('course_id','DESC')
+                                    ->paginate(10);
 
+        // return compact('user', 'educations', 'courses');
         return view('manage_registrants.show',compact('user', 'educations', 'courses'));
     }
 }
