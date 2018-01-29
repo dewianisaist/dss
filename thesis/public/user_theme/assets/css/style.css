@@ -356,8 +356,8 @@ ul.navbar-nav {
 }
 
 .testimonial-list .testimonial-image img {
-	max-width: 160px;
-	-moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;
+	max-width: 360px;
+	-moz-border-radius: 5%; -webkit-border-radius: 5%; border-radius: 5%;
 }
 
 .testimonial-list .testimonial-text {

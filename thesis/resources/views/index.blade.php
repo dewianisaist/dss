@@ -33,33 +33,43 @@
             </div>
 	    </div>
         <div class="row">
-            <div class="col-sm-4 features-box wow fadeInUp">
-	        	{{--  <div class="features-box-icon">
-	                <i class="fa fa-magic"></i>
-	        	</div>  --}}
-	            <h3>Easy To Use</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-            </div>
-            <div class="col-sm-4 features-box wow fadeInDown">
-	            <div class="features-box-icon">
-	        		<i class="fa fa-thumbs-o-up"></i>
-	            </div>
-	            <h3>Responsive Design</h3>
-	            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-            </div>
-            <div class="col-sm-4 features-box wow fadeInUp">
-	        	<div class="features-box-icon">
-	                <i class="fa fa-cog"></i>
-	        	</div>
-	            <h3>Uses Bootstrap</h3>
-	            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+			<div class="col-sm-12">
+				<div class="great-support-box-text great-support-box-text-left">
+					@foreach($available as $key => $buka)
+						<h4>{{ $i++ }}. {{ $buka->name }}</h4>
+						<ul>
+							<li>Tanggal akhir pendaftaran: {{ $buka->final_registration_date }}</li>
+							<li>Kuota: {{ $buka->quota }}</li>
+							<li>Lama pelatihan: {{ $buka->long_training }} jam</li>
+						</ul> 
+					@endforeach
+				</div>
             </div>
         </div>
-	    <div class="row">
-        	<div class="col-sm-12 section-bottom-button wow fadeInUp">
-                <a class="btn btn-link-1 scroll-link" href="#kejuruan">Selengkapnya</a>
-	    	</div>
-        </div>
+	</div>
+</div>
+
+<!-- PROGRAM PELATIHAN -->
+<div class="how-it-works-container section-container section-container-image-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 how-it-works section-description wow fadeIn">
+				<h2><strong>Program</strong> Pelatihan</h2>
+				<div class="divider-1 wow fadeInUp"><span></span></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="great-support-box-text great-support-box-text-left">
+					<h4>Berikut ini sub-kejuruan yang ada di BLK Bantul:</h4>
+					@foreach($data as $key => $subvocational)
+						<ul>
+							<li>{{ $subvocational->name }} ({{ $subvocational->vocational->name }})</li> 
+						</ul> 
+					@endforeach
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -79,53 +89,51 @@
 	        		<div class="tab-content">
 	        			<div role="tabpanel" class="tab-pane fade in active" id="tab1">
 	                		<div class="testimonial-image">
-	                			<img src="user_theme/assets/img/testimonials/1.jpg" alt="" data-at2x="user_theme/assets/img/testimonials/1.jpg">
+	                			<img src="blk/menjahit.jpg" alt="" data-at2x="blk/menjahit.jpg">
 	        				</div>
 	                		<div class="testimonial-text">
 		                        <p>
-		                        	"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-	                            	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-		                            Lorem ipsum dolor sit amet, consectetur..."<br>
-		                        	<a href="#">Lorem Ipsum, dolor.co.uk</a>
+										PRAKTIK SISWA SUB KEJURUAN <strong>MENJAHIT</strong>
 		                        </p>
 	                        </div>
 	        			</div>
 	                	<div role="tabpanel" class="tab-pane fade" id="tab2">
 	            			<div class="testimonial-image">
-	                			<img src="user_theme/assets/img/testimonials/2.jpg" alt="" data-at2x="user_theme/assets/img/testimonials/2.jpg">
+	                			<img src="blk/pertanian.jpg" alt="" data-at2x="blk/pertanian.jpg">
 	                		</div>
 	            			<div class="testimonial-text">
 		                        <p>
-		                            "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip 
-		                        	ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-		                        	lobortis nisl ut aliquip ex ea commodo consequat..."<br>
-		                        	<a href="#">Minim Veniam, nostrud.com</a>
+		                            PRAKTIK SISWA SUB KEJURUAN PENGOLAHAN <strong>HASIL PERTANIAN</strong>
 	                            </p>
 	                        </div>
-	                	</div>
-	        			<div role="tabpanel" class="tab-pane fade" id="tab3">
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="tab3">
+								<div class="testimonial-image">
+									<img src="blk/officetools.jpg" alt="" data-at2x="blk/officetools.jpg">
+								</div>
+								<div class="testimonial-text">
+									<p>
+										PRAKTIK SISWA SUB KEJURUAN <strong><dfn>OFFICE TOOLS</dfn></strong>
+									</p>
+								</div>
+							</div>
+	        			<div role="tabpanel" class="tab-pane fade" id="tab4">
 	        				<div class="testimonial-image">
-	                			<img src="user_theme/assets/img/testimonials/3.jpg" alt="" data-at2x="user_theme/assets/img/testimonials/3.jpg">
+	                			<img src="blk/batik.jpg" alt="" data-at2x="blk/batik.jpg">
 	                		</div>
 	            			<div class="testimonial-text">
 		                        <p>
-                                	"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-		                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-		                        	Lorem ipsum dolor sit amet, consectetur..."<br>
-		                        	<a href="#">Lorem Ipsum, dolor.co.uk</a>
+									PRAKTIK SISWA SUB KEJURUAN <strong>BATIK</strong>
 		                        </p>
 	                        </div>
-	                	</div>
-	            		<div role="tabpanel" class="tab-pane fade" id="tab4">
+						</div>
+	            		<div role="tabpanel" class="tab-pane fade" id="tab5">
 	        				<div class="testimonial-image">
-            					<img src="user_theme/assets/img/testimonials/4.jpg" alt="" data-at2x="user_theme/assets/img/testimonials/4.jpg">
+            					<img src="blk/kecantikan.jpg" alt="" data-at2x="blk/kecantikan.jpg">
 	                		</div>
 	                		<div class="testimonial-text">
 		                        <p>
-	                            	"Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip 
-		                            ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-		                        	lobortis nisl ut aliquip ex ea commodo consequat..."<br>
-		                        	<a href="#">Minim Veniam, nostrud.com</a>
+									PRAKTIK SISWA SUB KEJURUAN <strong>KECANTIKAN</strong>
 		                        </p>
 	                        </div>
                 		</div>
@@ -143,7 +151,10 @@
 	                	</li>
 	        			<li role="presentation">
 	        				<a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab"></a>
-	                	</li>
+						</li>
+						<li role="presentation">
+							<a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab"></a>
+						</li>
 	            	</ul>
 	        	</div>
             </div>
@@ -259,7 +270,7 @@
 	            </div>
 	        </div>
 	        <div class="col-sm-5 great-support-box wow fadeInUp">
-	            <img src="user_theme/assets/img/blk/blkbantul.jpg" alt="">
+	            <img src="/blk/blkbantul.jpg" alt="/blk/blkbantul.jpg">
 	        </div>
 			<div class="col-sm-12">
 				<div class="great-support-box-text great-support-box-text-left">
