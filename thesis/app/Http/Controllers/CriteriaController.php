@@ -49,10 +49,12 @@ class CriteriaController extends Controller
             'description' => 'required',
            ]);
     
-           Criteria::create($request->all());
-    
-           return redirect()->route('criterias.index')
-                            ->with('success','Kriteria berhasil dibuat');
+        $input = $request->all();
+        $input['status'] = '1';
+        Criteria::create($input);
+        // return $input;
+        return redirect()->route('criterias.index')
+                         ->with('success','Kriteria berhasil dibuat');
     }
 
     /**
