@@ -8,7 +8,9 @@ class Registrant extends Model
 {
     protected $table = 'registrants';
 
-    public $fillable = ['user_id', 'address', 'phone_number', 'gender', 'place_birth', 'date_birth', 'order_child', 'amount_sibling', 'religion', 'biological_mother_name', 'father_name', 'parent_address'];
+    public $fillable = ['user_id', 'address', 'phone_number', 'gender', 'place_birth', 'date_birth', 
+                        'order_child', 'amount_sibling', 'religion', 'biological_mother_name', 
+                        'father_name', 'parent_address'];
 
     protected $hidden = ['password'];
 
