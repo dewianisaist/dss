@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Selection;
+use App\Http\Models\Registration;
 use App\Http\Models\Registrant;
 use App\Http\Models\SelectionSchedule;
 use Auth;
@@ -19,13 +20,17 @@ class SelectionController extends Controller
    public function index(Request $request)
    {
         $role_id = Auth::user()->roleId();
-        $data = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+
+        $data = Selection::select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 
+                                  'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                            ->join('registrations', 'registrations.id', '=', 'selections.registration_id')
+                            ->join('registrants', 'registrants.id', '=', 'registrations.registrant_id')
                             ->join('users', 'users.id', '=', 'registrants.user_id')
                             ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                             ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
-                            ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
-                            ->orderBy('selections.id','DESC')
-                            ->paginate(10);
+                            ->orderBy('selections.id','DESC')->paginate(10);
+        // return $data;
+
         if ($role_id == 3 || $role_id == 5 || $role_id == 6) {
             return view('selections.index',compact('data'))
                         ->with('i', ($request->input('page', 1) - 1) * 10);
@@ -42,12 +47,14 @@ class SelectionController extends Controller
     */
    public function show($id)
    {
-        $selection = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+        $selection = Selection::select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 
+                                        'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                                ->join('registrations', 'registrations.id', '=', 'selections.registration_id')
+                                ->join('registrants', 'registrants.id', '=', 'registrations.registrant_id')
                                 ->join('users', 'users.id', '=', 'registrants.user_id')
                                 ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
                                 ->where('selections.id', '=', $id)
-                                ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
                                 ->first();
 
         return view('selections.show',compact('selection'));
@@ -61,12 +68,14 @@ class SelectionController extends Controller
     */
    public function edit($id)
    {
-        $selection = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+        $selection = Selection::select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 
+                                        'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                                ->join('registrations', 'registrations.id', '=', 'selections.registration_id')
+                                ->join('registrants', 'registrants.id', '=', 'registrations.registrant_id')
                                 ->join('users', 'users.id', '=', 'registrants.user_id')
                                 ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
                                 ->where('selections.id', '=', $id)
-                                ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
                                 ->first();
 
         return view('selections.edit',compact('selection'));
@@ -87,12 +96,14 @@ class SelectionController extends Controller
        ]);
 
        $input = $request->all();
-       $selection = Selection::join('registrants', 'registrants.id', '=', 'selections.registrant_id')
+       $selection = Selection::select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 
+                                        'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                                ->join('registrations', 'registrations.id', '=', 'selections.registration_id')
+                                ->join('registrants', 'registrants.id', '=', 'registrations.registrant_id')
                                 ->join('users', 'users.id', '=', 'registrants.user_id')
                                 ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
                                 ->where('selections.id', '=', $id)
-                                ->select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
                                 ->first();
        $selection->update($input);
 
