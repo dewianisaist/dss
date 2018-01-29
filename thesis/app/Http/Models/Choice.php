@@ -1,12 +1,12 @@
 <?php
 
-namespace App\App\Http\models;
+namespace App\Http\models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Choice extends Model
 {
-    protected $table = 'choices';
+    protected $table = 'choice';
     
     public $fillable = ['user_id', 'criteria_id', 'option', 'suggestion'];
 

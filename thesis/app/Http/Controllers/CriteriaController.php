@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Criteria;
+use App\Http\Models\Choice;
 use Auth;
 
 class CriteriaController extends Controller
@@ -17,7 +18,13 @@ class CriteriaController extends Controller
     public function index(Request $request)
     {
         $role_id = Auth::user()->roleId();
-        $criterias = Criteria::orderBy('id','DESC')->paginate(10);
+        $criterias = Criteria::select('*')
+                                ->whereNotIn('id', function($query){
+                                    $query->select('criteria_id')
+                                    ->from(with(new Choice)->getTable())
+                                    ->where('suggestion', 1);
+                                })->orderBy('id','DESC')->paginate(10);
+        
         if ($role_id == 1) {
             return view('criterias.index',compact('criterias'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
@@ -52,7 +59,7 @@ class CriteriaController extends Controller
         $input = $request->all();
         $input['status'] = '1';
         Criteria::create($input);
-        // return $input;
+
         return redirect()->route('criterias.index')
                          ->with('success','Kriteria berhasil dibuat');
     }
