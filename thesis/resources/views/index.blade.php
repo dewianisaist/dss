@@ -87,17 +87,67 @@
 	        	<div role="tabpanel">
 	                <!-- Tab panes -->
 	        		<div class="tab-content">
-	        			<div role="tabpanel" class="tab-pane fade in active" id="tab1">
+						<div role="tabpanel" class="tab-pane fade in active" id="tab1">
+							<div class="testimonial-image">
+								<img src="blk/peserta.jpg" alt="" data-at2x="blk/peserta.jpg">
+							</div>
+							<div class="testimonial-text">
+								<p>
+									<strong>PESERTA PELATIHAN BLK BANTUL</strong>
+								</p>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="tab2">
+							<div class="testimonial-image">
+								<img src="blk/ujikompetensi.jpg" alt="" data-at2x="blk/ujikompetensi.jpg">
+							</div>
+							<div class="testimonial-text">
+								<p>
+									<strong>UJI KOMPETENSI</strong> PESERTA PELATIHAN BLK BANTUL
+								</p>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="tab3">
+							<div class="testimonial-image">
+								<img src="blk/motor.jpg" alt="" data-at2x="blk/motor.jpg">
+							</div>
+							<div class="testimonial-text">
+								<p>
+									PRAKTIK SISWA SUB KEJURUAN <strong>TEKNIK SEPEDA MOTOR</strong>
+								</p>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="tab4">
+							<div class="testimonial-image">
+								<img src="blk/tkr.jpg" alt="" data-at2x="blk/tkr.jpg">
+							</div>
+							<div class="testimonial-text">
+								<p>
+									PRAKTIK SISWA SUB KEJURUAN <strong>TEKNIK KENDARAAN RINGAN</strong>
+								</p>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="tab5">
+							<div class="testimonial-image">
+								<img src="blk/las.jpg" alt="" data-at2x="blk/las.jpg">
+							</div>
+							<div class="testimonial-text">
+								<p>
+									PRAKTIK SISWA SUB KEJURUAN <strong>LAS LISTRIK/INDUSTRI</strong>
+								</p>
+							</div>
+						</div>
+	        			<div role="tabpanel" class="tab-pane fade" id="tab6">
 	                		<div class="testimonial-image">
 	                			<img src="blk/menjahit.jpg" alt="" data-at2x="blk/menjahit.jpg">
 	        				</div>
 	                		<div class="testimonial-text">
 		                        <p>
-										PRAKTIK SISWA SUB KEJURUAN <strong>MENJAHIT</strong>
+									PRAKTIK SISWA SUB KEJURUAN <strong>MENJAHIT</strong>
 		                        </p>
 	                        </div>
 	        			</div>
-	                	<div role="tabpanel" class="tab-pane fade" id="tab2">
+	                	<div role="tabpanel" class="tab-pane fade" id="tab7">
 	            			<div class="testimonial-image">
 	                			<img src="blk/pertanian.jpg" alt="" data-at2x="blk/pertanian.jpg">
 	                		</div>
@@ -107,17 +157,17 @@
 	                            </p>
 	                        </div>
 						</div>
-						<div role="tabpanel" class="tab-pane fade" id="tab3">
-								<div class="testimonial-image">
-									<img src="blk/officetools.jpg" alt="" data-at2x="blk/officetools.jpg">
-								</div>
-								<div class="testimonial-text">
-									<p>
-										PRAKTIK SISWA SUB KEJURUAN <strong><dfn>OFFICE TOOLS</dfn></strong>
-									</p>
-								</div>
+						<div role="tabpanel" class="tab-pane fade" id="tab8">
+							<div class="testimonial-image">
+								<img src="blk/officetools.jpg" alt="" data-at2x="blk/officetools.jpg">
 							</div>
-	        			<div role="tabpanel" class="tab-pane fade" id="tab4">
+							<div class="testimonial-text">
+								<p>
+									PRAKTIK SISWA SUB KEJURUAN <strong><dfn>OFFICE TOOLS</dfn></strong>
+								</p>
+							</div>
+						</div>
+	        			<div role="tabpanel" class="tab-pane fade" id="tab9">
 	        				<div class="testimonial-image">
 	                			<img src="blk/batik.jpg" alt="" data-at2x="blk/batik.jpg">
 	                		</div>
@@ -127,7 +177,7 @@
 		                        </p>
 	                        </div>
 						</div>
-	            		<div role="tabpanel" class="tab-pane fade" id="tab5">
+	            		<div role="tabpanel" class="tab-pane fade" id="tab10">
 	        				<div class="testimonial-image">
             					<img src="blk/kecantikan.jpg" alt="" data-at2x="blk/kecantikan.jpg">
 	                		</div>
@@ -136,7 +186,7 @@
 									PRAKTIK SISWA SUB KEJURUAN <strong>KECANTIKAN</strong>
 		                        </p>
 	                        </div>
-                		</div>
+						</div>
 	            	</div>
 	                <!-- Nav tabs -->
 	                <ul class="nav nav-tabs" role="tablist">
@@ -154,6 +204,21 @@
 						</li>
 						<li role="presentation">
 							<a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab"></a>
+						</li>
+						<li role="presentation">
+							<a href="#tab6" aria-controls="tab6" role="tab" data-toggle="tab"></a>
+						</li>
+						<li role="presentation">
+							<a href="#tab7" aria-controls="tab7" role="tab" data-toggle="tab"></a>
+						</li>
+						<li role="presentation">
+							<a href="#tab8" aria-controls="tab8" role="tab" data-toggle="tab"></a>
+						</li>
+						<li role="presentation">
+							<a href="#tab9" aria-controls="tab9" role="tab" data-toggle="tab"></a>
+						</li>
+						<li role="presentation">
+							<a href="#tab10" aria-controls="tab10" role="tab" data-toggle="tab"></a>
 						</li>
 	            	</ul>
 	        	</div>
