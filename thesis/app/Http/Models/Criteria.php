@@ -26,4 +26,8 @@ class Criteria extends Model
     public function users() {
         return $this->belongsToMany('App\Http\Models\User', 'choice');
     }
+
+    public function conversion() {
+        return $this->hasOne('App\Http\Models\Conversion');
+    }
 }
