@@ -73,7 +73,7 @@
 	        <div class="container">
 	            <div class="row">
                     <div class="col-sm-12 footer-copyright">
-                    	&copy; 2017 Dewi Anisa Istiqomah
+                    	&copy; 2017-2018 Dewi Anisa Istiqomah
                     </div>
                     <div>Magister Ilmu Komputer Universitas Gadjah Mada</div>
                 </div>
