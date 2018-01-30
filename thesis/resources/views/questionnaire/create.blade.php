@@ -71,7 +71,6 @@
                     @endforeach
                 </tbody>
             </table>
-            {!! $criteria->render() !!}
 
             <h3>Masukan</h3>
             <p>Isikan kriteria tambahan beserta keterangannya yang sesuai dengan proses seleksi peserta pelatihan BLK Bantul.</p>

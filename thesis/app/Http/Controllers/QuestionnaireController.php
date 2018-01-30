@@ -32,10 +32,15 @@ class QuestionnaireController extends Controller
      */
     public function create(Request $request)
     {
-        $criteria = Criteria::orderBy('name','ASC')->paginate(5);
+        $i = 0;
+        $criteria = Criteria::select('*')
+                                ->whereNotIn('id', function($query){
+                                    $query->select('criteria_id')
+                                    ->from(with(new Choice)->getTable())
+                                    ->where('suggestion', 1);
+                                })->orderBy('name','ASC')->get();
 
-        return view('questionnaire.create',compact('criteria'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('questionnaire.create',compact('criteria', 'i'));
     }
 
     /**

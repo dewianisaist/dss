@@ -105,7 +105,6 @@
 							@endforeach
 						</tbody>
 					</table>
-					{!! $educations->render() !!}
 				</td>
 			</tr>
 			<tr>
@@ -129,7 +128,6 @@
 							@endforeach
 						</tbody>
 					</table>
-					{!! $courses->render() !!}
 				</td>
 			</tr>
 		</table>
