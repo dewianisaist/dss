@@ -18,11 +18,26 @@ class QuestionnaireController extends Controller
      */
     public function index()
     {
-        // $data = Criteria::select('users.*', 'choice.*', 'criterias.*')
-        //                 ->join('choice', 'choice.criteria_id', '=', 'criterias.id')
-        //                 ->join('users', 'users.id', '=', 'choice.user_id')
-        //                 ->first();
-        
+        $user = User::find(Auth::user()->id);
+        $data = Choice::where('user_id', '=', $user->id)->first();
+
+        if ($data == null) {
+            return redirect()->route('questionnaire.create');
+        } else {
+            $i = 0;
+
+            $data_standart = Choice::with('criteria')
+                                ->where('suggestion', '=', '0')
+                                ->where('user_id', '=', $user->id)
+                                ->get();
+
+            $data_suggestion = Choice::with('criteria')
+                                    ->where('suggestion', '=', '1')
+                                    ->where('user_id', '=', $user->id)
+                                    ->get();
+
+            return view('questionnaire.index', compact('data_standart', 'data_suggestion', 'i'));
+        }
     }
 
     /**
@@ -39,7 +54,7 @@ class QuestionnaireController extends Controller
                                     ->from(with(new Choice)->getTable())
                                     ->where('suggestion', 1);
                                 })->orderBy('name','ASC')->get();
-
+                                
         return view('questionnaire.create',compact('criteria', 'i'));
     }
 
@@ -51,6 +66,13 @@ class QuestionnaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // criteria_id dari input
+        // value option dari input
+        // user_id dari auth 
+        // suggestion baku 0
+        
+        // suggestion non baku 1
+        // option default 1
+
     }
 }

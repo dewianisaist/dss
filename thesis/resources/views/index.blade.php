@@ -36,7 +36,7 @@
 			<div class="col-sm-12">
 				<div class="great-support-box-text great-support-box-text-left">
 					@foreach($available as $key => $buka)
-						<h4>{{ $i++ }}. {{ $buka->name }}</h4>
+						<h4>{{ ++$i }}. {{ $buka->name }}</h4>
 						<ul>
 							<li>Tanggal akhir pendaftaran: {{ $buka->final_registration_date }}</li>
 							<li>Kuota: {{ $buka->quota }}</li>

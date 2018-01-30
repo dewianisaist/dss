@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $i = 1;
+        $i = 0;
         $data = Subvocational::with('vocational')->get();
         $date_now = Carbon\Carbon::now(7)->toDateTimeString();
         $available = Subvocational::where('final_registration_date', '>', $date_now)->get();
