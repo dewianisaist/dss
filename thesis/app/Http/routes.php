@@ -127,16 +127,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('selections/{id}',['as'=>'selections.show','uses'=>'SelectionController@show']);
 	Route::get('selections/{id}/edit',['as'=>'selections.edit','uses'=>'SelectionController@edit']);
 	Route::patch('selections/{id}',['as'=>'selections.update','uses'=>'SelectionController@update']);
-
-	//selectionregistrants - ada permission, belum ditambahkan, gag jad, dibuat otomatis
-	Route::get('selectionregistrants',['as'=>'selectionregistrants.index','uses'=>'SelectionRegistrantController@index']);
-	Route::get('selectionregistrants/create',['as'=>'selectionregistrants.create','uses'=>'SelectionRegistrantController@create']);
-	Route::post('selectionregistrants/create_',['as'=>'selectionregistrants.store','uses'=>'SelectionRegistrantController@store']);
-	Route::get('selectionregistrants/{id}',['as'=>'selectionregistrants.show','uses'=>'SelectionRegistrantController@show']);
-	Route::get('selectionregistrants/{id}/edit',['as'=>'selectionregistrants.edit','uses'=>'SelectionRegistrantController@edit']);
-	Route::patch('selectionregistrants/{id}',['as'=>'selectionregistrants.update','uses'=>'SelectionRegistrantController@update']);
-	Route::delete('selectionregistrants/{id}',['as'=>'selectionregistrants.destroy','uses'=>'SelectionRegistrantController@destroy']);
-	Route::post('selectionregistrants/create',['as'=>'selectionregistrants.select-ajax','uses'=>'SelectionRegistrantController@selectAjax']);
 	
 	//criterias - tidak ada permission
 	Route::get('criterias',['as'=>'criterias.index','uses'=>'CriteriaController@index']);
