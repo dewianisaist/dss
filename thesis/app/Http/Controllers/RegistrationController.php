@@ -9,7 +9,6 @@ use App\Http\Models\Subvocational;
 use App\Http\Models\User;
 use App\Http\Models\Selection;
 use App\Http\Models\SelectionSchedule;
-// use App\Http\Models\EducationalBackground;
 use Auth;
 use Carbon;
 
@@ -28,22 +27,32 @@ class RegistrationController extends Controller
             if ($user->registrant == null) {
                 return redirect()->route('registrants.edit')
                                 ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
-            } 
+            }
 
-            // $educational_background = EducationalBackground::whereRegistrantId($user->registrant->id)->first();
-            // if ($educational_background == null) {
-            //     return redirect()->route('educational_background.index')
-            //                     ->with('failed','Maaf, silahkan tambahkan Riwayat Pendidikan Anda dahulu.');
-            // } 
-            
             $registration = Registration::whereRegistrantId($user->registrant->id)->first();
+            $selection = Selection::join('registrations', 'registrations.id', '=', 'selections.registration_id')
+                                    ->where('registrations.registrant_id', '=', $user->registrant->id)
+                                    ->orderBy('registrations.register_date', 'DESC')
+                                    ->first();
+
             if ($registration == null) {
                 return redirect()->route('registration.create');
+            } elseif ($selection->status <> '') {
+                return redirect()->route('registration.create');
             } else {
-                $registrations = Registration::with('subvocational')->whereRegistrantId($user->registrant->id)
-                                                                    ->orderBy('register_date','DESC')->paginate(10);
-                return view('registration.index',compact('registrations'))
-                    ->with('i', ($request->input('page', 1) - 1) * 10);
+                $selections = Selection::join('registrations', 'registrations.id', '=', 'selections.registration_id')
+                                    ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
+                                    ->where('registrations.registrant_id', '=', $user->registrant->id)
+                                    ->orderBy('register_date','DESC')->paginate(5);
+
+                $selection_schedule = Selection::join('registrations', 'registrations.id', '=', 'selections.registration_id')
+                                            ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
+                                            ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
+                                            ->where('registrations.registrant_id', '=', $user->registrant->id)
+                                            ->orderBy('register_date','DESC')->first();
+
+                return view('registration.index',compact('selections', 'selection_schedule'))
+                    ->with('i', ($request->input('page', 1) - 1) * 5);
             }
         } else {
             return redirect()->route('profile_users.show');
@@ -118,7 +127,8 @@ class RegistrationController extends Controller
             $selectionData['registration_id'] = $registration->id;
             $selection = Selection::create($selectionData);
             return redirect()->route('registration.index')
-                        ->with('success','Selamat Anda berhasil melakukan pendaftaran pelatihan.');
+                             ->with('success','Selamat Anda berhasil melakukan pendaftaran. 
+                                Silahkan Anda melakukan seleksi sesuai dengan jadwal yang sudah ditentukan.');
         }
    }
 }
