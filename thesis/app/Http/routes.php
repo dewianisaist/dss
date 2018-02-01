@@ -156,4 +156,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('questionnaire',['as'=>'questionnaire.index','uses'=>'QuestionnaireController@index']);
 	Route::get('questionnaire/create',['as'=>'questionnaire.create','uses'=>'QuestionnaireController@create']);
 	Route::post('questionnaire/create',['as'=>'questionnaire.store','uses'=>'QuestionnaireController@store']);
+
+	//resultstep1 - tidak ada permission
+	Route::get('resultstep1',['as'=>'resultstep1.index','uses'=>'ResultStep1Controller@index']);
 });

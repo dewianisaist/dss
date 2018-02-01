@@ -25,6 +25,7 @@ class QuestionnaireController extends Controller
             return redirect()->route('questionnaire.create');
         } else {
             $i = 0;
+            $j = 0;
 
             $data_standart = Choice::with('criteria')
                                 ->where('suggestion', '=', '0')
@@ -36,7 +37,7 @@ class QuestionnaireController extends Controller
                                     ->where('user_id', '=', $user->id)
                                     ->get();
 
-            return view('questionnaire.index', compact('data_standart', 'data_suggestion', 'i'));
+            return view('questionnaire.index', compact('data_standart', 'data_suggestion', 'i', 'j'));
         }
     }
 
