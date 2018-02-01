@@ -21,6 +21,11 @@ class QuestionnaireController extends Controller
         $user = User::find(Auth::user()->id);
         $data = Choice::where('user_id', '=', $user->id)->first();
 
+        if ($user->id == 1) {
+            return redirect()->route('questionnaire.create')
+                             ->with('failed','Maaf, peneliti tidak perlu mengisi kuesioner ini.');
+        }
+
         if ($data == null) {
             return redirect()->route('questionnaire.create');
         } else {

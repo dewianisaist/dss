@@ -75,7 +75,8 @@
 {{--  All user except pendaftar can see "Kriteria"  --}}
 @if(Auth::user()->roleId() != 2)
 <li {{ explode( ".",\Request::route()->getName() )[0] == 'criterias' || 
-  explode( ".",\Request::route()->getName() )[0] == 'questionnaire' 
+  explode( ".",\Request::route()->getName() )[0] == 'questionnaire' ||
+  explode( ".",\Request::route()->getName() )[0] == 'resultstep1' 
   ? 'class=active treeview menu-open' : '' }}>
   @if(Auth::user()->roleId() == 1)
     <a href="{{ route('criterias.index') }}">
@@ -98,8 +99,8 @@
       <li {{ substr( \Request::route()->getName(), 0, 14 ) == 'questionnaire.' ? 'class=active' : '' }}>
         <a href="{{ route('questionnaire.index') }}"><i class="fa fa-list"></i> Kuesioner Kriteria</a>
       </li>
-      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
-        <a href=""><i class="fa fa-list"></i> Hasil Kriteria Tahap 1</a>
+      <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'resultstep1.' ? 'class=active' : '' }}>
+        <a href="{{ route('resultstep1.index') }}"><i class="fa fa-list"></i> Hasil Kriteria Tahap 1</a>
       </li>
       <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
         <a href=""><i class="fa fa-list"></i> Kriteria Tahap 2</a>

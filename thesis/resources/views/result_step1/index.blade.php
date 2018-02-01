@@ -24,6 +24,7 @@
                     <th>Kriteria</th>
                     <th>Penjelasan Kriteria <small>(beserta sumber pustaka)</small></th>
                     <th>Kesesuaian (%)</th>
+                    <th>Jumlah Sesuai dari Keseluruhan</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                         <td>{{ $percentage->name }}</td>
                         <td>{{ $percentage->description }}</td>
                         <td>{{ $percentage->result }}</td>
+                        <td>{{ $percentage->sum }} dari {{ $percentage->count }}</td>
                     </tr>
                 @endforeach
             </tbody>
