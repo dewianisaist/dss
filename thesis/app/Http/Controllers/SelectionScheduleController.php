@@ -19,9 +19,9 @@ class SelectionScheduleController extends Controller
    {
         $role_id = Auth::user()->roleId();
         $data = SelectionSchedule::with('subvocational')->orderBy('id','DESC')->paginate(10);
-        if ($role_id != 2) {
-        return view('selectionschedules.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+        if ($role_id == 1 || $role_id == 3 || $role_id == 4 || $role_id == 5 || $role_id == 6) {
+            return view('selectionschedules.index',compact('data'))
+                ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
             return redirect()->route('registrants.index');
         }

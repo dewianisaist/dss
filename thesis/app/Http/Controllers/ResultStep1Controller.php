@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\User;
-use App\Http\Models\Role;
 use App\Http\Models\Choice;
 use App\Http\Models\Criteria;
 use Auth;

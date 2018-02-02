@@ -29,7 +29,7 @@ class ManageRegistrantController extends Controller
                     ->join('sub_vocationals', 'sub_vocationals.id', '=', 'registrations.sub_vocational_id')
                     ->orderBy('name_registrant','ASC')
                     ->paginate(10);
-        if ($role_id != 2) {
+        if ($role_id == 1 || $role_id == 3 || $role_id == 4 || $role_id == 5 || $role_id == 6) {
             return view('manage_registrants.index',compact('data'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {

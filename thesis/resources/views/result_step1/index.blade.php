@@ -17,7 +17,7 @@
 @section('content')
 <div class="box">
     <div class="box-body">
-        <table id="table_questionnaire_standart" class="table table-bordered table-striped">
+        <table id="table_resultstep1_standart" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>No</th>
@@ -41,7 +41,7 @@
         </table>
 
         <h3>Masukan</h3>
-        <table id="table_questionnaire_suggestion" class="table table-bordered table-striped">
+        <table id="table_resultstep1_suggestion" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>No</th>
