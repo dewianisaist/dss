@@ -170,4 +170,13 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('criteriastep2_suggest/{id}/edit',['as'=>'criteriastep2_suggest.edit','uses'=>'CriteriaStep2Controller@edit_suggest']);
 	Route::patch('criteriastep2_suggest/{id}',['as'=>'criteriastep2_suggest.update','uses'=>'CriteriaStep2Controller@update_suggest']);
 	Route::delete('criteriastep2_suggest/{id}',['as'=>'criteriastep2_suggest.destroy','uses'=>'CriteriaStep2Controller@destroy_suggest']);
+
+	//criteriagroup - ada permission, belum ditambahkan
+	Route::get('criteriagroup',['as'=>'criteriagroup.index','uses'=>'CriteriaGroupController@index']);
+	Route::get('criteriagroup/create',['as'=>'criteriagroup.create','uses'=>'CriteriaGroupController@create']);
+	Route::post('criteriagroup/create',['as'=>'criteriagroup.store','uses'=>'CriteriaGroupController@store']);
+	Route::get('criteriagroup/{id}/edit',['as'=>'criteriagroup.edit','uses'=>'CriteriaGroupController@edit']);
+	Route::patch('criteriagroup/{id}',['as'=>'criteriagroup.update','uses'=>'CriteriaGroupController@update']);
+	Route::delete('criteriagroup/{id}',['as'=>'criteriagroup.destroy','uses'=>'CriteriaGroupController@destroy']);
+	
 });
