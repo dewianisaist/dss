@@ -159,4 +159,15 @@ Route::group(['middleware' => ['auth']], function() {
 
 	//resultstep1 - tidak ada permission
 	Route::get('resultstep1',['as'=>'resultstep1.index','uses'=>'ResultStep1Controller@index']);
+
+	//criteriastep2 - ada permission, belum ditambahkan
+	Route::get('criteriastep2',['as'=>'criteriastep2.index','uses'=>'CriteriaStep2Controller@index']);
+	Route::get('criteriastep2/create',['as'=>'criteriastep2.create','uses'=>'CriteriaStep2Controller@create']);
+	Route::post('criteriastep2/create',['as'=>'criteriastep2.store','uses'=>'CriteriaStep2Controller@store']);
+	Route::get('criteriastep2_standart/{id}/edit',['as'=>'criteriastep2_standart.edit','uses'=>'CriteriaStep2Controller@edit_standart']);
+	Route::patch('criteriastep2_standart/{id}',['as'=>'criteriastep2_standart.update','uses'=>'CriteriaStep2Controller@update_standart']);
+	Route::delete('criteriastep2_standart/{id}',['as'=>'criteriastep2_standart.destroy','uses'=>'CriteriaStep2Controller@destroy_standart']);
+	Route::get('criteriastep2_suggest/{id}/edit',['as'=>'criteriastep2_suggest.edit','uses'=>'CriteriaStep2Controller@edit_suggest']);
+	Route::patch('criteriastep2_suggest/{id}',['as'=>'criteriastep2_suggest.update','uses'=>'CriteriaStep2Controller@update_suggest']);
+	Route::delete('criteriastep2_suggest/{id}',['as'=>'criteriastep2_suggest.destroy','uses'=>'CriteriaStep2Controller@destroy_suggest']);
 });
