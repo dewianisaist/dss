@@ -17,8 +17,10 @@ class VocationalController extends Controller
    public function index(Request $request)
    {
         $role_id = Auth::user()->roleId();
-        $vocationals = Vocational::orderBy('id','DESC')->paginate(10);
+        
         if ($role_id == 1) {
+            $vocationals = Vocational::orderBy('id','DESC')->paginate(10);
+
             return view('vocationals.index',compact('vocationals'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -33,7 +35,13 @@ class VocationalController extends Controller
     */
    public function create()
    {
-       return view('vocationals.create');
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            return view('vocationals.create');
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -44,15 +52,15 @@ class VocationalController extends Controller
     */
    public function store(Request $request)
    {
-       $this->validate($request, [
-        'name' => 'required',
-        'description' => 'required',
-       ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
 
-       Vocational::create($request->all());
+        Vocational::create($request->all());
 
-       return redirect()->route('vocationals.index')
-                       ->with('success','Kejuruan berhasil dibuat');
+        return redirect()->route('vocationals.index')
+                        ->with('success','Kejuruan berhasil dibuat');
    }
 
    /**
@@ -63,8 +71,15 @@ class VocationalController extends Controller
     */
    public function show($id)
    {
-       $vocational = Vocational::find($id);
-       return view('vocationals.show',compact('vocational'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            $vocational = Vocational::find($id);
+
+            return view('vocationals.show',compact('vocational'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -75,8 +90,15 @@ class VocationalController extends Controller
     */
    public function edit($id)
    {
-       $vocational = Vocational::find($id);
-       return view('vocationals.edit',compact('vocational'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            $vocational = Vocational::find($id);
+
+            return view('vocationals.edit',compact('vocational'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -88,15 +110,15 @@ class VocationalController extends Controller
     */
    public function update(Request $request, $id)
    {
-       $this->validate($request, [
-           'name' => 'required',
-           'description' => 'required',
-       ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
 
-       Vocational::find($id)->update($request->all());
+        Vocational::find($id)->update($request->all());
 
-       return redirect()->route('vocationals.index')
-                       ->with('success','Kejuruan berhasil diedit');
+        return redirect()->route('vocationals.index')
+                        ->with('success','Kejuruan berhasil diedit');
    }
 
    /**
@@ -107,8 +129,9 @@ class VocationalController extends Controller
     */
    public function destroy($id)
    {
-       Vocational::find($id)->delete();
-       return redirect()->route('vocationals.index')
-                       ->with('success','Kejuruan berhasil dihapus');
+        Vocational::find($id)->delete();
+        
+        return redirect()->route('vocationals.index')
+                        ->with('success','Kejuruan berhasil dihapus');
    }
 }

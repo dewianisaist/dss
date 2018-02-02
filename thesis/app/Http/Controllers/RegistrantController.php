@@ -24,6 +24,7 @@ class RegistrantController extends Controller
     public function index() {
         $role_id = Auth::user()->roleId();
         $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
+
         if ($role_id == 2) {
             if ($user->registrant == null) {
                 return redirect()->route('registrants.edit')
@@ -43,8 +44,14 @@ class RegistrantController extends Controller
     */
    public function edit()
    {
-       $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
-       return view('registrants.edit',compact('user'));
+        $role_id = Auth::user()->roleId();
+
+        if ($role_id == 2) {
+            $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
+            return view('registrants.edit',compact('user'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -71,6 +78,7 @@ class RegistrantController extends Controller
         $input = $request->all();
 
         $user = User::find(Auth::user()->id);
+        
         if (!empty($input['password'])) { 
             $input['password'] = Hash::make($input['password']);
         } else {

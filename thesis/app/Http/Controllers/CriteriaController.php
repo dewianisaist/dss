@@ -18,14 +18,15 @@ class CriteriaController extends Controller
     public function index(Request $request)
     {
         $role_id = Auth::user()->roleId();
-        $criterias = Criteria::select('*')
-                                ->whereNotIn('id', function($query){
-                                    $query->select('criteria_id')
-                                    ->from(with(new Choice)->getTable())
-                                    ->where('suggestion', 1);
-                                })->orderBy('id','DESC')->paginate(10);
-        
+
         if ($role_id == 1) {
+            $criterias = Criteria::select('*')
+                                    ->whereNotIn('id', function($query){
+                                        $query->select('criteria_id')
+                                        ->from(with(new Choice)->getTable())
+                                        ->where('suggestion', 1);
+                                    })->orderBy('id','DESC')->paginate(10);
+        
             return view('criterias.index',compact('criterias'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -40,7 +41,13 @@ class CriteriaController extends Controller
      */
     public function create()
     {
-        return view('criterias.create');
+        $role_id = Auth::user()->roleId();
+
+        if ($role_id == 1) {
+            return view('criterias.create');
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
     }
 
     /**
@@ -72,8 +79,15 @@ class CriteriaController extends Controller
      */
     public function show($id)
     {
-        $criteria = Criteria::find($id);
-        return view('criterias.show',compact('criteria'));
+        $role_id = Auth::user()->roleId();
+
+        if ($role_id == 1) {
+            $criteria = Criteria::find($id);
+            
+            return view('criterias.show',compact('criteria'));
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
     }
 
     /**
@@ -84,8 +98,15 @@ class CriteriaController extends Controller
      */
     public function edit($id)
     {
-        $criteria = Criteria::find($id);
-        return view('criterias.edit',compact('criteria'));
+        $role_id = Auth::user()->roleId();
+
+        if ($role_id == 1) {
+            $criteria = Criteria::find($id);
+
+            return view('criterias.edit',compact('criteria'));
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
     }
 
     /**
@@ -117,6 +138,7 @@ class CriteriaController extends Controller
     public function destroy($id)
     {
         Criteria::find($id)->delete();
+
         return redirect()->route('criterias.index')
                         ->with('success','Kriteria berhasil dihapus');
     }

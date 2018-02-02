@@ -19,8 +19,10 @@ class SubvocationalController extends Controller
    public function index(Request $request)
    {
         $role_id = Auth::user()->roleId();
-        $data = Subvocational::with('vocational')->orderBy('id','DESC')->paginate(10);
+        
         if ($role_id == 1) {
+            $data = Subvocational::with('vocational')->orderBy('id','DESC')->paginate(10);
+            
             return view('subvocationals.index',compact('data'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -35,8 +37,15 @@ class SubvocationalController extends Controller
     */
    public function create()
    {
-       $vocational = Vocational::lists('name','id');
-       return view('subvocationals.create',compact('vocational'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            $vocational = Vocational::lists('name','id');
+            
+            return view('subvocationals.create',compact('vocational'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -47,19 +56,19 @@ class SubvocationalController extends Controller
     */
    public function store(Request $request)
    {
-       $this->validate($request, [
-        'name' => 'required',
-        'vocational_id' => 'required',
-        'quota' => 'required',
-        'long_training' => 'required',
-        'final_registration_date' => 'required',
-       ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'vocational_id' => 'required',
+            'quota' => 'required',
+            'long_training' => 'required',
+            'final_registration_date' => 'required',
+        ]);
 
-       $input = $request->all();
-       $subvocational = Subvocational::create($input);
+        $input = $request->all();
+        $subvocational = Subvocational::create($input);
 
-       return redirect()->route('subvocationals.index')
-                       ->with('success','Sub-Kejuruan berhasil dibuat');
+        return redirect()->route('subvocationals.index')
+                        ->with('success','Sub-Kejuruan berhasil dibuat');
    }
 
    /**
@@ -70,8 +79,15 @@ class SubvocationalController extends Controller
     */
    public function show($id)
    {
-       $subvocational = Subvocational::find($id);
-       return view('subvocationals.show',compact('subvocational'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            $subvocational = Subvocational::find($id);
+
+            return view('subvocationals.show',compact('subvocational'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -82,11 +98,17 @@ class SubvocationalController extends Controller
     */
    public function edit($id)
    {
-        $subvocational = Subvocational::find($id);
-        $vocational = Vocational::lists('name','id');
-        $vocationalchoosen = DB::table('sub_vocationals')->where('id', $subvocational)->value('name');
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            $subvocational = Subvocational::find($id);
+            $vocational = Vocational::lists('name','id');
+            $vocationalchoosen = DB::table('sub_vocationals')->where('id', $subvocational)->value('name');
 
-        return view('subvocationals.edit',compact('subvocational','vocational','vocationalchoosen'));
+            return view('subvocationals.edit',compact('subvocational','vocational','vocationalchoosen'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -98,20 +120,20 @@ class SubvocationalController extends Controller
     */
    public function update(Request $request, $id)
    {
-       $this->validate($request, [
-        'name' => 'required',
-        'vocational_id' => 'required',
-        'quota' => 'required',
-        'long_training' => 'required',
-        'final_registration_date' => 'required',
-       ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'vocational_id' => 'required',
+            'quota' => 'required',
+            'long_training' => 'required',
+            'final_registration_date' => 'required',
+        ]);
 
-       $input = $request->all();
-       $subvocational = Subvocational::find($id);
-       $subvocational->update($input);
+        $input = $request->all();
+        $subvocational = Subvocational::find($id);
+        $subvocational->update($input);
 
-       return redirect()->route('subvocationals.index')
-                       ->with('success','Sub-Kejuruan berhasil diedit');
+        return redirect()->route('subvocationals.index')
+                        ->with('success','Sub-Kejuruan berhasil diedit');
    }
 
    /**
@@ -122,8 +144,9 @@ class SubvocationalController extends Controller
     */
    public function destroy($id)
    {
-       Subvocational::find($id)->delete();
-       return redirect()->route('subvocationals.index')
-                       ->with('success','Sub-Kejuruan berhasil dihapus');
+        Subvocational::find($id)->delete();
+        
+        return redirect()->route('subvocationals.index')
+                        ->with('success','Sub-Kejuruan berhasil dihapus');
    }
 }

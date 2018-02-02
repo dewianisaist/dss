@@ -18,8 +18,10 @@ class SelectionScheduleController extends Controller
    public function index(Request $request)
    {
         $role_id = Auth::user()->roleId();
-        $data = SelectionSchedule::with('subvocational')->orderBy('id','DESC')->paginate(10);
+        
         if ($role_id == 1 || $role_id == 3 || $role_id == 4 || $role_id == 5 || $role_id == 6) {
+            $data = SelectionSchedule::with('subvocational')->orderBy('id','DESC')->paginate(10);
+
             return view('selectionschedules.index',compact('data'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -34,8 +36,15 @@ class SelectionScheduleController extends Controller
     */
    public function create()
    {
-       $subvocational = Subvocational::lists('name','id');
-       return view('selectionschedules.create',compact('subvocational'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1 || $role_id == 3 || $role_id == 4 || $role_id == 5 || $role_id == 6) {
+            $subvocational = Subvocational::lists('name','id');
+
+            return view('selectionschedules.create',compact('subvocational'));
+        } else {
+            return redirect()->route('registrants.index');
+        }
    }
 
    /**
@@ -68,8 +77,15 @@ class SelectionScheduleController extends Controller
     */
    public function show($id)
    {
-       $selectionschedule = SelectionSchedule::find($id);
-       return view('selectionschedules.show',compact('selectionschedule'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1 || $role_id == 3 || $role_id == 4 || $role_id == 5 || $role_id == 6) {
+            $selectionschedule = SelectionSchedule::find($id);
+
+            return view('selectionschedules.show',compact('selectionschedule'));
+        } else {
+            return redirect()->route('registrants.index');
+        }
    }
 
    /**
@@ -80,11 +96,17 @@ class SelectionScheduleController extends Controller
     */
    public function edit($id)
    {
-        $selectionschedule = SelectionSchedule::find($id);
-        $subvocational = Subvocational::lists('name','id');
-        $subvocationalchoosen = Subvocational::where('id', $selectionschedule)->value('name');
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1 || $role_id == 3 || $role_id == 4 || $role_id == 5 || $role_id == 6) {
+            $selectionschedule = SelectionSchedule::find($id);
+            $subvocational = Subvocational::lists('name','id');
+            $subvocationalchoosen = Subvocational::where('id', $selectionschedule)->value('name');
 
-        return view('selectionschedules.edit',compact('selectionschedule','subvocational','subvocationalchoosen'));
+            return view('selectionschedules.edit',compact('selectionschedule','subvocational','subvocationalchoosen'));
+        } else {
+            return redirect()->route('registrants.index');
+        }
    }
 
    /**
@@ -96,19 +118,19 @@ class SelectionScheduleController extends Controller
     */
    public function update(Request $request, $id)
    {
-       $this->validate($request, [
-        'sub_vocational_id' => 'required',
-        'date' => 'required',
-        'time' => 'required',
-        'place' => 'required',
-       ]);
+        $this->validate($request, [
+            'sub_vocational_id' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'place' => 'required',
+        ]);
 
-       $input = $request->all();
-       $selectionschedule = SelectionSchedule::find($id);
-       $selectionschedule->update($input);
+        $input = $request->all();
+        $selectionschedule = SelectionSchedule::find($id);
+        $selectionschedule->update($input);
 
-       return redirect()->route('selectionschedules.index')
-                       ->with('success','Jadwal seleksi berhasil diedit');
+        return redirect()->route('selectionschedules.index')
+                        ->with('success','Jadwal seleksi berhasil diedit');
    }
 
    /**
@@ -119,8 +141,9 @@ class SelectionScheduleController extends Controller
     */
    public function destroy($id)
    {
-       SelectionSchedule::find($id)->delete();
-       return redirect()->route('selectionschedules.index')
-                       ->with('success','Jadwal seleksi berhasil dihapus');
+        SelectionSchedule::find($id)->delete();
+        
+        return redirect()->route('selectionschedules.index')
+                        ->with('success','Jadwal seleksi berhasil dihapus');
    }
 }

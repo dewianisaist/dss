@@ -17,8 +17,10 @@ class CourseController extends Controller
    public function index(Request $request)
    {
         $role_id = Auth::user()->roleId();
-        $courses = Course::orderBy('id','DESC')->paginate(10);
+
         if ($role_id == 1) {
+            $courses = Course::orderBy('id','DESC')->paginate(10);
+
             return view('courses.index',compact('courses'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -33,7 +35,13 @@ class CourseController extends Controller
     */
    public function create()
    {
-       return view('courses.create');
+        $role_id = Auth::user()->roleId();
+
+        if ($role_id == 1) {
+            return view('courses.create');
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -44,14 +52,14 @@ class CourseController extends Controller
     */
    public function store(Request $request)
    {
-       $this->validate($request, [
-        'major' => 'required',
-       ]);
+        $this->validate($request, [
+            'major' => 'required',
+        ]);
 
-       Course::create($request->all());
+        Course::create($request->all());
 
-       return redirect()->route('courses.index')
-                       ->with('success','Kursus berhasil dibuat');
+        return redirect()->route('courses.index')
+                        ->with('success','Kursus berhasil dibuat');
    }
 
    /**
@@ -62,8 +70,15 @@ class CourseController extends Controller
     */
    public function show($id)
    {
-       $course = Course::find($id);
-       return view('courses.show',compact('course'));
+        $role_id = Auth::user()->roleId();
+
+        if ($role_id == 1) {
+            $course = Course::find($id);
+
+            return view('courses.show',compact('course'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -74,8 +89,15 @@ class CourseController extends Controller
     */
    public function edit($id)
    {
-       $course = Course::find($id);
-       return view('courses.edit',compact('course'));
+        $role_id = Auth::user()->roleId();
+
+        if ($role_id == 1) {
+            $course = Course::find($id);
+
+            return view('courses.edit',compact('course'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -87,14 +109,14 @@ class CourseController extends Controller
     */
    public function update(Request $request, $id)
    {
-       $this->validate($request, [
-           'major' => 'required',
-       ]);
+        $this->validate($request, [
+            'major' => 'required',
+        ]);
 
-       Course::find($id)->update($request->all());
+        Course::find($id)->update($request->all());
 
-       return redirect()->route('courses.index')
-                       ->with('success','Kursus berhasil diedit');
+        return redirect()->route('courses.index')
+                        ->with('success','Kursus berhasil diedit');
    }
 
    /**
@@ -105,8 +127,9 @@ class CourseController extends Controller
     */
    public function destroy($id)
    {
-       Course::find($id)->delete();
-       return redirect()->route('courses.index')
-                       ->with('success','Kursus berhasil dihapus');
+        Course::find($id)->delete();
+
+        return redirect()->route('courses.index')
+                        ->with('success','Kursus berhasil dihapus');
    }
 }

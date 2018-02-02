@@ -17,8 +17,10 @@ class EducationController extends Controller
    public function index(Request $request)
    {
         $role_id = Auth::user()->roleId();
-        $educations = Education::orderBy('id','DESC')->paginate(10);
+        
         if ($role_id == 1) {
+            $educations = Education::orderBy('id','DESC')->paginate(10);
+
             return view('educations.index',compact('educations'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -33,7 +35,13 @@ class EducationController extends Controller
     */
    public function create()
    {
-       return view('educations.create');
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            return view('educations.create');
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
    }
 
    /**
@@ -44,13 +52,13 @@ class EducationController extends Controller
     */
    public function store(Request $request)
    {
-       $this->validate($request, [
-        'stage' => 'required',
-       ]);
+        $this->validate($request, [
+            'stage' => 'required',
+        ]);
 
-       Education::create($request->all());
+        Education::create($request->all());
 
-       return redirect()->route('educations.index')
+        return redirect()->route('educations.index')
                        ->with('success','Pendidikan berhasil dibuat');
    }
 
@@ -62,8 +70,15 @@ class EducationController extends Controller
     */
    public function show($id)
    {
-       $education = Education::find($id);
-       return view('educations.show',compact('education'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            $education = Education::find($id);
+
+            return view('educations.show',compact('education'));
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
    }
 
    /**
@@ -74,8 +89,15 @@ class EducationController extends Controller
     */
    public function edit($id)
    {
-       $education = Education::find($id);
-       return view('educations.edit',compact('education'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id == 1) {
+            $education = Education::find($id);
+
+            return view('educations.edit',compact('education'));
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
    }
 
    /**
@@ -87,13 +109,13 @@ class EducationController extends Controller
     */
    public function update(Request $request, $id)
    {
-       $this->validate($request, [
-           'stage' => 'required',
-       ]);
+        $this->validate($request, [
+            'stage' => 'required',
+        ]);
 
-       Education::find($id)->update($request->all());
+        Education::find($id)->update($request->all());
 
-       return redirect()->route('educations.index')
+        return redirect()->route('educations.index')
                        ->with('success','Pendidikan berhasil diedit');
    }
 
@@ -106,7 +128,8 @@ class EducationController extends Controller
    public function destroy($id)
    {
         Education::find($id)->delete();
-       return redirect()->route('educations.index')
+
+        return redirect()->route('educations.index')
                        ->with('success','Pendidikan berhasil dihapus');
    }
 }

@@ -17,8 +17,10 @@ class PreferenceController extends Controller
     public function index(Request $request)
     {
         $role_id = Auth::user()->roleId();
-        $preferences = Criteria::orderBy('id','DESC')->paginate(10);
+        
         if ($role_id == 3) {
+            $preferences = Criteria::orderBy('id','DESC')->paginate(10);
+
             return view('preferences.index',compact('preferences'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -34,8 +36,15 @@ class PreferenceController extends Controller
      */
     public function show($id)
     {
-        $preference = Criteria::find($id);
-        return view('preferences.show',compact('preference'));
+        $role_id = Auth::user()->roleId();
+        
+        if ($role_id == 3) {
+            $preference = Criteria::find($id);
+
+            return view('preferences.show',compact('preference'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -46,8 +55,15 @@ class PreferenceController extends Controller
      */
     public function edit($id)
     {
-        $preference = Criteria::find($id);
-        return view('preferences.edit',compact('preference'));
+        $role_id = Auth::user()->roleId();
+        
+        if ($role_id == 3) {
+            $preference = Criteria::find($id);
+
+            return view('preferences.edit',compact('preference'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**

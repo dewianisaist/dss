@@ -22,7 +22,8 @@ class RegistrationController extends Controller
    public function index(Request $request)
    {
         $role_id = Auth::user()->roleId();
-        $user = User::with('registrant')->find(Auth::user()->id);    
+        $user = User::with('registrant')->find(Auth::user()->id); 
+
         if ($role_id == 2) { 
             if ($user->registrant == null) {
                 return redirect()->route('registrants.edit')
@@ -30,6 +31,7 @@ class RegistrationController extends Controller
             }
 
             $registration = Registration::whereRegistrantId($user->registrant->id)->first();
+
             $selection = Selection::join('registrations', 'registrations.id', '=', 'selections.registration_id')
                                     ->where('registrations.registrant_id', '=', $user->registrant->id)
                                     ->orderBy('registrations.register_date', 'DESC')
@@ -68,7 +70,13 @@ class RegistrationController extends Controller
    {
         $role_id = Auth::user()->roleId();
         $user = User::with('registrant')->find(Auth::user()->id);
+
         if ($role_id == 2) { 
+            if ($user->registrant == null) {
+                return redirect()->route('registrants.edit')
+                                ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
+            }
+            
             $date_now = Carbon\Carbon::now(7)->toDateTimeString();
             $subvocational = Subvocational::where('final_registration_date', '>', $date_now)
                                             ->lists('name','id');
@@ -79,6 +87,7 @@ class RegistrationController extends Controller
                                               ->orWhere('selections.status', '=', '');
                                     })
                                     ->count();
+                                    
             if ($selections > 0) {
                 return redirect()->route('registration.index');
             } else {
@@ -126,6 +135,7 @@ class RegistrationController extends Controller
 
             $selectionData['registration_id'] = $registration->id;
             $selection = Selection::create($selectionData);
+            
             return redirect()->route('registration.index')
                              ->with('success','Selamat Anda berhasil melakukan pendaftaran. 
                                 Silahkan Anda melakukan seleksi sesuai dengan jadwal yang sudah ditentukan.');

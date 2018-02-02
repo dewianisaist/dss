@@ -20,8 +20,10 @@ class ProfileUserController extends Controller
     public function show()
     {
         $role_id = Auth::user()->roleId();
-        $profile_user = User::find(Auth::user()->id);
+        
         if ($role_id != 2) {
+            $profile_user = User::find(Auth::user()->id);
+
             return view('profile_users.show',compact('profile_user'));
         } else {
             return redirect()->route('registrants.index');
@@ -35,8 +37,15 @@ class ProfileUserController extends Controller
     */
    public function edit()
    {
-       $profile_user = User::find(Auth::user()->id);
-       return view('profile_users.edit',compact('profile_user'));
+        $role_id = Auth::user()->roleId();
+            
+        if ($role_id != 2) {
+            $profile_user = User::find(Auth::user()->id);
+
+            return view('profile_users.edit',compact('profile_user'));
+        } else {
+            return redirect()->route('registrants.index');
+        }
    }
 
    /**
@@ -47,23 +56,25 @@ class ProfileUserController extends Controller
     */
    public function update(Request $request)
    {
-       $this->validate($request, [
+        $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.Auth::user()->id,
             'password' => 'same:confirm-password',
-       ]);
+        ]);
 
-       $input = $request->all();
-       if(!empty($input['password'])){ 
-           $input['password'] = Hash::make($input['password']);
-       }else{
-           $input = array_except($input,array('password'));    
-       }
+        $input = $request->all();
 
-       $profile_user = User::find(Auth::user()->id);
-       $profile_user->update($input);
+        if (!empty($input['password'])) { 
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = array_except($input,array('password'));    
+        }
 
-       return redirect()->route('profile_users.show')
-                       ->with('success','Profil berhasil diedit');
+        $profile_user = User::find(Auth::user()->id);
+        
+        $profile_user->update($input);
+
+        return redirect()->route('profile_users.show')
+                        ->with('success','Profil berhasil diedit');
    }
 }

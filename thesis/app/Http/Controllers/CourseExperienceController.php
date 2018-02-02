@@ -22,6 +22,7 @@ class CourseExperienceController extends Controller
    {
         $role_id = Auth::user()->roleId();
         $user = User::with('registrant')->find(Auth::user()->id);
+
         if ($role_id == 2) {
             if ($user->registrant == null) {
                 return redirect()->route('registrants.edit')
@@ -45,9 +46,21 @@ class CourseExperienceController extends Controller
     */
    public function create()
    {
-       $course = Course::lists('major','id');
+        $role_id = Auth::user()->roleId();
+        $user = User::with('registrant')->find(Auth::user()->id);
 
-       return view('course_experience.create',compact('course'));
+        if ($role_id == 2) {
+            if ($user->registrant == null) {
+                return redirect()->route('registrants.edit')
+                                ->with('failed','Maaf, silahkan lengkapi data diri Anda dahulu.');
+            } else {
+                $course = Course::lists('major','id');
+
+                return view('course_experience.create',compact('course'));
+            }
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -58,18 +71,18 @@ class CourseExperienceController extends Controller
     */
    public function store(Request $request)
    {
-       $this->validate($request, [
-        'course_id' => 'required',
-        'organizer' => 'required',        
-        'graduation_year' => 'required',
-       ]);
+        $this->validate($request, [
+            'course_id' => 'required',
+            'organizer' => 'required',        
+            'graduation_year' => 'required',
+        ]);
 
-       $input = $request->all();
-       $user = User::with('registrant')->find(Auth::user()->id);
-       $input['registrant_id'] = $user->registrant->id;
-       $course_experience = CourseExperience::create($input);
+        $input = $request->all();
+        $user = User::with('registrant')->find(Auth::user()->id);
+        $input['registrant_id'] = $user->registrant->id;
+        $course_experience = CourseExperience::create($input);
 
-       return redirect()->route('course_experience.index')
+        return redirect()->route('course_experience.index')
                         ->with('success','Pengalaman kursus/pelatihan berhasil ditambahkan.');
    }
 
@@ -81,12 +94,18 @@ class CourseExperienceController extends Controller
     */
     public function show($course_id, $organizer, $graduation_year)
     {
-        $course_experience = CourseExperience::with('course')->where('course_id', $course_id)
-                                                             ->where('organizer', $organizer)
-                                                             ->where('graduation_year', $graduation_year)
-                                                             ->first();
-        
-        return view('course_experience.show',compact('course_experience'));
+        $role_id = Auth::user()->roleId();
+
+        if ($role_id == 2) {
+            $course_experience = CourseExperience::with('course')->where('course_id', $course_id)
+                                                                ->where('organizer', $organizer)
+                                                                ->where('graduation_year', $graduation_year)
+                                                                ->first();
+            
+            return view('course_experience.show',compact('course_experience'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
  
    /**
@@ -97,14 +116,20 @@ class CourseExperienceController extends Controller
     */
    public function edit($course_id, $organizer, $graduation_year)
    {
-        $course_experience = CourseExperience::where('course_id', $course_id)
-                                             ->where('organizer', $organizer)
-                                             ->where('graduation_year', $graduation_year)
-                                             ->first();
-        $course = Course::lists('major','id');
-        $coursechoosen = CourseExperience::where('course_id', $course_experience)->value('course_id');
+        $role_id = Auth::user()->roleId();
 
-        return view('course_experience.edit',compact('course_experience','course', 'coursechoosen'));
+        if ($role_id == 2) {
+            $course_experience = CourseExperience::where('course_id', $course_id)
+                                                ->where('organizer', $organizer)
+                                                ->where('graduation_year', $graduation_year)
+                                                ->first();
+            $course = Course::lists('major','id');
+            $coursechoosen = CourseExperience::where('course_id', $course_experience)->value('course_id');
+
+            return view('course_experience.edit',compact('course_experience','course', 'coursechoosen'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
    }
 
    /**
@@ -130,7 +155,7 @@ class CourseExperienceController extends Controller
                         ->where('graduation_year', $graduation_year)
                         ->update($input);
 
-       return redirect()->route('course_experience.index')
+        return redirect()->route('course_experience.index')
                         ->with('success','Pengalaman kursus/pelatihan berhasil diedit');
    }
 
@@ -142,12 +167,12 @@ class CourseExperienceController extends Controller
     */
    public function destroy($course_id, $organizer, $graduation_year)
    {
-       CourseExperience::where('course_id', $course_id)
-                        ->where('organizer', $organizer)
-                        ->where('graduation_year', $graduation_year)
-                        ->delete();
+        CourseExperience::where('course_id', $course_id)
+                            ->where('organizer', $organizer)
+                            ->where('graduation_year', $graduation_year)
+                            ->delete();
 
-       return redirect()->route('course_experience.index')
+        return redirect()->route('course_experience.index')
                         ->with('success','Pengalaman kursus/pelatihan berhasil dihapus');
    }
 }

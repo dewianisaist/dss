@@ -19,8 +19,10 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $role_id = Auth::user()->roleId();
-        $roles = Role::orderBy('id','DESC')->paginate(10);
+        
         if ($role_id == 1) {
+            $roles = Role::orderBy('id','DESC')->paginate(10);
+
             return view('roles.index',compact('roles'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -35,8 +37,15 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permission = Permission::get();
-        return view('roles.create',compact('permission'));
+        $role_id = Auth::user()->roleId();
+        
+        if ($role_id == 1) {
+            $permission = Permission::get();
+
+            return view('roles.create',compact('permission'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -75,12 +84,18 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role = Role::find($id);
-        $rolePermissions = Permission::join("permission_role","permission_role.permission_id","=","permissions.id")
-            ->where("permission_role.role_id",$id)
-            ->get();
+        $role_id = Auth::user()->roleId();
+        
+        if ($role_id == 1) {
+            $role = Role::find($id);
+            $rolePermissions = Permission::join("permission_role","permission_role.permission_id","=","permissions.id")
+                ->where("permission_role.role_id",$id)
+                ->get();
 
-        return view('roles.show',compact('role','rolePermissions'));
+            return view('roles.show',compact('role','rolePermissions'));
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
     }
 
     /**
@@ -91,12 +106,18 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::find($id);
-        $permission = Permission::get();
-        $rolePermissions = DB::table("permission_role")->where("permission_role.role_id",$id)
-            ->lists('permission_role.permission_id','permission_role.permission_id');
+        $role_id = Auth::user()->roleId();
+        
+        if ($role_id == 1) {
+            $role = Role::find($id);
+            $permission = Permission::get();
+            $rolePermissions = DB::table("permission_role")->where("permission_role.role_id",$id)
+                ->lists('permission_role.permission_id','permission_role.permission_id');
 
-        return view('roles.edit',compact('role','permission','rolePermissions'));
+            return view('roles.edit',compact('role','permission','rolePermissions'));
+        } else {
+            return redirect()->route('profile_users.show');
+        } 
     }
 
     /**
@@ -138,6 +159,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         DB::table("roles")->where('id',$id)->delete();
+        
         return redirect()->route('roles.index')
                         ->with('success','Role berhasil dihapus');
     }

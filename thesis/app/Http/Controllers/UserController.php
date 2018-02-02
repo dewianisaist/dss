@@ -21,8 +21,10 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $role_id = Auth::user()->roleId();
-        $data = User::orderBy('id','DESC')->paginate(10);
+        
         if ($role_id == 1) {
+            $data = User::orderBy('id','DESC')->paginate(10);
+
             return view('users.index',compact('data'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {
@@ -37,8 +39,15 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::lists('display_name','id');
-        return view('users.create',compact('roles'));
+        $role_id = Auth::user()->roleId();
+        
+        if ($role_id == 1) {
+            $roles = Role::lists('display_name','id');
+
+            return view('users.create',compact('roles'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -77,8 +86,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('users.show',compact('user'));
+        $role_id = Auth::user()->roleId();
+        
+        if ($role_id == 1) {
+            $user = User::find($id);
+            
+            return view('users.show',compact('user'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -89,11 +105,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles = Role::lists('display_name','id');
-        $userRole = $user->roles->lists('id','id')->toArray();
+        $role_id = Auth::user()->roleId();
+        
+        if ($role_id == 1) {
+            $user = User::find($id);
+            $roles = Role::lists('display_name','id');
+            $userRole = $user->roles->lists('id','id')->toArray();
 
-        return view('users.edit',compact('user','roles','userRole'));
+            return view('users.edit',compact('user','roles','userRole'));
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -114,9 +136,9 @@ class UserController extends Controller
         ]);
 
         $input = $request->all();
-        if(!empty($input['password'])){ 
+        if (!empty($input['password'])) { 
             $input['password'] = Hash::make($input['password']);
-        }else{
+        } else {
             $input = array_except($input,array('password'));    
         }
 
@@ -142,6 +164,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
+
         return redirect()->route('users.index')
                         ->with('success','User berhasil dihapus');
     }
