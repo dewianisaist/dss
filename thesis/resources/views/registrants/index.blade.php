@@ -90,11 +90,19 @@
 			</tr>
 			<tr>
 				<th>KTP</th>
-				<td><a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->registrant->upload->ktp) }}" target="_blank"> Lihat KTP</a></td>
+				<td>
+					@if(isset($user->registrant->upload->ktp))
+						<a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->registrant->upload->ktp) }}" target="_blank"> Lihat KTP</a>
+					@endif
+				</td>
 			</tr>
 			<tr>
 				<th>Ijazah Terakhir</th>
-				<td><a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->registrant->upload->last_certificate) }}" target="_blank"> Lihat Ijazah Terakhir</a></td>
+				<td>
+					@if(isset($user->registrant->upload->last_certificate))
+						<a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->registrant->upload->last_certificate) }}" target="_blank"> Lihat Ijazah Terakhir</a>
+					@endif
+				</td>
 			</tr>
 		</table>
 	</div>

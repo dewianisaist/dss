@@ -76,11 +76,19 @@
 			</tr>
 			<tr>
 				<th>KTP</th>
-				<td><a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->upload->ktp) }}" target="_blank"> Lihat KTP</a></td>
+				<td>
+					@if(isset($user->upload->ktp))
+						<a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->upload->ktp) }}" target="_blank"> Lihat KTP</a>
+					@endif
+				</td>
 			</tr>
 			<tr>
 				<th>Ijazah Terakhir</th>
-				<td><a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->upload->last_certificate) }}" target="_blank"> Lihat Ijazah Terakhir</a></td>
+				<td>
+					@if(isset($user->upload->last_certificate))
+						<a class="btn btn-success" href="{{ URL::to('/uploads/' . $user->upload->last_certificate) }}" target="_blank"> Lihat Ijazah Terakhir</a>
+					@endif
+				</td>
 			</tr>
 			<tr>
 				<th>Riwayat Pendidikan</th>
