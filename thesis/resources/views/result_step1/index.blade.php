@@ -39,6 +39,7 @@
                 @endforeach
             </tbody>
         </table>
+        {!! $percentages->render() !!}
 
         <h3>Masukan</h3>
         <table id="table_resultstep1_suggestion" class="table table-bordered table-striped">
@@ -61,6 +62,7 @@
                 @endforeach
             </tbody>
         </table>
+        {!! $data_suggestion->render() !!}
     </div>
 </div>
 @endsection

@@ -16,10 +16,10 @@ class CriteriaGroupController extends Controller
      */
     public function index(Request $request)
     {
-        $criteria_group = Criteria::where('status', '=', '1')->orderBy('id','DESC')->paginate(10);
+        $criteria_group = Criteria::where('status', '=', '1')->orderBy('id','DESC')->paginate(5);
         // return $criteria_group;
         return view('criteria_group.index',compact('criteria_group'))
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**

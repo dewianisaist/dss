@@ -67,6 +67,7 @@
                 @endforeach
             </tbody>
         </table>
+        {!! $data_standart->render() !!}
 
         <h3>Masukan</h3>
         <table id="table_criteriastep2_suggestion" class="table table-bordered table-striped">
@@ -100,6 +101,7 @@
                 @endforeach
             </tbody>
         </table>
+        {!! $data_suggestion->render() !!}
     </div>
 </div>
 @endsection

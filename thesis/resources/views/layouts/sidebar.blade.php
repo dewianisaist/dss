@@ -77,7 +77,8 @@
 <li {{ explode( ".",\Request::route()->getName() )[0] == 'criterias' || 
   explode( ".",\Request::route()->getName() )[0] == 'questionnaire' ||
   explode( ".",\Request::route()->getName() )[0] == 'resultstep1' ||
-  explode( ".",\Request::route()->getName() )[0] == 'criteriastep2' 
+  explode( ".",\Request::route()->getName() )[0] == 'criteriastep2' ||
+  explode( ".",\Request::route()->getName() )[0] == 'criteriagroup' 
   ? 'class=active treeview menu-open' : '' }}>
   @if(Auth::user()->roleId() == 1)
     <a href="{{ route('criterias.index') }}">
@@ -106,11 +107,8 @@
       <li {{ substr( \Request::route()->getName(), 0, 14 ) == 'criteriastep2.' ? 'class=active' : '' }}>
         <a href="{{ route('criteriastep2.index') }}"><i class="fa fa-list"></i> Kriteria Tahap 2</a>
       </li>
-      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
-        <a href=""><i class="fa fa-list"></i> Level Hierarki</a>
-      </li>
-      <li {{ substr( \Request::route()->getName(), 0, 10 ) == 'criterias.' ? 'class=active' : '' }}>
-        <a href=""><i class="fa fa-list"></i> Sistem Hierarki</a>
+      <li {{ substr( \Request::route()->getName(), 0, 14 ) == 'criteriagroup.' ? 'class=active' : '' }}>
+        <a href="{{ route('criteriagroup.index') }}"><i class="fa fa-list"></i> Hierarki Kriteria</a>
       </li>
     @endif
   </ul>

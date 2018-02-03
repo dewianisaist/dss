@@ -59,7 +59,9 @@ class QuestionnaireController extends Controller
                                     $query->select('criteria_id')
                                     ->from(with(new Choice)->getTable())
                                     ->where('suggestion', 1);
-                                })->orderBy('name','ASC')->get();
+                                })
+                                ->where('description','<>','null')
+                                ->orderBy('id','DESC')->get();
                                 
         return view('questionnaire.create',compact('criteria', 'i'));
     }
