@@ -164,12 +164,9 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('criteriastep2',['as'=>'criteriastep2.index','uses'=>'CriteriaStep2Controller@index']);
 	Route::get('criteriastep2/create',['as'=>'criteriastep2.create','uses'=>'CriteriaStep2Controller@create']);
 	Route::post('criteriastep2/create',['as'=>'criteriastep2.store','uses'=>'CriteriaStep2Controller@store']);
-	Route::get('criteriastep2_standart/{id}/edit',['as'=>'criteriastep2_standart.edit','uses'=>'CriteriaStep2Controller@edit_standart']);
-	Route::patch('criteriastep2_standart/{id}',['as'=>'criteriastep2_standart.update','uses'=>'CriteriaStep2Controller@update_standart']);
-	Route::delete('criteriastep2_standart/{id}',['as'=>'criteriastep2_standart.destroy','uses'=>'CriteriaStep2Controller@destroy_standart']);
-	Route::get('criteriastep2_suggest/{id}/edit',['as'=>'criteriastep2_suggest.edit','uses'=>'CriteriaStep2Controller@edit_suggest']);
-	Route::patch('criteriastep2_suggest/{id}',['as'=>'criteriastep2_suggest.update','uses'=>'CriteriaStep2Controller@update_suggest']);
-	Route::delete('criteriastep2_suggest/{id}',['as'=>'criteriastep2_suggest.destroy','uses'=>'CriteriaStep2Controller@destroy_suggest']);
+	Route::get('criteriastep2/{id}/edit',['as'=>'criteriastep2.edit','uses'=>'CriteriaStep2Controller@edit']);
+	Route::patch('criteriastep2/{id}',['as'=>'criteriastep2.update','uses'=>'CriteriaStep2Controller@update']);
+	Route::delete('criteriastep2/{id}',['as'=>'criteriastep2.destroy','uses'=>'CriteriaStep2Controller@destroy']);
 
 	//criteriagroup - ada permission, belum ditambahkan
 	Route::get('criteriagroup',['as'=>'criteriagroup.index','uses'=>'CriteriaGroupController@index']);
@@ -178,7 +175,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('criteriagroup/{id}/edit',['as'=>'criteriagroup.edit','uses'=>'CriteriaGroupController@edit']);
 	Route::patch('criteriagroup/{id}',['as'=>'criteriagroup.update','uses'=>'CriteriaGroupController@update']);
 	Route::get('criteriagroup/{id}/editgroup',['as'=>'criteriagroup.edit_group','uses'=>'CriteriaGroupController@edit_group']);
-	Route::patch('criteriagroup/{idgroup}',['as'=>'criteriagroup.update_group','uses'=>'CriteriaGroupController@update_group']);
+	Route::patch('criteriagroup/{id}/editgroup',['as'=>'criteriagroup.update_group','uses'=>'CriteriaGroupController@update_group']);
 	Route::delete('criteriagroup/{id}',['as'=>'criteriagroup.destroy','uses'=>'CriteriaGroupController@destroy']);
 	Route::get('criteriagroup/{id}',['as'=>'criteriagroup.clear','uses'=>'CriteriaGroupController@clear']);
 	

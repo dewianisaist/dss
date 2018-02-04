@@ -58,7 +58,7 @@
                 <tr>
                     <th>No</th>
                     <th>Kriteria</th>
-                    <th>Penjelasan Kriteria <small>(beserta sumber pustaka)</small></th>
+                    <th>Penjelasan Kriteria</th>
                 </tr>
             </thead>
             <tbody>

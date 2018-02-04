@@ -78,7 +78,7 @@ class CriteriaStep2Controller extends Controller
      */
     public function create()
     {
-        //
+        return view('criteria_step2.create');
     }
 
     /**
@@ -89,7 +89,28 @@ class CriteriaStep2Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+           ]);
+    
+        Criteria::create([
+            'name' => request('name'),
+            'description' => request('description'),
+            'status' => '1'
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        Choice::create([
+            'user_id' => $user,
+            'criteria_id'=> '???',
+            'option' => '1',
+            'suggestion' => '1'
+        ]);
+
+        return redirect()->route('criteriastep2.index')
+                         ->with('success','Kriteria berhasil dibuat');
     }
 
     /**
@@ -98,9 +119,11 @@ class CriteriaStep2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit_standart($id)
+    public function edit($id)
     {
-        //
+        $criteria = Criteria::find($id);
+
+        return view('criteria_step2.edit',compact('criteria'));
     }
 
     /**
@@ -110,9 +133,9 @@ class CriteriaStep2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update_standart(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        //
+        //data yang lama tetap disimpan karena dimunculin di result step 1 dan kuesioner
     }
 
     /**
@@ -121,43 +144,9 @@ class CriteriaStep2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy_standart($id)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit_suggest($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update_suggest(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy_suggest($id)
-    {
-        //
+        //data yang lama tetap disimpan karena dimunculin di result step 1 dan kuesioner
     }
 
 }

@@ -55,10 +55,10 @@
                         <td>{{ $data_baku->sum }} dari {{ $data_baku->count }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
-                            <a class="btn btn-primary" href="{{ route('criteriastep2_standart.edit',$data_baku->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_baku->id) }}">Edit</a>
                             {{--  @endpermission  --}}
                             {{--  @permission('criteriastep2-delete')  --}}
-                            {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2_standart.destroy', $data_baku->id],'style'=>'display:inline']) !!}
+                            {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2.destroy', $data_baku->id],'style'=>'display:inline']) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                             {{--  @endpermission --}}
@@ -75,7 +75,7 @@
                 <tr>
                     <th>No</th>
                     <th>Kriteria</th>
-                    <th>Penjelasan Kriteria <small>(beserta sumber pustaka)</small></th>
+                    <th>Penjelasan Kriteria</th>
                     <th>Pengusul</th>
                     <th>Aksi</th>
                 </tr>
@@ -89,10 +89,10 @@
                         <td>{{ $data_masukan->user->name }}</td>
                         <td>
                             {{--  @permission('selectionschedule-edit')  --}}
-                            <a class="btn btn-primary" href="{{ route('criteriastep2_suggest.edit',$data_masukan->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_masukan->criteria->id) }}">Edit</a>
                             {{--  @endpermission  --}}
                             {{--  @permission('selectionschedule-delete')  --}}
-                            {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2_suggest.destroy', $data_masukan->id],'style'=>'display:inline']) !!}
+                            {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2.destroy', $data_masukan->criteria->id],'style'=>'display:inline']) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                             {{--  @endpermission --}}
