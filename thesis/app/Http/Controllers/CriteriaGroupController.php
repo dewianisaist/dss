@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Models\User;
+use App\Http\Models\Choice;
 use App\Http\Models\Criteria;
 use Auth;
 use DB;
@@ -17,16 +19,38 @@ class CriteriaGroupController extends Controller
      */
     public function index(Request $request)
     {
-        $i = 0;
-        $criteria_group = DB::table('criterias AS cr')
-                            ->select(DB::raw('cr.id, cr.name, cr.description, (select name from criterias where id = (select group_criteria from criterias as cri where cri.id = cr.id)) AS group_name'))
-                            ->where('cr.status','=','1')
-                            ->orderBy('cr.id','DESC')
-                            ->get();
+        $role_id = Auth::user()->roleId();
+        $user = User::find(Auth::user()->id);
+        $data = Choice::where('user_id', '=', $user->id)->first();
 
-        // SELECT name, description, (select name from criterias where id = (select group_criteria from criterias as cri where cri.id = cr.id)) FROM `criterias` as cr where status = 1
+        if ($role_id == 3 || $role_id == 4 || $role_id == 5 ||$role_id == 6) { 
+            if ($user->id == 1) {
+                $i = 0;
+                $criteria_group = DB::table('criterias AS cr')
+                                    ->select(DB::raw('cr.id, cr.name, cr.description, (select name from criterias where id = (select group_criteria from criterias as cri where cri.id = cr.id)) AS group_name'))
+                                    ->where('cr.status','=','1')
+                                    ->orderBy('cr.id','DESC')
+                                    ->get();
 
-        return view('criteria_group.index',compact('criteria_group', 'i'));
+                return view('criteria_group.index',compact('criteria_group', 'i'));
+            }
+
+            if ($data == null) {
+                return redirect()->route('questionnaire.create')
+                                ->with('failed','Maaf, silahkan isi kuesioner kriteria dahulu.');
+            } else {
+                $i = 0;
+                $criteria_group = DB::table('criterias AS cr')
+                                    ->select(DB::raw('cr.id, cr.name, cr.description, (select name from criterias where id = (select group_criteria from criterias as cri where cri.id = cr.id)) AS group_name'))
+                                    ->where('cr.status','=','1')
+                                    ->orderBy('cr.id','DESC')
+                                    ->get();
+
+                return view('criteria_group.index',compact('criteria_group', 'i'));
+            }
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -36,7 +60,23 @@ class CriteriaGroupController extends Controller
      */
     public function create()
     {
-        return view('criteria_group.create');
+        $role_id = Auth::user()->roleId();
+        $user = User::find(Auth::user()->id);
+        $data = Choice::where('user_id', '=', $user->id)->first();
+
+        if ($role_id == 3 || $role_id == 4 || $role_id == 5 ||$role_id == 6) {
+            if ($user->id == 1) {
+                return view('criteria_group.create');
+            }
+            if ($data == null) {
+                return redirect()->route('questionnaire.create')
+                                ->with('failed','Maaf, silahkan isi kuesioner kriteria dahulu.');
+            } else {
+                return view('criteria_group.create');
+            }
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -63,13 +103,36 @@ class CriteriaGroupController extends Controller
      */
     public function edit($id)
     {
-        $criteria = Criteria::find($id);
-        $criteria_group = Criteria::where('group_criteria','=',null)
-                                    ->where('description','=',null)
-                                    ->lists('name','id')
-                                    ->all();
+        $role_id = Auth::user()->roleId();
+        $user = User::find(Auth::user()->id);
+        $data = Choice::where('user_id', '=', $user->id)->first();
 
-        return view('criteria_group.edit',compact('criteria', 'criteria_group'));
+        if ($role_id == 3 || $role_id == 4 || $role_id == 5 ||$role_id == 6) {
+            if ($user->id == 1) {
+                $criteria = Criteria::find($id);
+                $criteria_group = Criteria::where('group_criteria','=',null)
+                                            ->where('description','=',null)
+                                            ->lists('name','id')
+                                            ->all();
+
+                return view('criteria_group.edit',compact('criteria', 'criteria_group'));
+            }
+
+            if ($data == null) {
+                return redirect()->route('questionnaire.create')
+                                ->with('failed','Maaf, silahkan isi kuesioner kriteria dahulu.');
+            } else {
+                $criteria = Criteria::find($id);
+                $criteria_group = Criteria::where('group_criteria','=',null)
+                                            ->where('description','=',null)
+                                            ->lists('name','id')
+                                            ->all();
+
+                return view('criteria_group.edit',compact('criteria', 'criteria_group'));
+            }
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -80,9 +143,28 @@ class CriteriaGroupController extends Controller
      */
     public function edit_group($id)
     {
-        $criteria_group = Criteria::find($id);
+        $role_id = Auth::user()->roleId();
+        $user = User::find(Auth::user()->id);
+        $data = Choice::where('user_id', '=', $user->id)->first();
 
-        return view('criteria_group.edit_group',compact('criteria_group'));
+        if ($role_id == 3 || $role_id == 4 || $role_id == 5 ||$role_id == 6) {
+            if ($user->id == 1) {
+                $criteria_group = Criteria::find($id);
+
+                return view('criteria_group.edit_group',compact('criteria_group'));
+            }
+
+            if ($data == null) {
+                return redirect()->route('questionnaire.create')
+                                ->with('failed','Maaf, silahkan isi kuesioner kriteria dahulu.');
+            } else {
+                $criteria_group = Criteria::find($id);
+
+                return view('criteria_group.edit_group',compact('criteria_group'));
+            }
+        } else {
+            return redirect()->route('profile_users.show');
+        }
     }
 
     /**
@@ -138,7 +220,6 @@ class CriteriaGroupController extends Controller
     public function clear($id)
     {
         Criteria::where('id', $id)->update(['group_criteria' => null]);
-        // update criterias set criterias.group_criteria = null where id = 25
 
         return redirect()->route('criteriagroup.index')
                         ->with('success','Kelompok kriteria berhasil dikosongkan');
