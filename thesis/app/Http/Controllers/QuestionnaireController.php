@@ -74,6 +74,18 @@ class QuestionnaireController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+           ]);
+    
+        $input = $request->all();
+        $input['user_id'] = User::find(Auth::user()->id);
+        $input['suggestion'] = '0';
+        Choice::create($input);
+
+        return redirect()->route('criterias.index')
+                         ->with('success','Kriteria berhasil dibuat');
         // criteria_id dari input
         // value option dari input
         // user_id dari auth 

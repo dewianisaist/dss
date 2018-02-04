@@ -177,6 +177,9 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('criteriagroup/create',['as'=>'criteriagroup.store','uses'=>'CriteriaGroupController@store']);
 	Route::get('criteriagroup/{id}/edit',['as'=>'criteriagroup.edit','uses'=>'CriteriaGroupController@edit']);
 	Route::patch('criteriagroup/{id}',['as'=>'criteriagroup.update','uses'=>'CriteriaGroupController@update']);
+	Route::get('criteriagroup/{id}/editgroup',['as'=>'criteriagroup.edit_group','uses'=>'CriteriaGroupController@edit_group']);
+	Route::patch('criteriagroup/{idgroup}',['as'=>'criteriagroup.update_group','uses'=>'CriteriaGroupController@update_group']);
 	Route::delete('criteriagroup/{id}',['as'=>'criteriagroup.destroy','uses'=>'CriteriaGroupController@destroy']);
+	Route::get('criteriagroup/{id}',['as'=>'criteriagroup.clear','uses'=>'CriteriaGroupController@clear']);
 	
 });

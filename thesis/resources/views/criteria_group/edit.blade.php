@@ -10,7 +10,7 @@
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-  <li><a href="{{ route('criteriagroup.index') }}"><i class="fa fa-list"></i> Manajemen Hierarki (Kelompok Kriteria)</a></li>
+  <li><a href="{{ route('criteriagroup.index') }}"><i class="fa fa-list"></i> Hierarki (Kelompok Kriteria)</a></li>
   <li class="active">Edit Kriteria</li>
 </ol>
 @endsection
@@ -39,7 +39,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
 						<strong>Kelompok kriteria:</strong>
-						{!! Form::select('group_criteria',  [null => 'Pilih kelompok kriteria'] + $criteria_group, null, array('class' => 'form-control')) !!}
+						{!! Form::select('group_criteria', $criteria_group, null, array('class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">

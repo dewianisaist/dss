@@ -24,11 +24,10 @@
 				<li><strong>Kelompok kriteria minimal harus terdiri dari tiga kriteria</strong>, jika kurang dari itu maka tidak perlu dikelompokkan.</li>
 				<li><strong>Langkah</strong> untuk membuat hierarki (kelompok kriteria)</li>
 				<ul>
-					<li><strong>Buat kelompok kriteria</strong> dengan cara klik tombol <strong>"Tambahkan Kelompok"</strong></li>
+					<li><strong>Buat kelompok kriteria</strong> dengan cara klik tombol <strong>"Tambahkan Kelompok"</strong>.</li>
 					<li><strong>Tentukan kriteria</strong> mana saja yang termasuk dalam kelompok kriteria tersebut, 
-						dengan klik tombol <strong>"Edit"</strong>, kemudian <strong>masukkan nama kelompok</strong> yang sesuai</li>
-					<li>Jika terdapat <strong>kesalahan dalam penulisan</strong> kelompok kriteria maka klik tombol <strong>"Delete"</strong> 
-						kelompok kriteria tersebut kemudian buat ulang dengan klik tombol <strong>"Tambahkan Kelompok"</strong></li>
+						dengan klik tombol <strong>"Edit"</strong>, kemudian <strong>masukkan nama kelompok</strong> yang sesuai.</li>
+					<li>Tombol <strong>Clear</strong> digunakan untuk <strong>mengkosongkan kelompok kriteria.</strong></li>
 				</ul>
 			</ul>
 		</div>
@@ -72,13 +71,19 @@
 								<h4><span class="label label-info">Kelompok Kriteria</span></h4>
 							@endif
 						</td>
-						<td>{{ $kelompok_kriteria->group_criteria }}</td>
+						<td>{{ $kelompok_kriteria->group_name }}</td>
 						<td>
 							@if(isset($kelompok_kriteria->description))
 								{{--  @permission('criteriagroup-edit')  --}}
 								<a class="btn btn-primary" href="{{ route('criteriagroup.edit',$kelompok_kriteria->id) }}">Edit</a>
 								{{--  @endpermission  --}}
+								{{--  @permission('criteriagroup-clear')  --}}
+								<a class="btn btn-primary" href="{{ route('criteriagroup.clear',$kelompok_kriteria->id) }}">Clear</a>
+								{{--  @endpermission  --}}
 							@else
+								{{--  @permission('criteriagroup-edit-group')  --}}
+								<a class="btn btn-primary" href="{{ route('criteriagroup.edit_group',$kelompok_kriteria->id) }}">Edit</a>
+								{{--  @endpermission  --}}
 								{{--  @permission('criteriagroup-delete')  --}}
 								{!! Form::open(['method' => 'DELETE','route' => ['criteriagroup.destroy', $kelompok_kriteria->id],'style'=>'display:inline']) !!}
 								{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
@@ -90,7 +95,6 @@
 				@endforeach
 			</tbody>
 		</table>
-		{!! $criteria_group->render() !!}
 	</div>
 </div>	
 @endsection

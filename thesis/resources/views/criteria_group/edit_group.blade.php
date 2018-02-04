@@ -6,15 +6,15 @@
   
 @section('content_header')
 <h1>
-  Buat Kelompok Kriteria
+  Edit Kelompok Kriteria 
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
   <li><a href="{{ route('criteriagroup.index') }}"><i class="fa fa-list"></i> Hierarki (Kelompok Kriteria)</a></li>
-  <li class="active">Buat Kelompok Kriteria</li>
+  <li class="active">Edit Kelompok Kriteria</li>
 </ol>
 @endsection
-
+ 
 @section('content')
 <div class="box box-primary">
     <div class="box-body">
@@ -28,7 +28,7 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::open(array('route' => 'criteriagroup.store','method'=>'POST')) !!}
+		{!! Form::model($criteria_group, ['method' => 'PATCH','route' => ['criteriagroup.update_group', $criteria_group->id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
