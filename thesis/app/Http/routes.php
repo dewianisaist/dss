@@ -113,20 +113,20 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('subvocationals/{id}',['as'=>'subvocationals.update','uses'=>'SubvocationalController@update']);
 	Route::delete('subvocationals/{id}',['as'=>'subvocationals.destroy','uses'=>'SubvocationalController@destroy']);
 
-	//selectionschedule - ada permission, belum ditambahkan
-	Route::get('selectionschedules',['as'=>'selectionschedules.index','uses'=>'SelectionScheduleController@index']);
-	Route::get('selectionschedules/create',['as'=>'selectionschedules.create','uses'=>'SelectionScheduleController@create']);
-	Route::post('selectionschedules/create',['as'=>'selectionschedules.store','uses'=>'SelectionScheduleController@store']);
+	//selectionschedule - ada permission
+	Route::get('selectionschedules',['as'=>'selectionschedules.index','uses'=>'SelectionScheduleController@index','middleware' => ['permission:selectionschedule-list|selectionschedule-create|selectionschedule-edit|selectionschedule-delete']]);
+	Route::get('selectionschedules/create',['as'=>'selectionschedules.create','uses'=>'SelectionScheduleController@create','middleware' => ['permission:selectionschedule-create']]);
+	Route::post('selectionschedules/create',['as'=>'selectionschedules.store','uses'=>'SelectionScheduleController@store','middleware' => ['permission:selectionschedule-create']]);
 	Route::get('selectionschedules/{id}',['as'=>'selectionschedules.show','uses'=>'SelectionScheduleController@show']);
-	Route::get('selectionschedules/{id}/edit',['as'=>'selectionschedules.edit','uses'=>'SelectionScheduleController@edit']);
-	Route::patch('selectionschedules/{id}',['as'=>'selectionschedules.update','uses'=>'SelectionScheduleController@update']);
-	Route::delete('selectionschedules/{id}',['as'=>'selectionschedules.destroy','uses'=>'SelectionScheduleController@destroy']);
+	Route::get('selectionschedules/{id}/edit',['as'=>'selectionschedules.edit','uses'=>'SelectionScheduleController@edit','middleware' => ['permission:selectionschedule-edit']]);
+	Route::patch('selectionschedules/{id}',['as'=>'selectionschedules.update','uses'=>'SelectionScheduleController@update','middleware' => ['permission:selectionschedule-edit']]);
+	Route::delete('selectionschedules/{id}',['as'=>'selectionschedules.destroy','uses'=>'SelectionScheduleController@destroy','middleware' => ['permission:selectionschedule-delete']]);
 
-	//selections - ada permission, belum ditambahkan
-	Route::get('selections',['as'=>'selections.index','uses'=>'SelectionController@index']);
+	//selections - ada permission
+	Route::get('selections',['as'=>'selections.index','uses'=>'SelectionController@index','middleware' => ['permission:selection-list|selection-edit']]);
 	Route::get('selections/{id}',['as'=>'selections.show','uses'=>'SelectionController@show']);
-	Route::get('selections/{id}/edit',['as'=>'selections.edit','uses'=>'SelectionController@edit']);
-	Route::patch('selections/{id}',['as'=>'selections.update','uses'=>'SelectionController@update']);
+	Route::get('selections/{id}/edit',['as'=>'selections.edit','uses'=>'SelectionController@edit','middleware' => ['permission:selection-edit']]);
+	Route::patch('selections/{id}',['as'=>'selections.update','uses'=>'SelectionController@update','middleware' => ['permission:selection-edit']]);
 	
 	//criterias - tidak ada permission
 	Route::get('criterias',['as'=>'criterias.index','uses'=>'CriteriaController@index']);

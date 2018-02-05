@@ -50,9 +50,9 @@
 						<td>{{ $selection->interview_value }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('selections.show',$selection->id) }}">Detail</a>
-							{{--  @permission('selection-edit')  --}}
+							@permission('selection-edit')
 							<a class="btn btn-primary" href="{{ route('selections.edit',$selection->id) }}">Input Nilai Seleksi</a>
-							{{--  @endpermission  --}}
+							@endpermission
 						</td>
 					</tr>
 				@endforeach

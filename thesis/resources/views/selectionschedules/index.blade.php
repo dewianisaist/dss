@@ -27,9 +27,9 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  @permission('selectionschedule-create')  --}}
+					@permission('selectionschedule-create')
 					<a class="btn btn-success" href="{{ route('selectionschedules.create') }}"> Tambahkan Jadwal Seleksi</a>
-					{{--  @endpermission  --}}
+					@endpermission
 				</div>
 			</div>
 		</div>
@@ -58,14 +58,14 @@
 						<td>{{ $selectionschedule->information }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('selectionschedules.show',$selectionschedule->id) }}">Detail</a>
-							{{--  @permission('selectionschedule-edit')  --}}
+							@permission('selectionschedule-edit')
 							<a class="btn btn-primary" href="{{ route('selectionschedules.edit',$selectionschedule->id) }}">Edit</a>
-							{{--  @endpermission  --}}
-							{{--  @permission('selectionschedule-delete')  --}}
+							@endpermission
+							@permission('selectionschedule-delete')
 							{!! Form::open(['method' => 'DELETE','route' => ['selectionschedules.destroy', $selectionschedule->id],'style'=>'display:inline']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 							{!! Form::close() !!}
-							{{--  @endpermission --}}
+							@endpermission
 						</td>
 					</tr>
 				@endforeach

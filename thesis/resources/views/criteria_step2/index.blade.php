@@ -88,10 +88,10 @@
                         <td>{{ $data_masukan->criteria->description }}</td>
                         <td>{{ $data_masukan->user->name }}</td>
                         <td>
-                            {{--  @permission('selectionschedule-edit')  --}}
+                            {{--  @permission('criteriastep2-edit')  --}}
                             <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_masukan->criteria->id) }}">Edit</a>
                             {{--  @endpermission  --}}
-                            {{--  @permission('selectionschedule-delete')  --}}
+                            {{--  @permission('criteriastep2-delete')  --}}
                             {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2.destroy', $data_masukan->criteria->id],'style'=>'display:inline']) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
