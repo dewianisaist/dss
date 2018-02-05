@@ -125,9 +125,14 @@
 {{--  All user except pendaftar can see "Penilaian"  --}}
 @if(Auth::user()->roleId() == 1 || Auth::user()->roleId() == 3 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
 <li {{ explode( ".",\Request::route()->getName() )[0] == 'preferences' || 
+  explode( ".",\Request::route()->getName() )[0] == 'conversions' ||
   explode( ".",\Request::route()->getName() )[0] == 'preferences' 
   ? 'class=active treeview menu-open' : '' }}>
-  <a href="{{ route('preferences.index') }}">
+  @if(Auth::user()->roleId() == 3)
+    <a href="{{ route('preferences.index') }}">
+  @elseif(Auth::user()->roleId() == 1 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
+    <a href="{{ route('preferences.index') }}">
+  @endif
     <i class="fa fa-hourglass-half"></i>
     <span>Penilaian</span>
     <span class="pull-right-container">
@@ -139,6 +144,9 @@
     @if(Auth::user()->roleId() == 3)
       <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'preferences.' ? 'class=active' : '' }}>
         <a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a>
+      </li>
+      <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'conversions.' ? 'class=active' : '' }}>
+        <a href="{{ route('conversions.index') }}"><i class="fa fa-hourglass-half"></i> Sumber Nilai Kriteria</a>
       </li>
     @endif
     <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'preferences.' ? 'class=active' : '' }}>

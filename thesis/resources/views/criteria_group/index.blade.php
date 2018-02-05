@@ -49,7 +49,7 @@
 		</div>
 	
 		<br/>
-    	<table id="criteriagroup" class="table table-bordered table-striped">
+    	<table id="table_criteriagroup" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>No</th>

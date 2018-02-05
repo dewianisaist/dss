@@ -41,14 +41,14 @@
 						<strong>Tipe Preferensi:</strong>
             {!! Form::select('preference', 
               array(
-                  'Tipe 1' => 'Tipe 1', 
-                  'Tipe 2' => 'Tipe 2',
-                  'Tipe 3' => 'Tipe 3',
-                  'Tipe 4' => 'Tipe 4',
-                  'Tipe 5' => 'Tipe 5',
-                  'Tipe 6' => 'Tipe 6'
+                  'Tipe 1' => 'Tipe 1: Usual Criterion', 
+                  'Tipe 2' => 'Tipe 2: U-shape Criterion',
+                  'Tipe 3' => 'Tipe 3: V-shape Criterion',
+                  'Tipe 4' => 'Tipe 4: Level Criterion',
+                  'Tipe 5' => 'Tipe 5: V-shape with indifference Criterion',
+                  'Tipe 6' => 'Tipe 6: Gaussian Criterion'
               ), 
-              isset($preference->preference) ? $preference->preference : '', array('class' => 'form-control')) 
+              isset($preference->preference) ? $preference->preference : '', array('class' => 'form-control', 'id' => 'preference')) 
             !!}
 					</div>
 				</div>
@@ -64,19 +64,19 @@
             !!}
 					</div>
 				</div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div id="parameter_p" class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
 						<strong>Parameter p:</strong>
 						{!! Form::text('parameter_p', isset($preference->parameter_p) ? $preference->parameter_p : '', array('placeholder' => 'Parameter p','class' => 'form-control')) !!}
 					</div>
 				</div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div id="parameter_q" class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
 						<strong>Parameter q:</strong>
 						{!! Form::text('parameter_q', isset($preference->parameter_q) ? $preference->parameter_q : '', array('placeholder' => 'Parameter q','class' => 'form-control')) !!}
 					</div>
 				</div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div id="parameter_s" class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
 						<strong>Parameter s:</strong>
 						{!! Form::text('parameter_s', isset($preference->parameter_s) ? $preference->parameter_s : '', array('placeholder' => 'Parameter s','class' => 'form-control')) !!}
@@ -89,4 +89,37 @@
 		{!! Form::close() !!}
 	</div>
 </div>
+@endsection
+
+@section('js')
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+  $(function () {
+    $("#preference").change(function () {
+			$( "#preference option:selected").each(function(){
+        if ($(this).val() == "Tipe 1") {
+					$("#parameter_p").hide();
+					$("#parameter_q").hide();
+					$("#parameter_s").hide();
+        } else if ($(this).val() == "Tipe 2") {
+					$("#parameter_p").hide();
+					$("#parameter_q").show();
+					$("#parameter_s").hide();
+        } else if ($(this).val() == "Tipe 3") {
+					$("#parameter_p").show();
+					$("#parameter_q").hide();
+					$("#parameter_s").hide();
+        } else if ($(this).val() == "Tipe 4" || $(this).val() == "Tipe 5") {
+					$("#parameter_p").show();
+					$("#parameter_q").show();
+					$("#parameter_s").hide();
+				} else {
+					$("#parameter_p").hide();
+					$("#parameter_q").hide();
+					$("#parameter_s").show();
+				}
+			});
+		}).change();
+  });
+</script>
 @endsection
