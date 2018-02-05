@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 01, 2018 at 02:51 AM
+-- Generation Time: Feb 05, 2018 at 10:23 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -83,7 +83,7 @@ CREATE TABLE `conversions` (
   `criteria_id` int(11) NOT NULL,
   `resource` varchar(255) DEFAULT NULL,
   `range_value_1` varchar(100) DEFAULT NULL,
-  `range_value_2` varchar(100) NOT NULL,
+  `range_value_2` varchar(100) DEFAULT NULL,
   `conversion_value` decimal(5,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
