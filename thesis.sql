@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 05, 2018 at 10:23 AM
+-- Generation Time: Feb 06, 2018 at 08:01 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -595,8 +595,9 @@ CREATE TABLE `selections` (
   `selection_schedule_id` int(11) NOT NULL,
   `written_value` decimal(5,2) DEFAULT NULL,
   `interview_value` varchar(15) DEFAULT NULL,
-  `ranking` varchar(5) NOT NULL,
-  `status` varchar(15) NOT NULL,
+  `recommendation` varchar(100) DEFAULT NULL,
+  `ranking` varchar(5) DEFAULT NULL,
+  `status` varchar(15) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -605,19 +606,19 @@ CREATE TABLE `selections` (
 -- Dumping data for table `selections`
 --
 
-INSERT INTO `selections` (`id`, `registration_id`, `selection_schedule_id`, `written_value`, `interview_value`, `ranking`, `status`, `created_at`, `updated_at`) VALUES
-(1, 5, 3, '80.00', 'Baik', '', '', '2015-02-01 17:00:00', '2018-01-29 02:42:29'),
-(2, 1, 2, '85.00', 'Sangat Baik', '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(3, 4, 2, '40.00', 'Baik', '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(4, 6, 2, '60.00', 'Kurang', '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(5, 7, 2, '75.00', 'Cukup', '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(6, 8, 2, '45.00', 'Sangat Baik', '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(7, 9, 2, '55.00', 'Cukup', '', '', '2016-07-10 17:00:00', '2018-01-29 02:42:11'),
-(8, 10, 7, NULL, NULL, '', 'Diterima', '2018-01-30 20:00:56', '2018-01-30 20:00:56'),
-(11, 13, 7, NULL, NULL, '', 'Diterima', '2018-01-30 23:42:09', '2018-01-30 23:42:09'),
-(13, 15, 10, NULL, NULL, '', 'Gagal', '2018-01-30 23:52:01', '2018-01-30 23:52:01'),
-(18, 20, 7, NULL, NULL, '', 'Gagal', '2018-01-31 01:32:41', '2018-01-31 01:32:41'),
-(19, 21, 1, NULL, NULL, '', '', '2018-01-31 01:35:46', '2018-01-31 01:35:46');
+INSERT INTO `selections` (`id`, `registration_id`, `selection_schedule_id`, `written_value`, `interview_value`, `recommendation`, `ranking`, `status`, `created_at`, `updated_at`) VALUES
+(1, 5, 3, '80.00', 'Baik', NULL, '', '', '2015-02-01 17:00:00', '2018-01-29 02:42:29'),
+(2, 1, 2, '85.00', 'Sangat Baik', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
+(3, 4, 2, '40.00', 'Baik', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
+(4, 6, 2, '60.00', 'Kurang', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
+(5, 7, 2, '75.00', 'Cukup', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
+(6, 8, 2, '45.00', 'Sangat Baik', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
+(7, 9, 2, '55.00', 'Cukup', NULL, '', '', '2016-07-10 17:00:00', '2018-01-29 02:42:11'),
+(8, 10, 7, NULL, NULL, NULL, '', 'Diterima', '2018-01-30 20:00:56', '2018-01-30 20:00:56'),
+(11, 13, 7, NULL, NULL, NULL, '', 'Diterima', '2018-01-30 23:42:09', '2018-01-30 23:42:09'),
+(13, 15, 10, NULL, NULL, NULL, '', 'Gagal', '2018-01-30 23:52:01', '2018-01-30 23:52:01'),
+(18, 20, 7, NULL, NULL, NULL, '', 'Gagal', '2018-01-31 01:32:41', '2018-01-31 01:32:41'),
+(19, 21, 1, NULL, NULL, NULL, '', '', '2018-01-31 01:35:46', '2018-01-31 01:35:46');
 
 -- --------------------------------------------------------
 
