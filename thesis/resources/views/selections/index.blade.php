@@ -35,6 +35,7 @@
 					<th>Waktu Seleksi</th>
 					<th>Nilai Tes Tertulis</th>
 					<th>Nilai Tes Wawancara</th>
+					<th>Rekomendasi</th>
 					<th width="280px">Aksi</th>
 				</tr>
 			</thead>
@@ -48,6 +49,7 @@
 						<td>{{ $selection->time }}</td>
 						<td>{{ $selection->written_value }}</td>
 						<td>{{ $selection->interview_value }}</td>
+						<td>{{ $selection->recommendation }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('selections.show',$selection->id) }}">Detail</a>
 							@permission('selection-edit')

@@ -28,31 +28,32 @@
 				</ul>
 			</div>
 		@endif
+
 		{!! Form::model($selection, ['method' => 'PATCH','route' => ['selections.update', $selection->id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-            <strong>Nama Pendaftar:</strong>
+            			<strong>Nama Pendaftar:</strong>
 						{!! Form::text('name_registrant', isset($selection->name_registrant) ? $selection->name_registrant : '', array('class' => 'form-control','disabled')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-            <strong>Sub-Kejuruan:</strong>
+            			<strong>Sub-Kejuruan:</strong>
 						{!! Form::text('name_sub_vocational', isset($selection->name_sub_vocational) ? $selection->name_sub_vocational: '', array('class' => 'form-control','disabled')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-            <strong>Tanggal:</strong>
+            			<strong>Tanggal:</strong>
 						{!! Form::text('date', isset($selection->date) ? $selection->date : '', array('class' => 'form-control pull-right','disabled')) !!}
-          </div>
+          			</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-            <strong>Waktu:</strong>
+            			<strong>Waktu:</strong>
 						{!! Form::text('time', isset($selection->time) ? $selection->time : '', array('class' => 'form-control pull-right','disabled')) !!}
-          </div>
+          			</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
@@ -72,6 +73,18 @@
 								'Sangat Kurang' => 'Sangat Kurang'
 							), 
 							isset($selection->interview_value) ? $selection->interview_value : '', array('class' => 'form-control')) 
+						!!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Rekomendasi:</strong>
+						{!! Form::select('recommendation', 
+							array(
+								'Ya' => 'Ya', 
+								'Tidak' => 'Tidak',
+							), 
+							isset($selection->recommendation) ? $selection->recommendation : '', array('class' => 'form-control')) 
 						!!}
 					</div>
 				</div>

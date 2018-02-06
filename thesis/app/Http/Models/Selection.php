@@ -8,7 +8,7 @@ class Selection extends Model
 {
     protected $table = 'selections';
     
-    public $fillable = ['registration_id', 'selection_schedule_id', 'written_value', 'interview_value', 'ranking', 'status'];
+    public $fillable = ['registration_id', 'selection_schedule_id', 'written_value', 'interview_value', 'recommendation', 'ranking', 'status'];
 
     public function selectionschedule() {
         return $this->belongsTo('App\Http\Models\SelectionSchedule','selection_schedule_id');

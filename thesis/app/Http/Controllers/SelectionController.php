@@ -104,6 +104,7 @@ class SelectionController extends Controller
         $this->validate($request, [
             'written_value' => 'required',
             'interview_value' => 'required',
+            'recommendation' => 'required',
         ]);
 
         $input = $request->all();
