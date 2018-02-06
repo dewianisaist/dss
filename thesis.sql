@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 06, 2018 at 08:01 AM
+-- Generation Time: Feb 06, 2018 at 08:15 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -595,7 +595,7 @@ CREATE TABLE `selections` (
   `selection_schedule_id` int(11) NOT NULL,
   `written_value` decimal(5,2) DEFAULT NULL,
   `interview_value` varchar(15) DEFAULT NULL,
-  `recommendation` varchar(100) DEFAULT NULL,
+  `recommendation` varchar(5) DEFAULT NULL,
   `ranking` varchar(5) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
