@@ -10,6 +10,8 @@ class Choice extends Model
     
     public $fillable = ['user_id', 'criteria_id', 'option', 'suggestion'];
 
+    public $timestamps = false;
+    
     public function user() {
         return $this->belongsTo('App\Http\Models\User');
     }

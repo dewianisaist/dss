@@ -8,6 +8,7 @@ use App\Http\Models\User;
 use App\Http\Models\Choice;
 use App\Http\Models\Criteria;
 use Auth;
+use Carbon;
 
 class QuestionnaireController extends Controller
 {
@@ -23,7 +24,8 @@ class QuestionnaireController extends Controller
 
         if ($user->id == 1) {
             return redirect()->route('questionnaire.create')
-                             ->with('failed','Maaf, peneliti tidak perlu mengisi kuesioner ini.');
+                             ->with('failed','Maaf, peneliti tidak perlu mengisi kuesioner ini.
+                                    Apapun yang disubmit tidak akan tersimpan dalam database');
         }
 
         if ($data == null) {
@@ -33,9 +35,9 @@ class QuestionnaireController extends Controller
             $j = 0;
 
             $data_standart = Choice::with('criteria')
-                                ->where('suggestion', '=', '0')
-                                ->where('user_id', '=', $user->id)
-                                ->get();
+                                    ->where('suggestion', '=', '0')
+                                    ->where('user_id', '=', $user->id)
+                                    ->get();
 
             $data_suggestion = Choice::with('criteria')
                                     ->where('suggestion', '=', '1')
@@ -53,17 +55,23 @@ class QuestionnaireController extends Controller
      */
     public function create(Request $request)
     {
-        $i = 0;
-        $criteria = Criteria::select('*')
-                                ->whereNotIn('id', function($query){
-                                    $query->select('criteria_id')
-                                    ->from(with(new Choice)->getTable())
-                                    ->where('suggestion', 1);
-                                })
-                                ->where('description','<>','null')
-                                ->orderBy('id','DESC')->get();
-                                
-        return view('questionnaire.create',compact('criteria', 'i'));
+        $user = User::find(Auth::user()->id);
+        $data = Choice::where('user_id', '=', $user->id)->first();
+
+        if ($data != null) {
+            return redirect()->route('questionnaire.index');
+        } else {
+            $i = 0;
+            $criteria = Criteria::whereNotIn('id', function($query){
+                                        $query->select('criteria_id')
+                                        ->from(with(new Choice)->getTable())
+                                        ->where('suggestion', 1);
+                                    })
+                                    ->where('description','<>','null')
+                                    ->orderBy('id','DESC')->get();
+                                    
+            return view('questionnaire.create',compact('criteria', 'i'));
+        }
     }
 
     /**
@@ -74,13 +82,83 @@ class QuestionnaireController extends Controller
      */
     public function store(Request $request)
     {
-        // criteria_id dari input
-        // value option dari input
-        // user_id dari auth 
-        // suggestion baku 0
-        
-        // suggestion non baku 1
-        // option default 1
+        $user = User::find(Auth::user()->id);
 
+        if ($user->id == 1) {
+            return redirect()->route('questionnaire.create')
+                             ->with('failed','Maaf, peneliti tidak perlu mengisi kuesioner ini.
+                                    Apapun yang disubmit tidak akan tersimpan dalam database');
+        }
+
+        $input = $request->all();
+        $valid = true;
+
+        $optional = array();
+        $i = 0;
+        foreach ($input["criteriamore"] as $crit) {
+            if (($crit != "") && ($input["descriptionmore"][$i] != "")) {
+                $optional[$i]["criteria"] = $crit;
+                $optional[$i]["description"] = $input["descriptionmore"][$i];
+            } else if (($crit == "") && ($input["descriptionmore"][$i] == "")) {
+
+            } else {
+                $valid = false;
+                break;
+            }
+            $i = $i + 1;
+        }
+
+        $choices = array();
+        if ($valid) {
+            $criteria = Criteria::where('description','<>','null')
+                                    ->whereNotIn('id', function($query){
+                                        $query->select('criteria_id')
+                                        ->from(with(new Choice)->getTable())
+                                        ->where('suggestion', 1);
+                                    })
+                                    ->orderBy('id','DESC')->lists('id');
+            
+            foreach ($criteria as $value) {
+                if (!array_key_exists($value,$input)) {
+                    $valid = false;
+                    break;
+                } else {
+                    $choices[$value] = $input[$value];
+                }
+            }
+        }
+
+        if ($valid) {
+            foreach ($choices as $criteriaid=>$option) {
+                $data["user_id"] = $user->id;
+                $data["criteria_id"] = $criteriaid;
+                $data["option"] = $option;
+                $data["suggestion"] = 0;
+                Choice::create($data);
+            }
+            
+            foreach ($optional as $optionalCriteria) {
+                $dataoptional["name"] = $optionalCriteria["criteria"];
+                $dataoptional["description"] = $optionalCriteria["description"];
+                $dataoptional["status"] = 1;
+                $dataoptional["created_at"] = Carbon\Carbon::now(7)->toDateTimeString();
+                $dataoptional["updated_at"] = $dataoptional["created_at"];
+                $suggest = Criteria::create($dataoptional);
+
+                $optionalChoice["user_id"] = $user->id;
+                $optionalChoice["criteria_id"] = $suggest->id;
+                $optionalChoice["option"] = 1;
+                $optionalChoice["suggestion"] = 1;
+
+                Choice::create($optionalChoice);
+            }
+
+            return redirect()->route('questionnaire.index')
+                             ->with('success','Selamat Anda berhasil mengisi kuesioner kriteria. 
+                             Data yang sudah diisikan tidak dapat diubah.');
+        } else {
+            return redirect()->route('questionnaire.create')
+                             ->with('failed','Maaf! Semua pilihan kriteria harus diisi.');
+        }
     }
 }
