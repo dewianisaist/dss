@@ -93,24 +93,22 @@ class CriteriaStep2Controller extends Controller
             'name' => 'required',
             'description' => 'required',
            ]);
-    
-        Criteria::create([
-            'name' => request('name'),
-            'description' => request('description'),
-            'status' => '1'
-        ]);
+        
+        $input = $request->all();
+        $input["status"] = 1;
+        $criteria = Criteria::create($input);
 
         $user = User::find(Auth::user()->id);
 
-        Choice::create([
-            'user_id' => $user,
-            'criteria_id'=> '???',
-            'option' => '1',
-            'suggestion' => '1'
-        ]);
+        $choice["user_id"] = $user->id;
+        $choice["criteria_id"] = $criteria->id;
+        $choice["option"] = 1;
+        $choice["suggestion"] = 1;
+        Choice::create($choice);
 
         return redirect()->route('criteriastep2.index')
                          ->with('success','Kriteria berhasil dibuat');
+        //data yang baru, masih masuk ke proses sebelumnya, seharusnya gag tampil. hanya tampil di step 2 aja.
     }
 
     /**

@@ -18,6 +18,7 @@
 @section('content')
 <div class="box">
 	<div class="box-body">
+		{{--  @permission('criteriagroup-create')  --}}
 		<div class="alert alert-warning alert-dismissible">
 			<h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
 			<ul>
@@ -41,13 +42,12 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-					{{--  @permission('criteriagroup-create')  --}}
 					<a class="btn btn-success" href="{{ route('criteriagroup.create') }}"> Tambahkan Kelompok</a>
-					{{--  @endpermission  --}}
 				</div>
 			</div>
 		</div>
-	
+		{{--  @endpermission  --}}
+		
 		<br/>
     	<table id="table_criteriagroup" class="table table-bordered table-striped">
 			<thead>
