@@ -19,32 +19,37 @@ class QuestionnaireController extends Controller
      */
     public function index()
     {
+        $role_id = Auth::user()->roleId();
         $user = User::find(Auth::user()->id);
         $data = Choice::where('user_id', '=', $user->id)->first();
 
-        if ($user->id == 1) {
-            return redirect()->route('questionnaire.create')
-                             ->with('failed','Maaf, peneliti tidak perlu mengisi kuesioner ini.
-                                    Apapun yang disubmit tidak akan tersimpan dalam database');
-        }
+        if ($role_id == 3 || $role_id == 4 || $role_id == 5 ||$role_id == 6) {
+            if ($user->id == 1) {
+                return redirect()->route('questionnaire.create')
+                                ->with('failed','Maaf, peneliti tidak perlu mengisi kuesioner ini.
+                                        Apapun yang disubmit tidak akan tersimpan dalam database');
+            }
 
-        if ($data == null) {
-            return redirect()->route('questionnaire.create');
+            if ($data == null) {
+                return redirect()->route('questionnaire.create');
+            } else {
+                $i = 0;
+                $j = 0;
+
+                $data_standart = Choice::with('criteria')
+                                        ->where('suggestion', '=', '0')
+                                        ->where('user_id', '=', $user->id)
+                                        ->get();
+
+                $data_suggestion = Choice::with('criteria')
+                                        ->where('suggestion', '=', '1')
+                                        ->where('user_id', '=', $user->id)
+                                        ->get();
+
+                return view('questionnaire.index', compact('data_standart', 'data_suggestion', 'i', 'j'));
+            }
         } else {
-            $i = 0;
-            $j = 0;
-
-            $data_standart = Choice::with('criteria')
-                                    ->where('suggestion', '=', '0')
-                                    ->where('user_id', '=', $user->id)
-                                    ->get();
-
-            $data_suggestion = Choice::with('criteria')
-                                    ->where('suggestion', '=', '1')
-                                    ->where('user_id', '=', $user->id)
-                                    ->get();
-
-            return view('questionnaire.index', compact('data_standart', 'data_suggestion', 'i', 'j'));
+            return redirect()->route('profile_users.show');
         }
     }
 
@@ -55,22 +60,27 @@ class QuestionnaireController extends Controller
      */
     public function create(Request $request)
     {
+        $role_id = Auth::user()->roleId();
         $user = User::find(Auth::user()->id);
         $data = Choice::where('user_id', '=', $user->id)->first();
-
-        if ($data != null) {
-            return redirect()->route('questionnaire.index');
+        
+        if ($role_id == 3 || $role_id == 4 || $role_id == 5 ||$role_id == 6) {
+            if ($data != null) {
+                return redirect()->route('questionnaire.index');
+            } else {
+                $i = 0;
+                $criteria = Criteria::whereNotIn('id', function($query){
+                                            $query->select('criteria_id')
+                                            ->from(with(new Choice)->getTable())
+                                            ->where('suggestion', 1);
+                                        })
+                                        ->where('description','<>','null')
+                                        ->orderBy('id','DESC')->get();
+                                        
+                return view('questionnaire.create',compact('criteria', 'i'));
+            }
         } else {
-            $i = 0;
-            $criteria = Criteria::whereNotIn('id', function($query){
-                                        $query->select('criteria_id')
-                                        ->from(with(new Choice)->getTable())
-                                        ->where('suggestion', 1);
-                                    })
-                                    ->where('description','<>','null')
-                                    ->orderBy('id','DESC')->get();
-                                    
-            return view('questionnaire.create',compact('criteria', 'i'));
+            return redirect()->route('profile_users.show');
         }
     }
 
