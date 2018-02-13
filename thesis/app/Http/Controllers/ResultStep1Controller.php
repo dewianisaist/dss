@@ -29,14 +29,20 @@ class ResultStep1Controller extends Controller
                                         DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
                                         DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
                                         ->join('criterias','criterias.id','=','choice.criteria_id')
-                                        ->where('suggestion', '=', '0')
+                                        ->where('choice.suggestion', '=', '0')
+                                        ->where('criterias.step', '=', '1')
+                                        ->where('criterias.status', '=', '1')
                                         ->groupBy('criterias.id')
-                                        ->orderBy('criteria_id','DESC')
+                                        ->orderBy('criterias.id','DESC')
                                         ->paginate(5);
 
-                $data_suggestion = Choice::with('criteria', 'user')
-                                            ->where('suggestion', '=', '1')
-                                            ->orderBy('criteria_id','DESC')
+                $data_suggestion = User::select('choice.*', 'criterias.*', 'users.name AS user_name')
+                                            ->join('choice','choice.user_id','=','users.id')
+                                            ->join('criterias','criterias.id','=','choice.criteria_id')
+                                            ->where('choice.suggestion', '=', '1')
+                                            ->where('criterias.step', '=', '2')
+                                            ->where('criterias.status', '=', '1')
+                                            ->orderBy('criterias.id','DESC')
                                             ->paginate(5);
 
                 return view('result_step1.index', compact('percentages', 'data_suggestion'))
@@ -52,14 +58,20 @@ class ResultStep1Controller extends Controller
                                         DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
                                         DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
                                         ->join('criterias','criterias.id','=','choice.criteria_id')
-                                        ->where('suggestion', '=', '0')
+                                        ->where('choice.suggestion', '=', '0')
+                                        ->where('criterias.step', '=', '1')
+                                        ->where('criterias.status', '=', '1')
                                         ->groupBy('criterias.id')
-                                        ->orderBy('criteria_id','DESC')
+                                        ->orderBy('criterias.id','DESC')
                                         ->paginate(5);
 
-                $data_suggestion = Choice::with('criteria', 'user')
-                                            ->where('suggestion', '=', '1')
-                                            ->orderBy('criteria_id','DESC')
+                $data_suggestion = User::select('choice.*', 'criterias.*', 'users.name AS user_name')
+                                            ->join('choice','choice.user_id','=','users.id')
+                                            ->join('criterias','criterias.id','=','choice.criteria_id')
+                                            ->where('choice.suggestion', '=', '1')
+                                            ->where('criterias.step', '=', '2')
+                                            ->where('criterias.status', '=', '1')
+                                            ->orderBy('criterias.id','DESC')
                                             ->paginate(5);
 
                 return view('result_step1.index', compact('percentages', 'data_suggestion'))
