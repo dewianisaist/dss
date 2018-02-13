@@ -21,6 +21,9 @@ class CriteriaController extends Controller
 
         if ($role_id == 1) {
             $criterias = Criteria::select('*')
+                                    ->where('description','<>','null')
+                                    ->where('step','=','1')
+                                    ->where('status','=','1')
                                     ->whereNotIn('id', function($query){
                                         $query->select('criteria_id')
                                         ->from(with(new Choice)->getTable())

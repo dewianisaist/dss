@@ -36,15 +36,21 @@ class QuestionnaireController extends Controller
                 $i = 0;
                 $j = 0;
 
-                $data_standart = Choice::with('criteria')
-                                        ->where('suggestion', '=', '0')
-                                        ->where('user_id', '=', $user->id)
-                                        ->get();
+                $data_standart = Choice::select('choice.*', 'criterias.*')
+                                        ->join('criterias','criterias.id','=','choice.criteria_id')
+                                        ->where('choice.suggestion', '=', '0')
+                                        ->where('choice.user_id', '=', $user->id)
+                                        ->where('criterias.step', '=', '1')
+                                        ->where('criterias.status', '=', '1')
+                                        ->orderBy('criterias.id','DESC')->get();
 
-                $data_suggestion = Choice::with('criteria')
-                                        ->where('suggestion', '=', '1')
-                                        ->where('user_id', '=', $user->id)
-                                        ->get();
+                $data_suggestion = Choice::select('choice.*', 'criterias.*')
+                                        ->join('criterias','criterias.id','=','choice.criteria_id')
+                                        ->where('choice.suggestion', '=', '1')
+                                        ->where('choice.user_id', '=', $user->id)
+                                        ->where('criterias.step', '=', '2')
+                                        ->where('criterias.status', '=', '1')
+                                        ->orderBy('criterias.id','DESC')->get();
 
                 return view('questionnaire.index', compact('data_standart', 'data_suggestion', 'i', 'j'));
             }
@@ -69,12 +75,14 @@ class QuestionnaireController extends Controller
                 return redirect()->route('questionnaire.index');
             } else {
                 $i = 0;
-                $criteria = Criteria::whereNotIn('id', function($query){
+                $criteria = Criteria::where('description','<>','null')
+                                        ->where('step','=','1')
+                                        ->where('status','=','1')
+                                        ->whereNotIn('id', function($query){
                                             $query->select('criteria_id')
                                             ->from(with(new Choice)->getTable())
                                             ->where('suggestion', 1);
                                         })
-                                        ->where('description','<>','null')
                                         ->orderBy('id','DESC')->get();
                                         
                 return view('questionnaire.create',compact('criteria', 'i'));
@@ -121,6 +129,8 @@ class QuestionnaireController extends Controller
         $choices = array();
         if ($valid) {
             $criteria = Criteria::where('description','<>','null')
+                                    ->where('step','=','1')
+                                    ->where('status','=','1')
                                     ->whereNotIn('id', function($query){
                                         $query->select('criteria_id')
                                         ->from(with(new Choice)->getTable())
@@ -150,6 +160,7 @@ class QuestionnaireController extends Controller
             foreach ($optional as $optionalCriteria) {
                 $dataoptional["name"] = $optionalCriteria["criteria"];
                 $dataoptional["description"] = $optionalCriteria["description"];
+                $dataoptional['step'] = 2;
                 $dataoptional["status"] = 1;
                 $dataoptional["created_at"] = Carbon\Carbon::now(7)->toDateTimeString();
                 $dataoptional["updated_at"] = $dataoptional["created_at"];

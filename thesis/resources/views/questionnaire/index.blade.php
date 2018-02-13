@@ -38,8 +38,8 @@
                 @foreach ($data_standart as $key => $data_baku)
                     <tr>
                         <td width="5px">{{ ++$i }}</td>
-                        <td width="250px">{{ $data_baku->criteria->name }}</td>
-                        <td width="550px">{{ $data_baku->criteria->description }}</td>
+                        <td width="250px">{{ $data_baku->name }}</td>
+                        <td width="550px">{{ $data_baku->description }}</td>
                         <td width="200px">
                             @if ($data_baku->option == 1) 
                                 Sesuai
@@ -65,8 +65,8 @@
                 @foreach ($data_suggestion as $key => $data_masukan)
                     <tr>
                         <td width="5px">{{ ++$j }}</td>
-                        <td width="250px">{{ $data_masukan->criteria->name }}</td>
-                        <td width="550px">{{ $data_masukan->criteria->description }}</td>
+                        <td width="250px">{{ $data_masukan->name }}</td>
+                        <td width="550px">{{ $data_masukan->description }}</td>
                     </tr>
                 @endforeach
             </tbody>
