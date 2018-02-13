@@ -42,7 +42,7 @@ class ResultStep1Controller extends Controller
                                             ->where('choice.suggestion', '=', '1')
                                             ->where('criterias.step', '=', '2')
                                             ->where('criterias.status', '=', '1')
-                                            ->orderBy('criterias.id','DESC')
+                                            ->orderBy('criterias.id','ASC')
                                             ->paginate(5);
 
                 return view('result_step1.index', compact('percentages', 'data_suggestion'))
@@ -71,7 +71,7 @@ class ResultStep1Controller extends Controller
                                             ->where('choice.suggestion', '=', '1')
                                             ->where('criterias.step', '=', '2')
                                             ->where('criterias.status', '=', '1')
-                                            ->orderBy('criterias.id','DESC')
+                                            ->orderBy('criterias.id','ASC')
                                             ->paginate(5);
 
                 return view('result_step1.index', compact('percentages', 'data_suggestion'))

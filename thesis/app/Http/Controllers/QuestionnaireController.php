@@ -50,7 +50,7 @@ class QuestionnaireController extends Controller
                                         ->where('choice.user_id', '=', $user->id)
                                         ->where('criterias.step', '=', '2')
                                         ->where('criterias.status', '=', '1')
-                                        ->orderBy('criterias.id','DESC')->get();
+                                        ->orderBy('criterias.id','ASC')->get();
 
                 return view('questionnaire.index', compact('data_standart', 'data_suggestion', 'i', 'j'));
             }
