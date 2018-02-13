@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 06, 2018 at 08:15 AM
+-- Generation Time: Feb 13, 2018 at 03:24 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -160,7 +160,8 @@ CREATE TABLE `criterias` (
   `parameter_p` decimal(20,3) DEFAULT NULL,
   `parameter_q` decimal(20,3) DEFAULT NULL,
   `parameter_s` decimal(20,3) DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
+  `step` varchar(1) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -169,18 +170,18 @@ CREATE TABLE `criterias` (
 -- Dumping data for table `criterias`
 --
 
-INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `partial_weight`, `global_weight`, `preference`, `max_min`, `parameter_p`, `parameter_q`, `parameter_s`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Usia', 'Usia (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-27 04:00:05', '2018-01-28 03:14:06'),
-(2, NULL, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-27 04:00:23', '2018-01-28 23:03:53'),
-(3, NULL, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-27 04:00:39', '2018-01-28 03:13:46'),
-(4, NULL, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-27 04:00:52', '2018-01-28 03:14:36'),
-(7, NULL, 'Penghasilan', 'Penghasilan (XYZ, 2017)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-28 03:16:09', '2018-01-28 03:16:09'),
-(8, NULL, 'Pengalaman Kerja', 'Pengalaman Kerja (XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-28 03:16:34', '2018-01-28 23:28:40'),
-(9, NULL, 'Pengalaman kursus', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL),
-(10, NULL, 'Kelengkapan administrasi', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL),
-(11, NULL, 'Intensitas keikutsertaan', 'usulan kajur 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL),
-(25, NULL, 'contoh baku', 'contoh (baku, 2016)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-29 00:01:41', '2018-01-29 00:01:41'),
-(26, NULL, 'da contoh baku 1', '1 (X, 2018)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-29 19:27:55', '2018-01-29 19:28:36');
+INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `partial_weight`, `global_weight`, `preference`, `max_min`, `parameter_p`, `parameter_q`, `parameter_s`, `step`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Usia', 'Usia (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-27 04:00:05', '2018-01-28 03:14:06'),
+(2, NULL, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-27 04:00:23', '2018-01-28 23:03:53'),
+(3, NULL, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-27 04:00:39', '2018-01-28 03:13:46'),
+(4, NULL, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-27 04:00:52', '2018-01-28 03:14:36'),
+(7, NULL, 'Penghasilan', 'Penghasilan (XYZ, 2017)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-28 03:16:09', '2018-01-28 03:16:09'),
+(8, NULL, 'Pengalaman Kerja', 'Pengalaman Kerja (XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-28 03:16:34', '2018-01-28 23:28:40'),
+(9, NULL, 'Pengalaman kursus', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL),
+(10, NULL, 'Kelengkapan administrasi', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL),
+(11, NULL, 'Intensitas keikutsertaan', 'usulan kajur 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL),
+(25, NULL, 'contoh baku', 'contoh (baku, 2016)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-29 00:01:41', '2018-01-29 00:01:41'),
+(26, NULL, 'da contoh baku 1', '1 (X, 2018)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2018-01-29 19:27:55', '2018-01-29 19:28:36');
 
 -- --------------------------------------------------------
 

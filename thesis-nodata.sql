@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 27, 2018 at 11:22 AM
+-- Generation Time: Feb 13, 2018 at 03:26 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thesis`
+-- Database: `thesis-nodata`
 --
 
 -- --------------------------------------------------------
@@ -36,15 +36,16 @@ CREATE TABLE `choice` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conversion`
+-- Table structure for table `conversions`
 --
 
-CREATE TABLE `conversion` (
+CREATE TABLE `conversions` (
   `id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
   `resource` varchar(255) DEFAULT NULL,
-  `range_value` decimal(20,3) DEFAULT NULL,
-  `conversion_value` decimal(20,3) DEFAULT NULL,
+  `range_value_1` varchar(100) DEFAULT NULL,
+  `range_value_2` varchar(100) DEFAULT NULL,
+  `conversion_value` decimal(5,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -84,8 +85,8 @@ CREATE TABLE `course_experience` (
 CREATE TABLE `criterias` (
   `id` int(11) NOT NULL,
   `group_criteria` int(11) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `description` varchar(500) DEFAULT NULL,
+  `name` varchar(500) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `partial_weight` decimal(20,3) DEFAULT NULL,
   `global_weight` decimal(20,3) DEFAULT NULL,
   `preference` varchar(10) DEFAULT NULL,
@@ -93,7 +94,8 @@ CREATE TABLE `criterias` (
   `parameter_p` decimal(20,3) DEFAULT NULL,
   `parameter_q` decimal(20,3) DEFAULT NULL,
   `parameter_s` decimal(20,3) DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
+  `step` varchar(1) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -213,7 +215,7 @@ CREATE TABLE `registrations` (
 CREATE TABLE `result_selections` (
   `selection_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `value` decimal(20,3) DEFAULT NULL
+  `value` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -250,10 +252,13 @@ CREATE TABLE `role_user` (
 
 CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
-  `selection_schedule_id` int(11) NOT NULL,
   `registration_id` int(11) NOT NULL,
+  `selection_schedule_id` int(11) NOT NULL,
   `written_value` decimal(5,2) DEFAULT NULL,
   `interview_value` varchar(15) DEFAULT NULL,
+  `recommendation` varchar(5) DEFAULT NULL,
+  `ranking` varchar(5) DEFAULT NULL,
+  `status` varchar(15) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -270,7 +275,7 @@ CREATE TABLE `selection_schedules` (
   `date` date DEFAULT NULL,
   `time` varchar(20) DEFAULT NULL,
   `place` varchar(100) DEFAULT NULL,
-  `information` varchar(500) DEFAULT NULL,
+  `information` varchar(1000) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -287,9 +292,9 @@ CREATE TABLE `sub_vocationals` (
   `name` varchar(100) DEFAULT NULL,
   `quota` int(11) DEFAULT NULL,
   `long_training` varchar(10) DEFAULT NULL,
-  `goal` varchar(500) DEFAULT NULL,
-  `unit_competence` varchar(500) DEFAULT NULL,
-  `requirement_participant` varchar(500) DEFAULT NULL,
+  `goal` varchar(1000) DEFAULT NULL,
+  `unit_competence` varchar(1000) DEFAULT NULL,
+  `requirement_participant` varchar(1000) DEFAULT NULL,
   `final_registration_date` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -355,9 +360,9 @@ ALTER TABLE `choice`
   ADD KEY `fk_criterias_has_users_criterias1_idx` (`criteria_id`);
 
 --
--- Indexes for table `conversion`
+-- Indexes for table `conversions`
 --
-ALTER TABLE `conversion`
+ALTER TABLE `conversions`
   ADD PRIMARY KEY (`id`,`criteria_id`),
   ADD KEY `fk_conversion_criterias1_idx` (`criteria_id`);
 
@@ -459,7 +464,7 @@ ALTER TABLE `role_user`
 -- Indexes for table `selections`
 --
 ALTER TABLE `selections`
-  ADD PRIMARY KEY (`id`,`selection_schedule_id`,`registration_id`),
+  ADD PRIMARY KEY (`id`,`registration_id`,`selection_schedule_id`),
   ADD KEY `fk_selections_selection_schedules1_idx` (`selection_schedule_id`),
   ADD KEY `fk_selections_registrations1_idx` (`registration_id`);
 
@@ -503,9 +508,9 @@ ALTER TABLE `vocationals`
 --
 
 --
--- AUTO_INCREMENT for table `conversion`
+-- AUTO_INCREMENT for table `conversions`
 --
-ALTER TABLE `conversion`
+ALTER TABLE `conversions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `courses`
@@ -589,9 +594,9 @@ ALTER TABLE `choice`
   ADD CONSTRAINT `fk_criterias_has_users_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `conversion`
+-- Constraints for table `conversions`
 --
-ALTER TABLE `conversion`
+ALTER TABLE `conversions`
   ADD CONSTRAINT `fk_conversion_criterias1` FOREIGN KEY (`criteria_id`) REFERENCES `criterias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
