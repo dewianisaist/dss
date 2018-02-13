@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Subvocational;
 use App\Http\Models\Vocational;
-use DB;
 use Auth;
 
 class SubvocationalController extends Controller
@@ -103,7 +102,7 @@ class SubvocationalController extends Controller
         if ($role_id == 1) {
             $subvocational = Subvocational::find($id);
             $vocational = Vocational::lists('name','id');
-            $vocationalchoosen = DB::table('sub_vocationals')->where('id', $subvocational)->value('name');
+            $vocationalchoosen = Subvocational::where('id', $subvocational)->value('name');
 
             return view('subvocationals.edit',compact('subvocational','vocational','vocationalchoosen'));
         } else {

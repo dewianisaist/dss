@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Vocational;
+use App\Http\Models\Subvocational;
 use Auth;
 
 class VocationalController extends Controller
@@ -129,6 +130,10 @@ class VocationalController extends Controller
     */
    public function destroy($id)
    {
+        Subvocational::with('vocational')
+                        ->where('vocational_id', '=', $id)
+                        ->delete();
+
         Vocational::find($id)->delete();
         
         return redirect()->route('vocationals.index')
