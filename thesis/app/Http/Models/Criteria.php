@@ -9,7 +9,7 @@ class Criteria extends Model
     protected $table = 'criterias';
     
     public $fillable = ['group_criteria', 'name', 'description', 'partial_weight', 'global_weight', 'preference', 
-                        'max_min', 'parameter_p', 'parameter_q', 'parameter_s', 'status'];
+                        'max_min', 'parameter_p', 'parameter_q', 'parameter_s', 'step', 'status'];
 
     public function resultselection() {
         return $this->hasOne('App\Http\Models\ResultSelection');

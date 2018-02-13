@@ -64,6 +64,7 @@ class CriteriaController extends Controller
            ]);
     
         $input = $request->all();
+        $input['step'] = '1';
         $input['status'] = '1';
         Criteria::create($input);
 
