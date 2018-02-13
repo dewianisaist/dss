@@ -32,8 +32,41 @@
 				</div>
 			</div>
         </div>
-        
-		<br/>
+
+        <br/>
+        <table id="table_criteriastep2_standart" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kriteria</th>
+                    <th>Penjelasan Kriteria</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data_fix as $key => $data_fiks)
+                    <tr>
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $data_fiks->name }}</td>
+                        <td>{{ $data_fiks->description }}</td>
+                        <td>
+                            {{--  @permission('criteriastep2-edit')  --}}
+                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_fiks->id) }}">Edit</a>
+                            {{--  @endpermission  --}}
+                            {{--  @permission('criteriastep2-delete')  --}}
+                            {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2.destroy', $data_fiks->id],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                            {{--  @endpermission --}}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {!! $data_fix->render() !!}
+
+        <br/>
+        <h3>Hasil Kriteria Tahap 1</h3>
         <table id="table_criteriastep2_standart" class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -55,13 +88,8 @@
                         <td>{{ $data_baku->sum }} dari {{ $data_baku->count }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
-                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_baku->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_baku->id) }}">Gunakan</a>
                             {{--  @endpermission  --}}
-                            {{--  @permission('criteriastep2-delete')  --}}
-                            {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2.destroy', $data_baku->id],'style'=>'display:inline']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                            {{--  @endpermission --}}
                         </td>
                     </tr>
                 @endforeach
@@ -84,18 +112,13 @@
                 @foreach ($data_suggestion as $key => $data_masukan)
                     <tr>
                         <td>{{ ++$j }}</td>
-                        <td>{{ $data_masukan->criteria->name }}</td>
-                        <td>{{ $data_masukan->criteria->description }}</td>
-                        <td>{{ $data_masukan->user->name }}</td>
+                        <td>{{ $data_masukan->name }}</td>
+                        <td>{{ $data_masukan->description }}</td>
+                        <td>{{ $data_masukan->user_name }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
-                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_masukan->criteria->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_masukan->id) }}">Gunakan</a>
                             {{--  @endpermission  --}}
-                            {{--  @permission('criteriastep2-delete')  --}}
-                            {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2.destroy', $data_masukan->criteria->id],'style'=>'display:inline']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                            {{--  @endpermission --}}
                         </td>
                     </tr>
                 @endforeach

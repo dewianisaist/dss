@@ -160,7 +160,7 @@ class QuestionnaireController extends Controller
             foreach ($optional as $optionalCriteria) {
                 $dataoptional["name"] = $optionalCriteria["criteria"];
                 $dataoptional["description"] = $optionalCriteria["description"];
-                $dataoptional['step'] = 2;
+                $dataoptional["step"] = 2;
                 $dataoptional["status"] = 1;
                 $dataoptional["created_at"] = Carbon\Carbon::now(7)->toDateTimeString();
                 $dataoptional["updated_at"] = $dataoptional["created_at"];

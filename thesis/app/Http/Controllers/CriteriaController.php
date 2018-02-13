@@ -141,6 +141,10 @@ class CriteriaController extends Controller
      */
     public function destroy($id)
     {
+        Choice::join('criterias','criterias.id','=','choice.criteria_id')
+                ->where('choice.criteria_id', '=', $id)
+                ->delete();
+        
         Criteria::find($id)->delete();
 
         return redirect()->route('criterias.index')
