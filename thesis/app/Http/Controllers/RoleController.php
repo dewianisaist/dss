@@ -89,8 +89,8 @@ class RoleController extends Controller
         if ($role_id == 1) {
             $role = Role::find($id);
             $rolePermissions = Permission::join("permission_role","permission_role.permission_id","=","permissions.id")
-                ->where("permission_role.role_id",$id)
-                ->get();
+                                            ->where("permission_role.role_id",$id)
+                                            ->get();
 
             return view('roles.show',compact('role','rolePermissions'));
         } else {
@@ -111,8 +111,9 @@ class RoleController extends Controller
         if ($role_id == 1) {
             $role = Role::find($id);
             $permission = Permission::get();
-            $rolePermissions = DB::table("permission_role")->where("permission_role.role_id",$id)
-                ->lists('permission_role.permission_id','permission_role.permission_id');
+            $rolePermissions = DB::table("permission_role")
+                                    ->where("permission_role.role_id",$id)
+                                    ->lists('permission_role.permission_id','permission_role.permission_id');
 
             return view('roles.edit',compact('role','permission','rolePermissions'));
         } else {
@@ -140,8 +141,7 @@ class RoleController extends Controller
         $role->description = $request->input('description');
         $role->save();
 
-        DB::table("permission_role")->where("permission_role.role_id",$id)
-            ->delete();
+        DB::table("permission_role")->where("permission_role.role_id",$id)->delete();
 
         foreach ($request->input('permission') as $key => $value) {
             $role->attachPermission($value);
@@ -158,7 +158,11 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        DB::table("roles")->where('id',$id)->delete();
+        DB::table("role_user")->join('roles','roles.id','=','role_user.role_id')
+                              ->where('role_user.role_id', '=', $id)
+                              ->delete();
+                              
+        Role::where('id',$id)->delete();
         
         return redirect()->route('roles.index')
                         ->with('success','Role berhasil dihapus');
