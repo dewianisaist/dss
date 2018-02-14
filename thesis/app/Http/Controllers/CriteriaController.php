@@ -141,13 +141,18 @@ class CriteriaController extends Controller
      */
     public function destroy($id)
     {
-        Choice::join('criterias','criterias.id','=','choice.criteria_id')
-                ->where('choice.criteria_id', '=', $id)
-                ->delete();
-        
-        Criteria::find($id)->delete();
+        $choice = Choice::with('criteria')
+                ->where('criteria_id', '=', $id)
+                ->first();
 
-        return redirect()->route('criterias.index')
+        if ($choice == null) {
+            Criteria::find($id)->delete();
+
+            return redirect()->route('criterias.index')
                         ->with('success','Kriteria berhasil dihapus');
+        } else {
+            return redirect()->route('criterias.index')
+                        ->with('failed','Kriteria tidak bisa dihapus karena sudah ada penilaian kesesuaian kriteria oleh tim penilai');
+        }
     }
 }
