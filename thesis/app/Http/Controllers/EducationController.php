@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Education;
+use App\Http\Models\EducationalBackground;
 use Auth;
 
 class EducationController extends Controller
@@ -127,9 +128,18 @@ class EducationController extends Controller
     */
    public function destroy($id)
    {
-        Education::find($id)->delete();
+        $educational_background = EducationalBackground::with('education')
+                                                        ->where('education_id', '=', $id)
+                                                        ->first();
+        
+        if ($educational_background == null) {
+            Education::find($id)->delete();
 
-        return redirect()->route('educations.index')
-                       ->with('success','Pendidikan berhasil dihapus');
+            return redirect()->route('educations.index')
+                             ->with('success','Pendidikan berhasil dihapus');
+        } else {
+            return redirect()->route('educations.index')
+                             ->with('failed','Pendidikan tidak bisa dihapus karena sudah digunakan sebagai riwayat pendidikan pendaftar');
+        } 
    }
 }

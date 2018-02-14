@@ -149,10 +149,10 @@ class CriteriaController extends Controller
             Criteria::find($id)->delete();
 
             return redirect()->route('criterias.index')
-                        ->with('success','Kriteria berhasil dihapus');
+                             ->with('success','Kriteria berhasil dihapus');
         } else {
             return redirect()->route('criterias.index')
-                        ->with('failed','Kriteria tidak bisa dihapus karena sudah ada penilaian kesesuaian kriteria oleh tim penilai');
+                             ->with('failed','Kriteria tidak bisa dihapus karena sudah ada penilaian kesesuaian kriteria oleh tim penilai');
         }
     }
 }
