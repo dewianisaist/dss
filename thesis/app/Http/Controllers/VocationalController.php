@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Vocational;
 use App\Http\Models\Subvocational;
+use App\Http\Models\SelectionSchedule;
 use Auth;
 
 class VocationalController extends Controller
@@ -130,13 +131,25 @@ class VocationalController extends Controller
      */
     public function destroy($id)
     {
-        Subvocational::with('vocational')
-                        ->where('vocational_id', '=', $id)
-                        ->delete();
+        $selectionschedule = Subvocational::where('vocational_id', '=', $id)
+                                            ->whereIn('id', function($query){
+                                                $query->select('sub_vocational_id')
+                                                ->from(with(new SelectionSchedule)->getTable());
+                                            })
+                                            ->first();
 
-        Vocational::find($id)->delete();
+        if ($selectionschedule == null) {
+            Subvocational::where('vocational_id', '=', $id)->delete();
+
+            Vocational::find($id)->delete();
+                                        
+            return redirect()->route('vocationals.index')
+                             ->with('success','Kejuruan berhasil dihapus');
+        } else {
+            return redirect()->route('vocationals.index')
+                             ->with('failed','Kejuruan tidak bisa dihapus karena sudah memiliki jadwal seleksi');
+        }
         
-        return redirect()->route('vocationals.index')
-                        ->with('success','Kejuruan berhasil dihapus');
+        
     }
 }
