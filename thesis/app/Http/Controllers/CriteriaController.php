@@ -141,9 +141,7 @@ class CriteriaController extends Controller
      */
     public function destroy($id)
     {
-        $choice = Choice::with('criteria')
-                ->where('criteria_id', '=', $id)
-                ->first();
+        $choice = Choice::where('criteria_id', '=', $id)->first();
 
         if ($choice == null) {
             Criteria::find($id)->delete();

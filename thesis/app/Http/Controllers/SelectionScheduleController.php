@@ -142,9 +142,7 @@ class SelectionScheduleController extends Controller
      */
     public function destroy($id)
     {
-        $selection = Selection::with('selectionschedule')
-                                ->where('selection_schedule_id', '=', $id)
-                                ->first();
+        $selection = Selection::where('selection_schedule_id', '=', $id)->first();
         
         if ($selection == null) {
             SelectionSchedule::find($id)->delete();

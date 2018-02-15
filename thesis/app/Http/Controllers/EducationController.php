@@ -128,9 +128,7 @@ class EducationController extends Controller
      */
     public function destroy($id)
     {
-        $educational_background = EducationalBackground::with('education')
-                                                        ->where('education_id', '=', $id)
-                                                        ->first();
+        $educational_background = EducationalBackground::where('education_id', '=', $id)->first();
         
         if ($educational_background == null) {
             Education::find($id)->delete();

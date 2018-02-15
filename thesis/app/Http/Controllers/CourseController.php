@@ -128,9 +128,7 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        $course_experience = CourseExperience::with('course')
-                                                ->where('course_id', '=', $id)
-                                                ->first();
+        $course_experience = CourseExperience::where('course_id', '=', $id)->first();
 
         if ($course_experience == null) {
             Course::find($id)->delete();

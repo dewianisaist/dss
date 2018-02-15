@@ -163,10 +163,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $registrant = Registrant::with('user')
-                                ->where('user_id', '=', $id)
-                                ->first();
-                                // return $registrant;
+        $registrant = Registrant::where('user_id', '=', $id)->first();
         
         if ($registrant == null) {
             User::find($id)->delete();
@@ -175,7 +172,7 @@ class UserController extends Controller
                              ->with('success','User berhasil dihapus');
         } else {
             return redirect()->route('users.index')
-                             ->with('failed','User yang merupakan Pendaftar tidak bisa dihapus karena sudah memiliki detail data pendaftar');
+                             ->with('failed','Pendaftar tidak bisa dihapus karena sudah memiliki detail data pendaftar');
         } 
     }
 }

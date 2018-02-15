@@ -144,9 +144,7 @@ class SubvocationalController extends Controller
      */
     public function destroy($id)
     {
-        $selectionschedule = SelectionSchedule::with('subvocational')
-                                                ->where('sub_vocational_id', '=', $id)
-                                                ->first();
+        $selectionschedule = SelectionSchedule::where('sub_vocational_id', '=', $id)->first();
         
         if ($selectionschedule == null) {
             Subvocational::find($id)->delete();
