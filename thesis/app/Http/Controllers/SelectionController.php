@@ -5,20 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Selection;
-use App\Http\Models\Registration;
-use App\Http\Models\Registrant;
-use App\Http\Models\SelectionSchedule;
 use Auth;
 
 class SelectionController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function index(Request $request)
-   {
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
         $role_id = Auth::user()->roleId();
 
         if ($role_id == 3 || $role_id == 5 || $role_id == 6) {
@@ -36,16 +33,16 @@ class SelectionController extends Controller
         } else {
             return redirect()->route('profile_users.show');
         }
-   }
+    }
  
     /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-   public function show($id)
-   {
+     * Display the specified resource.
+     * 
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
         $role_id = Auth::user()->roleId();
 
         if ($role_id == 3 || $role_id == 5 || $role_id == 6) {
@@ -63,16 +60,16 @@ class SelectionController extends Controller
         } else {
             return redirect()->route('profile_users.show');
         }
-   }
+    }
 
-   /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-   public function edit($id)
-   {
+    /**
+     * Show the form for editing the specified resource.
+     * 
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
         $role_id = Auth::user()->roleId();
 
         if ($role_id == 3 || $role_id == 5 || $role_id == 6) {
@@ -90,17 +87,17 @@ class SelectionController extends Controller
         } else {
             return redirect()->route('profile_users.show');
         }
-   }
+    }
 
-   /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-   public function update(Request $request, $id)
-   {
+    /**
+     * Update the specified resource in storage.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
             'written_value' => 'required',
             'interview_value' => 'required',
@@ -121,5 +118,5 @@ class SelectionController extends Controller
 
         return redirect()->route('selections.index')
                         ->with('success','Nilai seleksi berhasil disimpan');
-   }
+    }
 }

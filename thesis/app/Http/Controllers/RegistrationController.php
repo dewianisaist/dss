@@ -15,12 +15,12 @@ use Carbon;
 class RegistrationController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function index(Request $request)
-   {
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
         $role_id = Auth::user()->roleId();
         $user = User::with('registrant')->find(Auth::user()->id); 
 
@@ -59,15 +59,15 @@ class RegistrationController extends Controller
         } else {
             return redirect()->route('profile_users.show');
         }
-   }
+    }
 
-   /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function create()
-   {
+    /**
+     * Show the form for creating a new resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $role_id = Auth::user()->roleId();
         $user = User::with('registrant')->find(Auth::user()->id);
 
@@ -95,16 +95,16 @@ class RegistrationController extends Controller
             }
         }
         return redirect()->route('profile_users.show'); 
-   }
+    }
 
-   /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-   public function store(Request $request)
-   {
+    /**
+     * Store a newly created resource in storage.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'sub_vocational_id' => 'required',
         ]);
@@ -140,5 +140,5 @@ class RegistrationController extends Controller
                              ->with('success','Selamat Anda berhasil melakukan pendaftaran. 
                                 Silahkan Anda melakukan seleksi sesuai dengan jadwal yang sudah ditentukan.');
         }
-   }
+    }
 }

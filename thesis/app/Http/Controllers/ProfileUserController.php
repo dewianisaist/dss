@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\User;
-use App\Http\Models\Role;
-use DB;
 use Hash;
 use Auth;
 
 class ProfileUserController extends Controller
 {
-     /**
+    /**
      * Display the specified resource.
      *
      * @return \Illuminate\Http\Response
@@ -31,12 +29,12 @@ class ProfileUserController extends Controller
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function edit()
-   {
+     * Show the form for editing the specified resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function edit()
+    {
         $role_id = Auth::user()->roleId();
             
         if ($role_id != 2) {
@@ -46,16 +44,16 @@ class ProfileUserController extends Controller
         } else {
             return redirect()->route('registrants.index');
         }
-   }
+    }
 
-   /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-   public function update(Request $request)
-   {
+    /**
+     * Update the specified resource in storage.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.Auth::user()->id,
@@ -75,6 +73,6 @@ class ProfileUserController extends Controller
         $profile_user->update($input);
 
         return redirect()->route('profile_users.show')
-                        ->with('success','Profil berhasil diedit');
-   }
+                         ->with('success','Profil berhasil diedit');
+    }
 }

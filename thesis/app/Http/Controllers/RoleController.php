@@ -76,6 +76,7 @@ class RoleController extends Controller
         return redirect()->route('roles.index')
                         ->with('success','Role berhasil dibuat');
     }
+    
     /**
      * Display the specified resource.
      *
@@ -150,6 +151,7 @@ class RoleController extends Controller
         return redirect()->route('roles.index')
                         ->with('success','Role berhasil diedit');
     }
+
     /**
      * Remove the specified resource from storage.
      *

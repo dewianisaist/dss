@@ -13,7 +13,6 @@ use Auth;
 
 class UserController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

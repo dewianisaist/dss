@@ -6,20 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\CourseExperience;
 use App\Http\Models\Course;
-use App\Http\Models\Registrant;
 use App\Http\Models\User;
-use DB;
 use Auth;
 
 class CourseExperienceController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function index(Request $request)
-   {
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
         $role_id = Auth::user()->roleId();
         $user = User::with('registrant')->find(Auth::user()->id);
 
@@ -37,15 +35,15 @@ class CourseExperienceController extends Controller
         } else {
             return redirect()->route('profile_users.show');
         }
-   }
+    }
 
-   /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function create()
-   {
+    /**
+     * Show the form for creating a new resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $role_id = Auth::user()->roleId();
         $user = User::with('registrant')->find(Auth::user()->id);
 
@@ -61,16 +59,16 @@ class CourseExperienceController extends Controller
         } else {
             return redirect()->route('profile_users.show');
         }
-   }
+    }
 
-   /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-   public function store(Request $request)
-   {
+    /**
+     * Store a newly created resource in storage.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'course_id' => 'required',
             'organizer' => 'required',        
@@ -84,23 +82,24 @@ class CourseExperienceController extends Controller
 
         return redirect()->route('course_experience.index')
                         ->with('success','Pengalaman kursus/pelatihan berhasil ditambahkan.');
-   }
+    }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  int  $course_id, $organizer, $graduation_year
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     * 
+     * @param  int  $course_id, $organizer, $graduation_year
+     * @return \Illuminate\Http\Response
+     */
     public function show($course_id, $organizer, $graduation_year)
     {
         $role_id = Auth::user()->roleId();
 
         if ($role_id == 2) {
-            $course_experience = CourseExperience::with('course')->where('course_id', $course_id)
-                                                                ->where('organizer', $organizer)
-                                                                ->where('graduation_year', $graduation_year)
-                                                                ->first();
+            $course_experience = CourseExperience::with('course')
+                                                    ->where('course_id', $course_id)
+                                                    ->where('organizer', $organizer)
+                                                    ->where('graduation_year', $graduation_year)
+                                                    ->first();
             
             return view('course_experience.show',compact('course_experience'));
         } else {
@@ -108,14 +107,14 @@ class CourseExperienceController extends Controller
         }
     }
  
-   /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $course_id, $organizer, $graduation_year
-    * @return \Illuminate\Http\Response
-    */
-   public function edit($course_id, $organizer, $graduation_year)
-   {
+    /**
+     * Show the form for editing the specified resource.
+     * 
+     * @param  int  $course_id, $organizer, $graduation_year
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($course_id, $organizer, $graduation_year)
+    {
         $role_id = Auth::user()->roleId();
 
         if ($role_id == 2) {
@@ -130,17 +129,17 @@ class CourseExperienceController extends Controller
         } else {
             return redirect()->route('profile_users.show');
         }
-   }
+    }
 
-   /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $course_id, $organizer, $graduation_year
-    * @return \Illuminate\Http\Response
-    */
-   public function update(Request $request, $course_id, $organizer, $graduation_year)
-   {
+    /**
+     * Update the specified resource in storage.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $course_id, $organizer, $graduation_year
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $course_id, $organizer, $graduation_year)
+    {
         $this->validate($request, [
             'course_id' => 'required',
             'organizer' => 'required',        
@@ -156,23 +155,23 @@ class CourseExperienceController extends Controller
                         ->update($input);
 
         return redirect()->route('course_experience.index')
-                        ->with('success','Pengalaman kursus/pelatihan berhasil diedit');
-   }
+                         ->with('success','Pengalaman kursus/pelatihan berhasil diedit');
+    }
 
-   /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $course_id, $organizer, $graduation_year
-    * @return \Illuminate\Http\Response
-    */
-   public function destroy($course_id, $organizer, $graduation_year)
-   {
+    /**
+     * Remove the specified resource from storage.
+     * 
+     * @param  int  $course_id, $organizer, $graduation_year
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($course_id, $organizer, $graduation_year)
+    {
         CourseExperience::where('course_id', $course_id)
                             ->where('organizer', $organizer)
                             ->where('graduation_year', $graduation_year)
                             ->delete();
 
         return redirect()->route('course_experience.index')
-                        ->with('success','Pengalaman kursus/pelatihan berhasil dihapus');
-   }
+                         ->with('success','Pengalaman kursus/pelatihan berhasil dihapus');
+    }
 }
