@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Course;
+use App\Http\Models\CourseExperience;
 use Auth;
 
 class CourseController extends Controller
@@ -127,9 +128,18 @@ class CourseController extends Controller
     */
    public function destroy($id)
    {
-        Course::find($id)->delete();
+        $course_experience = CourseExperience::with('course')
+                                                ->where('course_id', '=', $id)
+                                                ->first();
 
-        return redirect()->route('courses.index')
-                        ->with('success','Kursus berhasil dihapus');
+        if ($course_experience == null) {
+            Course::find($id)->delete();
+                                        
+            return redirect()->route('courses.index')
+                             ->with('success','Kursus berhasil dihapus');
+        } else {
+            return redirect()->route('courses.index')
+                             ->with('failed','Kursus tidak bisa dihapus karena sudah digunakan sebagai pengalaman pelatihan pendaftar');
+        }
    }
 }
