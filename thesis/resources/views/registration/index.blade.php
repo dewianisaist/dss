@@ -22,13 +22,13 @@
 				<p>{{ $message }}</p>
 			</div>
 		@endif
+		
 		@if ($message = Session::get('success'))
 			<div class="alert alert-success">
 				<p>{{ $message }}</p>
 			</div>
 		@endif
 
-		{{--  <br/>  --}}
 		<div class="panel panel-primary">
 		<div class="panel-heading"><h4>Jadwal Seleksi</h4></div>
 			<div class="panel-body">

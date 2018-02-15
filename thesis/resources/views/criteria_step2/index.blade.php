@@ -34,7 +34,7 @@
         </div>
 
         <br/>
-        <table id="table_criteriastep2_standart" class="table table-bordered table-striped">
+        <table id="table_criteriastep2_fix" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>No</th>

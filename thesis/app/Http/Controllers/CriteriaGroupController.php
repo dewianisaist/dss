@@ -40,13 +40,28 @@ class CriteriaGroupController extends Controller
                                 ->with('failed','Maaf, silahkan isi kuesioner kriteria dahulu.');
             } else {
                 $i = 0;
-                $criteria_group = DB::table('criterias AS cr')
+                $j = 0;
+
+                $criterias_group = DB::table('criterias AS cr')
                                     ->select(DB::raw('cr.id, cr.name, cr.description, (select name from criterias where id = (select group_criteria from criterias as cri where cri.id = cr.id)) AS group_name'))
                                     ->where('cr.status','=','1')
                                     ->orderBy('cr.id','DESC')
                                     ->get();
 
-                return view('criteria_group.index',compact('criteria_group', 'i'));
+                $criterias_fix = Choice::select('choice.*', 'criterias.*')
+                                        ->join('criterias','criterias.id','=','choice.criteria_id')
+                                        ->where('choice.suggestion', '=', '0')
+                                        ->where('criterias.step', '=', '2')
+                                        ->where('criterias.status', '=', '1')
+                                        ->orderBy('criterias.id','DESC')
+                                        ->get();
+                
+                $list_group = Criteria::where('group_criteria','=',null)
+                                            ->where('description','=',null)
+                                            ->lists('name','id')
+                                            ->all();
+                
+                return view('criteria_group.index',compact('criterias_group', 'criterias_fix', 'list_group', 'criteria_group', 'i', 'j'));
             }
         } else {
             return redirect()->route('profile_users.show');
