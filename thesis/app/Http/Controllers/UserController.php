@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\User;
 use App\Http\Models\Role;
+use App\Http\Models\Registrant;
 use DB;
 use Hash;
 use Auth;
@@ -163,9 +164,19 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $registrant = Registrant::with('user')
+                                ->where('user_id', '=', $id)
+                                ->first();
+                                // return $registrant;
+        
+        if ($registrant == null) {
+            User::find($id)->delete();
 
-        return redirect()->route('users.index')
-                        ->with('success','User berhasil dihapus');
+            return redirect()->route('users.index')
+                             ->with('success','User berhasil dihapus');
+        } else {
+            return redirect()->route('users.index')
+                             ->with('failed','User yang merupakan Pendaftar tidak bisa dihapus karena sudah memiliki detail data pendaftar');
+        } 
     }
 }

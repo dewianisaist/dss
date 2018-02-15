@@ -17,10 +17,10 @@ use Hash;
 class RegistrantController extends Controller
 {
     /**
-    * Display the specified resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
         $role_id = Auth::user()->roleId();
         $user = User::with('registrant', 'registrant.upload')->find(Auth::user()->id);
@@ -38,12 +38,12 @@ class RegistrantController extends Controller
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function edit()
-   {
+     * Show the form for editing the specified resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function edit()
+    {
         $role_id = Auth::user()->roleId();
 
         if ($role_id == 2) {
@@ -52,14 +52,14 @@ class RegistrantController extends Controller
         } else {
             return redirect()->route('profile_users.show');
         }
-   }
+    }
 
-   /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+    /**
+     * Update the specified resource in storage.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request)
     {
         $this->validate($request, [
