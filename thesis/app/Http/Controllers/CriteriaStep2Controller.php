@@ -25,44 +25,30 @@ class CriteriaStep2Controller extends Controller
 
         if ($role_id == 3 || $role_id == 4 || $role_id == 5 ||$role_id == 6) { 
             if ($user->id == 1) {
-                $data_standart = Choice::select('choice.*', 'criterias.*',  
-                                            DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
-                                            DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
-                                            ->join('criterias','criterias.id','=','choice.criteria_id')
-                                            ->where('choice.suggestion', '=', '0')
-                                            ->where('criterias.step', '=', '1')
-                                            ->where('criterias.status', '=', '1')
-                                            ->groupBy('criterias.id')
-                                            ->orderBy('criterias.id','DESC')
-                                            ->paginate(5);
-
-                $data_suggestion = User::select('choice.*', 'criterias.*', 'users.name AS user_name')
-                                            ->join('choice','choice.user_id','=','users.id')
-                                            ->join('criterias','criterias.id','=','choice.criteria_id')
-                                            ->where('choice.suggestion', '=', '1')
-                                            ->where('criterias.step', '=', '2')
-                                            ->where('criterias.status', '=', '1')
-                                            ->orderBy('criterias.id','ASC')
-                                            ->paginate(5);
-
+                $i = 0;
+                $j = 0;
+                $k = 0;
+                
                 $data_fix = Choice::select('choice.*', 'criterias.*')
                                     ->join('criterias','criterias.id','=','choice.criteria_id')
                                     ->where('choice.suggestion', '=', '0')
                                     ->where('criterias.step', '=', '2')
                                     ->where('criterias.status', '=', '1')
                                     ->orderBy('criterias.id','DESC')
-                                    ->paginate(5);
+                                    ->get();
 
-                return view('criteria_step2.index', compact('data_standart', 'data_suggestion', 'data_fix'))
-                    ->with('i', ($request->input('page', 1) - 1) * 5)
-                    ->with('j', ($request->input('page', 1) - 1) * 5)
-                    ->with('k', ($request->input('page', 1) - 1) * 5);
-            }
+                $criteriaCheck = Criteria::select('criterias.ref_id')
+                                            ->where('criterias.ref_id','<>',null)
+                                            ->where('criterias.step','=', '2')
+                                            ->get();
+                $usedCriteria = array();
 
-            if ($data == null) {
-                return redirect()->route('questionnaire.create')
-                                ->with('failed','Maaf, silahkan isi kuesioner kriteria dahulu.');
-            } else {
+                foreach ($criteriaCheck as $used){
+                    if ($used["ref_id"] != null) {
+                        $usedCriteria[] = $used["ref_id"];
+                    }
+                }
+                
                 $data_standart = Choice::select('choice.*', 'criterias.*',   
                                             DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
                                             DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
@@ -70,9 +56,10 @@ class CriteriaStep2Controller extends Controller
                                             ->where('choice.suggestion', '=', '0')
                                             ->where('criterias.step', '=', '1')
                                             ->where('criterias.status', '=', '1')
+                                            ->whereNotIn('criterias.id', $usedCriteria)
                                             ->groupBy('criterias.id')
                                             ->orderBy('criterias.id','DESC')
-                                            ->paginate(5);
+                                            ->get();
 
                 $data_suggestion = User::select('choice.*', 'criterias.*', 'users.name AS user_name')
                                             ->join('choice','choice.user_id','=','users.id')
@@ -80,8 +67,20 @@ class CriteriaStep2Controller extends Controller
                                             ->where('choice.suggestion', '=', '1')
                                             ->where('criterias.step', '=', '2')
                                             ->where('criterias.status', '=', '1')
+                                            ->whereNotIn('criterias.id', $usedCriteria)
                                             ->orderBy('criterias.id','ASC')
-                                            ->paginate(5);
+                                            ->get();
+
+                return view('criteria_step2.index', compact('data_standart', 'data_suggestion', 'data_fix', 'i', 'j', 'k'));
+            }
+
+            if ($data == null) {
+                return redirect()->route('questionnaire.create')
+                                ->with('failed','Maaf, silahkan isi kuesioner kriteria dahulu.');
+            } else {
+                $i = 0;
+                $j = 0;
+                $k = 0;
 
                 $data_fix = Choice::select('choice.*', 'criterias.*')
                                     ->join('criterias','criterias.id','=','choice.criteria_id')
@@ -89,12 +88,43 @@ class CriteriaStep2Controller extends Controller
                                     ->where('criterias.step', '=', '2')
                                     ->where('criterias.status', '=', '1')
                                     ->orderBy('criterias.id','DESC')
-                                    ->paginate(5);
+                                    ->get();
 
-                return view('criteria_step2.index', compact('data_standart', 'data_suggestion', 'data_fix'))
-                    ->with('i', ($request->input('page', 1) - 1) * 5)
-                    ->with('j', ($request->input('page', 1) - 1) * 5)
-                    ->with('k', ($request->input('page', 1) - 1) * 5);
+                $criteriaCheck = Criteria::select('criterias.ref_id')
+                                            ->where('criterias.ref_id','<>',null)
+                                            ->where('criterias.step','=', '2')
+                                            ->get();
+                $usedCriteria = array();
+
+                foreach ($criteriaCheck as $used){
+                    if ($used["ref_id"] != null) {
+                        $usedCriteria[] = $used["ref_id"];
+                    }
+                }
+                
+                $data_standart = Choice::select('choice.*', 'criterias.*',   
+                                            DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
+                                            DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
+                                            ->join('criterias','criterias.id','=','choice.criteria_id')
+                                            ->where('choice.suggestion', '=', '0')
+                                            ->where('criterias.step', '=', '1')
+                                            ->where('criterias.status', '=', '1')
+                                            ->whereNotIn('criterias.id', $usedCriteria)
+                                            ->groupBy('criterias.id')
+                                            ->orderBy('criterias.id','DESC')
+                                            ->get();
+
+                $data_suggestion = User::select('choice.*', 'criterias.*', 'users.name AS user_name')
+                                            ->join('choice','choice.user_id','=','users.id')
+                                            ->join('criterias','criterias.id','=','choice.criteria_id')
+                                            ->where('choice.suggestion', '=', '1')
+                                            ->where('criterias.step', '=', '2')
+                                            ->where('criterias.status', '=', '1')
+                                            ->whereNotIn('criterias.id', $usedCriteria)
+                                            ->orderBy('criterias.id','ASC')
+                                            ->get();
+
+                return view('criteria_step2.index', compact('data_standart', 'data_suggestion', 'data_fix', 'i', 'j', 'k'));
             }
         } else {
             return redirect()->route('profile_users.show');
@@ -205,11 +235,14 @@ class CriteriaStep2Controller extends Controller
         $data = Choice::join('criterias','criterias.id','=','choice.criteria_id')
                             ->where('choice.criteria_id', '=', $id)
                             ->first();
+        
+        
 
         $input['name'] = $data['name'];
         $input['description'] = $data['description'];
         $input["step"] = 2;
         $input["status"] = 1;
+        $input["ref_id"] = $data["id"];
         $criteria = Criteria::create($input);
 
         $user = User::find(Auth::user()->id);

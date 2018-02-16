@@ -25,6 +25,9 @@ class ResultStep1Controller extends Controller
 
         if ($role_id == 3 || $role_id == 4 || $role_id == 5 ||$role_id == 6) { 
             if ($user->id == 1) {
+                $i = 0;
+                $j = 0;
+
                 $percentages = Choice::select('criterias.name', 'criterias.description',  
                                         DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
                                         DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
@@ -34,7 +37,7 @@ class ResultStep1Controller extends Controller
                                         ->where('criterias.status', '=', '1')
                                         ->groupBy('criterias.id')
                                         ->orderBy('criterias.id','DESC')
-                                        ->paginate(5);
+                                        ->get();
 
                 $data_suggestion = User::select('choice.*', 'criterias.*', 'users.name AS user_name')
                                             ->join('choice','choice.user_id','=','users.id')
@@ -43,17 +46,18 @@ class ResultStep1Controller extends Controller
                                             ->where('criterias.step', '=', '2')
                                             ->where('criterias.status', '=', '1')
                                             ->orderBy('criterias.id','ASC')
-                                            ->paginate(5);
+                                            ->get();
 
-                return view('result_step1.index', compact('percentages', 'data_suggestion'))
-                    ->with('i', ($request->input('page', 1) - 1) * 5)
-                    ->with('j', ($request->input('page', 1) - 1) * 5);
+                return view('result_step1.index', compact('percentages', 'data_suggestion', 'i', 'j'));
             }
 
             if ($data == null) {
                 return redirect()->route('questionnaire.create')
                                 ->with('failed','Maaf, silahkan isi kuesioner kriteria dahulu.');
             } else {
+                $i = 0;
+                $j = 0;
+                
                 $percentages = Choice::select('criterias.name', 'criterias.description',  
                                         DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
                                         DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
@@ -63,7 +67,7 @@ class ResultStep1Controller extends Controller
                                         ->where('criterias.status', '=', '1')
                                         ->groupBy('criterias.id')
                                         ->orderBy('criterias.id','DESC')
-                                        ->paginate(5);
+                                        ->get();
 
                 $data_suggestion = User::select('choice.*', 'criterias.*', 'users.name AS user_name')
                                             ->join('choice','choice.user_id','=','users.id')
@@ -72,11 +76,9 @@ class ResultStep1Controller extends Controller
                                             ->where('criterias.step', '=', '2')
                                             ->where('criterias.status', '=', '1')
                                             ->orderBy('criterias.id','ASC')
-                                            ->paginate(5);
+                                            ->get();
 
-                return view('result_step1.index', compact('percentages', 'data_suggestion'))
-                    ->with('i', ($request->input('page', 1) - 1) * 5)
-                    ->with('j', ($request->input('page', 1) - 1) * 5);
+                return view('result_step1.index', compact('percentages', 'data_suggestion', 'i', 'j'));
             }
         } else {
             return redirect()->route('profile_users.show');

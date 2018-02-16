@@ -63,7 +63,6 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $data_fix->render() !!}
 
         <br/>
         <h3>Hasil Kriteria Tahap 1</h3>
@@ -81,7 +80,7 @@
             <tbody>
                 @foreach ($data_standart as $key => $data_baku)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>{{ ++$j }}</td>
                         <td>{{ $data_baku->name }}</td>
                         <td>{{ $data_baku->description }}</td>
                         <td>{{ $data_baku->result }}</td>
@@ -95,7 +94,6 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $data_standart->render() !!}
 
         <h3>Masukan</h3>
         <table id="table_criteriastep2_suggestion" class="table table-bordered table-striped">
@@ -111,7 +109,7 @@
             <tbody>
                 @foreach ($data_suggestion as $key => $data_masukan)
                     <tr>
-                        <td>{{ ++$j }}</td>
+                        <td>{{ ++$k }}</td>
                         <td>{{ $data_masukan->name }}</td>
                         <td>{{ $data_masukan->description }}</td>
                         <td>{{ $data_masukan->user_name }}</td>
@@ -124,7 +122,6 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $data_suggestion->render() !!}
     </div>
 </div>
 @endsection
