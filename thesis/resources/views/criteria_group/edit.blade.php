@@ -6,12 +6,12 @@
   
 @section('content_header')
 <h1>
-  Edit Kriteria 
+  Edit Kelompok Kriteria 
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
   <li><a href="{{ route('criteriagroup.index') }}"><i class="fa fa-list"></i> Hierarki (Kelompok Kriteria)</a></li>
-  <li class="active">Edit Kriteria</li>
+  <li class="active">Edit Kelompok Kriteria</li>
 </ol>
 @endsection
  
@@ -28,22 +28,16 @@
 				</ul>
 			</div>
 		@endif
-		{!! Form::model($criteria, ['method' => 'PATCH','route' => ['criteriagroup.update', $criteria->id]]) !!}
+		{!! Form::model($criteria_group, ['method' => 'PATCH','route' => ['criteriagroup.update', $criteria_group->id]]) !!}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Kriteria:</strong>
-						{!! Form::text('name', null, array('placeholder' => 'Nama Kriteria','class' => 'form-control','disabled')) !!}
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<div class="form-group">
-						<strong>Kelompok kriteria:</strong>
-						{!! Form::select('group_criteria', $criteria_group, null, array('class' => 'form-control')) !!}
+						<strong>Nama Kelompok Kriteria:</strong>
+						{!! Form::text('name', null, array('placeholder' => 'Nama Kelompok Kriteria','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-					<button type="submit" class="btn btn-primary">Simpan</button>
+						<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			</div>
 		{!! Form::close() !!}
