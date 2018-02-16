@@ -53,23 +53,29 @@
 			<tbody>
 				@foreach ($criterias_group as $id => $value)
 					<tr>
-						<td align ="center">{{ ++$i }}</td>
-						<td>{{ $value["name"] }}</td>
-						<td>
+						<td align ="center" bgcolor="#F0FBD6">{{ ++$i }}</td>
+						<td bgcolor="#F0FBD6">{{ $value["name"] }}</td>
+						<td bgcolor="#F0FBD6">
+							{{--  @permission('criteriagroup-edit')  --}}
 							<a class="btn btn-primary" href="{{ route('criteriagroup.edit',$id) }}">Edit</a>
+							{{--  @endpermission  --}}
+							{{--  @permission('criteriagroup-delete')  --}}
 							{!! Form::open(['method' => 'DELETE','route' => ['criteriagroup.destroy', $id],'style'=>'display:inline']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 							{!! Form::close() !!}
+							{{--  @endpermission  --}}
 						</td>
 					</tr>
 					@foreach($value["data"] as $crit)
 						<tr>
 							{!! Form::open(array('route' => 'criteriagroup.out','method'=>'POST')) !!}
-								<td width = "50px" align ="right"><li></td>
-								<td>{{ $crit->name }}</td>
-								<td>
+								<td width = "50px" align ="right" bgcolor="#FDFDFD"><li></td>
+								<td bgcolor="#FDFDFD">{{ $crit->name }}</td>
+								<td bgcolor="#FDFDFD">
+									{{--  @permission('criteriagroup-out')  --}}
 									<input type = "hidden" name = "id" value = "{{ $crit->id }}" />
 									<button type="submit" class="btn btn-primary">Remove from Group</button>
+									{{--  @endpermission  --}}
 								</td>
 							{!! Form::close() !!}
 						</tr>
@@ -95,6 +101,7 @@
 							<td width = "50px" align ="center">{{ ++$j }}</td>
 							<td width = "500px">{{ $kriteria_fiks->name }}</td>
 							<td>
+								{{--  @permission('criteriagroup-add')  --}}
 								<input type = "hidden" name = "id" value = "{{ $kriteria_fiks->id }}" />
 								<div class="col-xs-9">
 									{!! Form::select('group_criteria', $list_group, null, array('class' => 'form-control')) !!}
@@ -102,6 +109,7 @@
 								<div class="col-xs-1">
 									<button type="submit" class="btn btn-primary">Add to Group</button>
 								</div>
+								{{--  @endpermission  --}}
 							</td>
 						{!! Form::close() !!}
                     </tr>
