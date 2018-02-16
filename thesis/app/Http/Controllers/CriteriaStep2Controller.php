@@ -91,7 +91,6 @@ class CriteriaStep2Controller extends Controller
                                     ->orderBy('criterias.id','DESC')
                                     ->paginate(5);
 
-                                    // return $data_fix;
                 return view('criteria_step2.index', compact('data_standart', 'data_suggestion', 'data_fix'))
                     ->with('i', ($request->input('page', 1) - 1) * 5)
                     ->with('j', ($request->input('page', 1) - 1) * 5)
@@ -193,4 +192,35 @@ class CriteriaStep2Controller extends Controller
                         ->with('success','Kriteria berhasil dihapus');
     }
 
+    /**
+     * Use the specified resource from storage. And store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function use(Request $request, $id)
+    {
+
+        $data = Choice::join('criterias','criterias.id','=','choice.criteria_id')
+                            ->where('choice.criteria_id', '=', $id)
+                            ->first();
+
+        $input['name'] = $data['name'];
+        $input['description'] = $data['description'];
+        $input["step"] = 2;
+        $input["status"] = 1;
+        $criteria = Criteria::create($input);
+
+        $user = User::find(Auth::user()->id);
+
+        $choice["user_id"] = $user->id;
+        $choice["criteria_id"] = $criteria->id;
+        $choice["option"] = 1;
+        $choice["suggestion"] = 0;
+        Choice::create($choice);
+
+        return redirect()->route('criteriastep2.index')
+                         ->with('success','Kriteria berhasil digunakan');
+    }
 }

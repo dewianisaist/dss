@@ -167,6 +167,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('criteriastep2/{id}/edit',['as'=>'criteriastep2.edit','uses'=>'CriteriaStep2Controller@edit']);
 	Route::patch('criteriastep2/{id}',['as'=>'criteriastep2.update','uses'=>'CriteriaStep2Controller@update']);
 	Route::delete('criteriastep2/{id}',['as'=>'criteriastep2.destroy','uses'=>'CriteriaStep2Controller@destroy']);
+	Route::get('criteriastep2/{id}',['as'=>'criteriastep2.use','uses'=>'CriteriaStep2Controller@use']);
 
 	//criteriagroup - ada permission, belum ditambahkan
 	Route::get('criteriagroup',['as'=>'criteriagroup.index','uses'=>'CriteriaGroupController@index']);

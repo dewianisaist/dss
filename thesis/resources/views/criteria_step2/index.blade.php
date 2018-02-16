@@ -88,7 +88,7 @@
                         <td>{{ $data_baku->sum }} dari {{ $data_baku->count }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
-                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_baku->id) }}">Gunakan</a>
+                            <a class="btn btn-primary" href="{{ route('criteriastep2.use',$data_baku->id) }}">Gunakan</a>
                             {{--  @endpermission  --}}
                         </td>
                     </tr>
@@ -117,7 +117,7 @@
                         <td>{{ $data_masukan->user_name }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
-                            <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_masukan->id) }}">Gunakan</a>
+                            <a class="btn btn-primary" href="{{ route('criteriastep2.use',$data_masukan->id ) }}">Gunakan</a>
                             {{--  @endpermission  --}}
                         </td>
                     </tr>
