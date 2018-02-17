@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 13, 2018 at 03:26 AM
+-- Generation Time: Feb 16, 2018 at 06:05 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -96,6 +96,7 @@ CREATE TABLE `criterias` (
   `parameter_s` decimal(20,3) DEFAULT NULL,
   `step` varchar(1) DEFAULT NULL,
   `status` varchar(1) DEFAULT NULL,
+  `ref_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
