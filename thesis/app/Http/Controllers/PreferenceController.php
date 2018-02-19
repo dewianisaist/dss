@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Criteria;
+use App\Http\Models\Choice;
 use Auth;
 
 class PreferenceController extends Controller
@@ -19,8 +20,17 @@ class PreferenceController extends Controller
         $role_id = Auth::user()->roleId();
         
         if ($role_id == 3) {
-            $preferences = Criteria::orderBy('id','DESC')->paginate(10);
-
+            $preferences = Criteria::where('step', '=', '2')
+                                    ->where('status', '=', '1')
+                                    ->where('description', '<>', null)
+                                    ->whereNotIn('id', function($query){
+                                        $query->select('criteria_id')
+                                        ->from(with(new Choice)->getTable())
+                                        ->where('suggestion', 1);
+                                    })
+                                    ->orderBy('id','DESC')
+                                    ->paginate(10);
+                                    
             return view('preferences.index',compact('preferences'))
                 ->with('i', ($request->input('page', 1) - 1) * 10);
         } else {

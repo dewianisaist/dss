@@ -173,16 +173,17 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('criteriagroup',['as'=>'criteriagroup.index','uses'=>'CriteriaGroupController@index']);
 	Route::get('criteriagroup/create',['as'=>'criteriagroup.create','uses'=>'CriteriaGroupController@create']);
 	Route::post('criteriagroup/create',['as'=>'criteriagroup.store','uses'=>'CriteriaGroupController@store']);
-	// Route::get('criteriagroup/{id}/edit',['as'=>'criteriagroup.edit','uses'=>'CriteriaGroupController@edit']);
-	// Route::patch('criteriagroup/{id}',['as'=>'criteriagroup.update','uses'=>'CriteriaGroupController@update']);
 	Route::get('criteriagroup/{id}/edit',['as'=>'criteriagroup.edit','uses'=>'CriteriaGroupController@edit']);
 	Route::patch('criteriagroup/{id}/edit',['as'=>'criteriagroup.update','uses'=>'CriteriaGroupController@update']);
 	Route::delete('criteriagroup/{id}',['as'=>'criteriagroup.destroy','uses'=>'CriteriaGroupController@destroy']);
-	// Route::get('criteriagroup/{id}',['as'=>'criteriagroup.clear','uses'=>'CriteriaGroupController@clear']);
 	Route::post('criteriagroup/add',['as'=>'criteriagroup.add','uses'=>'CriteriaGroupController@add']);
 	Route::post('criteriagroup/out',['as'=>'criteriagroup.out','uses'=>'CriteriaGroupController@out']);
 
-	
+	//criteriastep2 - tidak ada permission
+	Route::get('weights',['as'=>'weights.index','uses'=>'WeightController@index']);
+	Route::get('weights/create',['as'=>'weights.create','uses'=>'WeightController@create']);
+	Route::post('weights/create',['as'=>'weights.store','uses'=>'WeightController@store']);
+
 	//conversions - tidak ada permission
 	Route::get('conversions',['as'=>'conversions.index','uses'=>'ConversionController@index']);
 	Route::get('conversions/create',['as'=>'conversions.create','uses'=>'ConversionController@create']);
