@@ -57,23 +57,14 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Tes Tertulis:</strong>
+						<strong>Nilai Tes Tertulis <small>(Range nilai 0-100)</small>:</strong>
 						{!! Form::text('written_value', isset($selection->written_value) ? $selection->written_value : '', array('placeholder' => 'Nilai Tes Tertulis','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Tes Wawancara:</strong>
-						{!! Form::select('interview_value', 
-							array(
-								'Sangat Baik' => 'Sangat Baik', 
-								'Baik' => 'Baik',
-								'Cukup' => 'Cukup',
-								'Kurang' => 'Kurang',
-								'Sangat Kurang' => 'Sangat Kurang'
-							), 
-							isset($selection->interview_value) ? $selection->interview_value : '', array('class' => 'form-control')) 
-						!!}
+						<strong>Nilai Tes Wawancara <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('interview_value', isset($selection->interview_value) ? $selection->interview_value : '', array('placeholder' => 'Nilai Tes Wawancara','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
