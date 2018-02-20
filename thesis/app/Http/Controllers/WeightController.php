@@ -25,17 +25,20 @@ class WeightController extends Controller
                                     ->from(with(new Choice)->getTable())
                                     ->where('suggestion', 1);
                                 })
-                                ->lists('name','id')
-                                ->all();
+                                ->get();
 
+        // return $criterias;
 
         $criterias_group = array();
-        foreach ($criterias as $key=>$name){
-            $criterias_group[$key]["name"] = $name;
-            $criterias_group[$key]["data"] = array();
+        $total_criterias = 0;
+        foreach ($criterias as $criteria){
+
+            $criterias_group[$criteria->id]["group"] = $criteria;
+            $criterias_group[$criteria->id]["data"] = array();
+
             $subcriterias = Criteria::where('step', '=', '2')
                                         ->where('status', '=', '1')
-                                        ->where('group_criteria', '=', $key)
+                                        ->where('group_criteria', '=', $criteria->id)
                                         ->whereNotIn('id', function($query){
                                             $query->select('criteria_id')
                                             ->from(with(new Choice)->getTable())
@@ -45,10 +48,17 @@ class WeightController extends Controller
                                         ->get();
 
             foreach ($subcriterias as $subcriteria){
-                $criterias_group[$key]["data"][] = $subcriteria;
+                $criterias_group[$criteria->id]["data"][] = $subcriteria;
             }
+            $total_member = 1 ;
+            if (count($subcriterias) > 1){
+                $total_member = count($subcriterias);
+            }
+            $criterias_group[$criteria->id]["member"] = $total_member;
+            $total_criterias += $total_member;
         }
-
+        $criterias_group["rowspan"] = $total_criterias;
+        // return $criterias_group;
         return view('weights.index',compact('criterias_group'));
     }
 

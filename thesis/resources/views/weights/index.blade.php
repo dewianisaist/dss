@@ -24,7 +24,44 @@
             </ul>
         </div>
         
-        <table id="table_questionnaire_standart" class="table">
+        <table id="table_questionnaire_test" class="table">
+                <thead>
+                    <tr>
+                        <th>Tujuan</th>
+                        <th>Kriteria</th>
+                        <th>Sub-Kriteria</th>
+                        <th>Bobot Global</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan = '5'>
+                            SPK Seleksi Peserta Pelatihan 
+                            <a class="btn btn-success"> AHP</a>
+                        </td>
+                        <tr rowspan = '1'>
+                            <td>1</td>
+                        </tr>
+                        <tr rowspan = '1'>
+                            <td>1</td>
+                        </tr>
+                        <tr rowspan = '3'>
+                             <td>1</td>
+                             <tr>
+                                 <td>2</td>
+                             </tr>
+                             <tr>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                        <td>2</td>
+                                    </tr>
+                        </tr>
+                    </tr>
+                </tbody>
+            </table>
+
+        {{--  <table id="table_questionnaire_standart" class="table">
             <thead>
                 <tr>
                     <th>Tujuan</th>
@@ -35,33 +72,38 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>
+                    <td rowspan = "{{ $criterias_group['rowspan'] }}">
                         SPK Seleksi Peserta Pelatihan 
                         <a class="btn btn-success" href="{{ route('weights.create') }}"> AHP</a>
                     </td>
                 </tr>
-                @foreach ($criterias_group as $id => $value)
+                @foreach ($criterias_group as $value)
                 <tr>
-                        <td></td>
-                        <td>
-                            {{ $value["name"] }}
-                            <span class="label label-primary">xxx</span>
-                            <a class="btn btn-success" href="{{ route('weights.create') }}"> AHP</a>
-                        </td>
+                    <td rowspan = "{{ $value['member'] }}">
+                        {{ $value["group"]["name"] }}
+                        <span class="label label-primary">xxx</span>
+                        <a class="btn btn-success" href="{{ route('weights.create') }}"> AHP</a>
+                    </td>
                 </tr>
-                @foreach($value["data"] as $crit)
+                @if (count($value["data"]) > 0)
+                @foreach ($value["data"] as $crit)
 					<tr>
-                        <td></td>
-                        <td></td>
 						<td>
                             {{ $crit->name }}
                             <span class="label label-primary">xxx</span>
                         </td>
 					</tr>
                  @endforeach
+                 @else
+                    <tr>
+						<td>
+                            
+                        </td>
+					</tr>
+                 @endif
 			@endforeach
             </tbody>
-        </table>
+        </table>  --}}
     </div>
 </div>
 @endsection
