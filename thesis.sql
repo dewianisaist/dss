@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 16, 2018 at 06:03 PM
+-- Generation Time: Feb 20, 2018 at 05:26 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -50,10 +50,12 @@ INSERT INTO `choice` (`user_id`, `criteria_id`, `option`, `suggestion`) VALUES
 (2, 31, '1', '1'),
 (2, 32, '1', '1'),
 (2, 73, '1', '0'),
-(2, 74, '1', '0'),
-(2, 75, '1', '0'),
-(2, 76, '1', '0'),
-(2, 82, '1', '0'),
+(2, 89, '1', '0'),
+(2, 90, '1', '0'),
+(2, 91, '1', '0'),
+(2, 92, '1', '0'),
+(2, 93, '1', '0'),
+(2, 94, '1', '0'),
 (4, 1, '1', '0'),
 (4, 2, '1', '0'),
 (4, 3, '1', '0'),
@@ -133,8 +135,7 @@ CREATE TABLE `course_experience` (
 INSERT INTO `course_experience` (`registrant_id`, `course_id`, `organizer`, `graduation_year`) VALUES
 (3, 5, 'BLK', 0000),
 (4, 1, 'LPK', 0000),
-(6, 4, 'Bimbel', 0000),
-(10, 1, '-', 0000);
+(6, 4, 'Bimbel', 0000);
 
 -- --------------------------------------------------------
 
@@ -178,12 +179,15 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `partial
 (31, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:01:21', '2018-02-12 20:01:21'),
 (32, NULL, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:01:21', '2018-02-12 20:01:21'),
 (33, NULL, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:27:50', '2018-02-12 20:27:50'),
-(73, NULL, 'Usia', 'Usia (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', 1, '2018-02-16 00:57:21', '2018-02-16 09:44:24'),
-(74, 87, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', 4, '2018-02-16 01:17:17', '2018-02-16 09:45:29'),
-(75, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', 31, '2018-02-16 01:22:48', '2018-02-16 09:44:12'),
-(76, 87, 'step 2', 'step 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-16 01:23:00', '2018-02-16 09:44:56'),
-(82, 87, 'step 2 lagi', 'step 2 lagi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-16 09:22:49', '2018-02-16 09:44:53'),
-(87, NULL, 'kelompok a', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-16 09:44:40', '2018-02-16 09:44:40');
+(73, 95, 'Usia', 'Usia (XYZ, 2013)', '0.433', '0.144', NULL, NULL, NULL, NULL, NULL, '2', '1', 1, '2018-02-16 00:57:21', '2018-02-19 20:00:21'),
+(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', '0.466', '0.155', NULL, NULL, NULL, NULL, NULL, '2', '1', 2, '2018-02-19 19:57:19', '2018-02-19 20:00:24'),
+(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', '0.101', '0.034', NULL, NULL, NULL, NULL, NULL, '2', '1', 32, '2018-02-19 19:57:48', '2018-02-19 20:00:27'),
+(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', '0.118', '0.039', NULL, NULL, NULL, NULL, NULL, '2', '1', 3, '2018-02-19 19:58:02', '2018-02-19 20:00:53'),
+(92, 96, 'Wawancara', 'Wawancara (XYZ, 2013)', '0.808', '0.269', NULL, NULL, NULL, NULL, NULL, '2', '1', 4, '2018-02-19 19:58:05', '2018-02-19 20:00:56'),
+(93, 96, 'Kelengkapan Administrasi', 'usulan kasubag tu', '0.074', '0.025', NULL, NULL, NULL, NULL, NULL, '2', '1', 33, '2018-02-19 19:58:09', '2018-02-19 20:01:01'),
+(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', '0.333', '0.333', NULL, NULL, NULL, NULL, NULL, '2', '1', 31, '2018-02-19 19:58:38', '2018-02-19 19:58:38'),
+(95, NULL, 'Personal', NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:08', '2018-02-19 20:00:08'),
+(96, NULL, 'Ujian/Tes', NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:38', '2018-02-19 20:00:38');
 
 -- --------------------------------------------------------
 
@@ -218,8 +222,7 @@ INSERT INTO `educational_background` (`registrant_id`, `education_id`, `name_ins
 (6, 1, '-', 0000),
 (6, 2, '-', 0000),
 (6, 3, '-', 0000),
-(6, 11, '-', 0000),
-(10, 1, '-', 0000);
+(6, 11, '-', 0000);
 
 -- --------------------------------------------------------
 
@@ -265,6 +268,39 @@ CREATE TABLE `pairwise_comparisons` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pairwise_comparisons`
+--
+
+INSERT INTO `pairwise_comparisons` (`criteria1_id`, `criteria2_id`, `value`, `created_at`, `updated_at`) VALUES
+(73, 73, '1.000', NULL, NULL),
+(73, 89, '1.000', NULL, NULL),
+(73, 90, '4.000', NULL, NULL),
+(89, 73, '1.000', NULL, NULL),
+(89, 89, '1.000', NULL, NULL),
+(89, 90, '5.000', NULL, NULL),
+(90, 73, '0.250', NULL, NULL),
+(90, 89, '0.200', NULL, NULL),
+(90, 90, '1.000', NULL, NULL),
+(91, 91, '1.000', NULL, NULL),
+(91, 92, '0.111', NULL, NULL),
+(91, 93, '2.000', NULL, NULL),
+(92, 91, '9.000', NULL, NULL),
+(92, 92, '1.000', NULL, NULL),
+(92, 93, '9.000', NULL, NULL),
+(93, 91, '0.500', NULL, NULL),
+(93, 92, '0.111', NULL, NULL),
+(93, 93, '1.000', NULL, NULL),
+(94, 94, '1.000', NULL, NULL),
+(94, 95, '1.000', NULL, NULL),
+(94, 96, '1.000', NULL, NULL),
+(95, 94, '1.000', NULL, NULL),
+(95, 95, '1.000', NULL, NULL),
+(95, 96, '1.000', NULL, NULL),
+(96, 94, '1.000', NULL, NULL),
+(96, 95, '1.000', NULL, NULL),
+(96, 96, '1.000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -473,11 +509,7 @@ INSERT INTO `registrants` (`id`, `user_id`, `address`, `phone_number`, `gender`,
 (3, 10, 'Pepe, Bantul,, DIY', '0812376248', 'Laki-laki', 'Bantul', '1977-12-05', 2, 3, 'Islam', 'Ibu 3', 'Ayah 3', 'Pepe, Bantul,, DIY', '2018-01-27 04:24:38', '2018-01-28 01:38:03'),
 (4, 11, 'Bantul', '09876547654', 'Laki-laki', 'Bantul', '1997-10-17', 1, 2, 'Islam', 'Ibu 4', 'Ayah 4', 'Bantul', '2018-01-28 01:43:57', '2018-01-28 01:43:57'),
 (5, 12, 'Bantul', '088757689', 'Laki-laki', 'Bantul', '2000-11-22', 1, 3, 'Islam', 'Ibu 5', 'Ayah 5', 'Bantul', '2018-01-28 01:47:23', '2018-01-28 01:47:23'),
-(6, 13, 'Bantul', '08255675767', 'Laki-laki', 'Bantul', '1990-06-03', 2, 4, 'Islam', 'Ibu 6', 'Ayah 6', 'Bantul', '2018-01-28 01:50:48', '2018-01-28 01:50:48'),
-(7, 15, 'tester', '123456789', 'Laki-laki', 'test', '2018-01-21', 0, 0, 'Islam', '', '', '', '2018-01-29 23:03:23', '2018-01-29 23:03:23'),
-(8, 16, 'test', '1234567', 'Laki-laki', 'test', '2018-01-18', 0, 0, 'Islam', '', '', '', '2018-01-30 20:04:43', '2018-01-30 20:04:43'),
-(9, 19, 'x', '09876543', 'Laki-laki', 'x', '2018-02-05', 0, 0, 'Islam', '', '', '', '2018-02-13 17:11:28', '2018-02-13 17:11:28'),
-(10, 20, 'x', '0987654', 'Laki-laki', 'x', '2018-02-06', 0, 0, 'Islam', '', '', '', '2018-02-14 19:30:07', '2018-02-14 19:30:07');
+(6, 13, 'Bantul', '08255675767', 'Laki-laki', 'Bantul', '1990-06-03', 2, 4, 'Islam', 'Ibu 6', 'Ayah 6', 'Bantul', '2018-01-28 01:50:48', '2018-01-28 01:50:48');
 
 -- --------------------------------------------------------
 
@@ -505,13 +537,7 @@ INSERT INTO `registrations` (`id`, `registrant_id`, `sub_vocational_id`, `regist
 (6, 3, 2, '2016-06-29 08:41:35', NULL, NULL),
 (7, 4, 2, '2016-06-30 08:45:18', NULL, NULL),
 (8, 5, 2, '2016-05-23 08:48:17', NULL, NULL),
-(9, 6, 2, '2016-06-01 08:52:10', NULL, NULL),
-(10, 7, 6, '2018-01-31 03:00:56', NULL, NULL),
-(13, 7, 6, '2018-01-31 06:42:09', NULL, NULL),
-(15, 7, 6, '2018-01-31 06:52:01', NULL, NULL),
-(20, 7, 6, '2018-01-31 08:32:41', NULL, NULL),
-(21, 7, 1, '2018-01-31 08:35:46', NULL, NULL),
-(23, 9, 11, '2018-02-14 00:11:40', NULL, NULL);
+(9, 6, 2, '2016-06-01 08:52:10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -577,9 +603,6 @@ INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
 (2, 12),
 (2, 13),
 (2, 15),
-(2, 16),
-(2, 19),
-(2, 20),
 (3, 1),
 (3, 2),
 (4, 1),
@@ -601,8 +624,8 @@ CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
   `registration_id` int(11) NOT NULL,
   `selection_schedule_id` int(11) NOT NULL,
-  `written_value` decimal(5,2) DEFAULT NULL,
-  `interview_value` varchar(15) DEFAULT NULL,
+  `written_value` varchar(3) DEFAULT NULL,
+  `interview_value` varchar(3) DEFAULT NULL,
   `recommendation` varchar(5) DEFAULT NULL,
   `ranking` varchar(5) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL,
@@ -615,19 +638,13 @@ CREATE TABLE `selections` (
 --
 
 INSERT INTO `selections` (`id`, `registration_id`, `selection_schedule_id`, `written_value`, `interview_value`, `recommendation`, `ranking`, `status`, `created_at`, `updated_at`) VALUES
-(1, 5, 3, '80.00', 'Baik', NULL, '', '', '2015-02-01 17:00:00', '2018-01-29 02:42:29'),
-(2, 1, 2, '85.00', 'Sangat Baik', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(3, 4, 2, '40.00', 'Baik', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(4, 6, 2, '60.00', 'Kurang', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(5, 7, 2, '75.00', 'Cukup', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(6, 8, 2, '45.00', 'Sangat Baik', NULL, '', '', '2016-07-10 17:00:00', '2016-07-10 17:00:00'),
-(7, 9, 2, '55.00', 'Cukup', NULL, '', '', '2016-07-10 17:00:00', '2018-01-29 02:42:11'),
-(8, 10, 7, NULL, NULL, NULL, '', 'Diterima', '2018-01-30 20:00:56', '2018-01-30 20:00:56'),
-(11, 13, 7, NULL, NULL, NULL, '', 'Diterima', '2018-01-30 23:42:09', '2018-01-30 23:42:09'),
-(13, 15, 10, NULL, NULL, NULL, '', 'Gagal', '2018-01-30 23:52:01', '2018-01-30 23:52:01'),
-(18, 20, 7, NULL, NULL, NULL, '', 'Gagal', '2018-01-31 01:32:41', '2018-01-31 01:32:41'),
-(19, 21, 1, NULL, NULL, NULL, '', '', '2018-01-31 01:35:46', '2018-01-31 01:35:46'),
-(21, 23, 11, '85.00', 'Baik', 'Tidak', NULL, NULL, '2018-02-13 17:11:40', '2018-02-14 20:51:29');
+(1, 5, 3, '80', '80', 'Ya', '', 'Diterima', '2015-02-01 17:00:00', '2018-02-20 09:03:12'),
+(2, 1, 2, '85', '95', 'Ya', '', '', '2016-07-10 17:00:00', '2018-02-20 09:02:54'),
+(3, 4, 2, '40', '85', 'Ya', '', '', '2016-07-10 17:00:00', '2018-02-20 09:02:23'),
+(4, 6, 2, '60', '60', 'Ya', '', '', '2016-07-10 17:00:00', '2018-02-20 09:01:56'),
+(5, 7, 2, '75', '70', 'Ya', '', '', '2016-07-10 17:00:00', '2018-02-20 09:01:35'),
+(6, 8, 2, '45', '80', 'Ya', '', '', '2016-07-10 17:00:00', '2018-02-20 09:01:15'),
+(7, 9, 2, '55', '70', 'Ya', '', '', '2016-07-10 17:00:00', '2018-02-20 09:00:52');
 
 -- --------------------------------------------------------
 
@@ -659,9 +676,7 @@ INSERT INTO `selection_schedules` (`id`, `sub_vocational_id`, `date`, `time`, `p
 (6, 5, '2018-02-20', '08:00', 'R. Menjahit', '', '2018-01-27 03:58:59', '2018-01-27 03:58:59'),
 (7, 6, '2018-02-19', '08:00', 'R. Bangunan', '', '2018-01-27 03:59:35', '2018-01-27 03:59:35'),
 (8, 1, '2018-01-20', '08:00', 'R. TKR 1', '', '2018-01-27 04:15:58', '2018-01-27 04:15:58'),
-(9, 1, '2018-06-29', '08:00', 'R. TKR 1', '', '2018-01-27 04:20:26', '2018-01-27 04:20:26'),
-(10, 6, '2018-01-30', '10:00', 'X', '-', '2018-01-30 20:18:11', '2018-01-30 20:18:11'),
-(11, 11, '2018-03-10', '07:04', 'd', '', '2018-02-13 17:04:23', '2018-02-13 17:04:23');
+(9, 1, '2018-06-29', '08:00', 'R. TKR 1', '', '2018-01-27 04:20:26', '2018-01-27 04:20:26');
 
 -- --------------------------------------------------------
 
@@ -723,11 +738,7 @@ INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`
 (3, 3, 'photo_d3d9446802a44259755d38e6d163e820.jpg', 'ktp_d3d9446802a44259755d38e6d163e820.pdf', 'lastcertificate_d3d9446802a44259755d38e6d163e820.pdf', '2018-01-27 04:24:38', '2018-01-28 01:38:03'),
 (4, 4, 'photo_6512bd43d9caa6e02c990b0a82652dca.jpg', 'ktp_6512bd43d9caa6e02c990b0a82652dca.pdf', 'lastcertificate_6512bd43d9caa6e02c990b0a82652dca.pdf', '2018-01-28 01:43:57', '2018-01-28 01:43:57'),
 (5, 5, 'photo_c20ad4d76fe97759aa27a0c99bff6710.jpg', 'ktp_c20ad4d76fe97759aa27a0c99bff6710.pdf', 'lastcertificate_c20ad4d76fe97759aa27a0c99bff6710.pdf', '2018-01-28 01:47:23', '2018-01-28 01:47:23'),
-(6, 6, 'photo_c51ce410c124a10e0db5e4b97fc2af39.png', 'ktp_c51ce410c124a10e0db5e4b97fc2af39.pdf', NULL, '2018-01-28 01:50:48', '2018-01-28 01:50:48'),
-(7, 7, NULL, NULL, NULL, '2018-01-29 23:03:23', '2018-01-29 23:03:23'),
-(8, 8, NULL, NULL, NULL, '2018-01-30 20:04:43', '2018-01-30 20:04:43'),
-(9, 9, NULL, NULL, NULL, '2018-02-13 17:11:28', '2018-02-13 17:11:28'),
-(10, 10, NULL, NULL, NULL, '2018-02-14 19:30:07', '2018-02-14 19:30:07');
+(6, 6, 'photo_c51ce410c124a10e0db5e4b97fc2af39.png', 'ktp_c51ce410c124a10e0db5e4b97fc2af39.pdf', 'lastcertificate_c51ce410c124a10e0db5e4b97fc2af39.docx', '2018-01-28 01:50:48', '2018-02-20 09:13:31');
 
 -- --------------------------------------------------------
 
@@ -751,7 +762,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'TzhEo7WHiyhTacCyGAPckiQZ0zIXi6wAvLsvcO4r5uX6wEyXwkUIZumAVK5B', '2018-01-27 03:23:49', '2018-02-15 05:04:57'),
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'l7oSYd0QdSxsv9LnrGHp97xBWh0rodJ9vOYMcqQDO32KjU4fhPL6IyQMRBpq', '2018-01-27 03:23:49', '2018-02-20 09:26:01'),
 (2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'mgwtmHHCo5u5qC6uVpS9ntpvEJZvAZ8wsXjKJmGLXir3voVEseuz9OJXml3W', '2018-01-27 03:43:47', '2018-02-15 05:04:11'),
 (3, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$cSc2B1F7pU2Mg5855RYHGO3FQ6g.Za1jshY5mRQHN4qYftHE42NeW', 'glQR5Qbdsl0F32Rl0N2wboZ5BCobOnAPPuC3FsFgKKB2TKRKTuhAzW0GEQuC', '2018-01-27 03:44:11', '2018-01-31 01:55:21'),
 (4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', 'JUwVtsJYyFhTCUjfFJwI9DSZY2TwwkD5l805y3A7YSA25VoMIgVX6NROpcXu', '2018-01-27 03:44:49', '2018-02-12 21:17:30'),
@@ -760,15 +771,12 @@ INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `reme
 (7, '707070', 'Kajur BLK 2', 'kajur2@test.com', '$2y$10$LCZa7BHss00RB/6NCqHod.z71.Ibe5XRsQDP4PZx916VEPZWQiL4.', NULL, '2018-01-27 03:46:00', '2018-01-27 03:46:00'),
 (8, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$68.v0BPzLDZleeo8DxSaduH6UIezllOSBgGbE0D7qV9UmxV.dUs6K', 'QPcrqBIyvAgF1C82sx1DIU8ChKsAKnc00Mfg7JhEI9mO6snvmWrY6F0y3RFo', '2018-01-27 03:46:15', '2018-02-15 05:04:28'),
 (9, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$dqUXyeibCfmgSh/tSQcn.ul.y6iE2CP4ZY.kSMeN.D/m2SvAUvmZu', 'WkUgKsuWJKwNVsmu1IX77dacf7Zc3wgOA09vHIRDIwzSWuF5cjIwGar4N6hz', '2018-01-27 04:21:36', '2018-01-28 00:37:43'),
-(10, '33333333', 'Pendaftar 3', 'pendaftar3@test.com', '$2y$10$ovt5lW3sbZFhauaL7mr8ye7vIrDuNh5pmFoA4C5D4eRAg/Tf9z8om', 'oMS2ib7q2yjtOh5cI7PvjvJCjXpwFWl2CZxyHzNU4BA7p7miRIWynsoQrFGw', '2018-01-27 04:23:38', '2018-01-30 19:57:02'),
+(10, '33333333', 'Pendaftar 3', 'pendaftar3@test.com', '$2y$10$ovt5lW3sbZFhauaL7mr8ye7vIrDuNh5pmFoA4C5D4eRAg/Tf9z8om', 'SrlzPZPNdTMR0bibautsvSUT8YIpUTuFvNa6Zncggf6mTgymshkjlPRqHrb3', '2018-01-27 04:23:38', '2018-02-20 09:23:55'),
 (11, '44444444', 'Pendaftar 4', 'pendaftar4@test.com', '$2y$10$hxnGUN9tnRq7P6JNMEFfdu123tF7eJ1dv43ezedr43GqkvPSkqGm6', 'b6yu8TTOwAwF4k6pndig725fu6z4RrJl5eDTTRKbs0DVAo1bfoqRgJYNQTSA', '2018-01-27 04:25:04', '2018-01-28 01:45:24'),
 (12, '55555555', 'Pendaftar 5', 'pendaftar5@test.com', '$2y$10$q11gRIXlJSTneMkYyS09K.TFIcHdJ4s5pdLSfpzszuIi/wCJYMTvC', 'msTszzKnkG80qrJ4MOOGLvwDpAxq4i861qYNCBdgNLz64zOVXVTIoZh2d9jD', '2018-01-28 00:27:48', '2018-02-14 19:27:28'),
-(13, '66666666', 'Pendaftar 6', 'pendaftar6@test.com', '$2y$10$wZgJS1V/86t/LWWsx/9KVOHJ3MH1SLS7gk4y0K.ftJifQJ1RBCmcq', 'H8xvSXI3Ih69dyv2oA6zWteKDqz2XD14p5LHSOgZoSuTtGgR8rPXdJJjyBQz', '2018-01-28 00:28:26', '2018-02-14 19:28:22'),
+(13, '66666666', 'Pendaftar 6', 'pendaftar6@test.com', '$2y$10$wZgJS1V/86t/LWWsx/9KVOHJ3MH1SLS7gk4y0K.ftJifQJ1RBCmcq', '2WiXBq9Sugx9X3eriBBrSwd7AAnMr4w56TVclCmMpbPUZ4pzuoo8kmwHtsaH', '2018-01-28 00:28:26', '2018-02-20 09:17:21'),
 (14, '202020', 'Tester Kajur No data', 'tester@test.com', '$2y$10$5gAO1kjZdqlIs/USsr5lrOGaHFjmoPZSxLBQxOimgsZWMEFgCJ4nO', 'FGZ3GtMU9WzAuKRw7PRpHpK9Q2gwQdOxicFhO8d882NTEsy62X07NCRgiOzh', '2018-01-29 22:45:39', '2018-01-29 23:10:46'),
-(15, '00000000', 'Pendatar Tester', 'pendaftar0@test.com', '$2y$10$eYKQOebS2nlc7rKRGRbrwe0htMfgxnQa3vnvPzGJgYSSaWvTdfCdq', 'nDL4rf5R5TDEQAieXRKGkk7lrfieYbHfrr1youw4atatmrTZAl5P0y72kmad', '2018-01-29 23:02:55', '2018-01-31 01:45:21'),
-(16, '12121212', 'Tester 2', 'tester2@test.com', '$2y$10$1xnAgmRintSI9a1oEzUvaeG2.pIOuN2lJ0jeDvM0GOX0Ixxc7r846', 'BefIFvB0sXONlPcD28xuhG4A0SjY8rqiID3AJpmfejkdGHcVbdV23UGOEZta', '2018-01-30 20:04:26', '2018-01-31 01:54:46'),
-(19, '123', 'x', 'x@test.com', '$2y$10$dPIAq1N2phm9l207lYTfpuHR.3qcf5moDkmbVlMDr6GyOuo3WBD0a', 'CePYuMzNCyUCevHSKwuMkS5kZ2M0865M79Ar4QT12FpZuW5uD1GvKeZy6oqb', '2018-02-13 17:10:56', '2018-02-13 17:11:46'),
-(20, '77777777', 'Tester 7', 'tester7@test.com', '$2y$10$6COzTrHCUfYz0EeRH0rmLO1pqhticnqCoWKBd9EmbHmyeFl.G4jUq', 'PHhpuBHr2w4tncfbGw4NLvtoKSJsPNgjnYBXDD5ps2ck2qCtP0biuFuUm3qO', '2018-02-14 19:29:29', '2018-02-14 20:46:42');
+(15, '00000000', 'Pendatar Tester', 'pendaftar0@test.com', '$2y$10$eYKQOebS2nlc7rKRGRbrwe0htMfgxnQa3vnvPzGJgYSSaWvTdfCdq', 'nDL4rf5R5TDEQAieXRKGkk7lrfieYbHfrr1youw4atatmrTZAl5P0y72kmad', '2018-01-29 23:02:55', '2018-01-31 01:45:21');
 
 -- --------------------------------------------------------
 
@@ -968,12 +976,12 @@ ALTER TABLE `conversions`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --
@@ -983,7 +991,7 @@ ALTER TABLE `educational_background`
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -1003,7 +1011,7 @@ ALTER TABLE `registrations`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `selections`
 --
@@ -1013,12 +1021,12 @@ ALTER TABLE `selections`
 -- AUTO_INCREMENT for table `selection_schedules`
 --
 ALTER TABLE `selection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
 ALTER TABLE `sub_vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `uploads`
 --
@@ -1028,12 +1036,12 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --
 ALTER TABLE `vocationals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
