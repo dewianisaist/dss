@@ -17,50 +17,47 @@ class WeightController extends Controller
      */
     public function index()
     {
-        $i = 0;
-        $criterias = Criteria::where('step', '=', '2')
-                                ->where('status', '=', '1')
-                                ->where('group_criteria', '=', null)
-                                ->whereNotIn('id', function($query){
-                                    $query->select('criteria_id')
-                                    ->from(with(new Choice)->getTable())
-                                    ->where('suggestion', 1);
-                                })
-                                ->get();
+        $role_id = Auth::user()->roleId();
 
-        // return $criterias;
+        if ($role_id == 3) {
+            $i = 0;
+            $criterias = Criteria::where('step', '=', '2')
+                                    ->where('status', '=', '1')
+                                    ->where('group_criteria', '=', null)
+                                    ->whereNotIn('id', function($query){
+                                        $query->select('criteria_id')
+                                        ->from(with(new Choice)->getTable())
+                                        ->where('suggestion', 1);
+                                    })
+                                    ->get();
 
-        $criterias_group = array();
-        $total_criterias = 0;
-        foreach ($criterias as $criteria){
+            $criterias_group = array();
+            $total_criterias = 0;
 
-            $criterias_group[$criteria->id]["group"] = $criteria;
-            $criterias_group[$criteria->id]["data"] = array();
+            foreach ($criterias as $criteria){
+                $criterias_group[$criteria->id]["group"] = $criteria;
+                $criterias_group[$criteria->id]["data"] = array();
 
-            $subcriterias = Criteria::where('step', '=', '2')
-                                        ->where('status', '=', '1')
-                                        ->where('group_criteria', '=', $criteria->id)
-                                        ->whereNotIn('id', function($query){
-                                            $query->select('criteria_id')
-                                            ->from(with(new Choice)->getTable())
-                                            ->where('suggestion', 1);
-                                        })
-                                        ->orderBy('id','DESC')
-                                        ->get();
+                $subcriterias = Criteria::where('step', '=', '2')
+                                            ->where('status', '=', '1')
+                                            ->where('group_criteria', '=', $criteria->id)
+                                            ->whereNotIn('id', function($query){
+                                                $query->select('criteria_id')
+                                                ->from(with(new Choice)->getTable())
+                                                ->where('suggestion', 1);
+                                            })
+                                            ->orderBy('id','DESC')
+                                            ->get();
 
-            foreach ($subcriterias as $subcriteria){
-                $criterias_group[$criteria->id]["data"][] = $subcriteria;
+                foreach ($subcriterias as $subcriteria){
+                    $criterias_group[$criteria->id]["data"][] = $subcriteria;
+                }
             }
-            // $total_member = 1 ;
-            // if (count($subcriterias) > 1){
-            //     $total_member = count($subcriterias);
-            // }
-            // $criterias_group[$criteria->id]["member"] = $total_member;
-            // $total_criterias += $total_member;
+
+            return view('weights.index',compact('criterias_group', 'i'));
+        } else {
+            return redirect()->route('profile_users.show');
         }
-        // $criterias_group["rowspan"] = $total_criterias;
-        // return $criterias_group;
-        return view('weights.index',compact('criterias_group', 'i'));
     }
 
     /**
