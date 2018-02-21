@@ -46,7 +46,7 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Kriteria</th>
+					<th>Kriteria/Sub-Kriteria</th>
 					<th>Aksi</th>
 				</tr>
 			</thead>
