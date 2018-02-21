@@ -69,8 +69,8 @@
 					@foreach($value["data"] as $crit)
 						<tr>
 							{!! Form::open(array('route' => 'criteriagroup.out','method'=>'POST')) !!}
-								<td width = "50px" align ="right" bgcolor="#FDFDFD"><li></td>
-								<td bgcolor="#FDFDFD">{{ $crit->name }}</td>
+								<td width = "50px" align ="right" bgcolor="#FDFDFD"></td>
+								<td bgcolor="#FDFDFD"><li>{{ $crit->name }}</li></td>
 								<td bgcolor="#FDFDFD">
 									{{--  @permission('criteriagroup-out')  --}}
 									<input type = "hidden" name = "id" value = "{{ $crit->id }}" />

@@ -23,87 +23,54 @@
                 <li>Silahkan isi <strong>semua pairwise comparison</strong> terlebih dahulu, klik button AHP.</li>
             </ul>
         </div>
-        
-        <table id="table_questionnaire_test" class="table">
-                <thead>
-                    <tr>
-                        <th>Tujuan</th>
-                        <th>Kriteria</th>
-                        <th>Sub-Kriteria</th>
-                        <th>Bobot Global</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan = '5'>
-                            SPK Seleksi Peserta Pelatihan 
-                            <a class="btn btn-success"> AHP</a>
-                        </td>
-                        <tr rowspan = '1'>
-                            <td>1</td>
-                        </tr>
-                        <tr rowspan = '1'>
-                            <td>1</td>
-                        </tr>
-                        <tr rowspan = '3'>
-                             <td>1</td>
-                             <tr>
-                                 <td>2</td>
-                             </tr>
-                             <tr>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                        <td>2</td>
-                                    </tr>
-                        </tr>
-                    </tr>
-                </tbody>
-            </table>
 
-        {{--  <table id="table_questionnaire_standart" class="table">
-            <thead>
+		<table id="table_table_weight" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th width = "550px">Kriteria/Sub-Kriteria</th>
+                    <th>Pairwise Comparison</th>
+                    <th>Bobot Parsial</th>
+					<th>Bobot Global</th>
+				</tr>
+			</thead>
+			<tbody>
                 <tr>
-                    <th>Tujuan</th>
-                    <th>Kriteria</th>
-                    <th>Sub-Kriteria</th>
-                    <th>Bobot Global</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td rowspan = "{{ $criterias_group['rowspan'] }}">
-                        SPK Seleksi Peserta Pelatihan 
-                        <a class="btn btn-success" href="{{ route('weights.create') }}"> AHP</a>
-                    </td>
-                </tr>
-                @foreach ($criterias_group as $value)
-                <tr>
-                    <td rowspan = "{{ $value['member'] }}">
-                        {{ $value["group"]["name"] }}
-                        <span class="label label-primary">xxx</span>
-                        <a class="btn btn-success" href="{{ route('weights.create') }}"> AHP</a>
-                    </td>
-                </tr>
-                @if (count($value["data"]) > 0)
-                @foreach ($value["data"] as $crit)
+					<th colspan = "2">Tujuan: SPK Seleksi Peserta Pelatihan </th>
+                    <th colspan = "3">
+                        @if ($criterias_group != null)
+                            <a class="btn btn-success" href="{{ route('weights.pairwise') }}">AHP</a>
+                        @endif
+                    </th>
+				</tr>
+				@foreach ($criterias_group as $value)
 					<tr>
-						<td>
-                            {{ $crit->name }}
-                            <span class="label label-primary">xxx</span>
+						<td align ="center" bgcolor="#F0FBD6">{{ ++$i }}</td>
+						<td bgcolor="#F0FBD6">{{ $value["group"]["name"] }}</td>
+                        <td bgcolor="#F0FBD6">
+                        @if (count($value["data"]) > 0)
+                            <a class="btn btn-success" href="{{ route('weights.pairwise') }}">AHP</a>
+                        @endif
                         </td>
+						<td bgcolor="#F0FBD6">{{ $value["group"]["partial_weight"] }}</td>
+                        <td bgcolor="#F0FBD6">{{ $value["group"]["global_weight"] }}</td>
 					</tr>
-                 @endforeach
-                 @else
-                    <tr>
-						<td>
-                            
-                        </td>
-					</tr>
-                 @endif
-			@endforeach
-            </tbody>
-        </table>  --}}
+                    @if (count($value["data"]) > 0)
+                        @foreach ($value["data"] as $crit)
+                            <tr>
+                                {!! Form::open(array('route' => 'criteriagroup.out','method'=>'POST')) !!}
+                                    <td width = "50px" align ="right" bgcolor="#FDFDFD"></td>
+                                    <td bgcolor="#FDFDFD"><li>{{ $crit->name }}</li></td>
+                                    <td bgcolor="#FDFDFD"></td>
+                                    <td bgcolor="#FDFDFD">{{ $crit->partial_weight }}</td>
+                                    <td bgcolor="#FDFDFD">{{ $crit->global_weight }}</td>
+                                {!! Form::close() !!}
+                            </tr>
+                        @endforeach
+                    @endif
+				@endforeach
+			</tbody>
+		</table>
     </div>
 </div>
 @endsection

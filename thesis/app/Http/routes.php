@@ -179,10 +179,10 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('criteriagroup/add',['as'=>'criteriagroup.add','uses'=>'CriteriaGroupController@add']);
 	Route::post('criteriagroup/out',['as'=>'criteriagroup.out','uses'=>'CriteriaGroupController@out']);
 
-	//criteriastep2 - tidak ada permission
+	//weight - tidak ada permission
 	Route::get('weights',['as'=>'weights.index','uses'=>'WeightController@index']);
-	Route::get('weights/create',['as'=>'weights.create','uses'=>'WeightController@create']);
-	Route::post('weights/create',['as'=>'weights.store','uses'=>'WeightController@store']);
+	Route::get('weights/pairwise',['as'=>'weights.pairwise','uses'=>'WeightController@create']);
+	Route::post('weights/pairwise',['as'=>'weights.store','uses'=>'WeightController@store']);
 
 	//conversions - tidak ada permission
 	Route::get('conversions',['as'=>'conversions.index','uses'=>'ConversionController@index']);
