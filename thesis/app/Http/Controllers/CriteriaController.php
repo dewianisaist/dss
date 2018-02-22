@@ -64,6 +64,7 @@ class CriteriaController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
+            'citation' => 'required',
            ]);
     
         $input = $request->all();
@@ -125,6 +126,7 @@ class CriteriaController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
+            'citation' => 'required',
         ]);
  
         Criteria::find($id)->update($request->all());

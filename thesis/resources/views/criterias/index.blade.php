@@ -44,7 +44,7 @@
 				<tr>
 					<th>No</th>
 					<th>Kriteria</th>
-					<th>Penjelasan</th>
+					<th>Penjelasan Kriteria</th>
 					<th width="280px">Aksi</th>
 				</tr>
 			</thead>

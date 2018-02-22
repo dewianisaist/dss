@@ -30,7 +30,8 @@
                 <tr>
                     <th>No</th>
                     <th>Kriteria</th>
-                    <th>Penjelasan Kriteria <small>(beserta sumber pustaka)</small></th>
+                    <th>Penjelasan Kriteria</th>
+                    <th>Sumber Pustaka</th>
                     <th>Pilihan</th>
                 </tr>
             </thead>
@@ -38,9 +39,10 @@
                 @foreach ($data_standart as $key => $data_baku)
                     <tr>
                         <td width="5px">{{ ++$i }}</td>
-                        <td width="250px">{{ $data_baku->name }}</td>
-                        <td width="550px">{{ $data_baku->description }}</td>
-                        <td width="200px">
+                        <td width="200px">{{ $data_baku->name }}</td>
+                        <td width="450px">{{ $data_baku->description }}</td>
+                        <td width="250px">{{ $data_baku->citation }}</td>
+                        <td>
                             @if ($data_baku->option == 1) 
                                 Sesuai
                             @else

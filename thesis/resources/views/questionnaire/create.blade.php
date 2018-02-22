@@ -44,7 +44,8 @@
                     <tr>
                         <th>No</th>
                         <th>Kriteria</th>
-                        <th>Penjelasan Kriteria <small>(beserta sumber pustaka)</small></th>
+                        <th>Penjelasan Kriteria</th>
+                        <th>Sumber Pustaka</th>
                         <th>Pilihan</th>
                     </tr>
                 </thead>
@@ -52,9 +53,10 @@
                     @foreach ($criteria as $key => $questionnaire)
                         <tr>
                             <td width="5px">{{ ++$i }}</td>
-                            <td width="250px">{{ $questionnaire->name }}</td>
-                            <td width="550px">{{ $questionnaire->description }}</td>
-                            <td width="200px">
+                            <td width="200px">{{ $questionnaire->name }}</td>
+                            <td width="450px">{{ $questionnaire->description }}</td>
+                            <td width="250px">{{ $questionnaire->citation }}</td>
+                            <td>
                                 <div class="radio">
                                     <label>
                                         <input type="radio" name="{{ $questionnaire->id }}" value="1"> Sesuai 

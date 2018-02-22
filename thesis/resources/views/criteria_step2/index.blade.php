@@ -71,7 +71,8 @@
                 <tr>
                     <th>No</th>
                     <th>Kriteria</th>
-                    <th>Penjelasan Kriteria <small>(beserta sumber pustaka)</small></th>
+                    <th>Penjelasan Kriteria</th>
+                    <th>Sumber Pustaka</th>
                     <th>Kesesuaian (%)</th>
                     <th>Jumlah Sesuai dari Keseluruhan</th>
                     <th>Aksi</th>
@@ -80,11 +81,12 @@
             <tbody>
                 @foreach ($data_standart as $key => $data_baku)
                     <tr>
-                        <td>{{ ++$j }}</td>
-                        <td>{{ $data_baku->name }}</td>
-                        <td>{{ $data_baku->description }}</td>
-                        <td>{{ $data_baku->result }}</td>
-                        <td>{{ $data_baku->sum }} dari {{ $data_baku->count }}</td>
+                        <td width="5px">{{ ++$j }}</td>
+                        <td width="160px">{{ $data_baku->name }}</td>
+                        <td width="400px">{{ $data_baku->description }}</td>
+                        <td width="200px">{{ $data_baku->citation }}</td>
+                        <td width="115px">{{ $data_baku->result }}</td>
+                        <td width="150px">{{ $data_baku->sum }} dari {{ $data_baku->count }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
                             <a class="btn btn-primary" href="{{ route('criteriastep2.use',$data_baku->id) }}">Gunakan</a>

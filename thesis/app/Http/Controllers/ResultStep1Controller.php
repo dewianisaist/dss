@@ -28,7 +28,7 @@ class ResultStep1Controller extends Controller
                 $i = 0;
                 $j = 0;
 
-                $percentages = Choice::select('criterias.name', 'criterias.description',  
+                $percentages = Choice::select('criterias.name', 'criterias.description', 'criterias.citation', 
                                         DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
                                         DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
                                         ->join('criterias','criterias.id','=','choice.criteria_id')
@@ -58,7 +58,7 @@ class ResultStep1Controller extends Controller
                 $i = 0;
                 $j = 0;
                 
-                $percentages = Choice::select('criterias.name', 'criterias.description',  
+                $percentages = Choice::select('criterias.name', 'criterias.description', 'criterias.citation', 
                                         DB::raw('sum(choice.option) as sum'), DB::raw('count(choice.option) as count'), 
                                         DB::raw('sum(choice.option)/count(choice.option)*100 as result'))
                                         ->join('criterias','criterias.id','=','choice.criteria_id')

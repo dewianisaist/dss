@@ -30,8 +30,14 @@
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Penjelasan:</strong>
+					<strong>Penjelasan Kriteria:</strong>
 					{{ $criteria->description }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Sumber Pustaka:</strong>
+					{{ $criteria->citation }}
 				</div>
 			</div>
 		</div>

@@ -38,8 +38,14 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Penjelasan <small>(Sertakan sumber pustaka)</small>:</strong>
+						<strong>Penjelasan:</strong>
 						{!! Form::textarea('description', null, array('placeholder' => 'Penjelasan Kriteria','class' => 'form-control','style'=>'height:100px')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Sumber Pustaka:</strong>
+						{!! Form::textarea('citation', null, array('placeholder' => 'Sumber Pustaka','class' => 'form-control','style'=>'height:100px')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">

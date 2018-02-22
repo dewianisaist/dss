@@ -22,7 +22,8 @@
                 <tr>
                     <th>No</th>
                     <th>Kriteria</th>
-                    <th>Penjelasan Kriteria <small>(beserta sumber pustaka)</small></th>
+                    <th>Penjelasan Kriteria</th>
+                    <th>Sumber Pustaka</th>
                     <th>Kesesuaian (%)</th>
                     <th>Jumlah Sesuai dari Keseluruhan</th>
                 </tr>
@@ -30,10 +31,11 @@
             <tbody>
                 @foreach ($percentages as $key => $percentage)
                     <tr>
-                        <td>{{ ++$i }}</td>
-                        <td>{{ $percentage->name }}</td>
-                        <td>{{ $percentage->description }}</td>
-                        <td>{{ $percentage->result }}</td>
+                        <td width="5px">{{ ++$i }}</td>
+                        <td width="175px">{{ $percentage->name }}</td>
+                        <td width="450px">{{ $percentage->description }}</td>
+                        <td width="250px">{{ $percentage->citation }}</td>
+                        <td width="120px">{{ $percentage->result }}</td>
                         <td>{{ $percentage->sum }} dari {{ $percentage->count }}</td>
                     </tr>
                 @endforeach
