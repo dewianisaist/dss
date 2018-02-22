@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 20, 2018 at 05:26 PM
+-- Generation Time: Feb 22, 2018 at 08:54 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -148,6 +148,7 @@ CREATE TABLE `criterias` (
   `group_criteria` int(11) DEFAULT NULL,
   `name` varchar(500) DEFAULT NULL,
   `description` varchar(1000) DEFAULT NULL,
+  `citation` varchar(1000) DEFAULT NULL,
   `partial_weight` decimal(20,3) DEFAULT NULL,
   `global_weight` decimal(20,3) DEFAULT NULL,
   `preference` varchar(10) DEFAULT NULL,
@@ -166,28 +167,28 @@ CREATE TABLE `criterias` (
 -- Dumping data for table `criterias`
 --
 
-INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `partial_weight`, `global_weight`, `preference`, `max_min`, `parameter_p`, `parameter_q`, `parameter_s`, `step`, `status`, `ref_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Usia', 'Usia (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-27 04:00:05', '2018-01-28 03:14:06'),
-(2, NULL, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-27 04:00:23', '2018-01-28 23:03:53'),
-(3, NULL, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-27 04:00:39', '2018-01-28 03:13:46'),
-(4, NULL, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-27 04:00:52', '2018-01-28 03:14:36'),
-(7, NULL, 'Penghasilan', 'Penghasilan (XYZ, 2017)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-28 03:16:09', '2018-01-28 03:16:09'),
-(8, NULL, 'Pengalaman Kerja', 'Pengalaman Kerja (XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-28 03:16:34', '2018-01-28 23:28:40'),
-(25, NULL, 'contoh baku', 'contoh (baku, 2016)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-29 00:01:41', '2018-01-29 00:01:41'),
-(26, NULL, 'contoh baku 1', '1 (X, 2018)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-29 19:27:55', '2018-02-12 19:37:23'),
-(28, NULL, 'kriteria baku step 1', 'kriteria baku step 1 (X, 2018)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-02-12 19:34:28', '2018-02-12 19:35:11'),
-(31, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:01:21', '2018-02-12 20:01:21'),
-(32, NULL, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:01:21', '2018-02-12 20:01:21'),
-(33, NULL, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:27:50', '2018-02-12 20:27:50'),
-(73, 95, 'Usia', 'Usia (XYZ, 2013)', '0.433', '0.144', NULL, NULL, NULL, NULL, NULL, '2', '1', 1, '2018-02-16 00:57:21', '2018-02-19 20:00:21'),
-(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', '0.466', '0.155', NULL, NULL, NULL, NULL, NULL, '2', '1', 2, '2018-02-19 19:57:19', '2018-02-19 20:00:24'),
-(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', '0.101', '0.034', NULL, NULL, NULL, NULL, NULL, '2', '1', 32, '2018-02-19 19:57:48', '2018-02-19 20:00:27'),
-(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', '0.118', '0.039', NULL, NULL, NULL, NULL, NULL, '2', '1', 3, '2018-02-19 19:58:02', '2018-02-19 20:00:53'),
-(92, 96, 'Wawancara', 'Wawancara (XYZ, 2013)', '0.808', '0.269', NULL, NULL, NULL, NULL, NULL, '2', '1', 4, '2018-02-19 19:58:05', '2018-02-19 20:00:56'),
-(93, 96, 'Kelengkapan Administrasi', 'usulan kasubag tu', '0.074', '0.025', NULL, NULL, NULL, NULL, NULL, '2', '1', 33, '2018-02-19 19:58:09', '2018-02-19 20:01:01'),
-(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', '0.333', '0.333', NULL, NULL, NULL, NULL, NULL, '2', '1', 31, '2018-02-19 19:58:38', '2018-02-19 19:58:38'),
-(95, NULL, 'Personal', NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:08', '2018-02-19 20:00:08'),
-(96, NULL, 'Ujian/Tes', NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:38', '2018-02-19 20:00:38');
+INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `citation`, `partial_weight`, `global_weight`, `preference`, `max_min`, `parameter_p`, `parameter_q`, `parameter_s`, `step`, `status`, `ref_id`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Usia', 'Usia ', '(XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-27 04:00:05', '2018-02-22 00:09:28'),
+(2, NULL, 'Pendidikan Terakhir', 'Pendidikan Terakhir', ' (XYZ, 2014)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-27 04:00:23', '2018-02-22 00:09:21'),
+(3, NULL, 'Pengetahuan dasar', 'Pengetahuan dasar ', '(XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-27 04:00:39', '2018-02-22 00:09:13'),
+(4, NULL, 'Wawancara', 'Wawancara', ' (XYZ, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-27 04:00:52', '2018-02-22 00:09:04'),
+(7, NULL, 'Penghasilan', 'Penghasilan', ' (XYZ, 2017)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-28 03:16:09', '2018-02-22 00:08:56'),
+(8, NULL, 'Pengalaman Kerja', 'Pengalaman Kerja ', '(XYZ, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-28 03:16:34', '2018-02-22 00:08:48'),
+(25, NULL, 'contoh baku', 'contoh ', '(baku, 2016)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-29 00:01:41', '2018-02-22 00:08:39'),
+(26, NULL, 'contoh baku 1', '1 ', '(X, 2018)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-01-29 19:27:55', '2018-02-22 00:08:30'),
+(28, NULL, 'kriteria baku step 1', 'kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 kriteria baku step 1 ', '(X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) (X, 2018) ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-02-12 19:34:28', '2018-02-22 00:15:47'),
+(31, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:01:21', '2018-02-12 20:01:21'),
+(32, NULL, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:01:21', '2018-02-12 20:01:21'),
+(33, NULL, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:27:50', '2018-02-12 20:27:50'),
+(73, 95, 'Usia', 'Usia (XYZ, 2013)', NULL, '0.433', '0.144', NULL, NULL, NULL, NULL, NULL, '2', '1', 1, '2018-02-16 00:57:21', '2018-02-19 20:00:21'),
+(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, '0.466', '0.155', NULL, NULL, NULL, NULL, NULL, '2', '1', 2, '2018-02-19 19:57:19', '2018-02-19 20:00:24'),
+(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', NULL, '0.101', '0.034', NULL, NULL, NULL, NULL, NULL, '2', '1', 32, '2018-02-19 19:57:48', '2018-02-19 20:00:27'),
+(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, '0.118', '0.039', NULL, NULL, NULL, NULL, NULL, '2', '1', 3, '2018-02-19 19:58:02', '2018-02-19 20:00:53'),
+(92, 96, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, '0.808', '0.269', NULL, NULL, NULL, NULL, NULL, '2', '1', 4, '2018-02-19 19:58:05', '2018-02-19 20:00:56'),
+(93, 96, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, '0.074', '0.025', NULL, NULL, NULL, NULL, NULL, '2', '1', 33, '2018-02-19 19:58:09', '2018-02-19 20:01:01'),
+(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, '0.333', '0.333', NULL, NULL, NULL, NULL, NULL, '2', '1', 31, '2018-02-19 19:58:38', '2018-02-19 19:58:38'),
+(95, NULL, 'Personal', NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:08', '2018-02-19 20:00:08'),
+(96, NULL, 'Ujian/Tes', NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:38', '2018-02-19 20:00:38');
 
 -- --------------------------------------------------------
 
@@ -762,7 +763,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'l7oSYd0QdSxsv9LnrGHp97xBWh0rodJ9vOYMcqQDO32KjU4fhPL6IyQMRBpq', '2018-01-27 03:23:49', '2018-02-20 09:26:01'),
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'geIW8iPNwEOGximIr4tK4BUNdvIzfJW8rKlYgaQuAqIMjK8cyKDs4xBXKvtv', '2018-01-27 03:23:49', '2018-02-22 00:34:41'),
 (2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'mgwtmHHCo5u5qC6uVpS9ntpvEJZvAZ8wsXjKJmGLXir3voVEseuz9OJXml3W', '2018-01-27 03:43:47', '2018-02-15 05:04:11'),
 (3, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$cSc2B1F7pU2Mg5855RYHGO3FQ6g.Za1jshY5mRQHN4qYftHE42NeW', 'glQR5Qbdsl0F32Rl0N2wboZ5BCobOnAPPuC3FsFgKKB2TKRKTuhAzW0GEQuC', '2018-01-27 03:44:11', '2018-01-31 01:55:21'),
 (4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', 'JUwVtsJYyFhTCUjfFJwI9DSZY2TwwkD5l805y3A7YSA25VoMIgVX6NROpcXu', '2018-01-27 03:44:49', '2018-02-12 21:17:30'),
@@ -981,7 +982,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --

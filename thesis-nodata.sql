@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 20, 2018 at 05:28 PM
+-- Generation Time: Feb 22, 2018 at 08:56 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -87,6 +87,7 @@ CREATE TABLE `criterias` (
   `group_criteria` int(11) DEFAULT NULL,
   `name` varchar(500) DEFAULT NULL,
   `description` varchar(1000) DEFAULT NULL,
+  `citation` varchar(1000) DEFAULT NULL,
   `partial_weight` decimal(20,3) DEFAULT NULL,
   `global_weight` decimal(20,3) DEFAULT NULL,
   `preference` varchar(10) DEFAULT NULL,
