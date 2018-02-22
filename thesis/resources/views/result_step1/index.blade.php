@@ -55,9 +55,9 @@
             <tbody>
                 @foreach ($data_suggestion as $key => $data_masukan)
                     <tr>
-                        <td>{{ ++$j }}</td>
-                        <td>{{ $data_masukan->name }}</td>
-                        <td>{{ $data_masukan->description }}</td>
+                        <td width="5px">{{ ++$j }}</td>
+                        <td width="175px">{{ $data_masukan->name }}</td>
+                        <td width="700px">{{ $data_masukan->description }}</td>
                         <td>{{ $data_masukan->user_name }}</td>
                     </tr>
                 @endforeach

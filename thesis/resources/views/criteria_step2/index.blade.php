@@ -46,9 +46,9 @@
             <tbody>
                 @foreach ($data_fix as $key => $data_fiks)
                     <tr>
-                        <td>{{ ++$i }}</td>
-                        <td>{{ $data_fiks->name }}</td>
-                        <td>{{ $data_fiks->description }}</td>
+                        <td width="5px">{{ ++$i }}</td>
+                        <td width="275px">{{ $data_fiks->name }}</td>
+                        <td width="675px">{{ $data_fiks->description }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
                             <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_fiks->id) }}">Edit</a>
@@ -111,10 +111,10 @@
             <tbody>
                 @foreach ($data_suggestion as $key => $data_masukan)
                     <tr>
-                        <td>{{ ++$k }}</td>
-                        <td>{{ $data_masukan->name }}</td>
-                        <td>{{ $data_masukan->description }}</td>
-                        <td>{{ $data_masukan->user_name }}</td>
+                        <td width="5px">{{ ++$k }}</td>
+                        <td width="225px">{{ $data_masukan->name }}</td>
+                        <td width="575px">{{ $data_masukan->description }}</td>
+                        <td width="250px">{{ $data_masukan->user_name }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
                             <a class="btn btn-primary" href="{{ route('criteriastep2.use',$data_masukan->id ) }}">Gunakan</a>
