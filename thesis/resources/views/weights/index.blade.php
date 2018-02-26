@@ -38,8 +38,11 @@
                 <tr>
 					<th colspan = "2">Tujuan: SPK Seleksi Peserta Pelatihan </th>
                     <th colspan = "3">
+                    <?php
+                        $parent = 0
+                    ?>
                         @if ($criterias_group != null)
-                            <a class="btn btn-success" href="{{ route('weights.pairwise') }}">AHP</a>
+                            <a class="btn btn-success" href="{{ route('weights.pairwise', $parent) }}">AHP</a>
                         @endif
                     </th>
 				</tr>
@@ -47,9 +50,9 @@
 					<tr>
 						<td align ="center" bgcolor="#F0FBD6">{{ ++$i }}</td>
 						<td bgcolor="#F0FBD6">{{ $value["group"]["name"] }}</td>
-                        <td bgcolor="#F0FBD6">
+                        <td bgcolor="#F0FBD6"> 
                         @if (count($value["data"]) > 0)
-                            <a class="btn btn-success" href="{{ route('weights.pairwise') }}">AHP</a>
+                            <a class="btn btn-success" href="{{ route('weights.pairwise', $value['group']['id']) }}">AHP</a>
                         @endif
                         </td>
 						<td bgcolor="#F0FBD6">{{ $value["group"]["partial_weight"] }}</td>

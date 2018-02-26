@@ -181,8 +181,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 	//weight - tidak ada permission
 	Route::get('weights',['as'=>'weights.index','uses'=>'WeightController@index']);
-	Route::get('weights/pairwise',['as'=>'weights.pairwise','uses'=>'WeightController@create']);
-	Route::post('weights/pairwise',['as'=>'weights.store','uses'=>'WeightController@store']);
+	Route::get('weights/{id}/pairwise',['as'=>'weights.pairwise','uses'=>'WeightController@create']);
+	Route::patch('weights/{id}',['as'=>'weights.store','uses'=>'WeightController@store']);
 
 	//conversions - tidak ada permission
 	Route::get('conversions',['as'=>'conversions.index','uses'=>'ConversionController@index']);
