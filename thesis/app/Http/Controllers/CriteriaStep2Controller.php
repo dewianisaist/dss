@@ -235,8 +235,6 @@ class CriteriaStep2Controller extends Controller
         $data = Choice::join('criterias','criterias.id','=','choice.criteria_id')
                             ->where('choice.criteria_id', '=', $id)
                             ->first();
-        
-        
 
         $input['name'] = $data['name'];
         $input['description'] = $data['description'];

@@ -55,7 +55,7 @@ class WeightController extends Controller
                 }
             }
             
-            // return $criterias_group;
+            return $criterias_group;
             return view('weights.index',compact('criterias_group', 'i'));
         } else {
             return redirect()->route('profile_users.show');
@@ -149,18 +149,9 @@ class WeightController extends Controller
                                 ->orderBy('id','DESC')
                                 ->get();
 
+        // return $criterias;
         $pairwises = array();
         $count = 0;
-        // criteria_id: {
-        //     90:89: "89",
-        //     90:73: "73",
-        //     89:73: "73"
-        //     },
-        //     value: {
-        //     90:89: "5.000",
-        //     90:73: "4.000",
-        //     89:73: "1.000"
-        //     }
         foreach ($criterias as $criteria1) {
             foreach ($criterias as $criteria2) {
                 $data = array();
@@ -187,6 +178,7 @@ class WeightController extends Controller
                 $pairwises[] = $data;
             }
         }
+        // return $pairwises;
 
         $base_table = array();
         foreach ($pairwises as $pairwise){
@@ -195,9 +187,123 @@ class WeightController extends Controller
             }
             $base_table[$pairwise["criteriaid_1"]][$pairwise["criteriaid_2"]] = $pairwise["value"];
         }
-        return $base_table;
-        return $pairwises;
-        return $request->all();
+
+        $normalized_table = array();
+        $total_basecol_val = array();
+        foreach ($base_table as $row=>$row_val){
+            if (!array_key_exists($row,$normalized_table)){
+                $normalized_table[$row] = array();
+            }
+            foreach ($row_val as $col=>$col_val){
+                $total_row_val = 0;
+                $total_basecol_val[$col] = 0;
+                foreach ($base_table as $r=>$each_row){
+                    foreach ($each_row as $c=>$c_val){
+                        if ($c == $col){
+                            $total_row_val += $c_val;
+                            $total_basecol_val[$col] += $c_val;
+                            break;
+                        }
+                    }
+                }
+                $normalized_table[$row][$col] = $col_val / $total_row_val; 
+            }
+        }
+
+        $partial_weight = array();
+        foreach ($normalized_table as $row=>$each_row){
+            // hitung total jumlah di baris
+            $total_row_val = 0;
+            foreach ($each_row as $col=>$c_val){
+                $total_row_val += $c_val;
+            }
+
+            // hitung bobot partial
+            $partial_weight[$row] = $total_row_val / count($each_row);
+        }
+        // return $partial_weight;
+        
+        $lamda_max = 0;
+        // return $total_basecol_val;
+        foreach ($partial_weight as $r=>$value){
+            $criteria_factor = $value * $total_basecol_val[$r];
+            $lamda_max += $criteria_factor;
+        }
+
+        //hitung ci
+        $ci = ($lamda_max - count($partial_weight))/(count($partial_weight) - 1);
+
+        //random index
+        if (count($partial_weight == 3)) {
+            $ri = 0.58;
+        } elseif (count($partial_weight == 4)) {
+            $ri = 0.90;
+        } elseif (count($partial_weight == 5)) {
+            $ri = 1.12;
+        } elseif (count($partial_weight == 6)) {
+            $ri = 1.24;
+        } elseif (count($partial_weight == 7)) {
+            $ri = 1.32;
+        } elseif (count($partial_weight == 8)) {
+            $ri = 1.41;
+        } elseif (count($partial_weight == 9)) {
+            $ri = 1.45;
+        } elseif (count($partial_weight == 10)) {
+            $ri = 1.49;
+        } elseif (count($partial_weight == 11)) {
+            $ri = 1.51;
+        } elseif (count($partial_weight == 12)) {
+            $ri = 1.48;
+        } elseif (count($partial_weight == 13)) {
+            $ri = 1.56;
+        } elseif (count($partial_weight == 14)) {
+            $ri = 1.57;
+        } elseif (count($partial_weight == 15)) {
+            $ri = 1.59;
+        } else {
+            $ri = 0;
+        }
+
+        //hitung cr
+        $cr = number_format($ci / $ri * 100, 2);
+
+        // return $input;
+        // return $cr;
+        // return $ci;  
+        // return $lamda_max;
+
+        // return $partial_weight;
+        // return $normalized_table;
+
+        // return $base_table;
+        // return $pairwises;
+        // return $request->all();
+
+        if ($cr <= 10) {
+            foreach ($partial_weight as $key=>$val_partial_weight) {
+                $data_criteria["partial_weight"] = $val_partial_weight;
+                Criteria::find($key)->update($data_criteria);
+            }
+
+            foreach ($pairwises as $pairwise) {
+                $data_pairwise["criteria1_id"] = $pairwise["criteriaid_1"];
+                $data_pairwise["criteria2_id"] = $pairwise["criteriaid_2"];
+                $data_pairwise["value"] = $pairwise["value"];
+                if (!array_key_exists($pairwise["criteriaid_1"],$base_table)){
+                    PairwiseComparison::create($data_pairwise);
+                } else {
+                    PairwiseComparison::where('criteria1_id', '=', $pairwise["criteriaid_1"])
+                                        ->where('criteria2_id', '=', $pairwise["criteriaid_2"])
+                                        ->update($data_pairwise);
+                }
+            }
+
+            return redirect()->route('weights.index')
+                            ->with('success','Penilaian bobot parsial kriteria berhasil disimpan');
+        } else {
+            return redirect()->route('weights.pairwise', $id)
+                            ->with('failed', 'Nilai Consistency Ratio (CR) = ' . $cr .'%. Nilai CR harus <= 10%. Silahkan reevaluasi penilaian perbandingan berpasangan kriteria.');
+        }
     }
 
     /**

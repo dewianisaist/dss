@@ -24,6 +24,18 @@
             </ul>
         </div>
 
+        @if ($message = Session::get('success'))
+			<div class="alert alert-success">
+				<p>{{ $message }}</p>
+			</div>
+		@endif
+
+		@if ($message = Session::get('failed'))
+			<div class="alert alert-error">
+				<p>{{ $message }}</p>
+			</div>
+		@endif
+
 		<table id="table_table_weight" class="table table-bordered table-striped">
 			<thead>
 				<tr>

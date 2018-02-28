@@ -28,6 +28,13 @@
 				</ul>
 			</div>
 		@endif
+
+		@if ($message = Session::get('failed'))
+			<div class="alert alert-error">
+				<p>{{ $message }}</p>
+			</div>
+		@endif
+
     {!! Form::open(array('route' => ['weights.store', $id],'method'=>'PATCH')) !!}
 			<table id="table_pairwise" class="table table-bordered table-striped">
         <thead>
