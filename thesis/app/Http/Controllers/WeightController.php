@@ -35,7 +35,7 @@ class WeightController extends Controller
             $criterias_group = array();
             $total_criterias = 0;
 
-            foreach ($criterias as $criteria){
+            foreach ($criterias as $criteria) {
                 $criterias_group[$criteria->id]["group"] = $criteria;
                 $criterias_group[$criteria->id]["data"] = array();
 
@@ -49,14 +49,21 @@ class WeightController extends Controller
                                             })
                                             ->orderBy('id','DESC')
                                             ->get();
+                
+                if (count($subcriterias) == 0) {
+                    $criteria->global_weight = $criteria->partial_weight;
+                    $criteria->save();
+                }
 
-                foreach ($subcriterias as $subcriteria){
+                foreach ($subcriterias as $subcriteria) {
+                    $subcriteria->global_weight = number_format($criteria->partial_weight * $subcriteria->partial_weight, 3);
+                    $subcriteria->save();
                     $criterias_group[$criteria->id]["data"][] = $subcriteria;
                 }
+
             }
-            
-            return $criterias_group;
-            return view('weights.index',compact('criterias_group', 'i'));
+
+            return view('weights.index', compact('criterias_group', 'i'));
         } else {
             return redirect()->route('profile_users.show');
         }
@@ -65,79 +72,93 @@ class WeightController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function create($id)
     {
-        $i = 0;
-        $requestedId = null;
-        if ($id > 0) {
-            $requestedId = $id;
-        }
-        $criterias = Criteria::where('step', '=', '2')
-                                ->where('status', '=', '1')
-                                ->where('group_criteria', '=', $requestedId)
-                                ->whereNotIn('id', function($query){
-                                    $query->select('criteria_id')
-                                    ->from(with(new Choice)->getTable())
-                                    ->where('suggestion', 1);
-                                })
-                                ->orderBy('id','DESC')
-                                ->get();
+        $role_id = Auth::user()->roleId();
 
-        $compares = array();
-        foreach ($criterias as $criteria1) {
-            foreach ($criterias as $criteria2) {
-                if (!array_key_exists($criteria1->id.":".$criteria2->id,$compares) && !array_key_exists($criteria2->id.":".$criteria1->id,$compares) && $criteria1->id != $criteria2->id){
-                    $data = array();
-                    $data[] = $criteria1;
-                    $data[] = $criteria2;
-                    $compares[$criteria1->id.":".$criteria2->id] = array();
-                    $compares[$criteria1->id.":".$criteria2->id]['criteria'] = $data;
-                    $pairwises = PairwiseComparison::where(function($q) use ($criteria1, $criteria2) {
-                        $q->where(function($query) use ($criteria1, $criteria2){
-                                $query->where('criteria1_id','=', $criteria1->id)
-                                      ->where('criteria2_id', $criteria2->id);
+        if ($role_id == 3) {
+            $i = 0;
+            $requestedId = null;
+
+            if ($id > 0) {
+                $requestedId = $id;
+            }
+
+            $criterias = Criteria::where('step', '=', '2')
+                                    ->where('status', '=', '1')
+                                    ->where('group_criteria', '=', $requestedId)
+                                    ->whereNotIn('id', function($query){
+                                        $query->select('criteria_id')
+                                        ->from(with(new Choice)->getTable())
+                                        ->where('suggestion', 1);
+                                    })
+                                    ->orderBy('id','DESC')
+                                    ->get();
+
+            $compares = array();
+            foreach ($criterias as $criteria1) {
+                foreach ($criterias as $criteria2) {
+                    if (!array_key_exists($criteria1->id.":".$criteria2->id,$compares) && !array_key_exists($criteria2->id.":".$criteria1->id,$compares) && $criteria1->id != $criteria2->id){
+                        $data = array();
+                        $data[] = $criteria1;
+                        $data[] = $criteria2;
+                        $compares[$criteria1->id.":".$criteria2->id] = array();
+                        $compares[$criteria1->id.":".$criteria2->id]['criteria'] = $data;
+                        $pairwises = PairwiseComparison::where(function($q) use ($criteria1, $criteria2) {
+                            $q->where(function($query) use ($criteria1, $criteria2) {
+                                    $query->where('criteria1_id','=', $criteria1->id)
+                                        ->where('criteria2_id', $criteria2->id);
+                                })
+                            ->orWhere(function($query) use ($criteria1, $criteria2) {
+                                    $query->where('criteria1_id', $criteria2->id)
+                                        ->where('criteria2_id', $criteria1->id);
+                                });
                             })
-                          ->orWhere(function($query) use ($criteria1, $criteria2) {
-                                $query->where('criteria1_id', $criteria2->id)
-                                      ->where('criteria2_id', $criteria1->id);
-                            });
-                        })
-                        ->get();
-                    $value = 0;
-                    $selected_criteria = $criteria1->id;
-                    foreach ($pairwises as $pairwise){
-                        if ($pairwise->value > $value ){
-                            $value = $pairwise->value;
-                            $selected_criteria = $pairwise->criteria1_id;
+                            ->get();
+
+                        $value = 0;
+                        $selected_criteria = $criteria1->id;
+
+                        foreach ($pairwises as $pairwise) {
+                            if ($pairwise->value > $value) {
+                                $value = $pairwise->value;
+                                $selected_criteria = $pairwise->criteria1_id;
+                            }
                         }
+
+                        $compares[$criteria1->id.":".$criteria2->id]['value'] = $value;
+                        $compares[$criteria1->id.":".$criteria2->id]['selected_criteria'] = $selected_criteria;
+                        $compares[$criteria1->id.":".$criteria2->id]['pairwise'] = $pairwises;
                     }
-                    $compares[$criteria1->id.":".$criteria2->id]['value'] = $value;
-                    $compares[$criteria1->id.":".$criteria2->id]['selected_criteria'] = $selected_criteria;
-                    $compares[$criteria1->id.":".$criteria2->id]['pairwise'] = $pairwises;
                 }
             }
+
+            return view('weights.pairwise',compact('compares', 'id','i'));
+        } else {
+            return redirect()->route('profile_users.show');
         }
-        // return $compares;
-        return view('weights.pairwise',compact('compares', 'id','i'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $id)
     {
         $i = 0;
         $requestedId = null;
+
         if ($id > 0) {
             $requestedId = $id;
         }
+
         $input = $request->all();
-        
         $criterias = Criteria::where('step', '=', '2')
                                 ->where('status', '=', '1')
                                 ->where('group_criteria', '=', $requestedId)
@@ -149,7 +170,6 @@ class WeightController extends Controller
                                 ->orderBy('id','DESC')
                                 ->get();
 
-        // return $criterias;
         $pairwises = array();
         $count = 0;
         foreach ($criterias as $criteria1) {
@@ -157,32 +177,31 @@ class WeightController extends Controller
                 $data = array();
                 $data["criteriaid_1"] = $criteria1->id;
                 $data["criteriaid_2"] = $criteria2->id;
-                if ($criteria1->id == $criteria2->id){
+
+                if ($criteria1->id == $criteria2->id) {
                     $data["value"] = 1;
-                }
-                elseif (array_key_exists($criteria1->id.":".$criteria2->id,$input["criteria_id"])){
+                } elseif (array_key_exists($criteria1->id.":".$criteria2->id,$input["criteria_id"])) {
                     $selected_id = $input["criteria_id"][$criteria1->id.":".$criteria2->id];
-                    if ($selected_id == $criteria1->id){
+                    if ($selected_id == $criteria1->id) {
                         $data["value"] = $input["value"][$criteria1->id.":".$criteria2->id];
-                    }else{
+                    } else {
                         $data["value"] = 1 / $input["value"][$criteria1->id.":".$criteria2->id];
                     }
-                }elseif (array_key_exists($criteria2->id.":".$criteria1->id,$input["criteria_id"])){
+                } elseif (array_key_exists($criteria2->id.":".$criteria1->id,$input["criteria_id"])) {
                     $selected_id = $input["criteria_id"][$criteria2->id.":".$criteria1->id];
-                    if ($selected_id == $criteria1->id){
+                    if ($selected_id == $criteria1->id) {
                         $data["value"] = $input["value"][$criteria2->id.":".$criteria1->id];
-                    }else{
+                    } else {
                         $data["value"] = 1 / $input["value"][$criteria2->id.":".$criteria1->id];
                     }
                 }
                 $pairwises[] = $data;
             }
         }
-        // return $pairwises;
 
         $base_table = array();
         foreach ($pairwises as $pairwise){
-            if (!array_key_exists($pairwise["criteriaid_1"],$base_table)){
+            if (!array_key_exists($pairwise["criteriaid_1"],$base_table)) {
                 $base_table[$pairwise["criteriaid_1"]] = array();
             }
             $base_table[$pairwise["criteriaid_1"]][$pairwise["criteriaid_2"]] = $pairwise["value"];
@@ -190,16 +209,16 @@ class WeightController extends Controller
 
         $normalized_table = array();
         $total_basecol_val = array();
-        foreach ($base_table as $row=>$row_val){
-            if (!array_key_exists($row,$normalized_table)){
+        foreach ($base_table as $row=>$row_val) { 
+            if (!array_key_exists($row,$normalized_table)) {
                 $normalized_table[$row] = array();
             }
-            foreach ($row_val as $col=>$col_val){
+            foreach ($row_val as $col=>$col_val) {
                 $total_row_val = 0;
                 $total_basecol_val[$col] = 0;
-                foreach ($base_table as $r=>$each_row){
-                    foreach ($each_row as $c=>$c_val){
-                        if ($c == $col){
+                foreach ($base_table as $r=>$each_row) {
+                    foreach ($each_row as $c=>$c_val) {
+                        if ($c == $col) {
                             $total_row_val += $c_val;
                             $total_basecol_val[$col] += $c_val;
                             break;
@@ -211,7 +230,7 @@ class WeightController extends Controller
         }
 
         $partial_weight = array();
-        foreach ($normalized_table as $row=>$each_row){
+        foreach ($normalized_table as $row=>$each_row) {
             // hitung total jumlah di baris
             $total_row_val = 0;
             foreach ($each_row as $col=>$c_val){
@@ -221,11 +240,10 @@ class WeightController extends Controller
             // hitung bobot partial
             $partial_weight[$row] = $total_row_val / count($each_row);
         }
-        // return $partial_weight;
         
         $lamda_max = 0;
-        // return $total_basecol_val;
-        foreach ($partial_weight as $r=>$value){
+
+        foreach ($partial_weight as $r=>$value) {
             $criteria_factor = $value * $total_basecol_val[$r];
             $lamda_max += $criteria_factor;
         }
@@ -267,18 +285,6 @@ class WeightController extends Controller
         //hitung cr
         $cr = number_format($ci / $ri * 100, 2);
 
-        // return $input;
-        // return $cr;
-        // return $ci;  
-        // return $lamda_max;
-
-        // return $partial_weight;
-        // return $normalized_table;
-
-        // return $base_table;
-        // return $pairwises;
-        // return $request->all();
-
         if ($cr <= 10) {
             foreach ($partial_weight as $key=>$val_partial_weight) {
                 $data_criteria["partial_weight"] = $val_partial_weight;
@@ -299,55 +305,10 @@ class WeightController extends Controller
             }
 
             return redirect()->route('weights.index')
-                            ->with('success','Penilaian bobot parsial kriteria berhasil disimpan');
+                            ->with('success','Penilaian bobot kriteria berhasil disimpan');
         } else {
             return redirect()->route('weights.pairwise', $id)
                             ->with('failed', 'Nilai Consistency Ratio (CR) = ' . $cr .'%. Nilai CR harus <= 10%. Silahkan reevaluasi penilaian perbandingan berpasangan kriteria.');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
