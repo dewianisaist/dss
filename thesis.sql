@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2018 at 08:54 AM
+-- Generation Time: Mar 02, 2018 at 11:50 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -79,7 +79,7 @@ CREATE TABLE `conversions` (
   `resource` varchar(255) DEFAULT NULL,
   `range_value_1` varchar(100) DEFAULT NULL,
   `range_value_2` varchar(100) DEFAULT NULL,
-  `conversion_value` decimal(5,2) DEFAULT NULL,
+  `conversion_value` varchar(3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -89,7 +89,10 @@ CREATE TABLE `conversions` (
 --
 
 INSERT INTO `conversions` (`id`, `criteria_id`, `resource`, `range_value_1`, `range_value_2`, `conversion_value`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Tanggal lahir', NULL, '0.00', NULL, NULL, NULL);
+(9, 92, 'Nilai Wawancara', '', '', '', '2018-03-02 15:38:39', '2018-03-02 15:38:39'),
+(11, 73, 'Usia', '0', '15', '0', '2018-03-02 15:39:22', '2018-03-02 15:39:22'),
+(12, 73, 'Usia', '16', '25', '5', '2018-03-02 15:39:36', '2018-03-02 15:39:36'),
+(13, 89, 'Pendidikan Terakhir', '', '', '5', '2018-03-02 15:39:55', '2018-03-02 15:39:55');
 
 -- --------------------------------------------------------
 
@@ -180,15 +183,15 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `citatio
 (31, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:01:21', '2018-02-12 20:01:21'),
 (32, NULL, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:01:21', '2018-02-12 20:01:21'),
 (33, NULL, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 20:27:50', '2018-02-12 20:27:50'),
-(73, 95, 'Usia', 'Usia (XYZ, 2013)', NULL, '0.433', '0.144', NULL, NULL, NULL, NULL, NULL, '2', '1', 1, '2018-02-16 00:57:21', '2018-02-19 20:00:21'),
-(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, '0.466', '0.155', NULL, NULL, NULL, NULL, NULL, '2', '1', 2, '2018-02-19 19:57:19', '2018-02-19 20:00:24'),
-(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', NULL, '0.101', '0.034', NULL, NULL, NULL, NULL, NULL, '2', '1', 32, '2018-02-19 19:57:48', '2018-02-19 20:00:27'),
-(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, '0.118', '0.039', NULL, NULL, NULL, NULL, NULL, '2', '1', 3, '2018-02-19 19:58:02', '2018-02-19 20:00:53'),
-(92, 96, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, '0.808', '0.269', NULL, NULL, NULL, NULL, NULL, '2', '1', 4, '2018-02-19 19:58:05', '2018-02-19 20:00:56'),
-(93, 96, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, '0.074', '0.025', NULL, NULL, NULL, NULL, NULL, '2', '1', 33, '2018-02-19 19:58:09', '2018-02-19 20:01:01'),
-(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, '0.333', '0.333', NULL, NULL, NULL, NULL, NULL, '2', '1', 31, '2018-02-19 19:58:38', '2018-02-19 19:58:38'),
-(95, NULL, 'Personal', NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:08', '2018-02-19 20:00:08'),
-(96, NULL, 'Ujian/Tes', NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:38', '2018-02-19 20:00:38');
+(73, 95, 'Usia', 'Usia (XYZ, 2013)', NULL, '0.433', '0.144', NULL, NULL, NULL, NULL, NULL, '2', '1', 1, '2018-02-16 00:57:21', '2018-02-28 23:33:22'),
+(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, '0.466', '0.155', NULL, NULL, NULL, NULL, NULL, '2', '1', 2, '2018-02-19 19:57:19', '2018-02-28 23:33:22'),
+(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', NULL, '0.101', '0.034', NULL, NULL, NULL, NULL, NULL, '2', '1', 32, '2018-02-19 19:57:48', '2018-02-28 23:33:22'),
+(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, '0.118', '0.039', NULL, NULL, NULL, NULL, NULL, '2', '1', 3, '2018-02-19 19:58:02', '2018-02-28 23:33:22'),
+(92, 96, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, '0.808', '0.269', NULL, NULL, NULL, NULL, NULL, '2', '1', 4, '2018-02-19 19:58:05', '2018-02-28 23:33:22'),
+(93, 96, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, '0.074', '0.025', NULL, NULL, NULL, NULL, NULL, '2', '1', 33, '2018-02-19 19:58:09', '2018-02-28 23:33:22'),
+(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, '0.333', '0.333', NULL, NULL, NULL, NULL, NULL, '2', '1', 31, '2018-02-19 19:58:38', '2018-02-28 23:33:22'),
+(95, NULL, 'Personal', NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:08', '2018-02-28 23:33:22'),
+(96, NULL, 'Ujian/Tes', NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 20:00:38', '2018-02-28 23:33:22');
 
 -- --------------------------------------------------------
 
@@ -275,33 +278,33 @@ CREATE TABLE `pairwise_comparisons` (
 --
 
 INSERT INTO `pairwise_comparisons` (`criteria1_id`, `criteria2_id`, `value`, `created_at`, `updated_at`) VALUES
-(73, 73, '1.000', NULL, NULL),
-(73, 89, '1.000', NULL, NULL),
-(73, 90, '4.000', NULL, NULL),
-(89, 73, '1.000', NULL, NULL),
-(89, 89, '1.000', NULL, NULL),
-(89, 90, '5.000', NULL, NULL),
-(90, 73, '0.250', NULL, NULL),
-(90, 89, '0.200', NULL, NULL),
-(90, 90, '1.000', NULL, NULL),
-(91, 91, '1.000', NULL, NULL),
-(91, 92, '0.111', NULL, NULL),
-(91, 93, '2.000', NULL, NULL),
-(92, 91, '9.000', NULL, NULL),
-(92, 92, '1.000', NULL, NULL),
-(92, 93, '9.000', NULL, NULL),
-(93, 91, '0.500', NULL, NULL),
-(93, 92, '0.111', NULL, NULL),
-(93, 93, '1.000', NULL, NULL),
-(94, 94, '1.000', NULL, NULL),
-(94, 95, '1.000', NULL, NULL),
-(94, 96, '1.000', NULL, NULL),
-(95, 94, '1.000', NULL, NULL),
-(95, 95, '1.000', NULL, NULL),
-(95, 96, '1.000', NULL, NULL),
-(96, 94, '1.000', NULL, NULL),
-(96, 95, '1.000', NULL, NULL),
-(96, 96, '1.000', NULL, NULL);
+(73, 73, '1.000', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(73, 89, '1.000', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(73, 90, '4.000', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(89, 73, '1.000', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(89, 89, '1.000', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(89, 90, '5.000', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(90, 73, '0.250', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(90, 89, '0.200', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(90, 90, '1.000', '2018-02-27 00:51:34', '2018-02-27 00:51:34'),
+(91, 91, '1.000', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(91, 92, '0.111', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(91, 93, '2.000', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(92, 91, '9.000', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(92, 92, '1.000', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(92, 93, '9.000', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(93, 91, '0.500', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(93, 92, '0.111', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(93, 93, '1.000', '2018-02-27 00:56:11', '2018-02-28 23:32:49'),
+(94, 94, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22'),
+(94, 95, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22'),
+(94, 96, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22'),
+(95, 94, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22'),
+(95, 95, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22'),
+(95, 96, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22'),
+(96, 94, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22'),
+(96, 95, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22'),
+(96, 96, '1.000', '2018-02-27 00:54:04', '2018-02-28 23:33:22');
 
 -- --------------------------------------------------------
 
@@ -764,7 +767,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'geIW8iPNwEOGximIr4tK4BUNdvIzfJW8rKlYgaQuAqIMjK8cyKDs4xBXKvtv', '2018-01-27 03:23:49', '2018-02-22 00:34:41'),
-(2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'mgwtmHHCo5u5qC6uVpS9ntpvEJZvAZ8wsXjKJmGLXir3voVEseuz9OJXml3W', '2018-01-27 03:43:47', '2018-02-15 05:04:11'),
+(2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'rD0qpagtCNIwL8jkZBQZGO7Q5f63wEHDjbz51agDIBwTQf66DWcUCk0fAnfr', '2018-01-27 03:43:47', '2018-02-28 23:35:41'),
 (3, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$cSc2B1F7pU2Mg5855RYHGO3FQ6g.Za1jshY5mRQHN4qYftHE42NeW', 'glQR5Qbdsl0F32Rl0N2wboZ5BCobOnAPPuC3FsFgKKB2TKRKTuhAzW0GEQuC', '2018-01-27 03:44:11', '2018-01-31 01:55:21'),
 (4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', 'JUwVtsJYyFhTCUjfFJwI9DSZY2TwwkD5l805y3A7YSA25VoMIgVX6NROpcXu', '2018-01-27 03:44:49', '2018-02-12 21:17:30'),
 (5, '505050', 'Koor Instruktur BLK', 'koorinstruktur@test.com', '$2y$10$0x3MJX34I17iRF0oWDp0n.P92W0IJn761x8mtfGjx46vemzcOBrQK', 'I0CYoXXXkg1N2iKYrxvD4aU6AY5V38lNSPkGhEwoDgv7YPtyaGbKYOJD6x76', '2018-01-27 03:45:11', '2018-02-12 20:26:51'),
@@ -972,7 +975,7 @@ ALTER TABLE `vocationals`
 -- AUTO_INCREMENT for table `conversions`
 --
 ALTER TABLE `conversions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `courses`
 --
@@ -982,12 +985,12 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --
 ALTER TABLE `educational_background`
-  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `registrant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `educations`
 --
@@ -1002,12 +1005,12 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `registrants`
 --
 ALTER TABLE `registrants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `registrations`
 --
 ALTER TABLE `registrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -1017,12 +1020,12 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `selections`
 --
 ALTER TABLE `selections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `selection_schedules`
 --
 ALTER TABLE `selection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `sub_vocationals`
 --
@@ -1032,12 +1035,12 @@ ALTER TABLE `sub_vocationals`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `vocationals`
 --

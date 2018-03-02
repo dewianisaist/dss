@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2018 at 08:56 AM
+-- Generation Time: Mar 02, 2018 at 11:51 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -45,7 +45,7 @@ CREATE TABLE `conversions` (
   `resource` varchar(255) DEFAULT NULL,
   `range_value_1` varchar(100) DEFAULT NULL,
   `range_value_2` varchar(100) DEFAULT NULL,
-  `conversion_value` decimal(5,2) DEFAULT NULL,
+  `conversion_value` varchar(3) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
