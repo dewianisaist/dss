@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Conversion;
 use App\Http\Models\Criteria;
+use App\Http\Models\Choice;
 use Auth;
 use DB;
 
@@ -31,8 +32,14 @@ class ConversionController extends Controller
      */
     public function create()
     {
-        $criteria = Criteria::where('status','=',1)
-                            ->where('description','<>',null)
+        $criteria = Criteria::where('step', '=', '2')
+                            ->where('status', '=', '1')
+                            ->where('description', '<>', null)
+                            ->whereNotIn('id', function($query){
+                                $query->select('criteria_id')
+                                ->from(with(new Choice)->getTable())
+                                ->where('suggestion', 1);
+                            })
                             ->lists('name','id')
                             ->all();
 
@@ -68,11 +75,16 @@ class ConversionController extends Controller
     public function edit($id)
     {
         $conversion = Conversion::find($id);
-        $criteria = Criteria::where('status','=',1)
-                            ->where('description','<>',null)
+        $criteria = Criteria::where('step', '=', '2')
+                            ->where('status', '=', '1')
+                            ->where('description', '<>', null)
+                            ->whereNotIn('id', function($query){
+                                $query->select('criteria_id')
+                                ->from(with(new Choice)->getTable())
+                                ->where('suggestion', 1);
+                            })
                             ->lists('name','id')
                             ->all();
-        // $criteriachoosen = Conversion::where('id', $conversion)->value('name');
 
         return view('conversions.edit',compact('criteria', 'conversion'));
     }

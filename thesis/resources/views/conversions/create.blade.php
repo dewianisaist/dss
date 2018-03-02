@@ -74,23 +74,11 @@
 								'', array('class' => 'form-control')) 
 							!!}
 						</div>
-						<div id="wawancara">
-							{!! Form::select('range_value_1', 
-								array(
-									'Sangat Baik' => 'Sangat Baik', 
-									'Baik' => 'Baik',
-									'Cukup' => 'Cukup',
-									'Kurang' => 'Kurang',
-									'Sangat Kurang' => 'Sangat Kurang'
-								), 
-								'', array('class' => 'form-control')) 
-							!!}
-						</div>
 						<div id="start_value" class="col-xs-6">
-							{!! Form::selectRange('range_value_1', 0, 100, null, array('class' => 'form-control')); !!}
+							{!! Form::text('range_value_1', null, array('placeholder' => 'Nilai Awal','class' => 'form-control')); !!}
 						</div>
 						<div id="end_value" class="col-xs-6">
-							{!! Form::selectRange('range_value_2', 0, 100, null, array('class' => 'form-control')); !!}
+							{!! Form::text('range_value_2', null, array('placeholder' => 'Nilai Akhir','class' => 'form-control')); !!}
 						</div>
 					</div>
 				</div>
@@ -130,13 +118,6 @@
 					$("#wawancara").hide();
 					$("#start_value").show();
 					$("#end_value").show();
-				} else if ($(this).val() == "Nilai Wawancara") {
-					$("#range_value").show();
-					$("#conversion_value").show();
-					$("#pendidikan").hide();
-					$("#wawancara").show();
-					$("#start_value").hide();
-					$("#end_value").hide();
 				} else {
 					$("#range_value").hide();
 					$("#conversion_value").hide();
