@@ -40,6 +40,7 @@
                     <th>No</th>
                     <th>Kriteria</th>
                     <th>Penjelasan Kriteria</th>
+                    <th>Informasi</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -47,8 +48,9 @@
                 @foreach ($data_fix as $key => $data_fiks)
                     <tr>
                         <td width="5px">{{ ++$i }}</td>
-                        <td width="275px">{{ $data_fiks->name }}</td>
-                        <td width="675px">{{ $data_fiks->description }}</td>
+                        <td width="160px">{{ $data_fiks->name }}</td>
+                        <td width="400px">{!! nl2br(e($data_fiks->description)) !!}</td>
+                        <td width="400px">{!! nl2br(e($data_fiks->information)) !!}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}
                             <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_fiks->id) }}">Edit</a>
@@ -83,8 +85,8 @@
                     <tr>
                         <td width="5px">{{ ++$j }}</td>
                         <td width="160px">{{ $data_baku->name }}</td>
-                        <td width="400px">{{ $data_baku->description }}</td>
-                        <td width="200px">{{ $data_baku->citation }}</td>
+                        <td width="400px">{!! nl2br(e($data_baku->description)) !!}</td>
+                        <td width="200px">{!! nl2br(e($data_baku->citation)) !!}</td>
                         <td width="115px">{{ $data_baku->result }}</td>
                         <td width="150px">{{ $data_baku->sum }} dari {{ $data_baku->count }}</td>
                         <td>
@@ -113,7 +115,7 @@
                     <tr>
                         <td width="5px">{{ ++$k }}</td>
                         <td width="225px">{{ $data_masukan->name }}</td>
-                        <td width="575px">{{ $data_masukan->description }}</td>
+                        <td width="575px">{!! nl2br(e($data_masukan->description)) !!}</td>
                         <td width="250px">{{ $data_masukan->user_name }}</td>
                         <td>
                             {{--  @permission('criteriastep2-edit')  --}}

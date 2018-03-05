@@ -54,8 +54,8 @@
                         <tr>
                             <td width="5px">{{ ++$i }}</td>
                             <td width="200px">{{ $questionnaire->name }}</td>
-                            <td width="450px">{{ $questionnaire->description }}</td>
-                            <td width="250px">{{ $questionnaire->citation }}</td>
+                            <td width="450px">{!! nl2br(e($questionnaire->description)) !!}</td>
+                            <td width="250px">{!! nl2br(e($questionnaire->citation)) !!}</td>
                             <td>
                                 <div class="radio">
                                     <label>

@@ -42,6 +42,12 @@
 						{!! Form::textarea('description', null, array('placeholder' => 'Penjelasan Kriteria','class' => 'form-control','style'=>'height:100px')) !!}
 					</div>
 				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Informasi:</strong>
+						{!! Form::textarea('information', null, array('placeholder' => 'Informasi tentang konversi data kualitatif menjadi data kuantitatif','class' => 'form-control','style'=>'height:100px')) !!}
+					</div>
+				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>

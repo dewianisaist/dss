@@ -33,8 +33,8 @@
                     <tr>
                         <td width="5px">{{ ++$i }}</td>
                         <td width="175px">{{ $percentage->name }}</td>
-                        <td width="450px">{{ $percentage->description }}</td>
-                        <td width="250px">{{ $percentage->citation }}</td>
+                        <td width="450px">{!! nl2br(e($percentage->description)) !!}</td>
+                        <td width="250px">{!! nl2br(e($percentage->citation)) !!}</td>
                         <td width="120px">{{ $percentage->result }}</td>
                         <td>{{ $percentage->sum }} dari {{ $percentage->count }}</td>
                     </tr>
@@ -57,7 +57,7 @@
                     <tr>
                         <td width="5px">{{ ++$j }}</td>
                         <td width="175px">{{ $data_masukan->name }}</td>
-                        <td width="700px">{{ $data_masukan->description }}</td>
+                        <td width="700px">{!! nl2br(e($data_masukan->description)) !!}</td>
                         <td>{{ $data_masukan->user_name }}</td>
                     </tr>
                 @endforeach
