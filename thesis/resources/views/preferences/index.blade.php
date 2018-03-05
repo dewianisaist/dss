@@ -45,9 +45,31 @@
 						<td>{{ $preference->name }}</td>
 						<td>{{ $preference->preference }}</td>
 						<td>{{ $preference->max_min }}</td>
-						<td>{{ $preference->parameter_p }}</td>
-						<td>{{ $preference->parameter_q }}</td>
-						<td>{{ $preference->parameter_s }}</td>
+						@if ($preference->preference == 1)
+							<td> - </td>
+							<td> - </td>
+							<td> - </td>
+						@elseif ($preference->preference == 2)
+							<td> - </td>
+							<td>{{ $preference->parameter_q }}</td>
+							<td> - </td>
+						@elseif ($preference->preference == 3)
+							<td>{{ $preference->parameter_p }}</td>
+							<td> - </td>
+							<td> - </td>
+						@elseif ($preference->preference == 4 || $preference->preference == 5)
+							<td>{{ $preference->parameter_p }}</td>
+							<td>{{ $preference->parameter_q }}</td>
+							<td> - </td>
+						@elseif ($preference->preference == 6)
+							<td> - </td>
+							<td> - </td>
+							<td> {{ $preference->parameter_s }} </td>
+						@else
+							<td></td>
+							<td></td>
+							<td></td>
+						@endif
 						<td>
 							<a class="btn btn-info" href="{{ route('preferences.show',$preference->id) }}">Detail</a>
 							<a class="btn btn-primary" href="{{ route('preferences.edit',$preference->id) }}">Edit</a>

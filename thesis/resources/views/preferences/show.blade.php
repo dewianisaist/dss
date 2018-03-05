@@ -43,19 +43,31 @@
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Parameter p:</strong>
-					{{ $preference->parameter_p }}
+					@if ($preference->preference == 1 || $preference->preference == 2 || $preference->preference == 6)
+					-
+					@else
+						{{ $preference->parameter_p }}
+					@endif
 				</div>
 			</div>
       <div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Parameter q:</strong>
-					{{ $preference->parameter_q }}
+					@if ($preference->preference == 1 || $preference->preference == 3 || $preference->preference == 6)
+					-
+					@else
+						{{ $preference->parameter_q }}
+					@endif
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Parameter s:</strong>
-					{{ $preference->parameter_s }}
+					@if ($preference->preference != 6)
+					-
+					@else
+						{{ $preference->parameter_s }}
+					@endif
 				</div>
 			</div>
 		</div>
