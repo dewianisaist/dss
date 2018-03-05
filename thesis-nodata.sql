@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 02, 2018 at 11:51 PM
+-- Generation Time: Mar 05, 2018 at 02:42 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -31,23 +31,6 @@ CREATE TABLE `choice` (
   `criteria_id` int(11) NOT NULL,
   `option` varchar(15) NOT NULL,
   `suggestion` varchar(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `conversions`
---
-
-CREATE TABLE `conversions` (
-  `id` int(11) NOT NULL,
-  `criteria_id` int(11) NOT NULL,
-  `resource` varchar(255) DEFAULT NULL,
-  `range_value_1` varchar(100) DEFAULT NULL,
-  `range_value_2` varchar(100) DEFAULT NULL,
-  `conversion_value` varchar(3) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -88,6 +71,7 @@ CREATE TABLE `criterias` (
   `name` varchar(500) DEFAULT NULL,
   `description` varchar(1000) DEFAULT NULL,
   `citation` varchar(1000) DEFAULT NULL,
+  `information` varchar(1000) DEFAULT NULL,
   `partial_weight` decimal(20,3) DEFAULT NULL,
   `global_weight` decimal(20,3) DEFAULT NULL,
   `preference` varchar(10) DEFAULT NULL,
@@ -362,13 +346,6 @@ ALTER TABLE `choice`
   ADD KEY `fk_criterias_has_users_criterias1_idx` (`criteria_id`);
 
 --
--- Indexes for table `conversions`
---
-ALTER TABLE `conversions`
-  ADD PRIMARY KEY (`id`,`criteria_id`),
-  ADD KEY `fk_conversion_criterias1_idx` (`criteria_id`);
-
---
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
@@ -510,11 +487,6 @@ ALTER TABLE `vocationals`
 --
 
 --
--- AUTO_INCREMENT for table `conversions`
---
-ALTER TABLE `conversions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
@@ -594,12 +566,6 @@ ALTER TABLE `vocationals`
 ALTER TABLE `choice`
   ADD CONSTRAINT `fk_criterias_has_users_criterias1` FOREIGN KEY (`criteria_id`) REFERENCES `criterias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_criterias_has_users_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `conversions`
---
-ALTER TABLE `conversions`
-  ADD CONSTRAINT `fk_conversion_criterias1` FOREIGN KEY (`criteria_id`) REFERENCES `criterias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `course_experience`
