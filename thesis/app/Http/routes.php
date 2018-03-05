@@ -184,11 +184,4 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('weights/{id}/pairwise',['as'=>'weights.pairwise','uses'=>'WeightController@create']);
 	Route::patch('weights/{id}',['as'=>'weights.store','uses'=>'WeightController@store']);
 
-	//conversions - tidak ada permission
-	Route::get('conversions',['as'=>'conversions.index','uses'=>'ConversionController@index']);
-	Route::get('conversions/create',['as'=>'conversions.create','uses'=>'ConversionController@create']);
-	Route::post('conversions/create',['as'=>'conversions.store','uses'=>'ConversionController@store']);
-	Route::get('conversions/{id}/edit',['as'=>'conversions.edit','uses'=>'ConversionController@edit']);
-	Route::patch('conversions/{id}',['as'=>'conversions.update','uses'=>'ConversionController@update']);
-	Route::delete('conversions/{id}',['as'=>'conversions.destroy','uses'=>'ConversionController@destroy']);
 });
