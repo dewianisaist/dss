@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2018 at 02:42 AM
+-- Generation Time: Mar 05, 2018 at 08:10 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -195,13 +195,13 @@ CREATE TABLE `registrations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `result_selections`
+-- Table structure for table `result_selection`
 --
 
-CREATE TABLE `result_selections` (
+CREATE TABLE `result_selection` (
   `selection_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `value` decimal(5,2) DEFAULT NULL
+  `value` varchar(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -418,9 +418,9 @@ ALTER TABLE `registrations`
   ADD KEY `fk_registration_sub_vocationals1_idx` (`sub_vocational_id`);
 
 --
--- Indexes for table `result_selections`
+-- Indexes for table `result_selection`
 --
-ALTER TABLE `result_selections`
+ALTER TABLE `result_selection`
   ADD PRIMARY KEY (`selection_id`,`criteria_id`),
   ADD KEY `fk_result_selections_selections1_idx` (`selection_id`),
   ADD KEY `fk_result_selections_criterias1_idx` (`criteria_id`);
@@ -615,9 +615,9 @@ ALTER TABLE `registrations`
   ADD CONSTRAINT `fk_registration_sub_vocationals1` FOREIGN KEY (`sub_vocational_id`) REFERENCES `sub_vocationals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `result_selections`
+-- Constraints for table `result_selection`
 --
-ALTER TABLE `result_selections`
+ALTER TABLE `result_selection`
   ADD CONSTRAINT `fk_result_selections_criterias1` FOREIGN KEY (`criteria_id`) REFERENCES `criterias` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_result_selections_selections1` FOREIGN KEY (`selection_id`) REFERENCES `selections` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
