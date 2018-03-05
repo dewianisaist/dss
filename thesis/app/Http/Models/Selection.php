@@ -17,4 +17,8 @@ class Selection extends Model
     public function registrant() {
         return $this->belongsTo('App\Http\Models\Registrant');
     }
+
+    public function criterias() {
+        return $this->belongsToMany('App\Http\Models\Criteria', 'result_selection');
+    }
 }

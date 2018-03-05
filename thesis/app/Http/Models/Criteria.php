@@ -11,8 +11,8 @@ class Criteria extends Model
     public $fillable = ['group_criteria', 'name', 'description', 'citation', 'information', 'partial_weight', 'global_weight', 'preference', 
                         'max_min', 'parameter_p', 'parameter_q', 'parameter_s', 'step', 'status', 'ref_id'];
 
-    public function resultselection() {
-        return $this->hasOne('App\Http\Models\ResultSelection');
+    public function selections() {
+        return $this->belongsToMany('App\Http\Models\Selection', 'result_selection');
     }
 
     public function pairwisecomparison1() {
