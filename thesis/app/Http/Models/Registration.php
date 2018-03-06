@@ -19,4 +19,8 @@ class Registration extends Model
     public function subvocational() {
         return $this->belongsTo('App\Http\Models\Subvocational','sub_vocational_id');
     }
+
+    public function selection() {
+        return $this->hasOne('App\Http\Models\Selection');
+    }
 }

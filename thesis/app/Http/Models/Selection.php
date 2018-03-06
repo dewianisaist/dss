@@ -18,6 +18,10 @@ class Selection extends Model
         return $this->belongsTo('App\Http\Models\Registrant');
     }
 
+    public function registration() {
+        return $this->belongsTo('App\Http\Models\Registration');
+    }
+
     public function criterias() {
         return $this->belongsToMany('App\Http\Models\Criteria', 'result_selection');
     }

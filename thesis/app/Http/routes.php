@@ -184,4 +184,9 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('weights/{id}/pairwise',['as'=>'weights.pairwise','uses'=>'WeightController@create']);
 	Route::patch('weights/{id}',['as'=>'weights.store','uses'=>'WeightController@store']);
 
+	//result_selection - tidak ada permission
+	Route::get('result_selection',['as'=>'result_selection.index','uses'=>'ResultSelectionController@index']);
+	Route::get('result_selection/{id}',['as'=>'result_selection.show','uses'=>'ResultSelectionController@show']);
+	Route::get('result_selection/{id}/edit',['as'=>'result_selection.edit','uses'=>'ResultSelectionController@edit']);
+	Route::patch('result_selection/{id}',['as'=>'result_selection.update','uses'=>'ResultSelectionController@update']);
 });
