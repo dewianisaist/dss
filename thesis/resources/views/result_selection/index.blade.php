@@ -45,8 +45,7 @@
 						<td>{{ $result_selection->date }}</td>
 						<td>{{ $result_selection->time }}</td>
 						<td>
-							<a class="btn btn-info" href="{{ route('result_selection.show',$result_selection->id) }}">Detail</a>
-							<a class="btn btn-primary" href="{{ route('result_selection.edit',$result_selection->id) }}">Penilaian</a>
+							<a class="btn btn-primary" href="{{ route('result_selection.assessment',$result_selection->id) }}">Penilaian</a>
 						</td>
 					</tr>
 				@endforeach

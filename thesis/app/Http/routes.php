@@ -186,7 +186,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 	//result_selection - tidak ada permission
 	Route::get('result_selection',['as'=>'result_selection.index','uses'=>'ResultSelectionController@index']);
-	Route::get('result_selection/{id}',['as'=>'result_selection.show','uses'=>'ResultSelectionController@show']);
-	Route::get('result_selection/{id}/edit',['as'=>'result_selection.edit','uses'=>'ResultSelectionController@edit']);
-	Route::patch('result_selection/{id}',['as'=>'result_selection.update','uses'=>'ResultSelectionController@update']);
+	Route::get('result_selection/{id}/assessment',['as'=>'result_selection.assessment','uses'=>'ResultSelectionController@assessment']);
+	Route::patch('result_selection/{id}',['as'=>'result_selection.store','uses'=>'ResultSelectionController@store']);
+	Route::get('result_selection/{id}',['as'=>'result_selection.clear','uses'=>'ResultSelectionController@clear']);
 });

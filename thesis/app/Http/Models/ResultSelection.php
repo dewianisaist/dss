@@ -10,6 +10,8 @@ class ResultSelection extends Model
     
     public $fillable = ['selection_id', 'criteria_id', 'value'];
 
+    public $timestamps = false;
+
     public function criteria() {
         return $this->belongsTo('App\Http\Models\Criteria');
     }
