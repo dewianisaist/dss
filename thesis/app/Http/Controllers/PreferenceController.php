@@ -89,8 +89,27 @@ class PreferenceController extends Controller
             'preference' => 'required',
             'max_min' => 'required',
         ]);
+
+        $input = $request->all();
+        
+        if ($input['preference'] == 1) {
+            $input['parameter_p'] = null;
+            $input['parameter_q'] = null;
+            $input['parameter_s'] = null;
+        } elseif ($input['preference'] == 2) {
+            $input['parameter_p'] = null;
+            $input['parameter_s'] = null;
+        } elseif ($input['preference'] == 3) {
+            $input['parameter_q'] = null;
+            $input['parameter_s'] = null;
+        } elseif ($input['preference'] == 4 || $input['preference'] == 5) {
+            $input['parameter_s'] = null;
+        } else {
+            $input['parameter_p'] = null;
+            $input['parameter_q'] = null;
+        }
  
-        Criteria::find($id)->update($request->all());
+        Criteria::find($id)->update($input);
  
         return redirect()->route('preferences.index')
                          ->with('success','Tipe preferensi berhasil disimpan');
