@@ -103,6 +103,10 @@
 				<td>{{ $data->place_birth }}, {{ $data->date_birth }}</td>
 			</tr>
 			<tr>
+				<th>Usia</th>
+				<td>{{ $age }}</td>
+			</tr>
+			<tr>
 				<th>Anak ke-</th>
 				<td>{{ $data->order_child }}</td>
 			</tr>

@@ -13,6 +13,7 @@ use App\Http\Models\CourseExperience;
 use App\Http\Models\Upload;
 use App\Http\Models\Registration;
 use Auth;
+use Carbon;
 
 class ResultSelectionController extends Controller
 {
@@ -59,6 +60,10 @@ class ResultSelectionController extends Controller
                             ->where('selections.id', '=', $id)
                             ->first();
         // return $data;
+
+        $date_birth = Carbon\Carbon::parse($data->date_birth);
+        $age = Carbon\Carbon::createFromDate($date_birth->year, $date_birth->month, $date_birth->day)->age;
+        // return $age;
 
         $check_result = ResultSelection::with('selection')
                                             ->where('selection_id', '=', $data->ID_SELECTION)
@@ -118,7 +123,7 @@ class ResultSelectionController extends Controller
         }
         //  return $return_data;
 
-        return view('result_selection.assessment',compact('data','check_result','educational_background','course_experience','upload','registration','return_data','i','j'));
+        return view('result_selection.assessment',compact('data', 'age', 'check_result','educational_background','course_experience','upload','registration','return_data','i','j'));
     }
 
     /**
@@ -217,7 +222,6 @@ class ResultSelectionController extends Controller
                                     ->get();
             // return $criterias;
 
-            
             foreach ($criterias as $criteria){
                 $result_selection = ResultSelection::where('selection_id', '=', $selection->id)
                                                     ->where('criteria_id', '=', $criteria->id)
@@ -226,13 +230,11 @@ class ResultSelectionController extends Controller
                 // return $result_selection;
                 if ($result_selection == null) {
                     return redirect()->route('result_selection.index')
-                                    ->with('failed','Hitung penilaian GAGAL! '. $selection->name_registrant . ' belum dinilai. Silahkan lakukan penilaian');
-                } else {
-                    return redirect()->route('result_selection.index')
-                                    ->with('success','Hitung penilaian berhasil. Lihat hasil di menu "Hasil"');
+                                     ->with('failed','Hitung penilaian GAGAL! '. $selection->name_registrant . ' belum dinilai. Silahkan lakukan penilaian');
                 }
             }
         }
-        
+        return redirect()->route('result_selection.index')
+                         ->with('success','Hitung penilaian berhasil. Lihat hasil di menu "Hasil"');
     }
 }
