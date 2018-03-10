@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2018 at 08:09 AM
+-- Generation Time: Mar 10, 2018 at 01:30 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -157,13 +157,13 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `citatio
 (31, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 13:01:21', '2018-02-12 13:01:21'),
 (32, NULL, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 13:01:21', '2018-02-12 13:01:21'),
 (33, NULL, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 13:27:50', '2018-02-12 13:27:50'),
-(73, 95, 'Usia', 'Usia (XYZ, 2013)', NULL, 'Konversi:\r\nUsia 0 - 15 tahun: 1\r\nUsia > 40 tahun: 2\r\nUsia 31 - 40 tahun: 3\r\nUsia 16 - 20 tahun: 4\r\nUsia 21 - 30 tahun: 5', '0.433', '0.144', NULL, NULL, NULL, NULL, NULL, '2', '1', 1, '2018-02-15 17:57:21', '2018-03-04 21:35:52'),
-(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, NULL, '0.466', '0.155', '5', 'Maksimasi', '5.000', '5.000', '0.000', '2', '1', 2, '2018-02-19 12:57:19', '2018-03-04 18:54:34'),
-(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, '0.101', '0.034', '4', 'Maksimasi', '4.000', '4.000', '0.000', '2', '1', 32, '2018-02-19 12:57:48', '2018-03-04 18:54:21'),
-(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, NULL, '0.118', '0.039', '6', 'Maksimasi', '0.000', '0.000', '6.000', '2', '1', 3, '2018-02-19 12:58:02', '2018-03-04 18:54:07'),
-(92, 96, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, NULL, '0.808', '0.269', '3', 'Maksimasi', '0.500', '0.000', '0.000', '2', '1', 4, '2018-02-19 12:58:05', '2018-03-04 18:51:47'),
-(93, 96, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, '0.074', '0.025', '1', 'Maksimasi', '0.000', '0.000', '0.000', '2', '1', 33, '2018-02-19 12:58:09', '2018-03-04 18:50:39'),
-(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, '0.333', '0.333', '2', 'Maksimasi', '0.000', '1.000', '0.000', '2', '1', 31, '2018-02-19 12:58:38', '2018-03-04 18:50:18'),
+(73, 95, 'Usia', 'Usia (XYZ, 2013)', NULL, 'Konversi:\r\nUsia 0 - 15 tahun: 1\r\nUsia > 40 tahun: 2\r\nUsia 31 - 40 tahun: 3\r\nUsia 16 - 20 tahun: 4\r\nUsia 21 - 30 tahun: 5', '0.433', '0.144', '2', 'Maksimasi', NULL, '0.500', NULL, '2', '1', 1, '2018-02-15 17:57:21', '2018-03-09 07:47:16'),
+(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, NULL, '0.466', '0.155', '2', 'Maksimasi', NULL, '0.500', NULL, '2', '1', 2, '2018-02-19 12:57:19', '2018-03-09 07:45:02'),
+(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, '0.101', '0.034', '2', 'Maksimasi', NULL, '0.250', NULL, '2', '1', 32, '2018-02-19 12:57:48', '2018-03-09 07:47:41'),
+(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, NULL, '0.118', '0.039', '3', 'Maksimasi', '40.000', NULL, NULL, '2', '1', 3, '2018-02-19 12:58:02', '2018-03-09 07:48:03'),
+(92, 96, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, NULL, '0.808', '0.269', '3', 'Maksimasi', '40.000', NULL, NULL, '2', '1', 4, '2018-02-19 12:58:05', '2018-03-09 07:48:15'),
+(93, 96, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, '0.074', '0.025', '2', 'Maksimasi', NULL, '0.250', NULL, '2', '1', 33, '2018-02-19 12:58:09', '2018-03-09 07:48:24'),
+(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, '0.333', '0.333', '2', 'Maksimasi', NULL, '0.250', NULL, '2', '1', 31, '2018-02-19 12:58:38', '2018-03-09 07:48:49'),
 (95, NULL, 'Personal', NULL, NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 13:00:08', '2018-02-28 16:33:22'),
 (96, NULL, 'Ujian/Tes', NULL, NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 13:00:38', '2018-02-28 16:33:22');
 
@@ -529,6 +529,40 @@ CREATE TABLE `result_selection` (
   `value` varchar(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `result_selection`
+--
+
+INSERT INTO `result_selection` (`selection_id`, `criteria_id`, `value`) VALUES
+(2, 73, '4'),
+(2, 89, '5'),
+(2, 90, '3'),
+(2, 91, '85'),
+(2, 92, '95'),
+(2, 93, '5'),
+(2, 94, '0'),
+(3, 73, '3'),
+(3, 89, '3'),
+(3, 90, '3'),
+(3, 91, '40'),
+(3, 92, '85'),
+(3, 93, '5'),
+(3, 94, '5'),
+(4, 73, '5'),
+(4, 89, '3'),
+(4, 90, '2'),
+(4, 91, '60'),
+(4, 92, '60'),
+(4, 93, '5'),
+(4, 94, '4'),
+(7, 73, '4'),
+(7, 89, '1'),
+(7, 90, '4'),
+(7, 91, '55'),
+(7, 92, '70'),
+(7, 93, '5'),
+(7, 94, '5');
+
 -- --------------------------------------------------------
 
 --
@@ -741,7 +775,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'geIW8iPNwEOGximIr4tK4BUNdvIzfJW8rKlYgaQuAqIMjK8cyKDs4xBXKvtv', '2018-01-26 20:23:49', '2018-02-21 17:34:41'),
-(2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', '5gSq29mq3exbTXsI6zAxOw35XvYZFhTlbTYALedVkfmaQhZ6tBFwhw4XfvCZ', '2018-01-26 20:43:47', '2018-03-04 21:41:25'),
+(2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'NmYyVJX3DCy1kBXLbgE4pTN4nm0X3rwswJWk4aNo80gObLMz4v6BKjHkj8uA', '2018-01-26 20:43:47', '2018-03-05 18:48:57'),
 (3, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$cSc2B1F7pU2Mg5855RYHGO3FQ6g.Za1jshY5mRQHN4qYftHE42NeW', 'glQR5Qbdsl0F32Rl0N2wboZ5BCobOnAPPuC3FsFgKKB2TKRKTuhAzW0GEQuC', '2018-01-26 20:44:11', '2018-01-30 18:55:21'),
 (4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', 'JUwVtsJYyFhTCUjfFJwI9DSZY2TwwkD5l805y3A7YSA25VoMIgVX6NROpcXu', '2018-01-26 20:44:49', '2018-02-12 14:17:30'),
 (5, '505050', 'Koor Instruktur BLK', 'koorinstruktur@test.com', '$2y$10$0x3MJX34I17iRF0oWDp0n.P92W0IJn761x8mtfGjx46vemzcOBrQK', 'I0CYoXXXkg1N2iKYrxvD4aU6AY5V38lNSPkGhEwoDgv7YPtyaGbKYOJD6x76', '2018-01-26 20:45:11', '2018-02-12 13:26:51'),
@@ -947,7 +981,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --
