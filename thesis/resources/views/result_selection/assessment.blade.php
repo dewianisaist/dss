@@ -52,12 +52,16 @@
 				</tr>
 			</thead>
 			<tbody>        
-                @foreach ($criterias as $key => $criteria)
+                @foreach ($return_data as $single_data)
                     <tr>
                         <td width="5px">{{ ++$i }}</td>
-                        <th width="400px">{{ $criteria->name }}</th>
-                        <td width="400px">{!! Form::text($criteria->id, null, array('placeholder' => 'Nilai (Sudah dikonversi ke data kuantitatif)','class' => 'form-control')) !!}</td>
-                        <td>{!! nl2br(e($criteria->information)) !!}</td>
+                        <th width="400px">{{ $single_data['criteria']->name }}</th>
+						@if ($single_data['value'] == null)
+							<td width="400px">{!! Form::text($single_data['criteria']->id, null, array('placeholder' => 'Nilai (Sudah dikonversi ke data kuantitatif)','class' => 'form-control')) !!}</td>
+						@else
+                        	<td width="400px">{!! Form::text($single_data['criteria']->id, $single_data['value']->value, array('placeholder' => 'Nilai (Sudah dikonversi ke data kuantitatif)','class' => 'form-control')) !!}</td>
+						@endif
+                        <td>{!! nl2br(e($single_data['criteria']->information)) !!}</td>
                     </tr>
                 @endforeach
             </tbody>

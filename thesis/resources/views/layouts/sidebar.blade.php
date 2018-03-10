@@ -124,14 +124,14 @@
 
 {{--  All user except pendaftar can see "Penilaian"  --}}
 @if(Auth::user()->roleId() == 1 || Auth::user()->roleId() == 3 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
-<li {{ explode( ".",\Request::route()->getName() )[0] == 'result_selection' || 
-  explode( ".",\Request::route()->getName() )[0] == 'preferences' ||
+<li {{ explode( ".",\Request::route()->getName() )[0] == 'preferences' || 
+  explode( ".",\Request::route()->getName() )[0] == 'result_selection' ||
   explode( ".",\Request::route()->getName() )[0] == 'preferences' 
   ? 'class=active treeview menu-open' : '' }}>
   @if(Auth::user()->roleId() == 3)
-    <a href="{{ route('result_selection.index') }}">
-  @elseif(Auth::user()->roleId() == 1 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
     <a href="{{ route('preferences.index') }}">
+  @elseif(Auth::user()->roleId() == 1 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
+    <a href="{{ route('result_selection.index') }}">
   @endif
     <i class="fa fa-hourglass-half"></i>
     <span>Penilaian</span>
@@ -142,11 +142,11 @@
   <ul class="treeview-menu">
     {{--  Only kepala can see "Data Alternatif and Tipe Preferensi"  --}}
     @if(Auth::user()->roleId() == 3)
-      <li {{ substr( \Request::route()->getName(), 0, 17 ) == 'result_selection.' ? 'class=active' : '' }}>
-        <a href="{{ route('result_selection.index') }}"><i class="fa fa-hourglass-half"></i> Data Alternatif</a>
-      </li>
       <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'preferences.' ? 'class=active' : '' }}>
         <a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a>
+      </li>
+      <li {{ substr( \Request::route()->getName(), 0, 17 ) == 'result_selection.' ? 'class=active' : '' }}>
+        <a href="{{ route('result_selection.index') }}"><i class="fa fa-hourglass-half"></i> Data Alternatif</a>
       </li>
     @endif
     <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'preferences.' ? 'class=active' : '' }}>

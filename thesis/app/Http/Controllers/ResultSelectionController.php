@@ -30,6 +30,7 @@ class ResultSelectionController extends Controller
                                 ->join('users', 'users.id', '=', 'registrants.user_id')
                                 ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                                 ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
+                                ->where('selections.status', '=', '')
                                 ->orderBy('selections.id','DESC')
                                 ->paginate(10);
         
@@ -98,10 +99,26 @@ class ResultSelectionController extends Controller
                                     ->where('suggestion', 1);
                                 })
                                 ->orderBy('id','DESC')->get();
-        // return $criterias;
+        
+        $return_data = array();
+        // return $data->ID_SELECTION;
 
-        // return compact('data','check_result','educational_background','course_experience','upload','registration','criterias','i','j');
-        return view('result_selection.assessment',compact('data','check_result','educational_background','course_experience','upload','registration','criterias','i','j'));
+        foreach ($criterias as $criteria) {
+            $single_data = array();
+            $single_data["criteria"] = $criteria;
+            $result_selection = ResultSelection::where('selection_id', '=', $data->ID_SELECTION)
+                                                ->where('criteria_id', '=', $criteria->id)
+                                                ->first();
+            if ($result_selection == null) {
+                $single_data["value"] = null;
+            } else {
+                $single_data["value"] = $result_selection;
+            }
+            $return_data[] = $single_data;
+        }
+        //  return $return_data;
+
+        return view('result_selection.assessment',compact('data','check_result','educational_background','course_experience','upload','registration','return_data','i','j'));
     }
 
     /**
@@ -115,11 +132,8 @@ class ResultSelectionController extends Controller
     {
         $input = $request->all();
         // return $input;
-        $valid = true;
 
-        $assessment = array();
-        if ($valid) {
-            $criterias = Criteria::where('step', '=', '2')
+        $criterias = Criteria::where('step', '=', '2')
                                 ->where('status', '=', '1')
                                 ->where('description', '<>', null)
                                 ->whereNotIn('id', function($query){
@@ -127,50 +141,34 @@ class ResultSelectionController extends Controller
                                     ->from(with(new Choice)->getTable())
                                     ->where('suggestion', 1);
                                 })
-                                ->orderBy('id','DESC')->lists('id');
+                                ->orderBy('id','DESC')
+                                ->lists('id');
+        
+        //  return $criterias;
+        foreach ($criterias as $criteria) {
+            $result_selection = ResultSelection::where('selection_id', '=', $id)
+                                                ->where('criteria_id', '=', $criteria)
+                                                ->first();
             
-            // return $criterias;
-                                
-            foreach ($criterias as $value) {
-                if (!array_key_exists($value,$input)) {
-                    $valid = false;
-                    break;
+            if ($input[$criteria] != ""){
+                $data["selection_id"] = $id;
+                $data["criteria_id"] = $criteria;
+                $data["value"] = $input[$criteria];
+                if ($result_selection == null) {
+                    ResultSelection::create($data);
                 } else {
-                    $assessment[$value] = $input[$value];
+                    ResultSelection::where('selection_id', '=', $id)
+                                    ->where('criteria_id', '=', $criteria)
+                                    ->update($data);
                 }
+            } else {
+                ResultSelection::where('selection_id', '=', $id)
+                                ->where('criteria_id', '=', $criteria)
+                                ->delete();
             }
         }
-        // return $assessment;
-
-        if ($valid) {
-            $result = ResultSelection::where('selection_id', '=', $id)->orderBy('criteria_id','DESC')->get();
-            // return $result;
-
-            foreach ($result as $result_selection){
-                // return $result_selection;
-                foreach ($assessment as $criteriaid=>$val) {
-                    $data["selection_id"] = $id;
-                    $data["criteria_id"] = $criteriaid;
-                    $data["value"] = $val;
-                    // return $data["criteria_id"];
-                    // return $result_selection->criteria_id;
-                    if (!array_key_exists($data["criteria_id"],$result_selection)){
-                        ResultSelection::create($data);
-                    } else {
-                        ResultSelection::where('selection_id', '=', $data["selection_id"])
-                                            ->where('criteria_id', '=', $data["criteria_id"])
-                                            ->update($data);
-                    }
-                    
-                }
-            }
-
-            return redirect()->route('result_selection.index')
-                             ->with('success','Penilaian berhasil disimpan');
-        } else {
-            return redirect()->route('result_selection.assessment', $id)
-                             ->with('failed','Maaf! Semua kriteria harus dinilai.');
-        }
+        return redirect()->route('result_selection.index')
+                         ->with('success','Penilaian berhasil disimpan');
     }
 
     /**
@@ -184,6 +182,57 @@ class ResultSelectionController extends Controller
         ResultSelection::where('selection_id', '=', $id)->delete();
 
         return redirect()->route('result_selection.assessment', $id)
-                             ->with('success','Penilaian berhasil dihapus');
+                         ->with('success','Penilaian berhasil dihapus');
+    }
+
+    /**
+     * Count all assessment of the resource
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function count()
+    {
+        $selections = Selection::select('selections.*', 'users.name AS name_registrant', 'selection_schedules.date', 
+                                        'selection_schedules.time', 'sub_vocationals.name AS name_sub_vocational')
+                                    ->join('registrations', 'registrations.id', '=', 'selections.registration_id')
+                                    ->join('registrants', 'registrants.id', '=', 'registrations.registrant_id')
+                                    ->join('users', 'users.id', '=', 'registrants.user_id')
+                                    ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
+                                    ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
+                                    ->where('selections.status', '=', '')
+                                    ->orderBy('selections.id','DESC')
+                                    ->get();
+        // return $selections;
+
+        foreach ($selections as $selection){
+            $criterias = Criteria::where('step', '=', '2')
+                                    ->where('status', '=', '1')
+                                    ->where('description', '<>', null)
+                                    ->whereNotIn('id', function($query){
+                                        $query->select('criteria_id')
+                                        ->from(with(new Choice)->getTable())
+                                        ->where('suggestion', 1);
+                                    })
+                                    ->orderBy('id','DESC')
+                                    ->get();
+            // return $criterias;
+
+            
+            foreach ($criterias as $criteria){
+                $result_selection = ResultSelection::where('selection_id', '=', $selection->id)
+                                                    ->where('criteria_id', '=', $criteria->id)
+                                                    ->first();
+
+                // return $result_selection;
+                if ($result_selection == null) {
+                    return redirect()->route('result_selection.index')
+                                    ->with('failed','Hitung penilaian GAGAL! '. $selection->name_registrant . ' belum dinilai. Silahkan lakukan penilaian');
+                } else {
+                    return redirect()->route('result_selection.index')
+                                    ->with('success','Hitung penilaian berhasil. Lihat hasil di menu "Hasil"');
+                }
+            }
+        }
+        
     }
 }

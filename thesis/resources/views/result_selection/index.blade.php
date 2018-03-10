@@ -23,6 +23,12 @@
 				<p>{{ $message }}</p>
 			</div>
 		@endif
+
+		@if ($message = Session::get('failed'))
+			<div class="alert alert-error">
+				<p>{{ $message }}</p>
+			</div>
+        @endif
 	
 		<br/>
     	<table id="table_result_selection" class="table table-bordered table-striped">
@@ -52,6 +58,11 @@
 			</tbody>
 		</table>
 		{!! $data->render() !!}
+
+		<br/>
+		{!! Form::open(array('route' => 'result_selection.count','method'=>'POST')) !!}
+			<button type="submit" class="btn btn-primary">Mulai Hitung Penilaian</button>
+		{!! Form::close() !!}
 	</div>
 </div>	
 @endsection
