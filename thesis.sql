@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 10, 2018 at 01:30 PM
+-- Generation Time: Mar 11, 2018 at 05:22 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -555,6 +555,20 @@ INSERT INTO `result_selection` (`selection_id`, `criteria_id`, `value`) VALUES
 (4, 92, '60'),
 (4, 93, '5'),
 (4, 94, '4'),
+(5, 73, '4'),
+(5, 89, '1'),
+(5, 90, '4'),
+(5, 91, '55'),
+(5, 92, '70'),
+(5, 93, '5'),
+(5, 94, '5'),
+(6, 73, '4'),
+(6, 89, '4'),
+(6, 90, '3'),
+(6, 91, '45'),
+(6, 92, '80'),
+(6, 93, '5'),
+(6, 94, '5'),
 (7, 73, '4'),
 (7, 89, '1'),
 (7, 90, '4'),
