@@ -126,12 +126,12 @@
 @if(Auth::user()->roleId() == 1 || Auth::user()->roleId() == 3 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
 <li {{ explode( ".",\Request::route()->getName() )[0] == 'preferences' || 
   explode( ".",\Request::route()->getName() )[0] == 'result_selection' ||
-  explode( ".",\Request::route()->getName() )[0] == 'preferences' 
+  explode( ".",\Request::route()->getName() )[0] == 'result' 
   ? 'class=active treeview menu-open' : '' }}>
   @if(Auth::user()->roleId() == 3)
     <a href="{{ route('preferences.index') }}">
   @elseif(Auth::user()->roleId() == 1 || Auth::user()->roleId() == 4 || Auth::user()->roleId() == 5 || Auth::user()->roleId() == 6)
-    <a href="{{ route('result_selection.index') }}">
+    <a href="{{ route('result.index') }}">
   @endif
     <i class="fa fa-hourglass-half"></i>
     <span>Penilaian</span>
@@ -149,8 +149,8 @@
         <a href="{{ route('result_selection.index') }}"><i class="fa fa-hourglass-half"></i> Data Alternatif</a>
       </li>
     @endif
-    <li {{ substr( \Request::route()->getName(), 0, 12 ) == 'preferences.' ? 'class=active' : '' }}>
-      <a href=""><i class="fa fa-hourglass-half"></i> Hasil</a>
+    <li {{ substr( \Request::route()->getName(), 0, 7 ) == 'result.' ? 'class=active' : '' }}>
+      <a href="{{ route('result.index') }}"><i class="fa fa-hourglass-half"></i> Hasil</a>
     </li>
   </ul>
 </li>
@@ -190,5 +190,12 @@
 @if(Auth::user()->roleId() == 2)
 <li {{ substr( \Request::route()->getName(), 0, 13 ) == 'registration.' ? 'class=active' : '' }}>
   <a href="{{ route('registration.index') }}"><i class="fa fa-pencil-square-o"></i> <span>Daftar</span></a>
+</li>
+@endif
+
+{{--  Only registrant can see "Pengumuman"  --}}
+@if(Auth::user()->roleId() == 2)
+<li {{ substr( \Request::route()->getName(), 0, 7 ) == 'result.' ? 'class=active' : '' }}>
+  <a href="{{ route('result.index') }}"><i class="fa fa-star"></i> <span>Pengumuman</span></a>
 </li>
 @endif

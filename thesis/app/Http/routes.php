@@ -190,4 +190,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('result_selection/{id}',['as'=>'result_selection.store','uses'=>'ResultSelectionController@store']);
 	Route::get('result_selection/{id}',['as'=>'result_selection.clear','uses'=>'ResultSelectionController@clear']);
 	Route::post('result_selection/count',['as'=>'result_selection.count','uses'=>'ResultSelectionController@count']);
+
+	//result - tidak ada permission
+	Route::get('result',['as'=>'result.index','uses'=>'ResultController@index']);
 });
