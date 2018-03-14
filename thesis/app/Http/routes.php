@@ -157,27 +157,27 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('questionnaire/create',['as'=>'questionnaire.create','uses'=>'QuestionnaireController@create']);
 	Route::post('questionnaire/create',['as'=>'questionnaire.store','uses'=>'QuestionnaireController@store']);
 
-	//resultstep1 - ada permission, belum ditambahkan, seharusnya ada final tapi belum
+	//resultstep1 - tidak ada permission
 	Route::get('resultstep1',['as'=>'resultstep1.index','uses'=>'ResultStep1Controller@index']);
 
-	//criteriastep2 - ada permission, belum ditambahkan
-	Route::get('criteriastep2',['as'=>'criteriastep2.index','uses'=>'CriteriaStep2Controller@index']);
-	Route::get('criteriastep2/create',['as'=>'criteriastep2.create','uses'=>'CriteriaStep2Controller@create']);
-	Route::post('criteriastep2/create',['as'=>'criteriastep2.store','uses'=>'CriteriaStep2Controller@store']);
-	Route::get('criteriastep2/{id}/edit',['as'=>'criteriastep2.edit','uses'=>'CriteriaStep2Controller@edit']);
-	Route::patch('criteriastep2/{id}',['as'=>'criteriastep2.update','uses'=>'CriteriaStep2Controller@update']);
-	Route::delete('criteriastep2/{id}',['as'=>'criteriastep2.destroy','uses'=>'CriteriaStep2Controller@destroy']);
-	Route::get('criteriastep2/{id}',['as'=>'criteriastep2.use','uses'=>'CriteriaStep2Controller@use']);
+	//criteriastep2 - ada permission
+	Route::get('criteriastep2',['as'=>'criteriastep2.index','uses'=>'CriteriaStep2Controller@index','middleware' => ['permission:criteriastep2-list|criteriastep2-create|criteriastep2-edit|criteriastep2-delete|criteriastep2-use']]);
+	Route::get('criteriastep2/create',['as'=>'criteriastep2.create','uses'=>'CriteriaStep2Controller@create','middleware' => ['permission:criteriastep2-create']]);
+	Route::post('criteriastep2/create',['as'=>'criteriastep2.store','uses'=>'CriteriaStep2Controller@store','middleware' => ['permission:criteriastep2-create']]);
+	Route::get('criteriastep2/{id}/edit',['as'=>'criteriastep2.edit','uses'=>'CriteriaStep2Controller@edit','middleware' => ['permission:criteriastep2-edit']]);
+	Route::patch('criteriastep2/{id}',['as'=>'criteriastep2.update','uses'=>'CriteriaStep2Controller@update','middleware' => ['permission:criteriastep2-edit']]);
+	Route::delete('criteriastep2/{id}',['as'=>'criteriastep2.destroy','uses'=>'CriteriaStep2Controller@destroy','middleware' => ['permission:criteriastep2-delete']]);
+	Route::get('criteriastep2/{id}',['as'=>'criteriastep2.use','uses'=>'CriteriaStep2Controller@use','middleware' => ['permission:criteriastep2-use']]);
 
-	//criteriagroup - ada permission, belum ditambahkan
-	Route::get('criteriagroup',['as'=>'criteriagroup.index','uses'=>'CriteriaGroupController@index']);
-	Route::get('criteriagroup/create',['as'=>'criteriagroup.create','uses'=>'CriteriaGroupController@create']);
-	Route::post('criteriagroup/create',['as'=>'criteriagroup.store','uses'=>'CriteriaGroupController@store']);
-	Route::get('criteriagroup/{id}/edit',['as'=>'criteriagroup.edit','uses'=>'CriteriaGroupController@edit']);
-	Route::patch('criteriagroup/{id}/edit',['as'=>'criteriagroup.update','uses'=>'CriteriaGroupController@update']);
-	Route::delete('criteriagroup/{id}',['as'=>'criteriagroup.destroy','uses'=>'CriteriaGroupController@destroy']);
-	Route::post('criteriagroup/add',['as'=>'criteriagroup.add','uses'=>'CriteriaGroupController@add']);
-	Route::post('criteriagroup/out',['as'=>'criteriagroup.out','uses'=>'CriteriaGroupController@out']);
+	//criteriagroup - ada permission
+	Route::get('criteriagroup',['as'=>'criteriagroup.index','uses'=>'CriteriaGroupController@index','middleware' => ['permission:criteriagroup-list|criteriagroup-create|criteriagroup-edit|criteriagroup-delete|criteriagroup-add|criteriagroup-out']]);
+	Route::get('criteriagroup/create',['as'=>'criteriagroup.create','uses'=>'CriteriaGroupController@create','middleware' => ['permission:criteriagroup-create']]);
+	Route::post('criteriagroup/create',['as'=>'criteriagroup.store','uses'=>'CriteriaGroupController@store','middleware' => ['permission:criteriagroup-create']]);
+	Route::get('criteriagroup/{id}/edit',['as'=>'criteriagroup.edit','uses'=>'CriteriaGroupController@edit','middleware' => ['permission:criteriagroup-edit']]);
+	Route::patch('criteriagroup/{id}/edit',['as'=>'criteriagroup.update','uses'=>'CriteriaGroupController@update','middleware' => ['permission:criteriagroup-edit']]);
+	Route::delete('criteriagroup/{id}',['as'=>'criteriagroup.destroy','uses'=>'CriteriaGroupController@destroy','middleware' => ['permission:criteriagroup-delete']]);
+	Route::post('criteriagroup/add',['as'=>'criteriagroup.add','uses'=>'CriteriaGroupController@add','middleware' => ['permission:criteriagroup-add']]);
+	Route::post('criteriagroup/out',['as'=>'criteriagroup.out','uses'=>'CriteriaGroupController@out','middleware' => ['permission:criteriagroup-out']]);
 
 	//weight - tidak ada permission
 	Route::get('weights',['as'=>'weights.index','uses'=>'WeightController@index']);

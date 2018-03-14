@@ -25,7 +25,7 @@
 			</ul>
 		</div>
 		
-		{{--  @permission('criteriagroup-create')  --}}
+		@permission('criteriagroup-create')
 		@if ($message = Session::get('success'))
 			<div class="alert alert-success">
 				<p>{{ $message }}</p>
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 		</div>
-		{{--  @endpermission  --}}
+		@endpermission
 		
 		<h3>Kelompok Kriteria</h3>
 		<table id="table_criteriagroup" class="table table-bordered table-striped">
@@ -56,14 +56,14 @@
 						<td align ="center" bgcolor="#F0FBD6">{{ ++$i }}</td>
 						<td bgcolor="#F0FBD6">{{ $value["name"] }}</td>
 						<td bgcolor="#F0FBD6">
-							{{--  @permission('criteriagroup-edit')  --}}
+							@permission('criteriagroup-edit')
 							<a class="btn btn-primary" href="{{ route('criteriagroup.edit',$id) }}">Edit</a>
-							{{--  @endpermission  --}}
-							{{--  @permission('criteriagroup-delete')  --}}
+							@endpermission
+							@permission('criteriagroup-delete')
 							{!! Form::open(['method' => 'DELETE','route' => ['criteriagroup.destroy', $id],'style'=>'display:inline']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 							{!! Form::close() !!}
-							{{--  @endpermission  --}}
+							@endpermission
 						</td>
 					</tr>
 					@foreach($value["data"] as $crit)
@@ -72,10 +72,10 @@
 								<td width = "50px" align ="right" bgcolor="#FDFDFD"></td>
 								<td bgcolor="#FDFDFD"><li>{{ $crit->name }}</li></td>
 								<td bgcolor="#FDFDFD">
-									{{--  @permission('criteriagroup-out')  --}}
+									@permission('criteriagroup-out')
 									<input type = "hidden" name = "id" value = "{{ $crit->id }}" />
 									<button type="submit" class="btn btn-primary">Remove from Group</button>
-									{{--  @endpermission  --}}
+									@endpermission
 								</td>
 							{!! Form::close() !!}
 						</tr>
@@ -101,7 +101,7 @@
 							<td width = "50px" align ="center">{{ ++$j }}</td>
 							<td width = "500px">{{ $kriteria_fiks->name }}</td>
 							<td>
-								{{--  @permission('criteriagroup-add')  --}}
+								@permission('criteriagroup-add')
 								<input type = "hidden" name = "id" value = "{{ $kriteria_fiks->id }}" />
 								<div class="col-xs-9">
 									{!! Form::select('group_criteria', $list_group, null, array('class' => 'form-control')) !!}
@@ -109,7 +109,7 @@
 								<div class="col-xs-1">
 									<button type="submit" class="btn btn-primary">Add to Group</button>
 								</div>
-								{{--  @endpermission  --}}
+								@endpermission
 							</td>
 						{!! Form::close() !!}
                     </tr>

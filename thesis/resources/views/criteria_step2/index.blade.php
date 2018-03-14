@@ -26,9 +26,9 @@
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
 				<div class="pull-right mb-1">
-                    {{--  @permission('criteriastep2-create')  --}}
+                    @permission('criteriastep2-create')
                     <a class="btn btn-success" href="{{ route('criteriastep2.create') }}"> Tambahkan Kriteria</a>
-                    {{--  @endpermission  --}}
+                    @endpermission
 				</div>
 			</div>
         </div>
@@ -52,14 +52,14 @@
                         <td width="400px">{!! nl2br(e($data_fiks->description)) !!}</td>
                         <td width="400px">{!! nl2br(e($data_fiks->information)) !!}</td>
                         <td>
-                            {{--  @permission('criteriastep2-edit')  --}}
+                            @permission('criteriastep2-edit')
                             <a class="btn btn-primary" href="{{ route('criteriastep2.edit',$data_fiks->id) }}">Edit</a>
-                            {{--  @endpermission  --}}
-                            {{--  @permission('criteriastep2-delete')  --}}
+                            @endpermission
+                            @permission('criteriastep2-delete')
                             {!! Form::open(['method' => 'DELETE','route' => ['criteriastep2.destroy', $data_fiks->id],'style'=>'display:inline']) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
-                            {{--  @endpermission --}}
+                            @endpermission
                         </td>
                     </tr>
                 @endforeach
@@ -90,9 +90,9 @@
                         <td width="115px">{{ $data_baku->result }}</td>
                         <td width="150px">{{ $data_baku->sum }} dari {{ $data_baku->count }}</td>
                         <td>
-                            {{--  @permission('criteriastep2-edit')  --}}
+                            @permission('criteriastep2-use')
                             <a class="btn btn-primary" href="{{ route('criteriastep2.use',$data_baku->id) }}">Gunakan</a>
-                            {{--  @endpermission  --}}
+                            @endpermission
                         </td>
                     </tr>
                 @endforeach
@@ -118,9 +118,9 @@
                         <td width="575px">{!! nl2br(e($data_masukan->description)) !!}</td>
                         <td width="250px">{{ $data_masukan->user_name }}</td>
                         <td>
-                            {{--  @permission('criteriastep2-edit')  --}}
+                            @permission('criteriastep2-use')
                             <a class="btn btn-primary" href="{{ route('criteriastep2.use',$data_masukan->id ) }}">Gunakan</a>
-                            {{--  @endpermission  --}}
+                            @endpermission
                         </td>
                     </tr>
                 @endforeach

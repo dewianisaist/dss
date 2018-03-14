@@ -134,7 +134,7 @@
     <div class="pull-right hidden-xs">
       <b>Magister Ilmu Komputer Universitas Gadjah Mada</b>
     </div>
-    <strong>Copyright &copy; 2017 Dewi Anisa Istiqomah.</strong>
+    <strong>Copyright &copy; 2017-2018 Dewi Anisa Istiqomah.</strong>
   </footer>
 
 </div>
