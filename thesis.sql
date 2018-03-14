@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2018 at 05:22 PM
+-- Generation Time: Mar 14, 2018 at 11:40 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -354,7 +354,26 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (52, 'selectionschedule-edit', 'Edit jadwal seleksi', 'Edit jadwal seleksi', '2018-01-26 20:23:15', '2018-01-26 20:23:15'),
 (53, 'selectionschedule-delete', 'Hapus jadwal seleksi', 'Hapus jadwal seleksi', '2018-01-26 20:23:15', '2018-01-26 20:23:15'),
 (54, 'selection-list', 'Menampilkan daftar nilai seleksi', 'Menampilkan daftar nilai seleksi', '2018-01-26 20:23:15', '2018-01-26 20:23:15'),
-(55, 'selection-edit', 'Memasukkan nilai seleksi', 'Memasukkan nilai seleksi', '2018-01-26 20:23:15', '2018-01-26 20:23:15');
+(55, 'selection-edit', 'Memasukkan nilai seleksi', 'Memasukkan nilai seleksi', '2018-01-26 20:23:15', '2018-01-26 20:23:15'),
+(56, 'resultstep1-list', 'Menampilkan hasil kriteria pada tahap 1', 'Menampilkan hasil kriteria pada tahap 1', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(57, 'criteriastep2-list', 'Menampilkan kriteria pada tahap 2', 'Menampilkan kriteria pada tahap 2', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(58, 'criteriastep2-create', 'Menambahkan kriteria pada tahap 2', 'Menambahkan kriteria pada tahap 2', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(59, 'criteriastep2-edit', 'Edit kriteria pada tahap 2', 'Edit kriteria pada tahap 2', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(60, 'criteriastep2-delete', 'Hapus kriteria pada tahap 2', 'Hapus kriteria pada tahap 2', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(61, 'criteriastep2-use', 'Menggunakan kriteria pada tahap sebelumnya', 'Menggunakan kriteria pada tahap sebelumnya', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(62, 'criteriagroup-list', 'Menampilkan hierarki (kelompok kriteria)', 'Menampilkan hierarki (kelompok kriteria)', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(63, 'criteriagroup-create', 'Menambahkan kelompok kriteria', 'Menambahkan kelompok kriteria', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(64, 'criteriagroup-edit', 'Edit kelompok kriteria', 'Edit kelompok kriteria', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(65, 'criteriagroup-delete', 'Hapus kelompok kriteria', 'Hapus kelompok kriteria', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(66, 'criteriagroup-add', 'Tambahkan kriteria ke kelompok kriteria', 'Tambahkan kriteria ke kelompok kriteria', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(67, 'criteriagroup-out', 'Keluarkan kriteria dari kelompok kriteria', 'Keluarkan kriteria dari kelompok kriteria', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(68, 'weights-list', 'Menampilkan bobot kriteria', 'Menampilkan bobot kriteria', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(69, 'weights-pairwise', 'Melakukan perbandingan berpasangan', 'Melakukan perbandingan berpasangan', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(70, 'result_selection-list', 'Menampilkan daftar data alternatif untuk penilaian', 'Menampilkan daftar data alternatif untuk penilaian', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(71, 'result_selection-assessment', 'Melakukan penilaian terhadap alternatif', 'Melakukan penilaian terhadap alternatif', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(72, 'result_selection-clear', 'Hapus penilaian terhadap alternatif', 'Hapus penilaian terhadap alternatif', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(73, 'result_selection-count', 'Menghitung penilaian alternatif', 'Menghitung penilaian alternatif', '2018-03-14 01:22:48', '2018-03-14 01:22:48'),
+(74, 'result-list', 'Menampilkan hasil seleksi', 'Menampilkan hasil seleksi', '2018-03-14 01:22:48', '2018-03-14 01:22:48');
 
 -- --------------------------------------------------------
 
@@ -407,6 +426,7 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (1, 51),
 (1, 52),
 (1, 53),
+(1, 74),
 (2, 1),
 (2, 2),
 (2, 3),
@@ -419,6 +439,7 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (2, 10),
 (2, 11),
 (2, 12),
+(2, 74),
 (3, 33),
 (3, 34),
 (3, 43),
@@ -430,6 +451,25 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (3, 49),
 (3, 50),
 (3, 54),
+(3, 56),
+(3, 57),
+(3, 58),
+(3, 59),
+(3, 60),
+(3, 61),
+(3, 62),
+(3, 63),
+(3, 64),
+(3, 65),
+(3, 66),
+(3, 67),
+(3, 68),
+(3, 69),
+(3, 70),
+(3, 71),
+(3, 72),
+(3, 73),
+(3, 74),
 (4, 33),
 (4, 34),
 (4, 47),
@@ -437,6 +477,10 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (4, 49),
 (4, 50),
 (4, 54),
+(4, 56),
+(4, 57),
+(4, 62),
+(4, 74),
 (5, 33),
 (5, 34),
 (5, 47),
@@ -444,6 +488,10 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (5, 49),
 (5, 50),
 (5, 54),
+(5, 56),
+(5, 57),
+(5, 62),
+(5, 74),
 (6, 33),
 (6, 34),
 (6, 47),
@@ -451,7 +499,11 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 (6, 49),
 (6, 50),
 (6, 54),
-(6, 55);
+(6, 55),
+(6, 56),
+(6, 57),
+(6, 62),
+(6, 74);
 
 -- --------------------------------------------------------
 
@@ -788,21 +840,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'geIW8iPNwEOGximIr4tK4BUNdvIzfJW8rKlYgaQuAqIMjK8cyKDs4xBXKvtv', '2018-01-26 20:23:49', '2018-02-21 17:34:41'),
-(2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'NmYyVJX3DCy1kBXLbgE4pTN4nm0X3rwswJWk4aNo80gObLMz4v6BKjHkj8uA', '2018-01-26 20:43:47', '2018-03-05 18:48:57'),
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', '9yCLdn4CXZEoa2FBCEd1MtPEY9U8puTTwmBHqpwkIMoN1WTvV2fcildWKu24', '2018-01-26 20:23:49', '2018-03-14 03:22:53'),
+(2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'cLg78lQi7mAGfQgZNJi7EE8HxxquYqwCWk8G7UdXAU3mvkSnU8V4qxXfRa1O', '2018-01-26 20:43:47', '2018-03-14 03:21:00'),
 (3, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$cSc2B1F7pU2Mg5855RYHGO3FQ6g.Za1jshY5mRQHN4qYftHE42NeW', 'glQR5Qbdsl0F32Rl0N2wboZ5BCobOnAPPuC3FsFgKKB2TKRKTuhAzW0GEQuC', '2018-01-26 20:44:11', '2018-01-30 18:55:21'),
-(4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', 'JUwVtsJYyFhTCUjfFJwI9DSZY2TwwkD5l805y3A7YSA25VoMIgVX6NROpcXu', '2018-01-26 20:44:49', '2018-02-12 14:17:30'),
+(4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', '0JshdvcQf9RN8CrtfPdNIj15NRakj9hzaX7QcrcmmunTFNHdS5L8Nl3HZnYD', '2018-01-26 20:44:49', '2018-03-14 02:53:13'),
 (5, '505050', 'Koor Instruktur BLK', 'koorinstruktur@test.com', '$2y$10$0x3MJX34I17iRF0oWDp0n.P92W0IJn761x8mtfGjx46vemzcOBrQK', 'I0CYoXXXkg1N2iKYrxvD4aU6AY5V38lNSPkGhEwoDgv7YPtyaGbKYOJD6x76', '2018-01-26 20:45:11', '2018-02-12 13:26:51'),
-(6, '606060', 'Kajur BLK 1 ', 'kajur1@test.com', '$2y$10$3f47t2m.VpGt2H7Cm/6o2OuD2IVD1Xb/ajXNwJhb1H2FtNIq16EG2', 'MtEtobDHRpGqpBFLGCOiozfehCuEqDHIV98ELK85xv0PKpUhrsnqbHqyPDRO', '2018-01-26 20:45:35', '2018-02-13 09:23:09'),
+(6, '606060', 'Kajur BLK 1 ', 'kajur1@test.com', '$2y$10$3f47t2m.VpGt2H7Cm/6o2OuD2IVD1Xb/ajXNwJhb1H2FtNIq16EG2', 'xgrg7chH6y2UL9o7INJbaGyfnUWhATEKhr0F90XTSHyyOwTUEnk8Qjnb9RRu', '2018-01-26 20:45:35', '2018-03-14 01:33:07'),
 (7, '707070', 'Kajur BLK 2', 'kajur2@test.com', '$2y$10$LCZa7BHss00RB/6NCqHod.z71.Ibe5XRsQDP4PZx916VEPZWQiL4.', NULL, '2018-01-26 20:46:00', '2018-01-26 20:46:00'),
-(8, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$68.v0BPzLDZleeo8DxSaduH6UIezllOSBgGbE0D7qV9UmxV.dUs6K', 'QPcrqBIyvAgF1C82sx1DIU8ChKsAKnc00Mfg7JhEI9mO6snvmWrY6F0y3RFo', '2018-01-26 20:46:15', '2018-02-14 22:04:28'),
+(8, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$68.v0BPzLDZleeo8DxSaduH6UIezllOSBgGbE0D7qV9UmxV.dUs6K', 'cBTOzrZ27F7AKLQkIKQvH3b2Bgw0vwgK4tluf6LRAlrFVxSL4E8KWqT5ugZv', '2018-01-26 20:46:15', '2018-03-14 03:36:53'),
 (9, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$dqUXyeibCfmgSh/tSQcn.ul.y6iE2CP4ZY.kSMeN.D/m2SvAUvmZu', 'WkUgKsuWJKwNVsmu1IX77dacf7Zc3wgOA09vHIRDIwzSWuF5cjIwGar4N6hz', '2018-01-26 21:21:36', '2018-01-27 17:37:43'),
 (10, '33333333', 'Pendaftar 3', 'pendaftar3@test.com', '$2y$10$ovt5lW3sbZFhauaL7mr8ye7vIrDuNh5pmFoA4C5D4eRAg/Tf9z8om', 'SrlzPZPNdTMR0bibautsvSUT8YIpUTuFvNa6Zncggf6mTgymshkjlPRqHrb3', '2018-01-26 21:23:38', '2018-02-20 02:23:55'),
 (11, '44444444', 'Pendaftar 4', 'pendaftar4@test.com', '$2y$10$hxnGUN9tnRq7P6JNMEFfdu123tF7eJ1dv43ezedr43GqkvPSkqGm6', 'b6yu8TTOwAwF4k6pndig725fu6z4RrJl5eDTTRKbs0DVAo1bfoqRgJYNQTSA', '2018-01-26 21:25:04', '2018-01-27 18:45:24'),
 (12, '55555555', 'Pendaftar 5', 'pendaftar5@test.com', '$2y$10$q11gRIXlJSTneMkYyS09K.TFIcHdJ4s5pdLSfpzszuIi/wCJYMTvC', 'msTszzKnkG80qrJ4MOOGLvwDpAxq4i861qYNCBdgNLz64zOVXVTIoZh2d9jD', '2018-01-27 17:27:48', '2018-02-14 12:27:28'),
 (13, '66666666', 'Pendaftar 6', 'pendaftar6@test.com', '$2y$10$wZgJS1V/86t/LWWsx/9KVOHJ3MH1SLS7gk4y0K.ftJifQJ1RBCmcq', '2WiXBq9Sugx9X3eriBBrSwd7AAnMr4w56TVclCmMpbPUZ4pzuoo8kmwHtsaH', '2018-01-27 17:28:26', '2018-02-20 02:17:21'),
 (14, '202020', 'Tester Kajur No data', 'tester@test.com', '$2y$10$5gAO1kjZdqlIs/USsr5lrOGaHFjmoPZSxLBQxOimgsZWMEFgCJ4nO', 'FGZ3GtMU9WzAuKRw7PRpHpK9Q2gwQdOxicFhO8d882NTEsy62X07NCRgiOzh', '2018-01-29 15:45:39', '2018-01-29 16:10:46'),
-(15, '00000000', 'Pendatar Tester', 'pendaftar0@test.com', '$2y$10$eYKQOebS2nlc7rKRGRbrwe0htMfgxnQa3vnvPzGJgYSSaWvTdfCdq', 'nDL4rf5R5TDEQAieXRKGkk7lrfieYbHfrr1youw4atatmrTZAl5P0y72kmad', '2018-01-29 16:02:55', '2018-01-30 18:45:21');
+(15, '00000000', 'Pendatar Tester', 'pendaftar0@test.com', '$2y$10$eYKQOebS2nlc7rKRGRbrwe0htMfgxnQa3vnvPzGJgYSSaWvTdfCdq', '3wCwSGqrnacnadysxbC7u1SddoY4brFtFW4R6E81kq1ijcP8N3qh0XPR1EMZ', '2018-01-29 16:02:55', '2018-03-14 03:29:49');
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1062,7 @@ ALTER TABLE `educations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `registrants`
 --
