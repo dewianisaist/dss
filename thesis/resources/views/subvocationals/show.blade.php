@@ -49,19 +49,19 @@
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Tujuan Pelatihan:</strong>
-					{{ $subvocational->goal }}
+					{!! nl2br(e($subvocational->goal)) !!}
 				</div>
 			</div>	
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Unit Kompetensi:</strong>
-					{{ $subvocational->unit_competence }}
+					{!! nl2br(e($subvocational->unit_competence)) !!}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Persyaratan Peserta:</strong>
-					{{ $subvocational->requirement_participant }}
+					{!! nl2br(e($subvocational->requirement_participant)) !!}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
