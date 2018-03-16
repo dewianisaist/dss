@@ -40,8 +40,8 @@
                     <tr>
                         <td width="5px">{{ ++$i }}</td>
                         <td width="200px">{{ $data_baku->name }}</td>
-                        <td width="450px">{{ $data_baku->description }}</td>
-                        <td width="250px">{{ $data_baku->citation }}</td>
+                        <td width="500px">{{ $data_baku->description }}</td>
+                        <td width="200px">{{ $data_baku->citation }}</td>
                         <td>
                             @if ($data_baku->option == 1) 
                                 Sesuai

@@ -153,7 +153,7 @@
 	                		</div>
 	            			<div class="testimonial-text">
 		                        <p>
-		                            PRAKTIK SISWA SUB KEJURUAN PENGOLAHAN <strong>HASIL PERTANIAN</strong>
+		                            PRAKTIK SISWA SUB KEJURUAN <strong>PENGOLAHAN HASIL PERTANIAN</strong>
 	                            </p>
 	                        </div>
 						</div>

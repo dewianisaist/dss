@@ -52,7 +52,7 @@
 				@foreach ($criterias as $key => $criteria)
 					<tr>
 						<td width="5px">{{ ++$i }}</td>
-						<td width="600px">{{ $criteria->name }}</td>
+						<td width="450px">{{ $criteria->name }}</td>
 						<td width="800px">{!! nl2br(e($criteria->description)) !!}</td>
 						<td>
 							<a class="btn btn-info" href="{{ route('criterias.show',$criteria->id) }}">Detail</a>
