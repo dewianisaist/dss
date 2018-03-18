@@ -12,6 +12,7 @@ use App\Http\Models\EducationalBackground;
 use App\Http\Models\CourseExperience;
 use App\Http\Models\Upload;
 use App\Http\Models\Registration;
+use App\Http\Models\Subvocational;
 use Auth;
 use Carbon;
 
@@ -183,6 +184,7 @@ class ResultSelectionController extends Controller
                                 ->delete();
             }
         }
+
         return redirect()->route('result_selection.index')
                          ->with('success','Penilaian berhasil disimpan');
     }
@@ -220,8 +222,15 @@ class ResultSelectionController extends Controller
                                     ->get();
         // return $selections;
 
-        foreach ($selections as $selection){
-            $criterias = Criteria::where('step', '=', '2')
+        $selectionsId = array();
+        foreach($selections as $selection){
+            $selectionsId[] = $selection->id;
+            $selectionsData[$selection->id] = $selection;
+        }
+        // return $selectionsData[$selection->id]->name_sub_vocational;
+
+        $tabel_alternative = array();
+        $criterias = Criteria::where('step', '=', '2')
                                     ->where('status', '=', '1')
                                     ->where('description', '<>', null)
                                     ->whereNotIn('id', function($query){
@@ -231,20 +240,222 @@ class ResultSelectionController extends Controller
                                     })
                                     ->orderBy('id','DESC')
                                     ->get();
-            // return $criterias;
 
+        $criteriasData = array();
+        foreach ($criterias as $criteria){
+            $criteriasData[$criteria->id] = $criteria;
+        }
+
+        foreach ($selections as $selection){
+            $tabel_alternative[$selection->id] = array();
             foreach ($criterias as $criteria){
                 $result_selection = ResultSelection::where('selection_id', '=', $selection->id)
                                                     ->where('criteria_id', '=', $criteria->id)
                                                     ->first();
 
                 // return $result_selection;
+                $tabel_alternative[$selection->id][$criteria->id] = $result_selection->value;
                 if ($result_selection == null) {
                     return redirect()->route('result_selection.index')
                                      ->with('failed','Hitung penilaian GAGAL! '. $selection->name_registrant . ' belum dinilai. Silahkan lakukan penilaian');
                 }
             }
         }
+
+        // return $tabel_alternative;
+        $tabel_selisih = array();
+        foreach ($tabel_alternative as $key1=>$data_selisih1){
+            foreach ($tabel_alternative as $key2=>$data_selisih2){
+                if ($key1 != $key2){
+                    $tabel_selisih[$key1.",".$key2] = array();
+                    foreach ($data_selisih1 as $criteria=>$value){
+                        $tabel_selisih[$key1.",".$key2][$criteria] = $value - $data_selisih2[$criteria];
+                    }
+                }
+            }
+        }
+        // return $tabel_selisih;
+
+        $tabel_derajat = array();
+        // return $criteriasData;
+        foreach ($tabel_selisih as $alternatives=>$crt_data){
+            $tabel_derajat[$alternatives] = array();
+            foreach ($crt_data as $criteriaId=>$value){
+                $criteria = $criteriasData[$criteriaId];
+                $type = $criteria->preference;
+                
+                switch ($type) {
+                    case "1":
+                        if ($value <= 0) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 0;
+                        } else {
+                            $tabel_derajat[$alternatives][$criteriaId] = 1;
+                        }
+                        break;
+                    case "2":
+                        $q = $criteria->parameter_q;
+
+                        if ($value <= $q) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 0;
+                        } else {
+                            $tabel_derajat[$alternatives][$criteriaId] = 1;
+                        }
+                        break;
+                    case "3":
+                        $p = $criteria->parameter_p;
+                        
+                        if ($value <= 0) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 0;
+                        } else if($value > $p) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 1;
+                        } else {
+                            $tabel_derajat[$alternatives][$criteriaId] = $value / $p;
+                        }
+                        break;
+                    case "4":
+                        $p = $criteria->parameter_p;
+                        $q = $criteria->parameter_q;
+
+                        if ($value <= $q) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 0;
+                        } else if ($value > $p) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 1;
+                        } else {
+                            $tabel_derajat[$alternatives][$criteriaId] = 0.5;
+                        }
+                        break;
+                    case "5":
+                        $p = $criteria->parameter_p;
+                        $q = $criteria->parameter_q;
+
+                        if ($value <= $q) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 0;
+                        } else if ($value > $p) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 1;
+                        } else {
+                            $tabel_derajat[$alternatives][$criteriaId] = ($value - $q)/($p - $q);
+                        }
+                        break;
+                    case "6":
+                        $p = $criteria->parameter_p;
+                        $q = $criteria->parameter_q;
+
+                        if ($value <= 0) {
+                            $tabel_derajat[$alternatives][$criteriaId] = 0;
+                        } else {
+                            $tabel_derajat[$alternatives][$criteriaId] = 1;
+                        }
+                        break;
+                    default:
+                        $tabel_derajat[$alternatives][$criteriaId] = "-";
+                        break;
+                }
+            }
+
+        }
+        //return $tabel_derajat;
+
+        $tabel_index = array();
+        foreach ($tabel_derajat as $alternatives=>$data_index) {
+            $alternativesId = explode(",",$alternatives);
+            $id1 = $alternativesId[0];
+            $id2 = $alternativesId[1];
+            $tabel_index[$id1][$id2] = 0;
+            $tabel_index[$id1][$id1] = 0;
+            $tabel_index[$id2][$id2] = 0;
+            foreach ($data_index as $criteriaId=>$value) {
+                $criteria = $criteriasData[$criteriaId];
+                $bobot = $criteria->global_weight;
+                $mlt = $bobot * $value;
+                $tabel_index[$id1][$id2] += $mlt;
+            }
+        }
+        // return $tabel_index;
+
+        $tabel_leaving = array();
+        $tabel_entering = array();
+        $n = count($selectionsId);
+        foreach($selectionsId as $selectionId1){
+            $sum_row = 0;
+            $sum_col = 0;
+            foreach($tabel_index[$selectionId1] as $value){
+                $sum_row += $value;
+            }
+            foreach($selectionsId as $selectionId2){
+                $sum_col += $tabel_index[$selectionId2][$selectionId1];
+            }
+            $tabel_leaving[$selectionId1] = (1 / ($n-1)) * $sum_row;
+            $tabel_entering[$selectionId1] = (1 / ($n-1)) * $sum_col;
+        }
+        // return $tabel_entering;
+        // return $tabel_leaving;
+
+        $isComparable = true;
+        $condition =array();
+        foreach($selectionsId as $selectionIdA){
+            foreach($selectionsId as $selectionIdB){
+                if ($selectionIdA < $selectionIdB){
+                    $condition[$selectionIdA.",".$selectionIdB] = array();
+                    $condition[$selectionIdA.",".$selectionIdB][1] = false; 
+                    $condition[$selectionIdA.",".$selectionIdB][2] = false;
+                    $condition[$selectionIdA.",".$selectionIdB][3] = false;
+                    $condition[$selectionIdA.",".$selectionIdB][4] = false;
+                    $condition1 = ($tabel_leaving[$selectionIdA] > $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] < $tabel_entering[$selectionIdB]);
+                    $condition2 = ($tabel_leaving[$selectionIdA] > $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] == $tabel_entering[$selectionIdB]);
+                    $condition3 = ($tabel_leaving[$selectionIdA] == $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] < $tabel_entering[$selectionIdB]);
+                    $condition4 = ($tabel_leaving[$selectionIdA] == $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] == $tabel_entering[$selectionIdB]);
+                    if ($condition1){
+                        $condition[$selectionIdA.",".$selectionIdB][1] = true;
+                    }
+                    if ($condition2){
+                        $condition[$selectionIdA.",".$selectionIdB][2] = true;
+                    }
+                    if ($condition3){
+                        $condition[$selectionIdA.",".$selectionIdB][2] = true;
+                    }
+                    if ($condition4){
+                        $condition[$selectionIdA.",".$selectionIdB][2] = true;
+                    }
+                    if (!$condition1 && !$condition2 && !$condition3 && !$condition4) {
+                        $isComparable = false;
+                    }
+                }
+            }
+        }
+        // return $condition;
+
+        $sortedSelection = array();
+        if($isComparable){
+            arsort($tabel_leaving);
+            foreach ($tabel_leaving as $key=>$value){
+                $sortedSelection[] = $key;
+            }
+        } else {
+            $netflow = array();
+            foreach ($tabel_leaving as $key=>$value){
+                $netflow[$key] = $value - $tabel_entering[$key];
+            }
+
+            arsort($netflow);
+            $rank = 1;
+            $quota = Subvocational::where('name', '=', $selectionsData[$selection->id]->name_sub_vocational)->first();
+
+            foreach ($netflow as $key=>$value){
+                $sortedSelection[] = $key;
+                $selection = $selectionsData[$key];
+                $selection->ranking = $rank;
+                if ($rank > $quota->quota){
+                    $selection->status = "Tidak Diterima";
+                }else{
+                    $selection->status = "Diterima";
+                }
+                $selection->save();
+                $rank ++;
+            }
+        }
+        //  return $netflow;
+        // return $sortedSelection;
+
         return redirect()->route('result_selection.index')
                          ->with('success','Hitung penilaian berhasil. Lihat hasil di menu "Hasil"');
     }
