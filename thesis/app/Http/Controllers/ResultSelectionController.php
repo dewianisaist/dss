@@ -337,13 +337,17 @@ class ResultSelectionController extends Controller
                         }
                         break;
                     case "6":
-                        $p = $criteria->parameter_p;
-                        $q = $criteria->parameter_q;
+                        $e = 2.71828;
+                        $s = $criteria->parameter_s;
 
                         if ($value <= 0) {
                             $tabel_derajat[$alternatives][$criteriaId] = 0;
                         } else {
-                            $tabel_derajat[$alternatives][$criteriaId] = 1;
+                            $pow_d = pow($value, 2);
+                            $pow_s = pow($s, 2);
+                            $pow_val = -($pow_d / (2 * $pow_s));
+                            $pow_e = pow($e, $pow_val);
+                            $tabel_derajat[$alternatives][$criteriaId] = 1 - $pow_e;
                         }
                         break;
                     default:
@@ -351,9 +355,8 @@ class ResultSelectionController extends Controller
                         break;
                 }
             }
-
         }
-        //return $tabel_derajat;
+        // return $tabel_derajat;
 
         $tabel_index = array();
         foreach ($tabel_derajat as $alternatives=>$data_index) {
@@ -367,7 +370,7 @@ class ResultSelectionController extends Controller
                 $criteria = $criteriasData[$criteriaId];
                 $bobot = $criteria->global_weight;
                 $mlt = $bobot * $value;
-                $tabel_index[$id1][$id2] += $mlt;
+                $tabel_index[$id1][$id2] += number_format($mlt,5);
             }
         }
         // return $tabel_index;
@@ -384,8 +387,8 @@ class ResultSelectionController extends Controller
             foreach($selectionsId as $selectionId2){
                 $sum_col += $tabel_index[$selectionId2][$selectionId1];
             }
-            $tabel_leaving[$selectionId1] = (1 / ($n-1)) * $sum_row;
-            $tabel_entering[$selectionId1] = (1 / ($n-1)) * $sum_col;
+            $tabel_leaving[$selectionId1] = number_format((1 / ($n-1)) * $sum_row, 5);
+            $tabel_entering[$selectionId1] = number_format((1 / ($n-1)) * $sum_col, 5);
         }
         // return $tabel_entering;
         // return $tabel_leaving;
@@ -433,7 +436,7 @@ class ResultSelectionController extends Controller
         } else {
             $netflow = array();
             foreach ($tabel_leaving as $key=>$value){
-                $netflow[$key] = $value - $tabel_entering[$key];
+                $netflow[$key] = number_format($value - $tabel_entering[$key], 5);
             }
 
             arsort($netflow);
