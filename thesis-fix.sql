@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 16, 2018 at 02:31 PM
+-- Generation Time: Mar 19, 2018 at 03:24 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thesis`
+-- Database: `thesis-fix`
 --
 
 -- --------------------------------------------------------
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `choice` (
   `user_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `option` varchar(15) NOT NULL,
-  `suggestion` varchar(1) NOT NULL
+  `option` varchar(1) NOT NULL COMMENT '0: tidak sesuai 1: sesuai',
+  `suggestion` varchar(1) NOT NULL COMMENT '0: baku 1: usulan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -89,8 +89,8 @@ CREATE TABLE `criterias` (
   `parameter_p` decimal(20,3) DEFAULT NULL,
   `parameter_q` decimal(20,3) DEFAULT NULL,
   `parameter_s` decimal(20,3) DEFAULT NULL,
-  `step` varchar(1) DEFAULT NULL,
-  `status` varchar(1) DEFAULT NULL,
+  `step` varchar(1) DEFAULT NULL COMMENT '1: tahap 1 2: tahap 2',
+  `status` varchar(1) DEFAULT NULL COMMENT '0: deleted 1: active',
   `ref_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -464,7 +464,7 @@ CREATE TABLE `registrations` (
 CREATE TABLE `result_selection` (
   `selection_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `value` varchar(3) DEFAULT NULL
+  `value` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -537,11 +537,11 @@ CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
   `registration_id` int(11) NOT NULL,
   `selection_schedule_id` int(11) NOT NULL,
-  `written_value` varchar(3) DEFAULT NULL,
-  `interview_value` varchar(3) DEFAULT NULL,
+  `written_value` int(11) DEFAULT NULL,
+  `interview_value` int(11) DEFAULT NULL,
   `recommendation` varchar(5) DEFAULT NULL,
   `ranking` varchar(5) DEFAULT NULL,
-  `status` varchar(15) DEFAULT NULL,
+  `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian Diterima: hasil penilaian diterima Tidak Diterima: hasil penilaian tidak diterima Terdaftar: hasil lampau diterima Ditolak: hasil lampau tidak diterima',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

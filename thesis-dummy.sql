@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2018 at 11:40 AM
+-- Generation Time: Mar 19, 2018 at 03:24 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `choice` (
   `user_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `option` varchar(15) NOT NULL,
-  `suggestion` varchar(1) NOT NULL
+  `option` varchar(1) NOT NULL COMMENT '0: tidak sesuai 1: sesuai',
+  `suggestion` varchar(1) NOT NULL COMMENT '0: baku 1: usulan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -133,8 +133,8 @@ CREATE TABLE `criterias` (
   `parameter_p` decimal(20,3) DEFAULT NULL,
   `parameter_q` decimal(20,3) DEFAULT NULL,
   `parameter_s` decimal(20,3) DEFAULT NULL,
-  `step` varchar(1) DEFAULT NULL,
-  `status` varchar(1) DEFAULT NULL,
+  `step` varchar(1) DEFAULT NULL COMMENT '1: tahap 1 2: tahap 2',
+  `status` varchar(1) DEFAULT NULL COMMENT '0: deleted 1: active',
   `ref_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -158,12 +158,12 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `citatio
 (32, NULL, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 13:01:21', '2018-02-12 13:01:21'),
 (33, NULL, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 13:27:50', '2018-02-12 13:27:50'),
 (73, 95, 'Usia', 'Usia (XYZ, 2013)', NULL, 'Konversi:\r\nUsia 0 - 15 tahun: 1\r\nUsia > 40 tahun: 2\r\nUsia 31 - 40 tahun: 3\r\nUsia 16 - 20 tahun: 4\r\nUsia 21 - 30 tahun: 5', '0.433', '0.144', '2', 'Maksimasi', NULL, '0.500', NULL, '2', '1', 1, '2018-02-15 17:57:21', '2018-03-09 07:47:16'),
-(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, NULL, '0.466', '0.155', '2', 'Maksimasi', NULL, '0.500', NULL, '2', '1', 2, '2018-02-19 12:57:19', '2018-03-09 07:45:02'),
-(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, '0.101', '0.034', '2', 'Maksimasi', NULL, '0.250', NULL, '2', '1', 32, '2018-02-19 12:57:48', '2018-03-09 07:47:41'),
-(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, NULL, '0.118', '0.039', '3', 'Maksimasi', '40.000', NULL, NULL, '2', '1', 3, '2018-02-19 12:58:02', '2018-03-09 07:48:03'),
+(89, 95, 'Pendidikan Terakhir', 'Pendidikan Terakhir (XYZ, 2014)', NULL, NULL, '0.466', '0.155', '4', 'Maksimasi', '1.000', '0.500', NULL, '2', '1', 2, '2018-02-19 12:57:19', '2018-03-18 04:10:34'),
+(90, 95, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, '0.101', '0.034', '5', 'Maksimasi', '0.500', '0.250', NULL, '2', '1', 32, '2018-02-19 12:57:48', '2018-03-18 04:10:53'),
+(91, 96, 'Pengetahuan dasar', 'Pengetahuan dasar (XYZ, 2015)', NULL, NULL, '0.118', '0.039', '1', 'Maksimasi', NULL, NULL, NULL, '2', '1', 3, '2018-02-19 12:58:02', '2018-03-18 04:11:06'),
 (92, 96, 'Wawancara', 'Wawancara (XYZ, 2013)', NULL, NULL, '0.808', '0.269', '3', 'Maksimasi', '40.000', NULL, NULL, '2', '1', 4, '2018-02-19 12:58:05', '2018-03-09 07:48:15'),
 (93, 96, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, '0.074', '0.025', '2', 'Maksimasi', NULL, '0.250', NULL, '2', '1', 33, '2018-02-19 12:58:09', '2018-03-09 07:48:24'),
-(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, '0.333', '0.333', '2', 'Maksimasi', NULL, '0.250', NULL, '2', '1', 31, '2018-02-19 12:58:38', '2018-03-09 07:48:49'),
+(94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, '0.333', '0.333', '6', 'Maksimasi', NULL, NULL, '0.500', '2', '1', 31, '2018-02-19 12:58:38', '2018-03-18 04:11:30'),
 (95, NULL, 'Personal', NULL, NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 13:00:08', '2018-02-28 16:33:22'),
 (96, NULL, 'Ujian/Tes', NULL, NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 13:00:38', '2018-02-28 16:33:22');
 
@@ -578,7 +578,7 @@ INSERT INTO `registrations` (`id`, `registrant_id`, `sub_vocational_id`, `regist
 CREATE TABLE `result_selection` (
   `selection_id` int(11) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `value` varchar(3) DEFAULT NULL
+  `value` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -586,48 +586,48 @@ CREATE TABLE `result_selection` (
 --
 
 INSERT INTO `result_selection` (`selection_id`, `criteria_id`, `value`) VALUES
-(2, 73, '4'),
-(2, 89, '5'),
-(2, 90, '3'),
-(2, 91, '85'),
-(2, 92, '95'),
-(2, 93, '5'),
-(2, 94, '0'),
-(3, 73, '3'),
-(3, 89, '3'),
-(3, 90, '3'),
-(3, 91, '40'),
-(3, 92, '85'),
-(3, 93, '5'),
-(3, 94, '5'),
-(4, 73, '5'),
-(4, 89, '3'),
-(4, 90, '2'),
-(4, 91, '60'),
-(4, 92, '60'),
-(4, 93, '5'),
-(4, 94, '4'),
-(5, 73, '4'),
-(5, 89, '1'),
-(5, 90, '4'),
-(5, 91, '55'),
-(5, 92, '70'),
-(5, 93, '5'),
-(5, 94, '5'),
-(6, 73, '4'),
-(6, 89, '4'),
-(6, 90, '3'),
-(6, 91, '45'),
-(6, 92, '80'),
-(6, 93, '5'),
-(6, 94, '5'),
-(7, 73, '4'),
-(7, 89, '1'),
-(7, 90, '4'),
-(7, 91, '55'),
-(7, 92, '70'),
-(7, 93, '5'),
-(7, 94, '5');
+(2, 73, 4),
+(2, 89, 5),
+(2, 90, 3),
+(2, 91, 85),
+(2, 92, 95),
+(2, 93, 5),
+(2, 94, 5),
+(3, 73, 3),
+(3, 89, 3),
+(3, 90, 3),
+(3, 91, 40),
+(3, 92, 85),
+(3, 93, 5),
+(3, 94, 5),
+(4, 73, 5),
+(4, 89, 3),
+(4, 90, 2),
+(4, 91, 60),
+(4, 92, 60),
+(4, 93, 5),
+(4, 94, 4),
+(5, 73, 4),
+(5, 89, 4),
+(5, 90, 4),
+(5, 91, 75),
+(5, 92, 70),
+(5, 93, 5),
+(5, 94, 5),
+(6, 73, 4),
+(6, 89, 4),
+(6, 90, 3),
+(6, 91, 45),
+(6, 92, 80),
+(6, 93, 5),
+(6, 94, 5),
+(7, 73, 4),
+(7, 89, 1),
+(7, 90, 4),
+(7, 91, 55),
+(7, 92, 70),
+(7, 93, 5),
+(7, 94, 5);
 
 -- --------------------------------------------------------
 
@@ -702,11 +702,11 @@ CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
   `registration_id` int(11) NOT NULL,
   `selection_schedule_id` int(11) NOT NULL,
-  `written_value` varchar(3) DEFAULT NULL,
-  `interview_value` varchar(3) DEFAULT NULL,
+  `written_value` int(11) DEFAULT NULL,
+  `interview_value` int(11) DEFAULT NULL,
   `recommendation` varchar(5) DEFAULT NULL,
   `ranking` varchar(5) DEFAULT NULL,
-  `status` varchar(15) DEFAULT NULL,
+  `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian Diterima: hasil penilaian diterima Tidak Diterima: hasil penilaian tidak diterima Terdaftar: hasil lampau diterima Ditolak: hasil lampau tidak diterima',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -716,13 +716,13 @@ CREATE TABLE `selections` (
 --
 
 INSERT INTO `selections` (`id`, `registration_id`, `selection_schedule_id`, `written_value`, `interview_value`, `recommendation`, `ranking`, `status`, `created_at`, `updated_at`) VALUES
-(1, 5, 3, '80', '80', 'Ya', '', 'Diterima', '2015-02-01 10:00:00', '2018-02-20 02:03:12'),
-(2, 1, 2, '85', '95', 'Ya', '', '', '2016-07-10 10:00:00', '2018-02-20 02:02:54'),
-(3, 4, 2, '40', '85', 'Ya', '', '', '2016-07-10 10:00:00', '2018-02-20 02:02:23'),
-(4, 6, 2, '60', '60', 'Ya', '', '', '2016-07-10 10:00:00', '2018-02-20 02:01:56'),
-(5, 7, 2, '75', '70', 'Ya', '', '', '2016-07-10 10:00:00', '2018-02-20 02:01:35'),
-(6, 8, 2, '45', '80', 'Ya', '', '', '2016-07-10 10:00:00', '2018-02-20 02:01:15'),
-(7, 9, 2, '55', '70', 'Ya', '', '', '2016-07-10 10:00:00', '2018-02-20 02:00:52');
+(1, 5, 3, 80, 80, 'Ya', '', 'Terdaftar', '2015-02-01 10:00:00', '2018-02-20 02:03:12'),
+(2, 1, 2, 85, 95, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
+(3, 4, 2, 40, 85, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
+(4, 6, 2, 60, 60, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
+(5, 7, 2, 75, 70, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
+(6, 8, 2, 45, 80, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
+(7, 9, 2, 55, 70, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09');
 
 -- --------------------------------------------------------
 
@@ -781,12 +781,12 @@ CREATE TABLE `sub_vocationals` (
 --
 
 INSERT INTO `sub_vocationals` (`id`, `vocational_id`, `name`, `quota`, `long_training`, `goal`, `unit_competence`, `requirement_participant`, `final_registration_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Teknik Sepeda Motor', 16, '240', '-', '-', '-', '2018-02-09 09:59:59', '2018-01-26 20:48:50', '2018-01-27 17:16:45'),
+(1, 1, 'Teknik Sepeda Motor', 16, '240', '-', '-', '-', '2018-04-09 09:59:59', '2018-01-26 20:48:50', '2018-01-27 17:16:45'),
 (2, 1, 'Teknik Kendaraan Ringan', 16, '240', '-', '-', '-', '2016-06-30 09:59:59', '2018-01-26 20:49:46', '2018-01-27 19:32:22'),
 (3, 2, 'Konstruksi Kayu', 16, '240', '-', '-', '-', '2015-01-19 09:59:59', '2018-01-26 20:51:33', '2018-01-27 19:41:16'),
 (4, 2, 'Mebel/Furnitur', 16, '240', '-', '-', '-', '2018-02-09 09:59:59', '2018-01-26 20:52:22', '2018-01-27 17:19:54'),
 (5, 4, 'Finishing', 16, '240', '-', '-', '-', '2018-02-09 09:59:59', '2018-01-26 20:53:00', '2018-01-27 17:20:21'),
-(6, 9, 'Bahasa Inggris', 16, '240', '-', '-', '-', '2018-02-09 09:59:59', '2018-01-26 20:53:40', '2018-01-27 17:21:26'),
+(6, 9, 'Bahasa Inggris', 16, '240', '-', '-', '-', '2018-04-09 09:59:59', '2018-01-26 20:53:40', '2018-01-27 17:21:26'),
 (7, 1, 'Contoh expired ok', 16, '240', '-', '-', '-', '2018-02-09 18:00:00', '2018-01-28 22:53:24', '2018-02-13 09:48:28'),
 (11, 11, 'c sk ok', 16, '180', '', '', '', '2018-02-28 17:04:04', '2018-02-13 10:04:06', '2018-02-14 12:16:40');
 
@@ -840,21 +840,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', '9yCLdn4CXZEoa2FBCEd1MtPEY9U8puTTwmBHqpwkIMoN1WTvV2fcildWKu24', '2018-01-26 20:23:49', '2018-03-14 03:22:53'),
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'FyJ2z5KJbCv9QDCIvVGiLHukqauuIl1kmUlJFpddFuw2OveFbsOozYhJwRNi', '2018-01-26 20:23:49', '2018-03-17 22:50:44'),
 (2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'cLg78lQi7mAGfQgZNJi7EE8HxxquYqwCWk8G7UdXAU3mvkSnU8V4qxXfRa1O', '2018-01-26 20:43:47', '2018-03-14 03:21:00'),
 (3, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$cSc2B1F7pU2Mg5855RYHGO3FQ6g.Za1jshY5mRQHN4qYftHE42NeW', 'glQR5Qbdsl0F32Rl0N2wboZ5BCobOnAPPuC3FsFgKKB2TKRKTuhAzW0GEQuC', '2018-01-26 20:44:11', '2018-01-30 18:55:21'),
 (4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', '0JshdvcQf9RN8CrtfPdNIj15NRakj9hzaX7QcrcmmunTFNHdS5L8Nl3HZnYD', '2018-01-26 20:44:49', '2018-03-14 02:53:13'),
 (5, '505050', 'Koor Instruktur BLK', 'koorinstruktur@test.com', '$2y$10$0x3MJX34I17iRF0oWDp0n.P92W0IJn761x8mtfGjx46vemzcOBrQK', 'I0CYoXXXkg1N2iKYrxvD4aU6AY5V38lNSPkGhEwoDgv7YPtyaGbKYOJD6x76', '2018-01-26 20:45:11', '2018-02-12 13:26:51'),
 (6, '606060', 'Kajur BLK 1 ', 'kajur1@test.com', '$2y$10$3f47t2m.VpGt2H7Cm/6o2OuD2IVD1Xb/ajXNwJhb1H2FtNIq16EG2', 'xgrg7chH6y2UL9o7INJbaGyfnUWhATEKhr0F90XTSHyyOwTUEnk8Qjnb9RRu', '2018-01-26 20:45:35', '2018-03-14 01:33:07'),
 (7, '707070', 'Kajur BLK 2', 'kajur2@test.com', '$2y$10$LCZa7BHss00RB/6NCqHod.z71.Ibe5XRsQDP4PZx916VEPZWQiL4.', NULL, '2018-01-26 20:46:00', '2018-01-26 20:46:00'),
-(8, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$68.v0BPzLDZleeo8DxSaduH6UIezllOSBgGbE0D7qV9UmxV.dUs6K', 'cBTOzrZ27F7AKLQkIKQvH3b2Bgw0vwgK4tluf6LRAlrFVxSL4E8KWqT5ugZv', '2018-01-26 20:46:15', '2018-03-14 03:36:53'),
+(8, '11111111', 'Pendaftar 1', 'pendaftar1@test.com', '$2y$10$68.v0BPzLDZleeo8DxSaduH6UIezllOSBgGbE0D7qV9UmxV.dUs6K', 'PTBAkZWmBPQeTROTAicIoPGAxUzzkjNtQmBTs2zuAUliwyGKVClu0lqQ4Mti', '2018-01-26 20:46:15', '2018-03-18 10:33:01'),
 (9, '22222222', 'Pendaftar 2', 'pendaftar2@test.com', '$2y$10$dqUXyeibCfmgSh/tSQcn.ul.y6iE2CP4ZY.kSMeN.D/m2SvAUvmZu', 'WkUgKsuWJKwNVsmu1IX77dacf7Zc3wgOA09vHIRDIwzSWuF5cjIwGar4N6hz', '2018-01-26 21:21:36', '2018-01-27 17:37:43'),
 (10, '33333333', 'Pendaftar 3', 'pendaftar3@test.com', '$2y$10$ovt5lW3sbZFhauaL7mr8ye7vIrDuNh5pmFoA4C5D4eRAg/Tf9z8om', 'SrlzPZPNdTMR0bibautsvSUT8YIpUTuFvNa6Zncggf6mTgymshkjlPRqHrb3', '2018-01-26 21:23:38', '2018-02-20 02:23:55'),
 (11, '44444444', 'Pendaftar 4', 'pendaftar4@test.com', '$2y$10$hxnGUN9tnRq7P6JNMEFfdu123tF7eJ1dv43ezedr43GqkvPSkqGm6', 'b6yu8TTOwAwF4k6pndig725fu6z4RrJl5eDTTRKbs0DVAo1bfoqRgJYNQTSA', '2018-01-26 21:25:04', '2018-01-27 18:45:24'),
 (12, '55555555', 'Pendaftar 5', 'pendaftar5@test.com', '$2y$10$q11gRIXlJSTneMkYyS09K.TFIcHdJ4s5pdLSfpzszuIi/wCJYMTvC', 'msTszzKnkG80qrJ4MOOGLvwDpAxq4i861qYNCBdgNLz64zOVXVTIoZh2d9jD', '2018-01-27 17:27:48', '2018-02-14 12:27:28'),
 (13, '66666666', 'Pendaftar 6', 'pendaftar6@test.com', '$2y$10$wZgJS1V/86t/LWWsx/9KVOHJ3MH1SLS7gk4y0K.ftJifQJ1RBCmcq', '2WiXBq9Sugx9X3eriBBrSwd7AAnMr4w56TVclCmMpbPUZ4pzuoo8kmwHtsaH', '2018-01-27 17:28:26', '2018-02-20 02:17:21'),
 (14, '202020', 'Tester Kajur No data', 'tester@test.com', '$2y$10$5gAO1kjZdqlIs/USsr5lrOGaHFjmoPZSxLBQxOimgsZWMEFgCJ4nO', 'FGZ3GtMU9WzAuKRw7PRpHpK9Q2gwQdOxicFhO8d882NTEsy62X07NCRgiOzh', '2018-01-29 15:45:39', '2018-01-29 16:10:46'),
-(15, '00000000', 'Pendatar Tester', 'pendaftar0@test.com', '$2y$10$eYKQOebS2nlc7rKRGRbrwe0htMfgxnQa3vnvPzGJgYSSaWvTdfCdq', '3wCwSGqrnacnadysxbC7u1SddoY4brFtFW4R6E81kq1ijcP8N3qh0XPR1EMZ', '2018-01-29 16:02:55', '2018-03-14 03:29:49');
+(15, '00000000', 'Pendatar Tester', 'pendaftar0@test.com', '$2y$10$eYKQOebS2nlc7rKRGRbrwe0htMfgxnQa3vnvPzGJgYSSaWvTdfCdq', 'ogtoNo4FWtJ7j8uGpouP7rbEnea7W0sJldx8wmj1g2rVhfaAMuLfkRmZSgj5', '2018-01-29 16:02:55', '2018-03-18 10:32:11');
 
 -- --------------------------------------------------------
 
