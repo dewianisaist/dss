@@ -427,7 +427,7 @@ class ResultSelectionController extends Controller
                 }
             }
         }
-        return $condition;
+        // return $condition;
 
         // if($isComparable) {
         //     return "Comparable";
@@ -436,21 +436,31 @@ class ResultSelectionController extends Controller
         // }
 
         $sortedSelection = array();
+        $rank = 1;
+        $quota = Subvocational::where('name', '=', $selectionsData[$selection->id]->name_sub_vocational)->first();
+
         if ($isComparable) {
             arsort($tabel_leaving);
             foreach ($tabel_leaving as $key=>$value) {
                 $sortedSelection[] = $key;
+                $selection = $selectionsData[$key];
+                $selection->ranking = $rank;
+                if ($rank > $quota->quota) {
+                    $selection->status = "Tidak Diterima";
+                } else {
+                    $selection->status = "Diterima";
+                }
+                $selection->save();
+                $rank ++;
             }
+            // return $sortedSelection;
         } else {
             $netflow = array();
             foreach ($tabel_leaving as $key=>$value) {
                 $netflow[$key] = number_format($value - $tabel_entering[$key], 5);
             }
-
+            
             arsort($netflow);
-            $rank = 1;
-            $quota = Subvocational::where('name', '=', $selectionsData[$selection->id]->name_sub_vocational)->first();
-
             foreach ($netflow as $key=>$value) {
                 $sortedSelection[] = $key;
                 $selection = $selectionsData[$key];
