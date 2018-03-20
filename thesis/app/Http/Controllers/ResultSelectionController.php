@@ -167,7 +167,7 @@ class ResultSelectionController extends Controller
                                                 ->where('criteria_id', '=', $criteria)
                                                 ->first();
             
-            if ($input[$criteria] != ""){
+            if ($input[$criteria] != "") {
                 $data["selection_id"] = $id;
                 $data["criteria_id"] = $criteria;
                 $data["value"] = $input[$criteria];
@@ -223,7 +223,7 @@ class ResultSelectionController extends Controller
         // return $selections;
 
         $selectionsId = array();
-        foreach($selections as $selection){
+        foreach ($selections as $selection) {
             $selectionsId[] = $selection->id;
             $selectionsData[$selection->id] = $selection;
         }
@@ -242,13 +242,13 @@ class ResultSelectionController extends Controller
                                     ->get();
 
         $criteriasData = array();
-        foreach ($criterias as $criteria){
+        foreach ($criterias as $criteria) {
             $criteriasData[$criteria->id] = $criteria;
         }
 
-        foreach ($selections as $selection){
+        foreach ($selections as $selection) {
             $tabel_alternative[$selection->id] = array();
-            foreach ($criterias as $criteria){
+            foreach ($criterias as $criteria) {
                 $result_selection = ResultSelection::where('selection_id', '=', $selection->id)
                                                     ->where('criteria_id', '=', $criteria->id)
                                                     ->first();
@@ -264,11 +264,11 @@ class ResultSelectionController extends Controller
 
         // return $tabel_alternative;
         $tabel_selisih = array();
-        foreach ($tabel_alternative as $key1=>$data_selisih1){
-            foreach ($tabel_alternative as $key2=>$data_selisih2){
-                if ($key1 != $key2){
+        foreach ($tabel_alternative as $key1=>$data_selisih1) {
+            foreach ($tabel_alternative as $key2=>$data_selisih2) {
+                if ($key1 != $key2) {
                     $tabel_selisih[$key1.",".$key2] = array();
-                    foreach ($data_selisih1 as $criteria=>$value){
+                    foreach ($data_selisih1 as $criteria=>$value) {
                         $tabel_selisih[$key1.",".$key2][$criteria] = $value - $data_selisih2[$criteria];
                     }
                 }
@@ -278,9 +278,9 @@ class ResultSelectionController extends Controller
 
         $tabel_derajat = array();
         // return $criteriasData;
-        foreach ($tabel_selisih as $alternatives=>$crt_data){
+        foreach ($tabel_selisih as $alternatives=>$crt_data) {
             $tabel_derajat[$alternatives] = array();
-            foreach ($crt_data as $criteriaId=>$value){
+            foreach ($crt_data as $criteriaId=>$value) {
                 $criteria = $criteriasData[$criteriaId];
                 $type = $criteria->preference;
                 
@@ -378,13 +378,13 @@ class ResultSelectionController extends Controller
         $tabel_leaving = array();
         $tabel_entering = array();
         $n = count($selectionsId);
-        foreach($selectionsId as $selectionId1){
+        foreach($selectionsId as $selectionId1) {
             $sum_row = 0;
             $sum_col = 0;
-            foreach($tabel_index[$selectionId1] as $value){
+            foreach($tabel_index[$selectionId1] as $value) {
                 $sum_row += $value;
             }
-            foreach($selectionsId as $selectionId2){
+            foreach($selectionsId as $selectionId2) {
                 $sum_col += $tabel_index[$selectionId2][$selectionId1];
             }
             $tabel_leaving[$selectionId1] = number_format((1 / ($n-1)) * $sum_row, 5);
@@ -395,31 +395,33 @@ class ResultSelectionController extends Controller
 
         $isComparable = true;
         $condition =array();
-        foreach($selectionsId as $selectionIdA){
-            foreach($selectionsId as $selectionIdB){
-                if ($selectionIdA < $selectionIdB){
+        foreach($selectionsId as $selectionIdA) {
+            foreach($selectionsId as $selectionIdB) {
+                if ($selectionIdA < $selectionIdB) {
                     $condition[$selectionIdA.",".$selectionIdB] = array();
-                    $condition[$selectionIdA.",".$selectionIdB][1] = false; 
-                    $condition[$selectionIdA.",".$selectionIdB][2] = false;
-                    $condition[$selectionIdA.",".$selectionIdB][3] = false;
-                    $condition[$selectionIdA.",".$selectionIdB][4] = false;
-                    $condition1 = ($tabel_leaving[$selectionIdA] > $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] < $tabel_entering[$selectionIdB]);
-                    $condition2 = ($tabel_leaving[$selectionIdA] > $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] == $tabel_entering[$selectionIdB]);
-                    $condition3 = ($tabel_leaving[$selectionIdA] == $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] < $tabel_entering[$selectionIdB]);
-                    $condition4 = ($tabel_leaving[$selectionIdA] == $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] == $tabel_entering[$selectionIdB]);
-                    if ($condition1){
-                        $condition[$selectionIdA.",".$selectionIdB][1] = true;
+                    $condition[$selectionIdA.",".$selectionIdB]["A Ii B"] = false; 
+                    $condition[$selectionIdA.",".$selectionIdB]["A S+ B"] = false;
+                    $condition[$selectionIdA.",".$selectionIdB]["A S- B"] = false;
+                    $condition[$selectionIdA.",".$selectionIdB]["A Pi B"] = false;
+                    $condition[$selectionIdA.",".$selectionIdB]["A R B"] = true;
+                    $condition1 = ($tabel_leaving[$selectionIdA] == $tabel_leaving[$selectionIdB]) && ($tabel_entering[$selectionIdA] == $tabel_entering[$selectionIdB]);
+                    $condition2a = ($tabel_leaving[$selectionIdA] > $tabel_leaving[$selectionIdB]) || ($tabel_leaving[$selectionIdA] == $tabel_leaving[$selectionIdB]);
+                    $condition2b = ($tabel_entering[$selectionIdA] < $tabel_entering[$selectionIdB]) || ($tabel_entering[$selectionIdA] == $tabel_entering[$selectionIdB]);
+                    if ($condition1) {
+                        $condition[$selectionIdA.",".$selectionIdB]["A Ii B"] = true;
                     }
-                    if ($condition2){
-                        $condition[$selectionIdA.",".$selectionIdB][2] = true;
+                    if ($condition2a) {
+                        $condition[$selectionIdA.",".$selectionIdB]["A S+ B"] = true;
                     }
-                    if ($condition3){
-                        $condition[$selectionIdA.",".$selectionIdB][2] = true;
+                    if ($condition2b) {
+                        $condition[$selectionIdA.",".$selectionIdB]["A S- B"] = true;
                     }
-                    if ($condition4){
-                        $condition[$selectionIdA.",".$selectionIdB][2] = true;
+                    if ($condition2a == $condition2b) {
+                        $condition[$selectionIdA.",".$selectionIdB]["A Pi B"] = true;
                     }
-                    if (!$condition1 && !$condition2 && !$condition3 && !$condition4) {
+                    if ($condition[$selectionIdA.",".$selectionIdB]["A Pi B"] || $condition[$selectionIdA.",".$selectionIdB]["A Ii B"]) {
+                        $condition[$selectionIdA.",".$selectionIdB]["A R B"] = false;
+                    } else {
                         $isComparable = false;
                     }
                 }
@@ -427,15 +429,21 @@ class ResultSelectionController extends Controller
         }
         // return $condition;
 
+        // if($isComparable) {
+        //     return "Comparable";
+        // } else {
+        //     return "Incomparable";
+        // }
+
         $sortedSelection = array();
-        if($isComparable){
+        if ($isComparable) {
             arsort($tabel_leaving);
-            foreach ($tabel_leaving as $key=>$value){
+            foreach ($tabel_leaving as $key=>$value) {
                 $sortedSelection[] = $key;
             }
         } else {
             $netflow = array();
-            foreach ($tabel_leaving as $key=>$value){
+            foreach ($tabel_leaving as $key=>$value) {
                 $netflow[$key] = number_format($value - $tabel_entering[$key], 5);
             }
 
@@ -443,13 +451,13 @@ class ResultSelectionController extends Controller
             $rank = 1;
             $quota = Subvocational::where('name', '=', $selectionsData[$selection->id]->name_sub_vocational)->first();
 
-            foreach ($netflow as $key=>$value){
+            foreach ($netflow as $key=>$value) {
                 $sortedSelection[] = $key;
                 $selection = $selectionsData[$key];
                 $selection->ranking = $rank;
-                if ($rank > $quota->quota){
+                if ($rank > $quota->quota) {
                     $selection->status = "Tidak Diterima";
-                }else{
+                } else {
                     $selection->status = "Diterima";
                 }
                 $selection->save();
