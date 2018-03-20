@@ -252,13 +252,13 @@ class ResultSelectionController extends Controller
                 $result_selection = ResultSelection::where('selection_id', '=', $selection->id)
                                                     ->where('criteria_id', '=', $criteria->id)
                                                     ->first();
-
+                                                    
                 // return $result_selection;
-                $tabel_alternative[$selection->id][$criteria->id] = $result_selection->value;
                 if ($result_selection == null) {
                     return redirect()->route('result_selection.index')
                                      ->with('failed','Hitung penilaian GAGAL! '. $selection->name_registrant . ' belum dinilai. Silahkan lakukan penilaian');
-                }
+                } 
+                $tabel_alternative[$selection->id][$criteria->id] = $result_selection->value;
             }
         }
 
@@ -427,7 +427,7 @@ class ResultSelectionController extends Controller
                 }
             }
         }
-        // return $condition;
+        return $condition;
 
         // if($isComparable) {
         //     return "Comparable";
