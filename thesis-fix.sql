@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 20, 2018 at 06:27 AM
+-- Generation Time: Mar 20, 2018 at 03:42 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -32,6 +32,45 @@ CREATE TABLE `choice` (
   `option` varchar(1) NOT NULL COMMENT '0: tidak sesuai 1: sesuai',
   `suggestion` varchar(1) NOT NULL COMMENT '0: baku 1: usulan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `choice`
+--
+
+INSERT INTO `choice` (`user_id`, `criteria_id`, `option`, `suggestion`) VALUES
+(2, 1, '1', '0'),
+(2, 2, '1', '0'),
+(2, 3, '1', '0'),
+(2, 4, '0', '0'),
+(2, 5, '0', '0'),
+(2, 6, '1', '0'),
+(2, 7, '1', '0'),
+(2, 8, '0', '0'),
+(2, 9, '0', '0'),
+(2, 10, '1', '0'),
+(2, 11, '1', '0'),
+(2, 12, '0', '0'),
+(2, 13, '0', '0'),
+(2, 14, '1', '0'),
+(2, 15, '0', '0'),
+(2, 16, '1', '0'),
+(2, 17, '0', '0'),
+(2, 18, '1', '0'),
+(2, 19, '0', '0'),
+(2, 20, '0', '0'),
+(2, 21, '0', '0'),
+(2, 22, '0', '0'),
+(2, 23, '0', '0'),
+(2, 24, '1', '0'),
+(2, 25, '1', '0'),
+(2, 26, '1', '0'),
+(2, 27, '0', '0'),
+(2, 28, '1', '0'),
+(2, 29, '0', '0'),
+(2, 30, '0', '0'),
+(2, 31, '1', '0'),
+(2, 32, '1', '0'),
+(2, 33, '1', '1');
 
 -- --------------------------------------------------------
 
@@ -107,7 +146,7 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `citatio
 (4, NULL, 'Kesehatan', 'Kriteria yang digunakan untuk mengetahui kondisi kesehatan jasmani pendaftar yang meliputi tekanan darah, apakah mengidap penyakit tertentu, dll. Data diperoleh dari tes kesehatan, yang ditunjukkan dengan surat keterangan dokter.', '(Noe, dkk., 2012)\r\n(Fajar dan Heru, 2010)\r\n(Safrizal dan Tanti, 2015)\r\n(Robertson dan Smith, 2001)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 05:57:55', '2018-03-19 21:30:20'),
 (5, NULL, 'Kepribadian', 'Kriteria yang digunakan untuk mengkategorikan individu seperti apa. Data diperoleh melalui tes inventori kepribadian, yaitu berupa kuesioner yang mendorong individu untuk melaporkan reaksi atau perasaannya dalam situasi tertentu.', '(Noe, dkk., 2012)\r\n(Ivancevich dan Konopaske, 2013)\r\n(Fajar dan Heru, 2010)\r\n(Robertson dan Smith, 2001)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 05:58:22', '2018-03-19 21:31:04'),
 (6, NULL, 'Pengetahuan', 'Kriteria yang digunakan untuk mengukur tingkat pemahaman seseorang terhadap suatu bidang keilmuan. Data diperoleh dari ujian tertulis. ', '(Noe, dkk., 2012)\r\n(Fajar dan Heru, 2010)\r\n(Bogdanovic dan Miletic, 2014)\r\n(El-santawy, 2012)\r\n(Ubaidi, 2015)\r\n(Hough dan Oswald, 2000)\r\n(Robertson dan Smith, 2001)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 05:58:58', '2018-03-19 22:11:33'),
-(7, NULL, 'Keterampilan teknis', 'Kriteria yang digunakan untuk mengukur kemampuan pendaftar dalam hal keterampilan teknis suatu bidang keilmuan. Data diperoleh dari ujian praktik.', '(Noe, dkk., 2012)\r\n(Ivancevich dan Konopaske, 2013)\r\n(Fajar dan Heru, 2010)\r\n(Kumar dkk., 2013)\r\n(Rouyendegh dan Erkan, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 05:59:24', '2018-03-19 22:12:10'),
+(7, NULL, 'Keterampilan teknis', 'Kriteria yang digunakan untuk mengukur kemampuan pendaftar dalam hal keterampilan teknis suatu bidang keilmuan. Data diperoleh dari ujian praktik atau ujian tertulis.', '(Noe, dkk., 2012)\r\n(Ivancevich dan Konopaske, 2013)\r\n(Fajar dan Heru, 2010)\r\n(Kumar dkk., 2013)\r\n(Rouyendegh dan Erkan, 2013)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 05:59:24', '2018-03-19 22:12:10'),
 (8, NULL, 'Kejujuran', 'Kriteria yang digunakan untuk mengetahui tingkat kejujuran seseorang. Data diperoleh dari tes kejujuran atau melalui kesesuaian jawaban yang diisikan pendaftar dalam form pendaftaran dengan wawancara.', '(Noe, dkk., 2012)\r\n(Ivancevich dan Konopaske, 2013)\r\n(Robertson dan Smith, 2001)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 05:59:55', '2018-03-19 22:13:06'),
 (9, NULL, 'Bebas obat-obatan terlarang', 'Kriteria yang digunakan untuk mengetahui apakah pendaftar tidak menggunakan obat-obatan terlarang. Data diperoleh dari tes bebas obat-obatan terlarang, yang ditunjukkan dengan surat keterangan bebas narkoba.', '(Noe, dkk., 2012)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:00:27', '2018-03-19 22:13:40'),
 (10, NULL, 'Sikap', 'Kriteria yang digunakan untuk mengetahui apakah pendaftar memiliki sikap, sopan dan santun yang baik atau tidak. Data diperoleh dari sikap pendaftar saat wawancara.', '(Noe, dkk., 2012)\r\n(Ivancevich dan Konopaske, 2013)\r\n(Fajar dan Heru, 2010)\r\n(Güngör dkk., 2009)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:00:50', '2018-03-19 22:14:16'),
@@ -131,8 +170,9 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `citatio
 (28, NULL, 'Komitmen', 'Kriteria yang digunakan untuk mengetahui komitmen pendaftar apakah setelah dinyatakan lulus, pendaftar tidak akan mengundurkan diri dan serius mengikuti pelatihan. Data diperoleh dari wawancara.', '(Ubaidi, 2015)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:08:23', '2018-03-19 22:24:21'),
 (29, NULL, 'Keuangan', 'Kriteria yang digunakan untuk mengetahui konsisi ekonomi pendaftar. Data diperoleh dari wawancara.', '(Noe, dkk., 2012)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:08:54', '2018-03-19 22:25:23'),
 (30, NULL, 'Potensi', 'Kriteria yang digunakan untuk mengukur potensi. Potensi yaitu kemampuan dan kualitas yang dimiliki oleh seseorang namun belum dipergunakan secara maksimal. Data diperoleh dari pengukuran potensi diri yang dilakukan melalui diri sendiri (self assessment), melalui feedback dari orang lain dan tes-tes psikologi seperti tes kecerdasan, tes kepribadian, tes kepemimpinan, tes kreativitas dll.', '(Vinchur, dkk., 1998)\r\n(Robertson dan Smith, 2001)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:09:14', '2018-03-19 22:25:53'),
-(31, NULL, 'Kesungguhan', 'Kriteria yang digunakan untuk mengukur tingkat kesungguhan pendaftar. Kesungguhan dapat tercermin dari apakah pendaftar mengikuti semua proses seleksi dengan baik, datang ontime, sesuai persyaratan, dll. Data diperoleh dari wawancara.', '(Blume, dkk., 2010)\r\n(Vinchur, dkk., 1998)\r\n(Barrett, dkk., 2003)\r\n(Hough dan Oswald, 2000)\r\n(Robertson dan Smith, 2001)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:09:35', '2018-03-19 22:26:16'),
-(32, NULL, 'Kesan baik', 'Kriteria yang digunakan untuk mengetahui apakah pendaftar memberikan kesan yang baik atau tidak. Kesan baik dapat diperoleh dari sikap, penampilan, sopan, santun yang baik. Data diperoleh dari wawancara.', '(Barrett, dkk., 2003)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:09:57', '2018-03-19 22:26:41');
+(31, NULL, 'Kesungguhan', 'Kriteria yang digunakan untuk mengukur tingkat kesungguhan pendaftar. Kesungguhan dapat tercermin dari apakah pendaftar mengikuti semua proses seleksi dengan baik, datang tepat waktu, sesuai persyaratan, dll. Data diperoleh dari wawancara.', '(Blume, dkk., 2010)\r\n(Vinchur, dkk., 1998)\r\n(Barrett, dkk., 2003)\r\n(Hough dan Oswald, 2000)\r\n(Robertson dan Smith, 2001)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:09:35', '2018-03-19 22:26:16'),
+(32, NULL, 'Kesan baik', 'Kriteria yang digunakan untuk mengetahui apakah pendaftar memberikan kesan yang baik atau tidak. Kesan baik dapat diperoleh dari sikap, penampilan, sopan, santun yang baik. Data diperoleh dari wawancara.', '(Barrett, dkk., 2003)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '2018-03-16 06:09:57', '2018-03-19 22:26:41'),
+(33, NULL, 'Intensitas keikutsertaan pelatihan di BLK Bantul', 'Untuk mengetahui seberapa banyak pendaftar pernah mengikuti pelatihan di BLK Bantul', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-20 06:22:59', '2018-03-20 06:22:59');
 
 -- --------------------------------------------------------
 
@@ -655,7 +695,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'v6T6YMkRNM0E5HOiVQsH9KbFy76DMgI3uOWXFoSFJd16Q2rIHrNhrqYT3Si5', '2018-01-26 20:23:49', '2018-03-14 20:33:51'),
-(2, '196408021983032001', 'Siti Astuti S.E.', 'test1@test.com', '$2y$10$eJe79LR5pDuJWN7t0hmIr.6Fa.Rk3bw9jJeRPNXxZut0vGiXOmDi.', NULL, '2018-03-14 05:48:13', '2018-03-14 05:49:50'),
+(2, '196408021983032001', 'Siti Astuti S.E.', 'test1@test.com', '$2y$10$eJe79LR5pDuJWN7t0hmIr.6Fa.Rk3bw9jJeRPNXxZut0vGiXOmDi.', '6fjSJy1lVsbOqN2FrSjcNB8fwQIxpU1NCwqaAZ2KfW2Gmd1942WSEKT3PceC', '2018-03-14 05:48:13', '2018-03-20 06:46:16'),
 (3, '196307171989032004', 'Sukartini, B.Sc.', 'test2@test.com', '$2y$10$/qEVtU2eAL/2nGWCmFC/zuohyhlBrvkcaRoH9Dwj4Bmzo2buGuRKq', NULL, '2018-03-14 05:49:37', '2018-03-14 05:50:18'),
 (4, '196112161981031002', 'Indriyono, S.Pd.', 'test3@test.com', '$2y$10$d.gFdwdmSx0yvJ9MLIhnIuRiyF7ixJ482FwfoaiJNr42mqgKxZvki', NULL, '2018-03-14 05:51:43', '2018-03-14 05:51:43'),
 (5, '196101031982031008', 'Slamet Triraharjo, S.Pd.', 'test4@test.com', '$2y$10$B4Nugd.mt/QCfj18qQIX1up/aGVdXmWAmPeFGEyK.kYLQEvhSFSwu', NULL, '2018-03-14 05:53:12', '2018-03-14 08:59:07'),
@@ -855,7 +895,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --
