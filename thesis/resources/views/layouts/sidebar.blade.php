@@ -117,7 +117,7 @@
 
 {{--  Only kepala can see "Bobot/Pairwise Comparison"  --}}
 @if(Auth::user()->roleId() == 3)
-<li {{ substr( \Request::route()->getName(), 0, 8 ) == 'courses.' ? 'class=active' : '' }}>
+<li {{ substr( \Request::route()->getName(), 0, 8 ) == 'weights.' ? 'class=active' : '' }}>
   <a href="{{ route('weights.index') }}"><i class="fa fa-balance-scale"></i>  <span>Bobot</span></a>
 </li>
 @endif

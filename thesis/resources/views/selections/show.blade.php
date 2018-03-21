@@ -48,20 +48,90 @@
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Nilai Tes Tertulis:</strong>
-					{{ $selection->written_value }}
+					<h3>Hasil Seleksi Tertulis</h3>
 				</div>
 			</div>	
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Nilai Tes Wawancara:</strong>
-					{{ $selection->interview_value }}
+					<strong>Nilai Pengetahuan:</strong>
+					{{ $selection->knowledge_value }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
+					<strong>Nilai Keterampilan Teknis:</strong>
+					{{ $selection->technical_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<h3>Hasil Seleksi Wawancara<h3>
+				</div>
+			</div>	
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
 					<strong>Rekomendasi:</strong>
 					{{ $selection->recommendation }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Kesan Baik:</strong>
+					{{ $selection->impression_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Kesungguhan:</strong>
+					{{ $selection->seriousness_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Percaya Diri:</strong>
+					{{ $selection->confidence_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Keterampilan Komunikasi:</strong>
+					{{ $selection->communication_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Penampilan:</strong>
+					{{ $selection->appearance_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Pertimbangan Keluarga:</strong>
+					{{ $selection->family_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Motivasi:</strong>
+					{{ $selection->motivation_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Sikap:</strong>
+					{{ $selection->attitude_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Orientasi Masa Depan:</strong>
+					{{ $selection->orientation_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Nilai Komitmen:</strong>
+					{{ $selection->commitment_value }}
 				</div>
 			</div>
 		</div>

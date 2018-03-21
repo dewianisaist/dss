@@ -99,9 +99,19 @@ class SelectionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'written_value' => 'required',
-            'interview_value' => 'required',
+            'knowledge_value' => 'required',
+            'technical_value' => 'required',
             'recommendation' => 'required',
+            'impression_value' => 'required',
+            'seriousness_value' => 'required',
+            'confidence_value' => 'required',
+            'communication_value' => 'required',
+            'appearance_value' => 'required',
+            'family_value' => 'required',
+            'motivation_value' => 'required',
+            'attitude_value' => 'required',
+            'orientation_value' => 'required',
+            'commitment_value' => 'required',
         ]);
 
         $input = $request->all();

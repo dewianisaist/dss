@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2018 at 03:26 AM
+-- Generation Time: Mar 21, 2018 at 07:48 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -240,9 +240,19 @@ CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
   `registration_id` int(11) NOT NULL,
   `selection_schedule_id` int(11) NOT NULL,
-  `written_value` int(11) DEFAULT NULL,
-  `interview_value` int(11) DEFAULT NULL,
+  `knowledge_value` int(11) DEFAULT NULL,
+  `technical_value` int(11) DEFAULT NULL,
   `recommendation` varchar(5) DEFAULT NULL,
+  `impression_value` int(11) DEFAULT NULL,
+  `seriousness_value` int(11) DEFAULT NULL,
+  `confidence_value` int(11) DEFAULT NULL,
+  `communication_value` int(11) DEFAULT NULL,
+  `appearance_value` int(11) DEFAULT NULL,
+  `family_value` int(11) DEFAULT NULL,
+  `motivation_value` int(11) DEFAULT NULL,
+  `attitude_value` int(11) DEFAULT NULL,
+  `orientation_value` int(11) DEFAULT NULL,
+  `commitment_value` int(11) DEFAULT NULL,
   `ranking` varchar(5) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian\nDiterima: hasil penilaian diterima\nTidak Diterima: hasil penilaian tidak diterima\nTerdaftar: hasil lampau diterima\nDitolak: hasil lampau tidak diterima',
   `created_at` timestamp NULL DEFAULT NULL,

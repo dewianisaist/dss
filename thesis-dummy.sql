@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2018 at 03:24 AM
+-- Generation Time: Mar 21, 2018 at 07:47 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thesis`
+-- Database: `thesis-dummy`
 --
 
 -- --------------------------------------------------------
@@ -702,9 +702,19 @@ CREATE TABLE `selections` (
   `id` int(11) NOT NULL,
   `registration_id` int(11) NOT NULL,
   `selection_schedule_id` int(11) NOT NULL,
-  `written_value` int(11) DEFAULT NULL,
-  `interview_value` int(11) DEFAULT NULL,
+  `knowledge_value` int(11) DEFAULT NULL,
+  `technical_value` int(11) DEFAULT NULL,
   `recommendation` varchar(5) DEFAULT NULL,
+  `impression_value` int(11) DEFAULT NULL,
+  `seriousness_value` int(11) DEFAULT NULL,
+  `confidence_value` int(11) DEFAULT NULL,
+  `communication_value` int(11) DEFAULT NULL,
+  `appearance_value` int(11) DEFAULT NULL,
+  `family_value` int(11) DEFAULT NULL,
+  `motivation_value` int(11) DEFAULT NULL,
+  `attitude_value` int(11) DEFAULT NULL,
+  `orientation_value` int(11) DEFAULT NULL,
+  `commitment_value` int(11) DEFAULT NULL,
   `ranking` varchar(5) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian Diterima: hasil penilaian diterima Tidak Diterima: hasil penilaian tidak diterima Terdaftar: hasil lampau diterima Ditolak: hasil lampau tidak diterima',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -715,14 +725,14 @@ CREATE TABLE `selections` (
 -- Dumping data for table `selections`
 --
 
-INSERT INTO `selections` (`id`, `registration_id`, `selection_schedule_id`, `written_value`, `interview_value`, `recommendation`, `ranking`, `status`, `created_at`, `updated_at`) VALUES
-(1, 5, 3, 80, 80, 'Ya', '', 'Terdaftar', '2015-02-01 10:00:00', '2018-02-20 02:03:12'),
-(2, 1, 2, 85, 95, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
-(3, 4, 2, 40, 85, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
-(4, 6, 2, 60, 60, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
-(5, 7, 2, 75, 70, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
-(6, 8, 2, 45, 80, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09'),
-(7, 9, 2, 55, 70, 'Ya', '', '', '2016-07-10 10:00:00', '2018-03-18 08:05:09');
+INSERT INTO `selections` (`id`, `registration_id`, `selection_schedule_id`, `knowledge_value`, `technical_value`, `recommendation`, `impression_value`, `seriousness_value`, `confidence_value`, `communication_value`, `appearance_value`, `family_value`, `motivation_value`, `attitude_value`, `orientation_value`, `commitment_value`, `ranking`, `status`, `created_at`, `updated_at`) VALUES
+(1, 5, 3, 80, 0, 'Ya', 0, 80, 0, 0, 0, 0, 0, 0, 0, 0, '', 'Terdaftar', '2015-02-01 10:00:00', '2018-03-20 23:43:19'),
+(2, 1, 2, 85, 0, 'Ya', 0, 95, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '2016-07-10 10:00:00', '2018-03-20 23:46:05'),
+(3, 4, 2, 40, 0, 'Ya', 0, 85, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '2016-07-10 10:00:00', '2018-03-20 23:46:06'),
+(4, 6, 2, 60, 0, 'Ya', 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '2016-07-10 10:00:00', '2018-03-20 23:46:06'),
+(5, 7, 2, 75, 0, 'Ya', 0, 70, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '2016-07-10 10:00:00', '2018-03-20 23:46:05'),
+(6, 8, 2, 45, 0, 'Ya', 0, 80, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '2016-07-10 10:00:00', '2018-03-20 23:46:06'),
+(7, 9, 2, 55, 0, 'Ya', 0, 70, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '2016-07-10 10:00:00', '2018-03-20 23:46:06');
 
 -- --------------------------------------------------------
 
@@ -840,7 +850,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `identity_number`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'FyJ2z5KJbCv9QDCIvVGiLHukqauuIl1kmUlJFpddFuw2OveFbsOozYhJwRNi', '2018-01-26 20:23:49', '2018-03-17 22:50:44'),
+(1, '12345678', 'Dewi Anisa Istiqomah', 'dewianisaist@gmail.com', '$2y$10$/Gt5a7PjYJceUvNSwJ9YCeJLNPogK6MCRcm2MrcLp22Sg2.KSOVVe', 'aErJ9DkDJmP0NtH72irh1Dc0WAZjpUcaaJJl0gtWXBD4wKes09B0FkRJxSqv', '2018-01-26 20:23:49', '2018-03-20 08:21:54'),
 (2, '303030', 'Kepala BLK', 'kepala@test.com', '$2y$10$x5bdhs8M3T4Tq8nWarNiBuJf8OkmnwI02P0HR.5u8JcxQrrMRAK0C', 'cLg78lQi7mAGfQgZNJi7EE8HxxquYqwCWk8G7UdXAU3mvkSnU8V4qxXfRa1O', '2018-01-26 20:43:47', '2018-03-14 03:21:00'),
 (3, '101010', 'Staf BLK', 'staf@test.com', '$2y$10$cSc2B1F7pU2Mg5855RYHGO3FQ6g.Za1jshY5mRQHN4qYftHE42NeW', 'glQR5Qbdsl0F32Rl0N2wboZ5BCobOnAPPuC3FsFgKKB2TKRKTuhAzW0GEQuC', '2018-01-26 20:44:11', '2018-01-30 18:55:21'),
 (4, '404040', 'Kasubag TU BLK', 'kasubagtu@test.com', '$2y$10$U4E9Pl2qzoL1r7pk7j558e.VnqbrNEIer.n63dHS1xyFpGxtI2nU2', '0JshdvcQf9RN8CrtfPdNIj15NRakj9hzaX7QcrcmmunTFNHdS5L8Nl3HZnYD', '2018-01-26 20:44:49', '2018-03-14 02:53:13'),

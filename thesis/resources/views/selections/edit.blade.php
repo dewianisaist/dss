@@ -57,14 +57,24 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Tes Tertulis <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('written_value', isset($selection->written_value) ? $selection->written_value : '', array('placeholder' => 'Nilai Tes Tertulis','class' => 'form-control')) !!}
+						<h3>Hasil Seleksi Tertulis</h3>
+					</div>
+				</div>	
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Pengetahuan <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('knowledge_value', isset($selection->knowledge_value) ? $selection->knowledge_value : '', array('placeholder' => 'Nilai Pengetahuan','class' => 'form-control')) !!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Tes Wawancara <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('interview_value', isset($selection->interview_value) ? $selection->interview_value : '', array('placeholder' => 'Nilai Tes Wawancara','class' => 'form-control')) !!}
+						<strong>Nilai Keterampilan Teknis <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('technical_value', isset($selection->technical_value) ? $selection->technical_value : '', array('placeholder' => 'Nilai Keterampilan Teknis','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<h3>Hasil Seleksi Wawancara<h3>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
@@ -79,6 +89,67 @@
 						!!}
 					</div>
 				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Kesan Baik <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('impression_value', isset($selection->impression_value) ? $selection->impression_value : '', array('placeholder' => 'Nilai Kesan Baik','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Kesungguhan <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('seriousness_value', isset($selection->seriousness_value) ? $selection->seriousness_value : '', array('placeholder' => 'Nilai Kesungguhan','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Percaya Diri <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('confidence_value', isset($selection->confidence_value) ? $selection->confidence_value : '', array('placeholder' => 'Nilai Percaya Diri','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Keterampilan Komunikasi <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('communication_value', isset($selection->communication_value) ? $selection->communication_value : '', array('placeholder' => 'Nilai Keterampilan Komunikasi','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Penampilan <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('appearance_value', isset($selection->appearance_value) ? $selection->appearance_value : '', array('placeholder' => 'Nilai Penampilan','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Pertimbangan Keluarga <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('family_value', isset($selection->family_value) ? $selection->family_value : '', array('placeholder' => 'Nilai Pertimbangan Keluarga','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Motivasi <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('motivation_value', isset($selection->motivation_value) ? $selection->motivation_value : '', array('placeholder' => 'Nilai Motivasi','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Sikap <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('attitude_value', isset($selection->attitude_value) ? $selection->attitude_value : '', array('placeholder' => 'Nilai Sikap','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Orientasi Masa Depan <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('orientation_value', isset($selection->orientation_value) ? $selection->orientation_value : '', array('placeholder' => 'Nilai Orientasi Masa Depan','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Nilai Komitmen <small>(Range nilai 0-100)</small>:</strong>
+						{!! Form::text('commitment_value', isset($selection->commitment_value) ? $selection->commitment_value : '', array('placeholder' => 'Nilai Komitmen','class' => 'form-control')) !!}
+					</div>
+				</div>
+
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>

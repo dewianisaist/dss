@@ -235,17 +235,57 @@
 				<td>
 					<table id="table_selection" class="table table-hover">
                         <tr>
-                            <th>Nilai Tertulis</th>
-                            <td>{{ $data->written_value }}</td>
+                            <th>Nilai Pengetahuan</th>
+                            <td>{{ $data->knowledge_value }}</td>
                         </tr>
-                        <tr>
-                            <th>Nilai Wawancara</th>
-                            <td>{{ $data->interview_value }}</td>
+						<tr>
+                            <th>Nilai Keterampilan Teknis</th>
+                            <td>{{ $data->technical_value }}</td>
                         </tr>
                         <tr>
                             <th width = "350px">Rekomendasi</th>
                             <td>{{ $data->recommendation }}</td>
                         </tr>
+						<tr>
+							<th>Nilai Kesan Baik</th>
+							<td>{{ $data->impression_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Kesungguhan</th>
+							<td>{{ $data->seriousness_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Percaya Diri</th>
+							<td>{{ $data->confidence_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Keterampilan Komunikasi</th>
+							<td>{{ $data->communication_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Penampilan</th>
+							<td>{{ $data->appearance_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Pertimbangan Keluarga</th>
+							<td>{{ $data->family_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Motivasi</th>
+							<td>{{ $data->motivation_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Sikap</th>
+							<td>{{ $data->attitude_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Orientasi Masa Depan</th>
+							<td>{{ $data->orientation_value }}</td>
+						</tr>
+						<tr>
+							<th>Nilai Komitmen</th>
+							<td>{{ $data->commitment_value }}</td>
+						</tr>
 					</table>
 				</td>
 			</tr>
