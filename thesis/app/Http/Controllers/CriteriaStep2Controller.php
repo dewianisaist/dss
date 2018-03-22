@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Models\User;
 use App\Http\Models\Choice;
 use App\Http\Models\Criteria;
+use App\Http\Models\ResultSelection;
 use Auth;
 use DB;
 
@@ -212,14 +213,22 @@ class CriteriaStep2Controller extends Controller
      */
     public function destroy($id)
     {
-        Choice::join('criterias','criterias.id','=','choice.criteria_id')
+        $result = ResultSelection::where('criteria_id', '=', $id)->first();
+
+        if ($result == null) {
+            Choice::join('criterias','criterias.id','=','choice.criteria_id')
                 ->where('choice.criteria_id', '=', $id)
                 ->delete();
                 
-        Criteria::find($id)->delete();
+            Criteria::find($id)->delete();
 
-        return redirect()->route('criteriastep2.index')
-                        ->with('success','Kriteria berhasil dihapus');
+            return redirect()->route('criteriastep2.index')
+                             ->with('success','Kriteria berhasil dihapus');
+        } else {
+            return redirect()->route('criteriastep2.index')
+                             ->with('failed','Kriteria tidak bisa dihapus karena sudah ada penilaian');
+        }
+        
     }
 
     /**
