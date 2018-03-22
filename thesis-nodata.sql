@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2018 at 07:48 AM
+-- Generation Time: Mar 22, 2018 at 05:38 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -254,7 +254,7 @@ CREATE TABLE `selections` (
   `orientation_value` int(11) DEFAULT NULL,
   `commitment_value` int(11) DEFAULT NULL,
   `ranking` varchar(5) DEFAULT NULL,
-  `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian\nDiterima: hasil penilaian diterima\nTidak Diterima: hasil penilaian tidak diterima\nTerdaftar: hasil lampau diterima\nDitolak: hasil lampau tidak diterima',
+  `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian, Selesai: selesai penilaian, Diterima: hasil lampau diterima, Ditolak: hasil lampau tidak diterima',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

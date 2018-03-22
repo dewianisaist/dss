@@ -25,7 +25,7 @@ Hasil Seleksi Peserta Pelatihan
           <th>Nama Pendaftar</th>
           <th>Sub-Kejuruan</th>
           <th>Tanggal dan Waktu Seleksi</th>
-          <th>Status</th>
+          <th>Ranking</th>
         </tr>
       </thead>
       <tbody>
@@ -36,7 +36,7 @@ Hasil Seleksi Peserta Pelatihan
             <td>{{ $result_selection->name_registrant }}</td>
             <td>{{ $result_selection->name_sub_vocational }}</td>
             <td>{{ $result_selection->date }} dan {{ $result_selection->time }}</td>
-            <td>{{ $result_selection->status }}</td>
+            <td>{{ $result_selection->ranking }}</td>
           </tr>
         @endforeach
       </tbody>

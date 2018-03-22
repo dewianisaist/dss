@@ -26,8 +26,7 @@ class ResultController extends Controller
                                     ->join('users', 'users.id', '=', 'registrants.user_id')
                                     ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                                     ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
-                                    ->where('selections.status', '=', 'Diterima')
-                                    ->orWhere('selections.status', '=', 'Tidak Diterima')
+                                    ->where('selections.status', '=', 'Selesai')
                                     ->orderBy('selections.ranking','ASC')
                                     ->get();
 

@@ -437,7 +437,6 @@ class ResultSelectionController extends Controller
 
         $sortedSelection = array();
         $rank = 1;
-        $quota = Subvocational::where('name', '=', $selectionsData[$selection->id]->name_sub_vocational)->first();
 
         if ($isComparable) {
             arsort($tabel_leaving);
@@ -445,11 +444,7 @@ class ResultSelectionController extends Controller
                 $sortedSelection[] = $key;
                 $selection = $selectionsData[$key];
                 $selection->ranking = $rank;
-                if ($rank > $quota->quota) {
-                    $selection->status = "Tidak Diterima";
-                } else {
-                    $selection->status = "Diterima";
-                }
+                $selection->status = "Selesai";
                 $selection->save();
                 $rank ++;
             }
@@ -465,11 +460,7 @@ class ResultSelectionController extends Controller
                 $sortedSelection[] = $key;
                 $selection = $selectionsData[$key];
                 $selection->ranking = $rank;
-                if ($rank > $quota->quota) {
-                    $selection->status = "Tidak Diterima";
-                } else {
-                    $selection->status = "Diterima";
-                }
+                $selection->status = "Selesai";
                 $selection->save();
                 $rank ++;
             }

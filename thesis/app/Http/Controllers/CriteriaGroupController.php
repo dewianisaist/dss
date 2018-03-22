@@ -199,7 +199,7 @@ class CriteriaGroupController extends Controller
      */
     public function destroy($id)
     {
-        Criteria::where('group_criteria', '=', $id)->update(['group_criteria' => null]);;
+        Criteria::where('group_criteria', '=', $id)->update(['group_criteria' => null]);
         Criteria::find($id)->delete();
 
         return redirect()->route('criteriagroup.index')
