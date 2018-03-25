@@ -192,10 +192,3 @@
   <a href="{{ route('registration.index') }}"><i class="fa fa-pencil-square-o"></i> <span>Daftar</span></a>
 </li>
 @endif
-
-{{--  Only registrant can see "Pengumuman"  --}}
-@if(Auth::user()->roleId() == 2)
-<li {{ substr( \Request::route()->getName(), 0, 7 ) == 'result.' ? 'class=active' : '' }}>
-  <a href="{{ route('result.index') }}"><i class="fa fa-star"></i> <span>Pengumuman</span></a>
-</li>
-@endif
