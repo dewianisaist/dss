@@ -39,25 +39,6 @@ class PreferenceController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $role_id = Auth::user()->roleId();
-        
-        if ($role_id == 3) {
-            $preference = Criteria::find($id);
-
-            return view('preferences.show',compact('preference'));
-        } else {
-            return redirect()->route('profile_users.show');
-        }
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

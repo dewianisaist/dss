@@ -71,7 +71,6 @@
 							<td></td>
 						@endif
 						<td>
-							<a class="btn btn-info" href="{{ route('preferences.show',$preference->id) }}">Detail</a>
 							<a class="btn btn-primary" href="{{ route('preferences.edit',$preference->id) }}">Edit</a>
 						</td>
 					</tr>

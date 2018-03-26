@@ -139,7 +139,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 	//preferences - tidak ada permission
 	Route::get('preferences',['as'=>'preferences.index','uses'=>'PreferenceController@index']);
-	Route::get('preferences/{id}',['as'=>'preferences.show','uses'=>'PreferenceController@show']);
 	Route::get('preferences/{id}/edit',['as'=>'preferences.edit','uses'=>'PreferenceController@edit']);
 	Route::patch('preferences/{id}',['as'=>'preferences.update','uses'=>'PreferenceController@update']);
 	Route::delete('preferences/{id}',['as'=>'preferences.destroy','uses'=>'PreferenceController@destroy']);
