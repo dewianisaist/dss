@@ -190,20 +190,6 @@ class ResultSelectionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function clear($id)
-    {
-        ResultSelection::where('selection_id', '=', $id)->delete();
-
-        return redirect()->route('result_selection.assessment', $id)
-                         ->with('success','Penilaian berhasil dihapus');
-    }
-
-    /**
      * Count all assessment of the resource
      * 
      * @return \Illuminate\Http\Response

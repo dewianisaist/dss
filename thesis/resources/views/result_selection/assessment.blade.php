@@ -29,16 +29,6 @@
 				<p>{{ $message }}</p>
 			</div>
         @endif
-
-        @if ($check_result != null)
-        <div class="row">
-			<div class="col-lg-12 margin-tb">
-				<div class="pull-right mb-1">
-                    <a class="btn btn-danger" href="{{ route('result_selection.clear',$data->id ) }}">Clear Penilaian</a>
-				</div>
-			</div>
-		</div>
-        @endif
         
         <br/>
 		{!! Form::model($data, ['method' => 'PATCH','route' => ['result_selection.store', $data->ID_SELECTION]]) !!}
