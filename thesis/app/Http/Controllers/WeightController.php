@@ -128,6 +128,7 @@ class WeightController extends Controller
                                 $selected_criteria = $pairwise->criteria1_id;
                             }
                         }
+                        
 
                         $compares[$criteria1->id.":".$criteria2->id]['value'] = $value;
                         $compares[$criteria1->id.":".$criteria2->id]['selected_criteria'] = $selected_criteria;
@@ -206,6 +207,8 @@ class WeightController extends Controller
             }
             $base_table[$pairwise["criteriaid_1"]][$pairwise["criteriaid_2"]] = $pairwise["value"];
         }
+
+        // return $base_table;
 
         $normalized_table = array();
         $total_basecol_val = array();
@@ -295,7 +298,12 @@ class WeightController extends Controller
                 $data_pairwise["criteria1_id"] = $pairwise["criteriaid_1"];
                 $data_pairwise["criteria2_id"] = $pairwise["criteriaid_2"];
                 $data_pairwise["value"] = $pairwise["value"];
-                if (!array_key_exists($pairwise["criteriaid_1"],$base_table)){
+
+                $check_pairwise = PairwiseComparison::where('criteria1_id', '=', $pairwise["criteriaid_1"])
+                                                    ->where('criteria2_id', '=', $pairwise["criteriaid_2"])
+                                                    ->first();
+
+                if ($check_pairwise == null){
                     PairwiseComparison::create($data_pairwise);
                 } else {
                     PairwiseComparison::where('criteria1_id', '=', $pairwise["criteriaid_1"])
