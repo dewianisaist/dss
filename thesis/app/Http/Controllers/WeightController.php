@@ -137,6 +137,7 @@ class WeightController extends Controller
                 }
             }
 
+            // return $compares;
             return view('weights.pairwise',compact('compares', 'id','i'));
         } else {
             return redirect()->route('profile_users.show');
@@ -207,7 +208,6 @@ class WeightController extends Controller
             }
             $base_table[$pairwise["criteriaid_1"]][$pairwise["criteriaid_2"]] = $pairwise["value"];
         }
-
         // return $base_table;
 
         $normalized_table = array();
@@ -231,6 +231,7 @@ class WeightController extends Controller
                 $normalized_table[$row][$col] = $col_val / $total_row_val; 
             }
         }
+        // return $normalized_table;
 
         $partial_weight = array();
         foreach ($normalized_table as $row=>$each_row) {
@@ -243,50 +244,54 @@ class WeightController extends Controller
             // hitung bobot partial
             $partial_weight[$row] = $total_row_val / count($each_row);
         }
+        // return $partial_weight;
         
         $lamda_max = 0;
-
         foreach ($partial_weight as $r=>$value) {
             $criteria_factor = $value * $total_basecol_val[$r];
             $lamda_max += $criteria_factor;
         }
+        // return $lamda_max;
 
         //hitung ci
         $ci = ($lamda_max - count($partial_weight))/(count($partial_weight) - 1);
+        // return $ci;
 
         //random index
-        if (count($partial_weight == 3)) {
+        if (count($partial_weight) == 3) {
             $ri = 0.58;
-        } elseif (count($partial_weight == 4)) {
+        } elseif (count($partial_weight) == 4) {
             $ri = 0.90;
-        } elseif (count($partial_weight == 5)) {
+        } elseif (count($partial_weight) == 5) {
             $ri = 1.12;
-        } elseif (count($partial_weight == 6)) {
+        } elseif (count($partial_weight) == 6) {
             $ri = 1.24;
-        } elseif (count($partial_weight == 7)) {
+        } elseif (count($partial_weight) == 7) {
             $ri = 1.32;
-        } elseif (count($partial_weight == 8)) {
+        } elseif (count($partial_weight) == 8) {
             $ri = 1.41;
-        } elseif (count($partial_weight == 9)) {
+        } elseif (count($partial_weight) == 9) {
             $ri = 1.45;
-        } elseif (count($partial_weight == 10)) {
+        } elseif (count($partial_weight) == 10) {
             $ri = 1.49;
-        } elseif (count($partial_weight == 11)) {
+        } elseif (count($partial_weight) == 11) {
             $ri = 1.51;
-        } elseif (count($partial_weight == 12)) {
+        } elseif (count($partial_weight) == 12) {
             $ri = 1.48;
-        } elseif (count($partial_weight == 13)) {
+        } elseif (count($partial_weight) == 13) {
             $ri = 1.56;
-        } elseif (count($partial_weight == 14)) {
+        } elseif (count($partial_weight) == 14) {
             $ri = 1.57;
-        } elseif (count($partial_weight == 15)) {
+        } elseif (count($partial_weight) == 15) {
             $ri = 1.59;
         } else {
             $ri = 0;
         }
+        // return $ri;
 
         //hitung cr
         $cr = number_format($ci / $ri * 100, 2);
+        return $cr;
 
         if ($cr <= 10) {
             foreach ($partial_weight as $key=>$val_partial_weight) {
