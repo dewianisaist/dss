@@ -112,6 +112,10 @@ class SelectionController extends Controller
             'attitude_value' => 'required',
             'orientation_value' => 'required',
             'commitment_value' => 'required',
+            'honesty_value' => 'required',
+            'mental_value' => 'required',
+            'economic_value' => 'required',
+            'potential_value' => 'required',
         ]);
 
         $input = $request->all();

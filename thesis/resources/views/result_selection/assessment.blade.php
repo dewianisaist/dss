@@ -232,49 +232,69 @@
                             <th>Nilai Keterampilan Teknis</th>
                             <td>{{ $data->technical_value }}</td>
                         </tr>
+						<tr>
+                            <th>Rencana setelah selesai pelatihan</th>
+                            <td>{{ $data->orientation_value }}</td>
+                        </tr>
                         <tr>
                             <th width = "350px">Rekomendasi</th>
                             <td>{{ $data->recommendation }}</td>
                         </tr>
 						<tr>
-							<th>Nilai Kesan Baik</th>
-							<td>{{ $data->impression_value }}</td>
+							<th>Kejujuran (Kesesuaian antara jawaban dengan data)</th>
+							<td>{{ $data->honesty_value }}</td>
 						</tr>
 						<tr>
-							<th>Nilai Kesungguhan</th>
-							<td>{{ $data->seriousness_value }}</td>
-						</tr>
-						<tr>
-							<th>Nilai Percaya Diri</th>
-							<td>{{ $data->confidence_value }}</td>
-						</tr>
-						<tr>
-							<th>Nilai Keterampilan Komunikasi</th>
-							<td>{{ $data->communication_value }}</td>
-						</tr>
-						<tr>
-							<th>Nilai Penampilan</th>
-							<td>{{ $data->appearance_value }}</td>
-						</tr>
-						<tr>
-							<th>Nilai Pertimbangan Keluarga</th>
-							<td>{{ $data->family_value }}</td>
-						</tr>
-						<tr>
-							<th>Nilai Motivasi</th>
-							<td>{{ $data->motivation_value }}</td>
-						</tr>
-						<tr>
-							<th>Nilai Sikap</th>
+							<th>Sikap</th>
 							<td>{{ $data->attitude_value }}</td>
 						</tr>
 						<tr>
-							<th>Nilai Orientasi Masa Depan</th>
-							<td>{{ $data->orientation_value }}</td>
+							<th>Motivasi</th>
+							<td>{{ $data->motivation_value }}</td>
 						</tr>
 						<tr>
-							<th>Nilai Komitmen</th>
+							<th>Mental (Dari hasil observasi dan percakapan)</th>
+							<td>{{ $data->mental_value }}</td>
+						</tr>
+						<tr>
+							<th>Pertimbangan Keluarga (Ijin orang tua)</th>
+							<td>{{ $data->family_value }}</td>
+						</tr>
+						<tr>
+							<th>Penampilan</th>
+							<td>{{ $data->appearance_value }}</td>
+						</tr>
+						<tr>
+							<th>Keterampilan Komunikasi</th>
+							<td>{{ $data->communication_value }}</td>
+						</tr>
+						<tr>
+							<th>Percaya Diri</th>
+							<td>{{ $data->confidence_value }}</td>
+						</tr>
+						<tr>
+							<th>Komitmen (Kesanggupan mengikuti pelatihan)</th>
 							<td>{{ $data->commitment_value }}</td>
+						</tr>
+						<tr>
+							<th>Pertimbangan ekonomi (Dari pekerjaan orang tua dan tanggungan keluarga)</th>
+							<td>{{ $data->economic_value }}</td>
+						</tr>
+						<tr>
+							<th>Potensi</th>
+							<td>{{ $data->potential_value }}</td>
+						</tr>
+						<tr>
+							<th>Kesungguhan</th>
+							<td>{{ $data->seriousness_value }}</td>
+						</tr>
+						<tr>
+							<th>Kesan Baik</th>
+							<td>{{ $data->impression_value }}</td>
+						</tr>
+						<tr>
+							<th>Catatan</th>
+							<td>{!! nl2br(e($data->note)) !!}</td>
 						</tr>
 					</table>
 				</td>

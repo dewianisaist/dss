@@ -70,68 +70,98 @@
 			</div>	
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
+					<strong>Rencana setelah selesai pelatihan:</strong>
+					{{ $selection->orientation_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
 					<strong>Rekomendasi:</strong>
 					{{ $selection->recommendation }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Nilai Kesan Baik:</strong>
-					{{ $selection->impression_value }}
+					<strong>Kejujuran (Kesesuaian antara jawaban dengan data):</strong>
+					{{ $selection->honesty_value }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Nilai Kesungguhan:</strong>
-					{{ $selection->seriousness_value }}
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12">
-				<div class="form-group">
-					<strong>Nilai Percaya Diri:</strong>
-					{{ $selection->confidence_value }}
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12">
-				<div class="form-group">
-					<strong>Nilai Keterampilan Komunikasi:</strong>
-					{{ $selection->communication_value }}
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12">
-				<div class="form-group">
-					<strong>Nilai Penampilan:</strong>
-					{{ $selection->appearance_value }}
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12">
-				<div class="form-group">
-					<strong>Nilai Pertimbangan Keluarga:</strong>
-					{{ $selection->family_value }}
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12">
-				<div class="form-group">
-					<strong>Nilai Motivasi:</strong>
-					{{ $selection->motivation_value }}
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12">
-				<div class="form-group">
-					<strong>Nilai Sikap:</strong>
+					<strong>Sikap:</strong>
 					{{ $selection->attitude_value }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Nilai Orientasi Masa Depan:</strong>
-					{{ $selection->orientation_value }}
+					<strong>Motivasi:</strong>
+					{{ $selection->motivation_value }}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
-					<strong>Nilai Komitmen:</strong>
+					<strong>Mental (Dari hasil observasi dan percakapan):</strong>
+					{{ $selection->mental_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Pertimbangan Keluarga (Ijin orang tua):</strong>
+					{{ $selection->family_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Penampilan:</strong>
+					{{ $selection->appearance_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Keterampilan Komunikasi:</strong>
+					{{ $selection->communication_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Percaya Diri:</strong>
+					{{ $selection->confidence_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Komitmen (Kesanggupan mengikuti pelatihan):</strong>
 					{{ $selection->commitment_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Pertimbangan ekonomi (Dari pekerjaan orang tua dan tanggungan keluarga):</strong>
+					{{ $selection->economic_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Potensi:</strong>
+					{{ $selection->potential_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Kesungguhan:</strong>
+					{{ $selection->seriousness_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Kesan Baik:</strong>
+					{{ $selection->impression_value }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<strong>Catatan:</strong>
+					{!! nl2br(e($selection->note)) !!}
 				</div>
 			</div>
 		</div>

@@ -79,10 +79,16 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
+						<strong>Rencana setelah selesai pelatihan:</strong>
+						{!! Form::text('orientation_value', isset($selection->orientation_value) ? $selection->orientation_value : '', array('placeholder' => 'Rencana setelah selesai pelatihan','class' => 'form-control')) !!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
 						<strong>Rekomendasi:</strong>
 						{!! Form::select('recommendation', 
 							array(
-								'Ya' => 'Ya', 
+								'Ada' => 'Ada', 
 								'Tidak' => 'Tidak',
 							), 
 							isset($selection->recommendation) ? $selection->recommendation : '', array('class' => 'form-control')) 
@@ -91,65 +97,176 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Kesan Baik <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('impression_value', isset($selection->impression_value) ? $selection->impression_value : '', array('placeholder' => 'Nilai Kesan Baik','class' => 'form-control')) !!}
+						<strong>Kejujuran (Kesesuaian antara jawaban dengan data):</strong>
+						{!! Form::select('honesty_value', 
+							array(
+								'Sesuai' => 'Sesuai', 
+								'Tidak Sesuai' => 'Tidak Sesuai',
+							), 
+							isset($selection->honesty_value) ? $selection->honesty_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Kesungguhan <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('seriousness_value', isset($selection->seriousness_value) ? $selection->seriousness_value : '', array('placeholder' => 'Nilai Kesungguhan','class' => 'form-control')) !!}
+						<strong>Sikap:</strong>
+						{!! Form::select('attitude_value', 
+							array(
+								'Baik' => 'Baik', 
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang',
+							), 
+							isset($selection->attitude_value) ? $selection->attitude_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Percaya Diri <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('confidence_value', isset($selection->confidence_value) ? $selection->confidence_value : '', array('placeholder' => 'Nilai Percaya Diri','class' => 'form-control')) !!}
+						<strong>Motivasi:</strong>
+						{!! Form::select('motivation_value', 
+							array(
+								'Kemauan sendiri' => 'Kemauan sendiri', 
+								'Dorongan orang lain' => 'Dorongan orang lain',
+								'Tidak Ada' => 'Tidak Ada',
+							), 
+							isset($selection->motivation_value) ? $selection->motivation_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Keterampilan Komunikasi <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('communication_value', isset($selection->communication_value) ? $selection->communication_value : '', array('placeholder' => 'Nilai Keterampilan Komunikasi','class' => 'form-control')) !!}
+						<strong>Mental (Dari hasil observasi dan percakapan):</strong>
+						{!! Form::select('mental_value', 
+							array(
+								'Baik' => 'Baik', 
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang',
+							), 
+							isset($selection->mental_value) ? $selection->mental_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Penampilan <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('appearance_value', isset($selection->appearance_value) ? $selection->appearance_value : '', array('placeholder' => 'Nilai Penampilan','class' => 'form-control')) !!}
+						<strong>Pertimbangan Keluarga (Ijin orang tua):</strong>
+						{!! Form::select('family_value', 
+							array(
+								'Diijinkan' => 'Diijinkan', 
+								'Tidak Diijinkan' => 'Tidak Diijinkan',
+							), 
+							isset($selection->family_value) ? $selection->family_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Pertimbangan Keluarga <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('family_value', isset($selection->family_value) ? $selection->family_value : '', array('placeholder' => 'Nilai Pertimbangan Keluarga','class' => 'form-control')) !!}
+						<strong>Penampilan:</strong>
+						{!! Form::select('appearance_value', 
+							array(
+								'Baik' => 'Baik', 
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang',
+							), 
+							isset($selection->appearance_value) ? $selection->appearance_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Motivasi <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('motivation_value', isset($selection->motivation_value) ? $selection->motivation_value : '', array('placeholder' => 'Nilai Motivasi','class' => 'form-control')) !!}
+						<strong>Keterampilan Komunikasi:</strong>
+						{!! Form::select('communication_value', 
+							array(
+								'Baik' => 'Baik', 
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang',
+							), 
+							isset($selection->communication_value) ? $selection->communication_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Sikap <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('attitude_value', isset($selection->attitude_value) ? $selection->attitude_value : '', array('placeholder' => 'Nilai Sikap','class' => 'form-control')) !!}
+						<strong>Percaya Diri:</strong>
+						{!! Form::select('confidence_value', 
+							array(
+								'Baik' => 'Baik', 
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang',
+							), 
+							isset($selection->confidence_value) ? $selection->confidence_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Orientasi Masa Depan <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('orientation_value', isset($selection->orientation_value) ? $selection->orientation_value : '', array('placeholder' => 'Nilai Orientasi Masa Depan','class' => 'form-control')) !!}
+						<strong>Komitmen (Kesanggupan mengikuti pelatihan):</strong>
+						{!! Form::select('commitment_value', 
+							array(
+								'Sanggup' => 'Sanggup', 
+								'Ragu-ragu' => 'Ragu-ragu',
+								'Tidak Sanggup' => 'Tidak Sanggup',
+							), 
+							isset($selection->commitment_value) ? $selection->commitment_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="form-group">
-						<strong>Nilai Komitmen <small>(Range nilai 0-100)</small>:</strong>
-						{!! Form::text('commitment_value', isset($selection->commitment_value) ? $selection->commitment_value : '', array('placeholder' => 'Nilai Komitmen','class' => 'form-control')) !!}
+						<strong>Pertimbangan ekonomi (Dari pekerjaan orang tua dan tanggungan keluarga):</strong>
+						{!! Form::select('economic_value', 
+							array(
+								'Mapan' => 'Mapan',
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang', 
+							), 
+							isset($selection->economic_value) ? $selection->economic_value : '', array('class' => 'form-control')) 
+						!!}
 					</div>
 				</div>
-
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Potensi:</strong>
+						{!! Form::select('potential_value', 
+							array(
+								'Berpotensi' => 'Berpotensi', 
+								'Kurang Berpotensi' => 'Kurang Berpotensi',
+							), 
+							isset($selection->potential_value) ? $selection->potential_value : '', array('class' => 'form-control')) 
+						!!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Kesungguhan:</strong>
+						{!! Form::select('seriousness_value', 
+							array(
+								'Baik' => 'Baik', 
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang',
+							), 
+							isset($selection->seriousness_value) ? $selection->seriousness_value : '', array('class' => 'form-control')) 
+						!!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Kesan Baik:</strong>
+						{!! Form::select('impression_value', 
+							array(
+								'Baik' => 'Baik', 
+								'Cukup' => 'Cukup',
+								'Kurang' => 'Kurang',
+							), 
+							isset($selection->impression_value) ? $selection->impression_value : '', array('class' => 'form-control')) 
+						!!}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<strong>Catatan:</strong>
+						{!! Form::textarea('note', isset($selection->note) ? $selection->note : '', array('placeholder' => 'Catatan','class' => 'form-control','style'=>'height:100px')) !!}
+					</div>
+				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
