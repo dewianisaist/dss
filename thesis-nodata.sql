@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 22, 2018 at 05:38 AM
+-- Generation Time: Mar 30, 2018 at 03:39 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -243,16 +243,21 @@ CREATE TABLE `selections` (
   `knowledge_value` int(11) DEFAULT NULL,
   `technical_value` int(11) DEFAULT NULL,
   `recommendation` varchar(5) DEFAULT NULL,
-  `impression_value` int(11) DEFAULT NULL,
-  `seriousness_value` int(11) DEFAULT NULL,
-  `confidence_value` int(11) DEFAULT NULL,
-  `communication_value` int(11) DEFAULT NULL,
-  `appearance_value` int(11) DEFAULT NULL,
-  `family_value` int(11) DEFAULT NULL,
-  `motivation_value` int(11) DEFAULT NULL,
-  `attitude_value` int(11) DEFAULT NULL,
-  `orientation_value` int(11) DEFAULT NULL,
-  `commitment_value` int(11) DEFAULT NULL,
+  `impression_value` varchar(20) DEFAULT NULL,
+  `seriousness_value` varchar(20) DEFAULT NULL,
+  `confidence_value` varchar(20) DEFAULT NULL,
+  `communication_value` varchar(20) DEFAULT NULL,
+  `appearance_value` varchar(20) DEFAULT NULL,
+  `family_value` varchar(20) DEFAULT NULL,
+  `motivation_value` varchar(255) DEFAULT NULL,
+  `attitude_value` varchar(20) DEFAULT NULL,
+  `orientation_value` varchar(255) DEFAULT NULL,
+  `commitment_value` varchar(20) DEFAULT NULL,
+  `honesty_value` varchar(20) DEFAULT NULL,
+  `mental_value` varchar(20) DEFAULT NULL,
+  `economic_value` varchar(20) DEFAULT NULL,
+  `potential_value` varchar(20) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
   `ranking` varchar(5) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian, Selesai: selesai penilaian, Diterima: hasil lampau diterima, Ditolak: hasil lampau tidak diterima',
   `created_at` timestamp NULL DEFAULT NULL,
