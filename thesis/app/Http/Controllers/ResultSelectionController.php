@@ -35,7 +35,10 @@ class ResultSelectionController extends Controller
                                     ->join('users', 'users.id', '=', 'registrants.user_id')
                                     ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                                     ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
-                                    ->where('selections.status', '=', '')
+                                    ->where(function($query){
+                                        $query->whereNull('selections.status')
+                                              ->orWhere('selections.status', '=', '');
+                                    })
                                     ->orderBy('selections.id','DESC')
                                     ->paginate(10);
             // return $data;
@@ -203,7 +206,10 @@ class ResultSelectionController extends Controller
                                     ->join('users', 'users.id', '=', 'registrants.user_id')
                                     ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                                     ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
-                                    ->where('selections.status', '=', '')
+                                    ->where(function($query){
+                                        $query->whereNull('selections.status')
+                                              ->orWhere('selections.status', '=', '');
+                                    })
                                     ->orderBy('selections.id','DESC')
                                     ->get();
         // return $selections;
