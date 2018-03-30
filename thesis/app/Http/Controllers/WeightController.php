@@ -291,7 +291,7 @@ class WeightController extends Controller
 
         //hitung cr
         $cr = number_format($ci / $ri * 100, 2);
-        return $cr;
+        // return $cr;
 
         if ($cr <= 10) {
             foreach ($partial_weight as $key=>$val_partial_weight) {
