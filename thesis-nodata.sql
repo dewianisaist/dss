@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2018 at 03:39 PM
+-- Generation Time: Apr 01, 2018 at 08:54 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -258,7 +258,7 @@ CREATE TABLE `selections` (
   `economic_value` varchar(20) DEFAULT NULL,
   `potential_value` varchar(20) DEFAULT NULL,
   `note` varchar(255) DEFAULT NULL,
-  `ranking` varchar(5) DEFAULT NULL,
+  `ranking` int(11) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian, Selesai: selesai penilaian, Diterima: hasil lampau diterima, Ditolak: hasil lampau tidak diterima',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL

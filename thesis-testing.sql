@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2018 at 03:40 PM
+-- Generation Time: Apr 01, 2018 at 08:55 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -709,7 +709,7 @@ CREATE TABLE `selections` (
   `economic_value` varchar(20) DEFAULT NULL,
   `potential_value` varchar(20) DEFAULT NULL,
   `note` varchar(255) DEFAULT NULL,
-  `ranking` varchar(5) DEFAULT NULL,
+  `ranking` int(11) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL COMMENT '“”: proses penilaian, Selesai: selesai penilaian, Diterima: hasil lampau diterima, Ditolak: hasil lampau tidak diterima',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -720,13 +720,13 @@ CREATE TABLE `selections` (
 --
 
 INSERT INTO `selections` (`id`, `registration_id`, `selection_schedule_id`, `knowledge_value`, `technical_value`, `recommendation`, `impression_value`, `seriousness_value`, `confidence_value`, `communication_value`, `appearance_value`, `family_value`, `motivation_value`, `attitude_value`, `orientation_value`, `commitment_value`, `honesty_value`, `mental_value`, `economic_value`, `potential_value`, `note`, `ranking`, `status`, `created_at`, `updated_at`) VALUES
-(1, 5, 3, 80, 0, 'Ya', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, '', 'Diterima', '2015-02-01 10:00:00', '2018-03-20 23:43:19'),
-(2, 1, 2, 85, 0, 'Ya', '0', '95', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, '', '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
-(3, 4, 2, 40, 0, 'Ya', '0', '85', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, '', '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
-(4, 6, 2, 60, 0, 'Ya', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, '', '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
-(5, 7, 2, 75, 0, 'Ya', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, '', '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
-(6, 8, 2, 45, 0, 'Ya', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, '', '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
-(7, 9, 2, 55, 0, 'Ya', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, '', '', '2016-07-10 10:00:00', '2018-03-21 21:27:40');
+(1, 5, 3, 80, 0, 'Ya', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, 0, 'Diterima', '2015-02-01 10:00:00', '2018-03-20 23:43:19'),
+(2, 1, 2, 85, 0, 'Ya', '0', '95', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, 0, '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
+(3, 4, 2, 40, 0, 'Ya', '0', '85', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, 0, '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
+(4, 6, 2, 60, 0, 'Ya', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, 0, '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
+(5, 7, 2, 75, 0, 'Ya', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, 0, '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
+(6, 8, 2, 45, 0, 'Ya', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, 0, '', '2016-07-10 10:00:00', '2018-03-21 21:27:40'),
+(7, 9, 2, 55, 0, 'Ya', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL, NULL, NULL, 0, '', '2016-07-10 10:00:00', '2018-03-21 21:27:40');
 
 -- --------------------------------------------------------
 
