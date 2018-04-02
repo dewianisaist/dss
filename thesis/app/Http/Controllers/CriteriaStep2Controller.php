@@ -8,6 +8,7 @@ use App\Http\Models\User;
 use App\Http\Models\Choice;
 use App\Http\Models\Criteria;
 use App\Http\Models\ResultSelection;
+use App\Http\Models\PairwiseComparison;
 use Auth;
 use DB;
 
@@ -214,8 +215,9 @@ class CriteriaStep2Controller extends Controller
     public function destroy($id)
     {
         $result = ResultSelection::where('criteria_id', '=', $id)->first();
+        $pairwise = PairwiseComparison::where('criteria1_id', '=', $id)->first();
 
-        if ($result == null) {
+        if ($pairwise == null && $result == null) {
             Choice::join('criterias','criterias.id','=','choice.criteria_id')
                 ->where('choice.criteria_id', '=', $id)
                 ->delete();
