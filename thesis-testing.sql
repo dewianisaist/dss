@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2018 at 08:55 AM
+-- Generation Time: Apr 02, 2018 at 04:45 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thesis-testing`
+-- Database: `thesis`
 --
 
 -- --------------------------------------------------------
@@ -158,14 +158,14 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `citatio
 (31, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 13:01:21', '2018-02-12 13:01:21'),
 (32, NULL, 'Pengalaman Pelatihan', 'usulan kepala', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 13:01:21', '2018-02-12 13:01:21'),
 (33, NULL, 'Kelengkapan Administrasi', 'usulan kasubag tu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-12 13:27:50', '2018-02-12 13:27:50'),
-(97, NULL, 'Umur', '-', NULL, '', '0.100', '0.100', NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-29 10:40:30', '2018-03-29 10:45:47'),
-(98, NULL, 'Pendidikan Terakhir', '-', NULL, '', '0.200', '0.200', NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-29 10:40:37', '2018-03-29 10:45:47'),
-(99, NULL, 'Hasil seleksi tertulis', '-', NULL, '', '0.100', '0.100', NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-29 10:40:59', '2018-03-29 10:45:47'),
-(100, NULL, 'Minat/kesungguhan', '-', NULL, '', '0.200', '0.200', NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-29 10:41:17', '2018-03-29 10:45:47'),
-(101, NULL, 'Sikap', '-', NULL, '', '0.200', '0.200', NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-29 10:41:24', '2018-03-29 10:45:47'),
-(102, NULL, 'Intensitas keikutsertaan pelatihan di BLK Bantul', '-', NULL, '', '0.050', '0.050', NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-29 10:41:37', '2018-03-29 10:45:47'),
-(103, NULL, 'Rekomendasi', '-', NULL, '', '0.050', '0.050', NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-29 10:41:45', '2018-03-29 10:45:47'),
-(104, NULL, 'Penampilan', '-', NULL, '', '0.100', '0.100', NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-03-29 10:41:52', '2018-03-29 10:45:47');
+(97, NULL, 'Umur', '-', NULL, '17-25 tahun: 4\r\n26-34 tahun: 3\r\n35-40 tahun: 2\r\n41 tahun ke atas: 1\r\nkurang dari 17 tahun: 0', '0.100', '0.100', '4', 'Maksimasi', '1.000', '0.500', NULL, '2', '1', NULL, '2018-03-29 10:40:30', '2018-04-01 19:44:38'),
+(98, NULL, 'Pendidikan Terakhir', '-', NULL, 'SMA/SMK: 4\r\nSMP: 3\r\nSD ke bawah: 2\r\nDiploma ke atas: 1', '0.200', '0.200', '4', 'Maksimasi', '1.000', '0.500', NULL, '2', '1', NULL, '2018-03-29 10:40:37', '2018-04-01 19:44:28'),
+(99, NULL, 'Hasil seleksi tertulis', '-', NULL, '', '0.100', '0.100', '5', 'Maksimasi', '10.000', '5.000', NULL, '2', '1', NULL, '2018-03-29 10:40:59', '2018-04-01 19:44:19'),
+(100, NULL, 'Minat/kesungguhan', '-', NULL, 'Baik: 3\r\nCukup: 2\r\nKurang: 1', '0.200', '0.200', '4', 'Maksimasi', '1.000', '0.500', NULL, '2', '1', NULL, '2018-03-29 10:41:17', '2018-04-01 19:44:10'),
+(101, NULL, 'Sikap', '-', NULL, 'Baik: 3\r\nCukup: 2\r\nKurang: 1', '0.200', '0.200', '4', 'Maksimasi', '1.000', '0.500', NULL, '2', '1', NULL, '2018-03-29 10:41:24', '2018-04-01 19:44:02'),
+(102, NULL, 'Intensitas keikutsertaan pelatihan di BLK Bantul', '-', NULL, 'Belum pernah: 4\r\nPernah ikut 1x: 3\r\nPernah ikut 2x: 2\r\nPernah ikut >= 3x: 1', '0.050', '0.050', '4', 'Maksimasi', '1.000', '0.500', NULL, '2', '1', NULL, '2018-03-29 10:41:37', '2018-04-01 19:43:53'),
+(103, NULL, 'Rekomendasi', '-', NULL, 'Ada: 2\r\nTidak: 1', '0.050', '0.050', '4', 'Maksimasi', '1.000', '0.500', NULL, '2', '1', NULL, '2018-03-29 10:41:45', '2018-04-01 19:43:45'),
+(104, NULL, 'Penampilan', '-', NULL, 'Baik: 3\r\nCukup: 2\r\nKurang: 1', '0.100', '0.100', '4', 'Maksimasi', '1.000', '0.500', NULL, '2', '1', NULL, '2018-03-29 10:41:52', '2018-04-01 19:43:36');
 
 -- --------------------------------------------------------
 
