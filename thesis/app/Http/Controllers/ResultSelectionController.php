@@ -457,7 +457,7 @@ class ResultSelectionController extends Controller
                 $rank ++;
             }
         }
-         return $netflow;
+        //  return $netflow;
         // return $sortedSelection;
 
         return redirect()->route('result_selection.index')
