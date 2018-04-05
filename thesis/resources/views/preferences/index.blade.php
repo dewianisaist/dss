@@ -71,7 +71,7 @@
 							<td></td>
 						@endif
 						<td>
-							<a class="btn btn-primary" href="{{ route('preferences.edit',$preference->id) }}">Edit</a>
+							<a class="btn btn-primary" href="{{ route('preferences.edit',$preference->id) }}">Input Preferensi</a>
 						</td>
 					</tr>
 				@endforeach

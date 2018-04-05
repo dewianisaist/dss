@@ -6,12 +6,12 @@
   
 @section('content_header')
 <h1>
-  Edit Tipe Preferensi
+  Input Tipe Preferensi
 </h1>
 <ol class="breadcrumb">
   <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
   <li><a href="{{ route('preferences.index') }}"><i class="fa fa-hourglass-half"></i> Tipe Preferensi</a></li>
-  <li class="active">Edit Tipe Preferensi</li>
+  <li class="active">Input Tipe Preferensi</li>
 </ol>
 @endsection
  
