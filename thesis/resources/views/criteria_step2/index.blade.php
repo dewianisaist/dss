@@ -97,7 +97,9 @@
                         <td width="150px">{{ $data_baku->sum }} dari {{ $data_baku->count }}</td>
                         <td>
                             @permission('criteriastep2-use')
-                            <a class="btn btn-primary" href="{{ route('criteriastep2.use',$data_baku->id) }}">Gunakan</a>
+                            @if ($data_baku->result >= 70)
+                                <a class="btn btn-primary" href="{{ route('criteriastep2.use',$data_baku->id) }}">Gunakan</a>
+                            @endif
                             @endpermission
                         </td>
                     </tr>
