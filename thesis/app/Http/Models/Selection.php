@@ -12,7 +12,7 @@ class Selection extends Model
                         'impression_value', 'seriousness_value', 'confidence_value', 'communication_value',
                         'appearance_value', 'family_value', 'motivation_value', 'attitude_value',
                         'orientation_value', 'commitment_value', 'honesty_value', 'mental_value',
-                        'economic_value', 'potential_value', 'note', 'ranking', 'status'];
+                        'economic_value', 'potential_value', 'note', 'final_score', 'ranking', 'status'];
 
     public function selectionschedule() {
         return $this->belongsTo('App\Http\Models\SelectionSchedule','selection_schedule_id');
