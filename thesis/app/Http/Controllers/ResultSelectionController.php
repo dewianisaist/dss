@@ -435,6 +435,7 @@ class ResultSelectionController extends Controller
             foreach ($tabel_leaving as $key=>$value) {
                 $sortedSelection[] = $key;
                 $selection = $selectionsData[$key];
+                $selection->final_score = $value;
                 $selection->ranking = $rank;
                 $selection->status = "Selesai";
                 $selection->save();
@@ -451,6 +452,7 @@ class ResultSelectionController extends Controller
             foreach ($netflow as $key=>$value) {
                 $sortedSelection[] = $key;
                 $selection = $selectionsData[$key];
+                $selection->final_score = $value;
                 $selection->ranking = $rank;
                 $selection->status = "Selesai";
                 $selection->save();
