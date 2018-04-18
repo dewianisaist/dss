@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 15, 2018 at 12:43 AM
+-- Generation Time: Apr 18, 2018 at 08:44 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -82,6 +82,22 @@ CREATE TABLE `criterias` (
   `step` varchar(1) DEFAULT NULL COMMENT '1: tahap 1\n2: tahap 2',
   `status` varchar(1) DEFAULT NULL COMMENT '0: deleted\n1: active',
   `ref_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` int(11) NOT NULL,
+  `registrant_id` int(11) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `ktp` varchar(255) DEFAULT NULL,
+  `last_certificate` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -305,22 +321,6 @@ CREATE TABLE `sub_vocationals` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uploads`
---
-
-CREATE TABLE `uploads` (
-  `id` int(11) NOT NULL,
-  `registrant_id` int(11) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `ktp` varchar(255) DEFAULT NULL,
-  `last_certificate` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -381,6 +381,13 @@ ALTER TABLE `course_experience`
 ALTER TABLE `criterias`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_criterias_criterias1_idx` (`group_criteria`);
+
+--
+-- Indexes for table `documents`
+--
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`,`registrant_id`),
+  ADD KEY `fk_upload_pendaftar1_idx` (`registrant_id`);
 
 --
 -- Indexes for table `educational_background`
@@ -478,13 +485,6 @@ ALTER TABLE `sub_vocationals`
   ADD KEY `fk_sub_kejuruan_kejuruan1_idx` (`vocational_id`);
 
 --
--- Indexes for table `uploads`
---
-ALTER TABLE `uploads`
-  ADD PRIMARY KEY (`id`,`registrant_id`),
-  ADD KEY `fk_upload_pendaftar1_idx` (`registrant_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -511,6 +511,11 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `criterias`
 --
 ALTER TABLE `criterias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `documents`
+--
+ALTER TABLE `documents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `educational_background`
@@ -558,11 +563,6 @@ ALTER TABLE `selection_schedules`
 ALTER TABLE `sub_vocationals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `uploads`
---
-ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -595,6 +595,12 @@ ALTER TABLE `course_experience`
 --
 ALTER TABLE `criterias`
   ADD CONSTRAINT `fk_criterias_criterias1` FOREIGN KEY (`group_criteria`) REFERENCES `criterias` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `documents`
+--
+ALTER TABLE `documents`
+  ADD CONSTRAINT `fk_upload_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `educational_background`
@@ -662,12 +668,6 @@ ALTER TABLE `selection_schedules`
 --
 ALTER TABLE `sub_vocationals`
   ADD CONSTRAINT `fk_sub_kejuruan_kejuruan1` FOREIGN KEY (`vocational_id`) REFERENCES `vocationals` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `uploads`
---
-ALTER TABLE `uploads`
-  ADD CONSTRAINT `fk_upload_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

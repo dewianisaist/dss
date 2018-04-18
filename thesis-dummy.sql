@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 15, 2018 at 12:43 AM
+-- Generation Time: Apr 18, 2018 at 08:43 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -166,6 +166,34 @@ INSERT INTO `criterias` (`id`, `group_criteria`, `name`, `description`, `citatio
 (94, NULL, 'Intensitas Keikutsertaan', 'usulan kepala', NULL, NULL, '0.333', '0.333', '6', 'Maksimasi', NULL, NULL, '0.500', '2', '1', 31, '2018-02-19 12:58:38', '2018-03-18 04:11:30'),
 (95, NULL, 'Personal', NULL, NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 13:00:08', '2018-02-28 16:33:22'),
 (96, NULL, 'Ujian/Tes', NULL, NULL, NULL, '0.333', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1', NULL, '2018-02-19 13:00:38', '2018-02-28 16:33:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` int(11) NOT NULL,
+  `registrant_id` int(11) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `ktp` varchar(255) DEFAULT NULL,
+  `last_certificate` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
+(1, 1, 'photo_c9f0f895fb98ab9159f51fd0297e236d.jpeg', 'ktp_c9f0f895fb98ab9159f51fd0297e236d.pdf', 'lastcertificate_c9f0f895fb98ab9159f51fd0297e236d.pdf', '2018-01-26 21:02:53', '2018-01-26 21:02:53'),
+(2, 2, 'photo_45c48cce2e2d7fbdea1afc51c7c6ad26.jpg', 'ktp_45c48cce2e2d7fbdea1afc51c7c6ad26.pdf', 'lastcertificate_45c48cce2e2d7fbdea1afc51c7c6ad26.pdf', '2018-01-26 21:22:29', '2018-01-27 17:36:37'),
+(3, 3, 'photo_d3d9446802a44259755d38e6d163e820.jpg', 'ktp_d3d9446802a44259755d38e6d163e820.pdf', 'lastcertificate_d3d9446802a44259755d38e6d163e820.pdf', '2018-01-26 21:24:38', '2018-01-27 18:38:03'),
+(4, 4, 'photo_6512bd43d9caa6e02c990b0a82652dca.jpg', 'ktp_6512bd43d9caa6e02c990b0a82652dca.pdf', 'lastcertificate_6512bd43d9caa6e02c990b0a82652dca.pdf', '2018-01-27 18:43:57', '2018-01-27 18:43:57'),
+(5, 5, 'photo_c20ad4d76fe97759aa27a0c99bff6710.jpg', 'ktp_c20ad4d76fe97759aa27a0c99bff6710.pdf', 'lastcertificate_c20ad4d76fe97759aa27a0c99bff6710.pdf', '2018-01-27 18:47:23', '2018-01-27 18:47:23'),
+(6, 6, 'photo_c51ce410c124a10e0db5e4b97fc2af39.png', 'ktp_c51ce410c124a10e0db5e4b97fc2af39.pdf', 'lastcertificate_c51ce410c124a10e0db5e4b97fc2af39.docx', '2018-01-27 18:50:48', '2018-02-20 02:13:31');
 
 -- --------------------------------------------------------
 
@@ -811,34 +839,6 @@ INSERT INTO `sub_vocationals` (`id`, `vocational_id`, `name`, `quota`, `long_tra
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uploads`
---
-
-CREATE TABLE `uploads` (
-  `id` int(11) NOT NULL,
-  `registrant_id` int(11) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `ktp` varchar(255) DEFAULT NULL,
-  `last_certificate` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `uploads`
---
-
-INSERT INTO `uploads` (`id`, `registrant_id`, `photo`, `ktp`, `last_certificate`, `created_at`, `updated_at`) VALUES
-(1, 1, 'photo_c9f0f895fb98ab9159f51fd0297e236d.jpeg', 'ktp_c9f0f895fb98ab9159f51fd0297e236d.pdf', 'lastcertificate_c9f0f895fb98ab9159f51fd0297e236d.pdf', '2018-01-26 21:02:53', '2018-01-26 21:02:53'),
-(2, 2, 'photo_45c48cce2e2d7fbdea1afc51c7c6ad26.jpg', 'ktp_45c48cce2e2d7fbdea1afc51c7c6ad26.pdf', 'lastcertificate_45c48cce2e2d7fbdea1afc51c7c6ad26.pdf', '2018-01-26 21:22:29', '2018-01-27 17:36:37'),
-(3, 3, 'photo_d3d9446802a44259755d38e6d163e820.jpg', 'ktp_d3d9446802a44259755d38e6d163e820.pdf', 'lastcertificate_d3d9446802a44259755d38e6d163e820.pdf', '2018-01-26 21:24:38', '2018-01-27 18:38:03'),
-(4, 4, 'photo_6512bd43d9caa6e02c990b0a82652dca.jpg', 'ktp_6512bd43d9caa6e02c990b0a82652dca.pdf', 'lastcertificate_6512bd43d9caa6e02c990b0a82652dca.pdf', '2018-01-27 18:43:57', '2018-01-27 18:43:57'),
-(5, 5, 'photo_c20ad4d76fe97759aa27a0c99bff6710.jpg', 'ktp_c20ad4d76fe97759aa27a0c99bff6710.pdf', 'lastcertificate_c20ad4d76fe97759aa27a0c99bff6710.pdf', '2018-01-27 18:47:23', '2018-01-27 18:47:23'),
-(6, 6, 'photo_c51ce410c124a10e0db5e4b97fc2af39.png', 'ktp_c51ce410c124a10e0db5e4b97fc2af39.pdf', 'lastcertificate_c51ce410c124a10e0db5e4b97fc2af39.docx', '2018-01-27 18:50:48', '2018-02-20 02:13:31');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -937,6 +937,13 @@ ALTER TABLE `criterias`
   ADD KEY `fk_criterias_criterias1_idx` (`group_criteria`);
 
 --
+-- Indexes for table `documents`
+--
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`,`registrant_id`),
+  ADD KEY `fk_upload_pendaftar1_idx` (`registrant_id`);
+
+--
 -- Indexes for table `educational_background`
 --
 ALTER TABLE `educational_background`
@@ -1032,13 +1039,6 @@ ALTER TABLE `sub_vocationals`
   ADD KEY `fk_sub_kejuruan_kejuruan1_idx` (`vocational_id`);
 
 --
--- Indexes for table `uploads`
---
-ALTER TABLE `uploads`
-  ADD PRIMARY KEY (`id`,`registrant_id`),
-  ADD KEY `fk_upload_pendaftar1_idx` (`registrant_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1066,6 +1066,11 @@ ALTER TABLE `courses`
 --
 ALTER TABLE `criterias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+--
+-- AUTO_INCREMENT for table `documents`
+--
+ALTER TABLE `documents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `educational_background`
 --
@@ -1112,11 +1117,6 @@ ALTER TABLE `selection_schedules`
 ALTER TABLE `sub_vocationals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `uploads`
---
-ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -1149,6 +1149,12 @@ ALTER TABLE `course_experience`
 --
 ALTER TABLE `criterias`
   ADD CONSTRAINT `fk_criterias_criterias1` FOREIGN KEY (`group_criteria`) REFERENCES `criterias` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `documents`
+--
+ALTER TABLE `documents`
+  ADD CONSTRAINT `fk_upload_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `educational_background`
@@ -1216,12 +1222,6 @@ ALTER TABLE `selection_schedules`
 --
 ALTER TABLE `sub_vocationals`
   ADD CONSTRAINT `fk_sub_kejuruan_kejuruan1` FOREIGN KEY (`vocational_id`) REFERENCES `vocationals` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `uploads`
---
-ALTER TABLE `uploads`
-  ADD CONSTRAINT `fk_upload_pendaftar1` FOREIGN KEY (`registrant_id`) REFERENCES `registrants` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
