@@ -20,12 +20,11 @@ Hasil Seleksi Peserta Pelatihan
     <table id="table_result" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>No</th>
+          <th>Peringkat</th>
           <th>Nama Pendaftar</th>
           <th>Sub-Kejuruan</th>
           <th>Tanggal dan Waktu Seleksi</th>
           <th>Nilai Seleksi</th>
-          <th>Ranking</th>
         </tr>
       </thead>
       <tbody>
@@ -36,7 +35,6 @@ Hasil Seleksi Peserta Pelatihan
             <td>{{ $result_selection->name_sub_vocational }}</td>
             <td>{{ $result_selection->date }} dan {{ $result_selection->time }}</td>
             <td>{{ $result_selection->final_score }}</td>
-            <td>{{ $result_selection->ranking }}</td>
           </tr>
         @endforeach
       </tbody>

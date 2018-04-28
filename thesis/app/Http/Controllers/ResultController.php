@@ -29,7 +29,8 @@ class ResultController extends Controller
                                         ->join('selection_schedules', 'selection_schedules.id', '=', 'selections.selection_schedule_id')
                                         ->join('sub_vocationals', 'sub_vocationals.id', '=', 'selection_schedules.sub_vocational_id')
                                         ->where('selections.status', '=', 'Selesai')
-                                        ->orderBy('selections.ranking','ASC')
+                                        ->orderBy('selections.final_score','DESC')
+                                        ->orderBy('users.name','ASC')
                                         ->get();
 
             return view('result.index',compact('result','i'));
