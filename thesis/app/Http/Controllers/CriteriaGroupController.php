@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Models\User;
 use App\Http\Models\Choice;
 use App\Http\Models\Criteria;
+use App\Http\Models\PairwiseComparison;
 use Auth;
 use DB;
 
@@ -199,11 +200,18 @@ class CriteriaGroupController extends Controller
      */
     public function destroy($id)
     {
-        Criteria::where('group_criteria', '=', $id)->update(['group_criteria' => null]);
-        Criteria::find($id)->delete();
+        $pairwise = PairwiseComparison::where('criteria1_id', '=', $id)->first();
 
-        return redirect()->route('criteriagroup.index')
-                        ->with('success','Kelompok kriteria berhasil dihapus');
+        if ($pairwise == null) {
+            Criteria::where('group_criteria', '=', $id)->update(['group_criteria' => null]);
+            Criteria::find($id)->delete();
+
+            return redirect()->route('criteriagroup.index')
+                            ->with('success','Kelompok kriteria berhasil dihapus');
+        } else {
+            return redirect()->route('criteriagroup.index')
+                            ->with('failed','Kelompok kriteria tidak bisa dihapus karena sudah ada penilaian');
+        }
     }
 
     /**

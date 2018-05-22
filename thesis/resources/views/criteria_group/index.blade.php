@@ -31,6 +31,12 @@
 				<p>{{ $message }}</p>
 			</div>
 		@endif
+
+		@if ($message = Session::get('failed'))
+			<div class="alert alert-error">
+				<p>{{ $message }}</p>
+			</div>
+		@endif
 		
 		<div class="row">
 			<div class="col-lg-12 margin-tb">
