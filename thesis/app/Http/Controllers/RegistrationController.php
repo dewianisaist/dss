@@ -128,8 +128,8 @@ class RegistrationController extends Controller
                             ]);
         } else {
             $selectionData['selection_schedule_id'] = $schedule->id;
-            $selectionData['create_at'] = $input['register_date'];
-            $selectionData['update_at'] = $input['register_date'];
+            $selectionData['created_at'] = $input['register_date'];
+            $selectionData['updated_at'] = $input['register_date'];
 
             $registration = Registration::create($input);
 
